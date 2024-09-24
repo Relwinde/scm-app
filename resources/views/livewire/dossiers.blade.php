@@ -13,12 +13,12 @@
                         <table class="table table-bordered text-nowrap border-bottom" id="responsive-datatable">
                             <thead>
                                 <tr>
-                                    <th class="wd-15p border-bottom-0">First name</th>
-                                    <th class="wd-15p border-bottom-0">Last name</th>
-                                    <th class="wd-20p border-bottom-0">Position</th>
-                                    <th class="wd-15p border-bottom-0">Start date</th>
-                                    <th class="wd-10p border-bottom-0">Salary</th>
-                                    <th class="wd-25p border-bottom-0">E-mail</th>
+                                    <th class="wd-15p border-bottom-0">Numéro</th>
+                                    <th class="wd-15p border-bottom-0">Client</th>
+                                    <th class="wd-20p border-bottom-0">Fournisseur</th>
+                                    <th class="wd-15p border-bottom-0">Date de création</th>
+                                    <th class="wd-10p border-bottom-0">Numéro de déclaration</th>
+                                    <th class="wd-25p border-bottom-0">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
