@@ -357,7 +357,7 @@
 											<!-- SIDE-MENU -->
 											<div class="dropdown d-flex profile-1">
 												<a href="javascript:void(0);" data-bs-toggle="dropdown" class="nav-link leading-none d-flex">
-													<img src="{{asset('build/assets/images/users/11.jpg')}}" alt="profile-user"
+													<img src="{{asset('build/assets/images/users/user.jpg')}}" alt="profile-user"
 														class="avatar  profile-user brround cover-image">
 												</a>
 												<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
