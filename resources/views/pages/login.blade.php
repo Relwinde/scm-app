@@ -22,39 +22,39 @@
                         <div class="wrap-login100 p-6">
                             <form class="login100-form validate-form">
                                 <span class="login100-form-title">
-                                    Login
+                                    Connexion
                                 </span>
-                                <div class="wrap-input100 validate-input mb-4" data-validate = "Valid email is required: ex@abc.xyz">
+                                <div class="wrap-input100 validate-input mb-4" data-validate = "Entrez un email valide: ex@abc.xyz">
                                     <input class="input100" type="text" name="email" placeholder="Email">
                                     <span class="focus-input100"></span>
                                     <span class="symbol-input100">
                                         <i class="zmdi zmdi-email" aria-hidden="true"></i>
                                     </span>
                                 </div>
-                                <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                                    <input class="input100" type="password" name="pass" placeholder="Password">
+                                <div class="wrap-input100 validate-input" data-validate = "Mot de passe réquis">
+                                    <input class="input100" type="password" name="pass" placeholder="Mot de passe">
                                     <span class="focus-input100"></span>
                                     <span class="symbol-input100">
                                         <i class="zmdi zmdi-lock" aria-hidden="true"></i>
                                     </span>
                                 </div>
                                 <div class="text-end pt-1">
-                                    <p class="mb-0"><a href="{{url('forgot-password')}}" class="text-primary ms-1">Forgot Password?</a></p>
+                                    <p class="mb-0"><a href="{{url('forgot-password')}}" class="text-primary ms-1">Mot de passe oublié ?</a></p>
                                 </div>
                                 <div class="container-login100-form-btn">
                                     <a href="{{url('index')}}" class="login100-form-btn btn-primary">
-                                        Login
+                                        Se connecter
                                     </a>
                                 </div>
                                 <div class="text-center pt-3">
-                                    <p class="text-dark mb-0">Not a member?<a href="{{url('register')}}" class="text-primary mx-1">Sign UP now</a></p>
+                                    <p class="text-dark mb-0">Vous n'avez pas de compte ?<a href="{{url('register')}}" class="text-primary mx-1">S'inscrire</a></p>
                                 </div>
                                 <div class=" flex-c-m text-center mt-3">
-                                    <p>Or</p>
+                                    <p>Ou</p>
                                     <div class="social-icons">
                                         <ul>
-                                            <li><a class="btn  btn-social btn-block"><i class="fa fa-google-plus text-google-plus"></i> Sign up with Google</a></li>
-                                            <li><a class="btn  btn-social btn-block mt-2"><i class="fa fa-facebook text-facebook"></i> Sign in with Facebook</a></li>
+                                            <li><a class="btn  btn-social btn-block"><i class="fa fa-google-plus text-google-plus"></i> S'inscrire avec Google</a></li>
+                                            <li><a class="btn  btn-social btn-block mt-2"><i class="fa fa-facebook text-facebook"></i> S'inscrire avec Facebook</a></li>
                                         </ul>
                                     </div>
                                 </div>

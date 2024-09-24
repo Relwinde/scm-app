@@ -11,11 +11,19 @@
 
 							<!-- PAGE-HEADER -->
 							<div class="page-header">
+<<<<<<< HEAD
 								<h1 class="page-title">Tableau de bord</h1>
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="javascript:void(0);">Acceuil</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Tableau de bord</li>
 								</ol>
+=======
+								<h1 class="page-title">Acceuil</h1>
+								<!-- <ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Dashboard 01</li>
+								</ol> -->
+>>>>>>> 391b4d16048b9f10b6f6d5f7f740b45cf9b879f4
 					     	</div>
 							<!-- PAGE-HEADER END -->
 
