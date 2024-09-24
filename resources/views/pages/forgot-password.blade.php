@@ -23,8 +23,8 @@
                                 <div class="col col-login mx-auto">
                                     <form class="card shadow-none" method="post">
                                         <div class="card-body p-6">
-                                            <h3 class="text-center card-title">Forgot password</h3>
-                                                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                                            <h3 class="text-center card-title">Mot de passe oublié</h3>
+                                                <div class="wrap-input100 validate-input" data-validate = "Entrez un email valide: ex@abc.xyz">
                                                     <input class="input100" type="text" name="email" placeholder="Email">
                                                     <span class="focus-input100"></span>
                                                     <span class="symbol-input100">
@@ -32,10 +32,10 @@
                                                     </span>
                                                 </div>
                                                 <div class="form-footer mt-4">
-                                                    <a href="{{url('index')}}" class="btn btn-primary btn-block">Submit</a>
+                                                    <a href="{{url('index')}}" class="btn btn-primary btn-block">Soumettre</a>
                                                 </div>
                                                 <div class="text-center text-muted mt-3 ">
-                                                Forget it, <a href="{{url('login')}}">send me back</a> to the sign in screen.
+                                                 <a href="{{url('login')}}">Revenir</a> sur la page de connexion.
                                             </div>
                                         </div>
                                     </form>
