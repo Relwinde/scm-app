@@ -11,19 +11,19 @@
 		<meta name="keywords" content="admin template, admin dashboard, admin panel template, laravel template, bootstrap dashboard, admin dashboard bootstrap, bootstrap admin template, laravel admin panel, laravel dashboard, admin dashboard laravel, template dashboard, dashboard, theme ui, admin dashboard template, bootstrap 5 admin template, laravel bootstrap">
 
 		<!-- TITLE -->
-		<title>Volgh – Laravel Bootstrap 5 Responsive Application Admin panel Template</title>
+		<title>SCM LOGISTICS</title>
 
 		<!-- Favicon -->
 		<link rel="icon" href="{{asset('build/assets/images/brand/favicon.ico')}}" type="image/x-icon">
 
         <!-- BOOTSTRAP CSS -->
 	    <link id="style" href="{{asset('build/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" >
-       
+
         <!-- APP CSS & APP SCSS -->
         @vite(['resources/css/app.css' , 'resources/sass/app.scss'])
 
         @yield('styles')
-        
+
 	</head>
 
 	<body class="app ltr sidebar-mini light-mode">
@@ -38,7 +38,7 @@
 		<div class="page">
 
             <div class="page-main">
-        
+
                 <!-- App-Header -->
                 @include('layouts.components.app-header')
                 <!-- End App-Header -->
@@ -51,13 +51,13 @@
 				<div class="app-content main-content">
 					<div class="side-app">
 						<div class="main-container">
-                        
+
                             @yield('content')
 
                         </div>
                     </div>
                     <!-- Container closed -->
-                </div>            
+                </div>
                 <!-- main-content closed -->
 
             </div>
@@ -69,11 +69,11 @@
             <!-- Country-selector modal -->
             @include('layouts.components.modal')
             <!-- End Country-selector modal -->
-     
+
             <!-- Footer opened -->
 			@include('layouts.components.footer')
             <!-- End Footer -->
-       
+
             @yield('modals')
 
 		</div>
@@ -81,7 +81,7 @@
 
         <!-- SCRIPTS -->
         @include('layouts.components.scripts')
-        
+
         <!-- APP JS-->
 		@vite('resources/js/app.js')
         <!-- END SCRIPTS -->

@@ -51,12 +51,12 @@
 													</div>
 												</div>
 											</div>
-											<div class="d-flex country">
+											{{-- <div class="d-flex country">
 												<a class="nav-link icon text-center" data-bs-target="#country-selector"
 													data-bs-toggle="modal">
 													<img src="{{asset('build/assets/images/flags/10.jpg')}}" alt="us_flag">
 												</a>
-											</div>
+											</div> --}}
 											<!-- COUNTRY -->
 											<div class="d-flex">
 												<a class="nav-link icon theme-layout nav-link-bg layout-setting">
@@ -65,7 +65,7 @@
 												</a>
 											</div>
 											<!-- Theme-Layout -->
-											<div class="dropdown  d-flex shopping-cart">
+											{{-- <div class="dropdown  d-flex shopping-cart">
 												<a class="nav-link icon text-center" data-bs-toggle="dropdown">
 													<i class="fe fe-shopping-cart"></i><span class="badge bg-secondary header-badge">4</span>
 												</a>
@@ -186,7 +186,7 @@
 
 													</div>
 												</div>
-											</div>
+											</div> --}}
 											<!-- CART -->
 											<div class="dropdown d-flex">
 												<a class="nav-link icon full-screen-link nav-link-bg">
@@ -194,7 +194,7 @@
 												</a>
 											</div>
 											<!-- FULL-SCREEN -->
-											<div class="dropdown  d-flex notifications">
+											{{-- <div class="dropdown  d-flex notifications">
 												<a class="nav-link icon" data-bs-toggle="dropdown"><i
 														class="fe fe-bell"></i><span class=" pulse"></span>
 												</a>
@@ -252,9 +252,9 @@
 
 													</div>
 												</div>
-											</div>
+											</div> --}}
 											<!-- NOTIFICATIONS -->
-											<div class="dropdown  d-flex message">
+											{{-- <div class="dropdown  d-flex message">
 												<a class="nav-link icon text-center" data-bs-toggle="dropdown">
 													<i class="fe fe-message-square"></i><span class="pulse-danger"></span>
 												</a>
@@ -346,14 +346,14 @@
 															<a class="btn btn-primary btn-pill w-sm btn-sm py-2 btn-block fs-14" href="{{url('chat')}}">See All Messages</a>
 													</div>
 												</div>
-											</div>
-											<!-- MESSAGE-BOX -->
+											</div> --}}
+											{{-- <!-- MESSAGE-BOX -->
 											<div class="dropdown d-flex header-settings">
 												<a href="javascript:void(0);" class="nav-link icon"
 													data-bs-toggle="sidebar-right" data-target=".sidebar-right">
 													<i class="fe fe-align-right"></i>
 												</a>
-											</div>
+											</div> --}}
 											<!-- SIDE-MENU -->
 											<div class="dropdown d-flex profile-1">
 												<a href="javascript:void(0);" data-bs-toggle="dropdown" class="nav-link leading-none d-flex">
