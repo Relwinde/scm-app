@@ -2,17 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\DashboardsController;
-use App\Http\Controllers\AdvanceduiController;
-use App\Http\Controllers\ChartsController;
-use App\Http\Controllers\ComponentsController;
-use App\Http\Controllers\ElementsController;
+use App\Http\Controllers\MapsController;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\IconsController;
-use App\Http\Controllers\MapsController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ChartsController;
 use App\Http\Controllers\TablesController;
+use App\Http\Controllers\DossierController;
 use App\Http\Controllers\WidgetsController;
+use App\Http\Controllers\ElementsController;
+use App\Http\Controllers\AdvanceduiController;
+use App\Http\Controllers\ComponentsController;
+use App\Http\Controllers\DashboardsController;
+use App\Livewire\Dossiers;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +27,12 @@ use App\Http\Controllers\WidgetsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/', [DashboardsController::class, 'index']);
+
+Route::get('/dossiers', Dossiers::class);
+
+
 Route::get('index', [DashboardsController::class, 'index']);
 Route::get('index2', [DashboardsController::class, 'index2']);
 Route::get('index3', [DashboardsController::class, 'index3']);
