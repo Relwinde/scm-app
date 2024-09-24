@@ -1,4 +1,4 @@
-				<div class="sticky">
+				<!-- <div class="sticky">
 					<div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
 						<div class="app-sidebar">
 							<div class="side-header">
@@ -9,9 +9,9 @@
 									<img src="{{asset('build/assets/images/brand/logo-2.png')}}" class="header-brand-img light-logo" alt="logo">
 									<img src="{{asset('build/assets/images/brand/logo-3.png')}}" class="header-brand-img light-logo1"
 										alt="logo">
-								</a>
+								</a> -->
 								<!-- LOGO -->
-							</div>
+							<!-- </div>
 							<div class="main-sidemenu">
 								<div class="slide-left disabled" id="slide-left"><svg xmlns="http://www.w3.org/2000/svg"
 										fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
@@ -29,9 +29,9 @@
 										<ul class="slide-menu">
 											<li class="panel sidetab-menu">
 												<div class="tab-menu-heading p-0 pb-2 border-0">
-													<div class="tabs-menu ">
+													<div class="tabs-menu "> -->
 														<!-- Tabs -->
-														<ul class="nav panel-tabs">
+														<!-- <ul class="nav panel-tabs">
 															<li><a href="#side1" class="d-flex active" data-bs-toggle="tab"><i class="fe fe-monitor me-2"></i><p>Home</p></a></li>
 															<li><a href="#side2" data-bs-toggle="tab" class="d-flex"><i class="fe fe-message-square me-2"></i><p>Chat</p></a></li>
 														</ul>
@@ -211,9 +211,9 @@
 										<ul class="slide-menu">
 											<li class="panel sidetab-menu">
 												<div class="tab-menu-heading p-0 pb-2 border-0">
-													<div class="tabs-menu ">
+													<div class="tabs-menu "> -->
 														<!-- Tabs -->
-														<ul class="nav panel-tabs">
+														<!-- <ul class="nav panel-tabs">
 															<li><a href="#side5" class="d-flex active" data-bs-toggle="tab"><i class="fe fe-monitor me-2"></i><p>Home</p></a></li>
 																<li><a href="#side6" data-bs-toggle="tab" class="d-flex"><i class="fe fe-message-square me-2"></i><p>Chat</p></a></li>
 														</ul>
@@ -385,9 +385,9 @@
 										<ul class="slide-menu">
 											<li class="panel sidetab-menu">
 												<div class="tab-menu-heading p-0 pb-2 border-0">
-													<div class="tabs-menu ">
+													<div class="tabs-menu "> -->
 														<!-- Tabs -->
-														<ul class="nav panel-tabs">
+														<!-- <ul class="nav panel-tabs">
 															<li><a href="#side9" class="d-flex active" data-bs-toggle="tab"><i class="fe fe-monitor me-2"></i><p>Home</p></a></li>
 																<li><a href="#side10" data-bs-toggle="tab" class="d-flex"><i class="fe fe-message-square me-2"></i><p>Chat</p></a></li>
 														</ul>
@@ -581,9 +581,9 @@
 										<ul class="slide-menu">
 											<li class="panel sidetab-menu">
 												<div class="tab-menu-heading p-0 pb-2 border-0">
-													<div class="tabs-menu ">
+													<div class="tabs-menu "> -->
 														<!-- Tabs -->
-														<ul class="nav panel-tabs">
+														<!-- <ul class="nav panel-tabs">
 															<li><a href="#side13" class="d-flex active" data-bs-toggle="tab"><i class="fe fe-monitor me-2"></i><p>Home</p></a></li>
 															<li><a href="#side14" data-bs-toggle="tab" class="d-flex"><i class="fe fe-message-square me-2"></i><p>Chat</p></a></li>
 														</ul>
@@ -764,9 +764,9 @@
 										<ul class="slide-menu">
 											<li class="panel sidetab-menu">
 												<div class="tab-menu-heading p-0 pb-2 border-0">
-													<div class="tabs-menu ">
+													<div class="tabs-menu "> -->
 														<!-- Tabs -->
-														<ul class="nav panel-tabs">
+														<!-- <ul class="nav panel-tabs">
 															<li><a href="#side17" class="d-flex active" data-bs-toggle="tab"><i class="fe fe-monitor me-2"></i><p>Home</p></a></li>
 															<li><a href="#side18" data-bs-toggle="tab" class="d-flex"><i class="fe fe-message-square me-2"></i><p>Chat</p></a></li>
 														</ul>
@@ -951,9 +951,9 @@
 										<ul class="slide-menu">
 											<li class="panel sidetab-menu">
 												<div class="tab-menu-heading p-0 pb-2 border-0">
-													<div class="tabs-menu ">
+													<div class="tabs-menu "> -->
 														<!-- Tabs -->
-														<ul class="nav panel-tabs">
+														<!-- <ul class="nav panel-tabs">
 															<li><a href="#side21" class="d-flex active" data-bs-toggle="tab"><i class="fe fe-monitor me-2"></i><p>Home</p></a></li>
 															<li><a href="#side22" data-bs-toggle="tab" class="d-flex"><i class="fe fe-message-square me-2"></i><p>Chat</p></a></li>
 														</ul>
@@ -1136,9 +1136,9 @@
 										<ul class="slide-menu">
 											<li class="panel sidetab-menu">
 												<div class="tab-menu-heading p-0 pb-2 border-0">
-													<div class="tabs-menu ">
+													<div class="tabs-menu "> -->
 														<!-- Tabs -->
-														<ul class="nav panel-tabs">
+														<!-- <ul class="nav panel-tabs">
 															<li><a href="#side25" class="d-flex active" data-bs-toggle="tab"><i class="fe fe-monitor me-2"></i><p>Home</p></a></li>
 															<li><a href="#side26" data-bs-toggle="tab" class="d-flex"><i class="fe fe-message-square me-2"></i><p>Chat</p></a></li>
 														</ul>
@@ -1383,9 +1383,9 @@
 										<ul class="slide-menu">
 											<li class="panel sidetab-menu">
 												<div class="tab-menu-heading p-0 pb-2 border-0">
-													<div class="tabs-menu ">
+													<div class="tabs-menu "> -->
 														<!-- Tabs -->
-														<ul class="nav panel-tabs">
+														<!-- <ul class="nav panel-tabs">
 															<li><a href="#side29" class="d-flex active" data-bs-toggle="tab"><i class="fe fe-monitor me-2"></i><p>Home</p></a></li>
 																<li><a href="#side30" data-bs-toggle="tab" class="d-flex"><i class="fe fe-message-square me-2"></i><p>Chat</p></a></li>
 														</ul>
@@ -1558,9 +1558,9 @@
 										<ul class="slide-menu">
 											<li class="panel sidetab-menu">
 												<div class="tab-menu-heading p-0 pb-2 border-0">
-													<div class="tabs-menu ">
+													<div class="tabs-menu "> -->
 														<!-- Tabs -->
-														<ul class="nav panel-tabs">
+														<!-- <ul class="nav panel-tabs">
 															<li><a href="#side33" class="d-flex active" data-bs-toggle="tab"><i class="fe fe-monitor me-2"></i><p>Home</p></a></li>
 															<li><a href="#side34" data-bs-toggle="tab" class="d-flex"><i class="fe fe-message-square me-2"></i><p>Chat</p></a></li>
 														</ul>
@@ -1741,9 +1741,9 @@
 										<ul class="slide-menu">
 											<li class="panel sidetab-menu">
 												<div class="tab-menu-heading p-0 pb-2 border-0">
-													<div class="tabs-menu ">
+													<div class="tabs-menu "> -->
 														<!-- Tabs -->
-														<ul class="nav panel-tabs">
+														<!-- <ul class="nav panel-tabs">
 															<li><a href="#side37" class="d-flex active" data-bs-toggle="tab"><i class="fe fe-monitor me-2"></i><p>Home</p></a></li>
 															<li><a href="#side38" data-bs-toggle="tab" class="d-flex"><i class="fe fe-message-square me-2"></i><p>Chat</p></a></li>
 														</ul>
@@ -2089,4 +2089,5 @@
 									</svg></div>
 							</div>
 					</div>
-				</div>
+				</div> -->
+				
