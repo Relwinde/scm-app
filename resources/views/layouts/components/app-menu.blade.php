@@ -32,8 +32,9 @@
                             <div class="tab-pane" id="side1">
                                 <ul class="sidemenu-list">
                                     <li class="side-menu-label1"><a href="javascript:void(0);">Dashboards</a></li>
-                                    <li><a href="{{url('/dossiers')}}" class="slide-item">Imports / Exports</a></li>
-                                    <li><a href="{{url('/dossiers')}}" class="slide-item"> Transports internes</a></li>
+                                    <li><a href="{{url('/dossiers-import')}}" class="slide-item">Dossiers Imports</a></li>
+                                    <li><a href="{{url('/dossiers-export')}}" class="slide-item">Dossiers Exports</a></li>
+                                    <li><a href="{{url('/dossiers-internes')}}" class="slide-item"> Transports internes</a></li>
                                 </ul>
                                 {{-- <div class="menutabs-content mt-5 p-0">
                                     <div class="Annoucement_card">

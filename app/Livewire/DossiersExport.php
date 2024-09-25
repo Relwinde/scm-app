@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Livewire;
+
+use App\Models\Dossier;
+use Livewire\Component;
+
+class DossiersExport extends Component
+{
+    public $search;
+
+    public function render()
+    {
+        $dossiers = Dossier::where('numero', 'like', "%{$this->search}%")
+        ->where('type', '=', "EXPORT")
+        ->orderBy('created_at', 'ASC')
+        ->paginate(20, '*', 'dossier-pagination');
+        return view('livewire.dossiers-export', [
+            'dossiers' => $dossiers
+        ]);
+    }
+}

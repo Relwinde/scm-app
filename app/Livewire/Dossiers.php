@@ -10,8 +10,9 @@ class Dossiers extends Component
     public function render()
     {
 
-        $dossiers = Dossier::where('num_commande', 'like', "%{$this->search}%")
-            ->orderBy('date_chargement', 'ASC') 
+        $dossiers = Dossier::where('numero', 'like', "%{$this->search}%")
+            ->where('type', '=', "")
+            ->orderBy('created_at', 'ASC')
             ->paginate(20, '*', 'dossier-pagination');
 
         return view('livewire.dossiers', [

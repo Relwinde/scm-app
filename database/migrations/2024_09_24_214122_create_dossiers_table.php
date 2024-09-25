@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('dossiers', function (Blueprint $table) {
             $table->id();
+            $table->string('numero');
             $table->string('num_commande');
             $table->string('num_fature');
             $table->string('num_dpi');
