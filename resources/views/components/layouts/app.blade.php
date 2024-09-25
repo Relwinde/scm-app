@@ -11,7 +11,7 @@
 		<meta name="keywords" content="admin template, admin dashboard, admin panel template, laravel template, bootstrap dashboard, admin dashboard bootstrap, bootstrap admin template, laravel admin panel, laravel dashboard, admin dashboard laravel, template dashboard, dashboard, theme ui, admin dashboard template, bootstrap 5 admin template, laravel bootstrap">
 
 		<!-- TITLE -->
-		<title>Volgh – Laravel Bootstrap 5 Responsive Application Admin panel Template</title>
+		<title>SCM LOGISTICS</title>
 
 		<!-- Favicon -->
 		<link rel="icon" href="{{asset('build/assets/images/brand/favicon.ico')}}" type="image/x-icon">
@@ -26,7 +26,7 @@
 
 	</head>
 
-	<body class="login-img">
+	<body class="app ltr sidebar-mini light-mode">
 
 		<!-- GLOBAL-LOADER -->
 		<div id="global-loader">
@@ -35,20 +35,52 @@
 		<!-- GLOBAL-LOADER -->
 
 		<!-- PAGE -->
-		<div class="page bg-img">
+		<div class="page">
 
-        	{{$slot}}
+            <div class="page-main">
+
+                <!-- App-Header -->
+                @include('layouts.components.app-header')
+                <!-- End App-Header -->
+
+                <!--App-Sidebar-->
+                @include('layouts.components.app-sidebar')
+                <!-- End App-Sidebar-->
+
+                <!--app-content open-->
+				<div class="app-content main-content">
+					<div class="side-app">
+						<div class="main-container">
+
+                            {{ $slot }}
+
+                        </div>
+                    </div>
+                    <!-- Container closed -->
+                </div>
+                <!-- main-content closed -->
+
+            </div>
+
+            <!-- Sidebar-right -->
+            @include('layouts.components.sidebar-right')
+            <!-- End Sidebar-right -->
+
+            <!-- Country-selector modal -->
+            @include('layouts.components.modal')
+            <!-- End Country-selector modal -->
+
+            <!-- Footer opened -->
+			@include('layouts.components.footer')
+            <!-- End Footer -->
+
+            @yield('modals')
 
 		</div>
+        <!-- END PAGE-->
 
-		<!-- JQUERY JS -->
-		<script src="{{asset('build/assets/plugins/jquery/jquery.min.js')}}"></script>
-
-		<!-- BOOTSTRAP JS -->
-		<script src="{{asset('build/assets/plugins/bootstrap/js/popper.min.js')}}"></script>
-		<script src="{{asset('build/assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
-
-		@yield('scripts')
+        <!-- SCRIPTS -->
+        @include('layouts.components.scripts')
 
         <!-- APP JS-->
 		@vite('resources/js/app.js')

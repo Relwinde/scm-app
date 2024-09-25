@@ -9,17 +9,8 @@
 
 @section('content')
 
-							<!-- PAGE-HEADER -->
-							<div class="page-header">
-								<h1 class="page-title">Acceuil</h1>
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="javascript:void(0);">Acceuil</a></li>
-									{{-- <li class="breadcrumb-item active" aria-current="page">Dashboard 01</li> --}}
-								</ol>
-					     	</div>
-							<!-- PAGE-HEADER END -->
-
-							<!-- ROW-1 -->
+                        @include('layouts.components.page-header', ['title'=>'Acceuil'])
+                            <!-- ROW-1 -->
 							<div class="row">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xl-6">
 									<div class="row">
