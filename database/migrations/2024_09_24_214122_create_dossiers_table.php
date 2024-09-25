@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('num_fature');
             $table->string('num_dpi');
             $table->string('num_declaration');
-            $table->string('v_caf');
-            $table->foreign('client_id')->constrained()->onDelete('cascade');
-            $table->foreign('fournisseur_id')->constrained()->onDelete('cascade');
+            $table->float('v_caf');
+            $table->foreignId('client_id')->constrained()->onDelete('cascade');
+            $table->foreignId('fournisseur_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
