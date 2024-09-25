@@ -16,7 +16,7 @@ class CreateDossierImport extends ModalComponent
      */
     public static function modalMaxWidth(): string
     {
-        return '5xl';
+        return 'sm';
     }
     public static function destroyOnClose(): bool
     {

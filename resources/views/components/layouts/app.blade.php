@@ -24,15 +24,15 @@
 
         @yield('styles')
         @livewireStyles
+        {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 
-        <script src="https://cdn.tailwindcss.com"></script>
 	</head>
 
 	<body class="app ltr sidebar-mini light-mode">
 
-		<!-- GLOBAL-LOADER -->
+        <!-- GLOBAL-LOADER -->
 		<div id="global-loader">
-			<img src="{{asset('build/assets/images/svgs/loader.svg')}}" class="loader-img" alt="Loader">
+            <img src="{{asset('build/assets/images/svgs/loader.svg')}}" class="loader-img" alt="Loader">
 		</div>
 		<!-- GLOBAL-LOADER -->
 
@@ -51,8 +51,8 @@
 
                 <!--app-content open-->
 				<div class="app-content main-content">
-					<div class="side-app">
-						<div class="main-container">
+                    <div class="side-app">
+                        <div class="main-container">
 
                             {{ $slot }}
 
