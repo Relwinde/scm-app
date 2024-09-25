@@ -18,12 +18,12 @@
 
         <!-- BOOTSTRAP CSS -->
 	    <link id="style" href="{{asset('build/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" >
-       
+
         <!-- APP CSS & APP SCSS -->
         @vite(['resources/css/app.css' , 'resources/sass/app.scss'])
 
         @yield('styles')
-        
+
 	</head>
 
 	<body class="login-img">
@@ -37,7 +37,7 @@
 		<!-- PAGE -->
 		<div class="page bg-img">
 
-        	@yield('content')
+        	{{$slot}}
 
 		</div>
 
@@ -47,12 +47,12 @@
 		<!-- BOOTSTRAP JS -->
 		<script src="{{asset('build/assets/plugins/bootstrap/js/popper.min.js')}}"></script>
 		<script src="{{asset('build/assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
-		
+
 		@yield('scripts')
 
         <!-- APP JS-->
 		@vite('resources/js/app.js')
         <!-- END SCRIPTS -->
-		
+
 	</body>
 </html>

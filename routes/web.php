@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Livewire\Login;
 
+use App\Livewire\Dossiers;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MapsController;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\IconsController;
@@ -14,7 +16,6 @@ use App\Http\Controllers\ElementsController;
 use App\Http\Controllers\AdvanceduiController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardsController;
-use App\Livewire\Dossiers;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::get('/', [DashboardsController::class, 'index']);
 
 Route::get('/dossiers', Dossiers::class);
 
+Route::get('/login', Login::class);
 
 Route::get('index', [DashboardsController::class, 'index']);
 Route::get('index2', [DashboardsController::class, 'index2']);
@@ -96,7 +98,7 @@ Route::get('search', [AdvanceduiController::class, 'search']);
 Route::get('crypto-currencies', [AdvanceduiController::class, 'crypto_currencies']);
 
 
-Route::get('login', [PagesController::class, 'login']);
+// Route::get('login', [PagesController::class, 'login']);
 Route::get('register', [PagesController::class, 'register']);
 Route::get('forgot-password', [PagesController::class, 'forgot_password']);
 Route::get('lockscreen', [PagesController::class, 'lockscreen']);
