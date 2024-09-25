@@ -9,32 +9,14 @@
                     <h3 class="card-title">Liste des dossiers</h3>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered text-nowrap border-bottom" id="responsive-datatable">
-                            <thead>
-                                <tr>
-                                    <th class="wd-15p border-bottom-0">Numéro</th>
-                                    <th class="wd-15p border-bottom-0">Client</th>
-                                    <th class="wd-20p border-bottom-0">Fournisseur</th>
-                                    <th class="wd-15p border-bottom-0">Date de création</th>
-                                    <th class="wd-10p border-bottom-0">Numéro de déclaration</th>
-                                    <th class="wd-25p border-bottom-0">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($dossiers as $dossier)
-                                    <tr>
-                                        <td>{{$dossier->numero}}</td>
-                                        <td>{{$dossier->client->nom}}</td>
-                                        <td>{{$dossier->fournisseur->nom}}</td>
-                                        <td>{{$dossier->created_at}}</td>
-                                        <td>{{$dossier->num_declaration}}</td>
-                                        <td>b.Chloe@datatables.net</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                    <div class="d-flex align-items-left">
+                        <button wire:click="$dispatch('openModal', {component: 'modals.create-dossier-import'})" class="btn btn-primary mb-4"> Nouveau Dossier</button>
+                        <div class="main-header-center ms-3 d-none d-lg-block">
+                            <input type="text" class="form-control" placeholder="Recherche..." autocomplete="off">
+                            <button  class="btn px-0 pt-2"></button>
+                        </div>
                     </div>
+                    @include('partials.dossier-table')
                 </div>
             </div>
         </div>
@@ -46,7 +28,7 @@
     <script src="{{asset('build/assets/plugins/select2/select2.full.min.js')}}"></script>
     @vite('resources/assets/js/select2.js')
 
-    <!-- DATA TABLE JS-->
+    {{-- <!-- DATA TABLE JS-->
     <script src="{{asset('build/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('build/assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>
     <script src="{{asset('build/assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
@@ -58,7 +40,8 @@
     <script src="{{asset('build/assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
     <script src="{{asset('build/assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
     <script src="{{asset('build/assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>
-    <script src="{{asset('build/assets/plugins/datatable/responsive.bootstrap5.min.js')}}"></script>
+    <script src="{{asset('build/assets/plugins/datatable/responsive.bootstrap5.min.js')}}"></script> --}}
+
     @vite('resources/assets/js/table-data.js')
 
 @endsection

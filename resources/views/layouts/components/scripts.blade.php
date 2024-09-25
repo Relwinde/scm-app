@@ -18,11 +18,10 @@
         <!-- SIDEBAR JS -->
         <script src="{{asset('build/assets/plugins/sidebar/sidebar.js')}}"></script>
 
-        <!-- Perfect SCROLLBAR JS-->
+        {{-- <!-- Perfect SCROLLBAR JS-->
         <script src="{{asset('build/assets/plugins/p-scroll/perfect-scrollbar.js')}}"></script>
         <script src="{{asset('build/assets/plugins/p-scroll/pscroll.js')}}"></script>
-        <script src="{{asset('build/assets/plugins/p-scroll/pscroll-1.js')}}"></script>
+        <script src="{{asset('build/assets/plugins/p-scroll/pscroll-1.js')}}"></script> --}}
 
         @yield('scripts')
 
-        

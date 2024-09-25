@@ -23,7 +23,9 @@
         @vite(['resources/css/app.css' , 'resources/sass/app.scss'])
 
         @yield('styles')
+        @livewireStyles
 
+        <script src="https://cdn.tailwindcss.com"></script>
 	</head>
 
 	<body class="app ltr sidebar-mini light-mode">
@@ -86,5 +88,7 @@
 		@vite('resources/js/app.js')
         <!-- END SCRIPTS -->
 
+        @livewireScripts
+        @livewire('wire-elements-modal')
 	</body>
 </html>
