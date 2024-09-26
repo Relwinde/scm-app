@@ -64,11 +64,10 @@ class CreateDossierImport extends ModalComponent
 
         if($dossier->save()){
             $this->dispatch('new-dossier');
-            request()->session()->flash("success", "Dossier ajuoté avec succès.");
+            request()->session()->flash("success", "Dossier ajouté avec succès.");
             $this->reset();
         }else{
             request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
-
         }
     }
 }

@@ -22,8 +22,8 @@
                                 <tr>
                                     <th class="wd-15p border-bottom-0">Numéro</th>
                                     <th class="wd-15p border-bottom-0">Client</th>
-                                    <th class="wd-20p border-bottom-0">Fournisseur</th>
-                                    <th class="wd-15p border-bottom-0">Date de création</th>
+                                    <th class="wd-20p border-bottom-0">Chauffeur</th>
+                                    <th class="wd-15p border-bottom-0">Véhicule</th>
                                     <th class="wd-10p border-bottom-0">Itinéraire</th>
                                     <th class="wd-25p border-bottom-0">Actions</th>
                                 </tr>
@@ -33,10 +33,22 @@
                                     <tr>
                                         <td>{{$dossier->numero}}</td>
                                         <td>{{$dossier->client->nom}}</td>
-                                        <td>{{$dossier->fournisseur->nom}}</td>
-                                        <td>{{$dossier->created_at}}</td>
-                                        <td>{{$dossier->num_declaration}}</td>
-                                        <td>b.Chloe@datatables.net</td>
+                                        <td>{{$dossier->chauffeur->nom}}</td>
+                                        <td>{{$dossier->vehicule->immatriculation}}</td>
+                                        <td></td>
+                                        <td name="bstable-actions">
+                                            <div class="btn-list">
+                                                <button id="bEdit" type="button" class="btn btn-sm btn-primary">
+                                                    <span class="fe fe-edit"> </span>
+                                                </button>
+                                                <button id="bAcep" type="button" class="btn  btn-sm btn-primary">
+                                                    <span class="fe fe-eye"> </span>
+                                                </button>
+                                                <button id="bDel" type="button" class="btn  btn-sm btn-danger">
+                                                    <span class="fe fe-trash-2"> </span>
+                                                </button>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

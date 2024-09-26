@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Chauffeur</label>
-                                    <select wire:model='fournisseur' name="country" id="select-countries" class="form-control custom-select select2">
+                                    <select wire:model='chauffeur' name="country" id="select-countries" class="form-control custom-select select2">
                                         <option value="" >Sélectionnez un chauffeur</option>
                                         @foreach ($chauffeurs as $chauffeur)
                                             <option value="{{$chauffeur->id}}" >{{$chauffeur->nom}}</option>
@@ -30,10 +30,10 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Véhicule</label>
-                                    <select wire:model='fournisseur' name="country" id="select-countries" class="form-control custom-select select2">
+                                    <select wire:model='vehicule' name="country" id="select-countries" class="form-control custom-select select2">
                                         <option value="" >Sélectionnez un véhicule</option>
                                         @foreach ($vehicules as $vehicule)
-                                            <option value="{{$vehicule->id}}" >{{$vehicule->nom}}</option>
+                                            <option value="{{$vehicule->id}}" >{{$vehicule->immatriculation}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -41,7 +41,7 @@
                             <div class="col-md-6">
                                 <div class="mb-4">
                                     <label class="form-label">Montant</label>
-                                    <input wire:model='nombre_colis' type="number" class="form-control" name="example-text-input" placeholder="Nombre de colis">
+                                    <input wire:model='montant' type="number" class="form-control" name="example-text-input" placeholder="Montant">
                                 </div>
                             </div>
                             <div class="col-md-12 ">

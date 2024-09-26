@@ -16,7 +16,7 @@ class DossiersImport extends Component
     {
         $dossiers = Dossier::where('numero', 'like', "%{$this->search}%")
         ->where('type', '=', "IMPORT")
-        ->orderBy('created_at', 'ASC')
+        ->orderBy('created_at', 'DESC')
         ->paginate(20, '*', 'dossier-pagination');
         return view('livewire.dossiers-import', [
             'dossiers' => $dossiers

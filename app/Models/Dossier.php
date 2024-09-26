@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Marchandise;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Dossier extends Model
 {
@@ -19,4 +20,9 @@ class Dossier extends Model
     public function fournisseur(){
         return $this->belongsTo(Fournisseur::class);
     }
+
+    public function marchandise(){
+        return $this->belongsToMany(Marchandise::class);
+    }
+
 }

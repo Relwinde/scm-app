@@ -4,15 +4,18 @@ namespace App\Livewire;
 
 use App\Models\Dossier;
 use Livewire\Component;
+use Livewire\Attributes\On;
+use App\Models\TransportInterne;
 
 class TransportsInternes extends Component
 {
     public $search;
+
+    #[On('new-dossier')]
     public function render()
     {
-        $dossiers = Dossier::where('numero', 'like', "%{$this->search}%")
-        ->where('type', '=', "INTERN")
-        ->orderBy('created_at', 'ASC')
+        $dossiers = TransportInterne::where('numero', 'like', "%{$this->search}%")
+        ->orderBy('created_at', 'DESC')
         ->paginate(20, '*', 'dossier-pagination');
         return view('livewire.transports-internes', [
             'dossiers' => $dossiers
