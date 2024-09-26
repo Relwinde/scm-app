@@ -12,15 +12,15 @@
                     <th>Actions</th>
                 </tr> --}}
                 <tr>
-                    <th class="wd-15p border-bottom-0">Numéro</th>
-                    <th class="wd-15p border-bottom-0">Client</th>
-                    <th class="wd-20p border-bottom-0">Fournisseur</th>
-                    <th class="wd-20p border-bottom-0">N° LTA</th>
-                    <th class="wd-20p border-bottom-0">N° DPI</th>
-                    <th class="wd-20p border-bottom-0">N° de commande</th>
-                    <th class="wd-15p border-bottom-0">Date de création</th>
-                    <th class="wd-10p border-bottom-0">N° de déclaration</th>
-                    <th class="wd-25p border-bottom-0">Actions</th>
+                    <th class="wd-15p border-bottom-0"><b>Numéro</b></th>
+                    <th class="wd-15p border-bottom-0"><b>Client</b></th>
+                    <th class="wd-20p border-bottom-0"><b>Fournisseur</b></th>
+                    <th class="wd-20p border-bottom-0"><b>N° LTA</b></th>
+                    <th class="wd-20p border-bottom-0"><b>N° DPI</b></th>
+                    <th class="wd-20p border-bottom-0"><b>N° de commande</b></th>
+                    <th class="wd-15p border-bottom-0"><b>Date de création</b></th>
+                    <th class="wd-10p border-bottom-0"><b>N° de déclaration</b></th>
+                    <th class="wd-25p border-bottom-0"><b>Actions</b></th>
                 </tr>
             </thead>
             <tbody>

@@ -20,12 +20,12 @@
                         <table class="table table-bordered text-nowrap border-bottom" id="responsive-datatable">
                             <thead>
                                 <tr>
-                                    <th class="wd-15p border-bottom-0">Numéro</th>
-                                    <th class="wd-15p border-bottom-0">Client</th>
-                                    <th class="wd-20p border-bottom-0">Chauffeur</th>
-                                    <th class="wd-15p border-bottom-0">Véhicule</th>
-                                    <th class="wd-10p border-bottom-0">Itinéraire</th>
-                                    <th class="wd-25p border-bottom-0">Actions</th>
+                                    <th class="wd-15p border-bottom-0"><b>Numéro</b></th>
+                                    <th class="wd-15p border-bottom-0"><b>Client</b></th>
+                                    <th class="wd-20p border-bottom-0"><b>Chauffeur</b></th>
+                                    <th class="wd-15p border-bottom-0"><b>Véhicule</b></th>
+                                    <th class="wd-10p border-bottom-0"><b>Itinéraire</b></th>
+                                    <th class="wd-25p border-bottom-0"><b>Actions</b></th>
                                 </tr>
                             </thead>
                             <tbody>
