@@ -3,6 +3,7 @@
 namespace App\Livewire\Modals;
 
 use App\Models\Client;
+use App\Models\Dossier;
 use App\Models\Fournisseur;
 use App\Models\Marchandise;
 use LivewireUI\Modal\ModalComponent;
@@ -43,5 +44,31 @@ class CreateDossierImport extends ModalComponent
     public static function destroyOnClose(): bool
     {
         return true;
+    }
+
+    public function create(){
+        $dossier=Dossier::make([
+        'numero'=>"NUMTESTDOSSIER",
+        'num_commande'=>$this->num_commande,
+        'client_id'=>$this->client,
+        'num_facture'=>$this->num_facture,
+        'num_lta'=>$this->num_lta,
+        'num_dpi'=>$this->num_dpi,
+        'num_declaration'=>$this->num_declaration,
+        'valeur_caf'=>$this->valeur_caf,
+        'nombre_colis'=>$this->nombre_colis,
+        'poids'=>$this->poids,
+        'fournisseur_id'=>$this->fournisseur,
+        'type'=>"IMPORT"
+        ]);
+
+        if($dossier->save()){
+            $this->dispatch('new-dossier');
+            request()->session()->flash("success", "Dossier ajuoté avec succès.");
+            $this->reset();
+        }else{
+            request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
+
+        }
     }
 }

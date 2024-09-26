@@ -4,11 +4,14 @@ namespace App\Livewire;
 
 use App\Models\Dossier;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class DossiersImport extends Component
 {
 
     public $search;
+
+    #[On('new-dossier')]
     public function render()
     {
         $dossiers = Dossier::where('numero', 'like', "%{$this->search}%")

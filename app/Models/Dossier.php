@@ -9,11 +9,14 @@ class Dossier extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
+
     public function client(){
         return $this->belongsTo(Client::class);
     }
 
     public function fournisseur(){
         return $this->belongsTo(Fournisseur::class);
-    }   
+    }
 }

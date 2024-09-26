@@ -28,7 +28,6 @@
                         <td>{{$dossier->fournisseur->nom}}</td>
                         <td>{{$dossier->created_at}}</td>
                         <td>{{$dossier->num_declaration}}</td>
-                        <td>b.Chloe@datatables.net</td>
                         <td name="bstable-actions">
                             <div class="btn-list">
                                 <button id="bEdit" type="button" class="btn btn-sm btn-primary">

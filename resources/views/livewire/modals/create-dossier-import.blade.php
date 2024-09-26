@@ -1,7 +1,7 @@
 <div>
     <div class="row " >
         {{-- <div class="col-md-6 col-lg-6"> --}}
-        <form wire:submit.prevent="submit" >
+        <form wire:submit.prevent="create" >
             <div class="card form-input-elements">
                 <div class="card-header">
                     <h3 class="mb-0 card-title">Création d'un nouveau dossier</h3>

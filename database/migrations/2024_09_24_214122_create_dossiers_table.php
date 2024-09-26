@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('numero');
             $table->string('num_commande')->nullable();
-            $table->string('num_fature')->nullable();
+            $table->string('num_facture')->nullable();
             $table->string('num_dpi')->nullable();
             $table->string('num_declaration')->nullable();
             $table->float('valeur_caf')->nullable();
