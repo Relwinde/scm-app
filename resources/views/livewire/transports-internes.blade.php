@@ -9,6 +9,13 @@
                     <h3 class="card-title">Liste des dossiers</h3>
                 </div>
                 <div class="card-body">
+                    <div class="d-flex align-items-left">
+                        <button wire:click="$dispatch('openModal', {component: 'modals.create-transport-interne'})" class="btn btn-primary mb-4"> Nouveau Dossier</button>
+                        <div class="main-header-center ms-3 d-none d-lg-block">
+                            <input type="text" class="form-control" placeholder="Recherche..." autocomplete="off">
+                            <button  class="btn px-0 pt-2"></button>
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-bordered text-nowrap border-bottom" id="responsive-datatable">
                             <thead>

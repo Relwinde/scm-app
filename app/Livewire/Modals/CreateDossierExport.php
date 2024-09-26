@@ -21,6 +21,7 @@ class CreateDossierExport extends ModalComponent
     public $num_lta;
     public $num_declaration;
     public $valeur_caf;
+
     public function render()
     {
         $clients = Client::all(['id', 'nom']);
