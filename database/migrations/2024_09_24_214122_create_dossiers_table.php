@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('dossiers', function (Blueprint $table) {
             $table->id();
             $table->string('numero');
-            $table->string('num_commande');
-            $table->string('num_fature');
-            $table->string('num_dpi');
-            $table->string('num_declaration');
-            $table->float('v_caf');
+            $table->string('num_commande')->nullable();
+            $table->string('num_fature')->nullable();
+            $table->string('num_dpi')->nullable();
+            $table->string('num_declaration')->nullable();
+            $table->float('valeur_caf')->nullable();
+            $table->float('nombre_colis')->nullable();
+            $table->float('poids')->nullable();
             $table->foreignId('client_id')->constrained()->onDelete('cascade');
             $table->foreignId('fournisseur_id')->constrained()->onDelete('cascade');
             $table->timestamps();
