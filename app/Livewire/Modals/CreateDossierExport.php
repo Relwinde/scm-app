@@ -4,11 +4,11 @@ namespace App\Livewire\Modals;
 
 use App\Models\Client;
 use App\Models\Dossier;
+use LivewireUI\Modal\ModalComponent;
 use App\Models\Fournisseur;
 use App\Models\Marchandise;
-use LivewireUI\Modal\ModalComponent;
 
-class CreateDossierImport extends ModalComponent
+class CreateDossierExport extends ModalComponent
 {
     public $num_commande;
     public $client;
@@ -21,26 +21,14 @@ class CreateDossierImport extends ModalComponent
     public $num_lta;
     public $num_declaration;
     public $valeur_caf;
-
-
-
-
     public function render()
     {
         $clients = Client::all(['id', 'nom']);
         $fournisseurs = Fournisseur::all(['id', 'nom']);
         $marchandises = Marchandise::all(['id', 'nom']);
-
-        return view('livewire.modals.create-dossier-import', ["clients"=>$clients, "fournisseurs"=>$fournisseurs, "marchandises"=>$marchandises, "title"=>"d'importation"]);
+        return view('livewire.modals.create-dossier-export', ["clients"=>$clients, "fournisseurs"=>$fournisseurs, "marchandises"=>$marchandises, "title"=>"d'exportation"]);
     }
 
-/**
-     * Supported: 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl'
-     */
-    // public static function modalMaxWidth(): string
-    // {
-    //     return 'sm';
-    // }
     public static function destroyOnClose(): bool
     {
         return true;
@@ -59,7 +47,7 @@ class CreateDossierImport extends ModalComponent
         'nombre_colis'=>$this->nombre_colis,
         'poids'=>$this->poids,
         'fournisseur_id'=>$this->fournisseur,
-        'type'=>"IMPORT"
+        'type'=>"EXPORT"
         ]);
 
         if($dossier->save()){

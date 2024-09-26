@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex align-items-left">
-                        <button class="btn btn-primary mb-4"> Nouveau Dossier</button>
+                        <button wire:click="$dispatch('openModal', {component: 'modals.create-dossier-export'})" class="btn btn-primary mb-4"> Nouveau Dossier</button>
                         <div class="main-header-center ms-3 d-none d-lg-block">
                             <input type="text" class="form-control" placeholder="Recherche..." autocomplete="off">
                             <button class="btn px-0 pt-2"><i class="fe fe-search" aria-hidden="true"></i></button>
