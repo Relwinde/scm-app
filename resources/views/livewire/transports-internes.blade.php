@@ -41,7 +41,7 @@
                                                 <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                                                     <span class="fe fe-edit"> </span>
                                                 </button>
-                                                <button id="bAcep" type="button" class="btn  btn-sm btn-primary">
+                                                <button wire:click="$dispatch('openModal', {component: 'modals.view-transport-interne', arguments: { dossier : {{ $dossier->id }} }})" id="bAcep" type="button" class="btn  btn-sm btn-primary">
                                                     <span class="fe fe-eye"> </span>
                                                 </button>
                                                 <button id="bDel" type="button" class="btn  btn-sm btn-danger">

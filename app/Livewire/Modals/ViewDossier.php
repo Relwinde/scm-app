@@ -24,6 +24,8 @@ class ViewDossier extends ModalComponent
     public $num_declaration;
     public $valeur_caf;
 
+    public $edit = false;
+
     public function render()
     {
         $this->num_commande = $this->dossier->num_commande;
@@ -43,5 +45,37 @@ class ViewDossier extends ModalComponent
         $marchandises = Marchandise::all(['id', 'nom']);
 
         return view('livewire.modals.view-dossier', ["clients"=>$clients, "fournisseurs"=>$fournisseurs, "marchandises"=>$marchandises, "title"=>"d'importation"]);
+    }
+
+    public function setEdit(){
+        if($this->edit == true){
+            $this->edit=false;
+        }
+        else{
+            $this->edit=true;
+        }
+    }
+
+    public function update(){
+        $this->dossier->num_commande = $this->num_commande;
+        $this->dossier->client_id = $this->client;
+        $this->dossier->fournisseur_id = $this->fournisseur;
+        $this->dossier->num_facture = $this->num_facture;
+        // $this->marchandise = $this->dossier->marchandise->id;
+        $this->dossier->num_dpi = $this->num_dpi;
+        $this->dossier->nombre_colis = $this->nombre_colis;
+        $this->dossier->poids = $this->poids;
+        $this->dossier->num_lta = $this->num_lta;
+        $this->dossier->num_declaration = $this->num_declaration;
+        $this->dossier->valeur_caf =$this->valeur_caf;
+
+        if($this->dossier->save()){
+            $this->dispatch('new-dossier');
+            $this->edit=false;
+            request()->session()->flash("success", "Dossier modifié avec succès.");
+        }else{
+            request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
+
+        }
     }
 }
