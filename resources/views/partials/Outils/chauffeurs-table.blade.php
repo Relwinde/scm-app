@@ -10,25 +10,22 @@
         </thead>
         <tbody>
             @foreach ($chauffeurs as $chauffeur)
-            @if ($edit == true && $editId == $chauffeur->id)
-                <form wire:submit.prevent="update({{$chauffeur->id}})">
-            @endif
                 <tr>
                     <td style="max-width: 10px">{{$loop->iteration}}</td>
-                    <td> @if ($edit==true)
+                    <td> @if ($edit==true && $editId == $chauffeur->id)
                         <input wire:model='nom' type="text" class="form-control" name="nom" placeholder="Nom du chauffeur">
                     @else
                         {{$chauffeur->nom}}
                     @endif</td>
-                    <td> @if ($edit==true)
+                    <td> @if ($edit==true && $editId == $chauffeur->id)
                         <input wire:model='contact' type="text" class="form-control" name="contact" placeholder="Contact du chauffeur">
                     @else
                         {{$chauffeur->contact}}
                     @endif</td>
                     <td name="bstable-actions">
                         <div class="btn-list">
-                            @if ($edit==true)
-                                <button href="javascript:void(0);" class="btn btn-sm btn-primary">
+                            @if ($edit==true && $editId == $chauffeur->id)
+                                <button wire:click='update({{$chauffeur->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
                                     <span class="fe fe-check"> </span>
                                 </button>
                                 <button wire:click='setEdit({{$chauffeur->id}})' type="button" class="btn btn-sm btn-primary">
@@ -43,9 +40,6 @@
                         </div>
                     </td>
                 </tr>
-                @if ($edit == true && $editId == $chauffeur->id)
-                    </form>
-                @endif
             @endforeach
         </tbody>
     </table>
