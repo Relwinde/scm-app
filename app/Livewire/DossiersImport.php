@@ -15,6 +15,8 @@ class DossiersImport extends Component
     public function render()
     {
         $dossiers = Dossier::where('numero', 'like', "%{$this->search}%")
+        ->where('num_facture', 'like', "%{$this->search}%")
+        ->where('num_commande', 'like', "%{$this->search}%")
         ->where('type', '=', "IMPORT")
         ->orderBy('created_at', 'DESC')
         ->paginate(20, '*', 'dossier-pagination');
@@ -22,4 +24,5 @@ class DossiersImport extends Component
             'dossiers' => $dossiers
         ]);
     }
+
 }

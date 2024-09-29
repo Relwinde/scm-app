@@ -5,7 +5,7 @@
             <form wire:submit.prevent="create" >
                 <div class="card form-input-elements">
                     <div class="card-header">
-                        <h3 class="mb-0 card-title">Création d'un nouveau dossier {{$title}}</h3>
+                        <h3 class="mb-0 card-title"><b>Détails du dossier</b></h3>
                     </div>
                     <div class="card-body">
                         <div class="row">

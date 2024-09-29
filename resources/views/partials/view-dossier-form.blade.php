@@ -3,7 +3,7 @@
 @endif
     <div class="card form-input-elements">
         <div class="card-header">
-            <h3 class="mb-0 card-title">Détail du dossier</h3>
+            <h3 class="mb-0 card-title"><b>Détail du dossier</b></h3>
         </div>
         <div class="card-body">
             <div class="row">
@@ -45,7 +45,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° DPI</label>
-                        <input wire:model='num_dpi' type="text" class="form-control" @if($edit==false) readonly @endif name="" placeholder="N° DPI">
+                        <input wire:model='num_sylvie' type="text" class="form-control" @if($edit==false) readonly @endif name="" placeholder="N° DPI">
                     </div>
                 </div>
                 <div class="col-md-6">

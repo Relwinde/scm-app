@@ -16,12 +16,13 @@ return new class extends Migration
             $table->string('numero');
             $table->string('num_commande')->nullable();
             $table->string('num_facture')->nullable();
-            $table->string('num_dpi')->nullable();
+            $table->string('num_sylvie')->nullable();
             $table->string('num_declaration')->nullable();
             $table->float('valeur_caf')->nullable();
             $table->float('nombre_colis')->nullable();
             $table->float('poids')->nullable();
             $table->foreignId('client_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('fournisseur_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

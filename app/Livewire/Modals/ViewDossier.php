@@ -17,7 +17,7 @@ class ViewDossier extends ModalComponent
     public $fournisseur;
     public $num_facture;
     public $marchandise;
-    public $num_dpi;
+    public $num_sylvie;
     public $nombre_colis;
     public $poids;
     public $num_lta;
@@ -33,7 +33,7 @@ class ViewDossier extends ModalComponent
         $this->fournisseur = $this->dossier->fournisseur_id;
         $this->num_facture = $this->dossier->num_facture;
         // $this->marchandise = $this->dossier->marchandise->id;
-        $this->num_dpi = $this->dossier->num_dpi;
+        $this->num_sylvie = $this->dossier->num_sylvie;
         $this->nombre_colis = $this->dossier->nombre_colis;
         $this->poids = $this->dossier->poids;
         $this->num_lta = $this->dossier->num_lta;
@@ -62,7 +62,7 @@ class ViewDossier extends ModalComponent
         $this->dossier->fournisseur_id = $this->fournisseur;
         $this->dossier->num_facture = $this->num_facture;
         // $this->marchandise = $this->dossier->marchandise->id;
-        $this->dossier->num_dpi = $this->num_dpi;
+        $this->dossier->num_sylvie = $this->num_sylvie;
         $this->dossier->nombre_colis = $this->nombre_colis;
         $this->dossier->poids = $this->poids;
         $this->dossier->num_lta = $this->num_lta;

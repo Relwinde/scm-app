@@ -15,7 +15,7 @@ class CreateDossierExport extends ModalComponent
     public $fournisseur;
     public $num_facture;
     public $marchandise;
-    public $num_dpi;
+    public $num_sylvie;
     public $nombre_colis;
     public $poids;
     public $num_lta;
@@ -42,7 +42,7 @@ class CreateDossierExport extends ModalComponent
         'client_id'=>$this->client,
         'num_facture'=>$this->num_facture,
         'num_lta'=>$this->num_lta,
-        'num_dpi'=>$this->num_dpi,
+        'num_sylvie'=>$this->num_sylvie,
         'num_declaration'=>$this->num_declaration,
         'valeur_caf'=>$this->valeur_caf,
         'nombre_colis'=>$this->nombre_colis,
