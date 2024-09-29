@@ -4,6 +4,7 @@ use App\Livewire\Login;
 
 use App\Livewire\DossiersExport;
 use App\Livewire\DossiersImport;
+use App\Livewire\Outils\Chauffeur;
 use App\Livewire\TransportsInternes;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MapsController;
@@ -36,8 +37,8 @@ Route::get('/', [DashboardsController::class, 'index']);
 Route::get('/dossiers-import', DossiersImport::class);
 Route::get('/dossiers-export', DossiersExport::class);
 Route::get('/dossiers-internes', TransportsInternes::class);
-
 Route::get('/login', Login::class);
+Route::get('/chauffeurs', Chauffeur::class);
 
 Route::get('index', [DashboardsController::class, 'index']);
 Route::get('index2', [DashboardsController::class, 'index2']);

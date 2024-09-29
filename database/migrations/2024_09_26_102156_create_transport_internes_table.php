@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('vehicule_id')->constrained()->onDelete('cascade');
             $table->foreignId('chauffeur_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

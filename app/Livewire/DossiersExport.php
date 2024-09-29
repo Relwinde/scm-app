@@ -18,7 +18,7 @@ class DossiersExport extends Component
         ->orderBy('created_at', 'DESC')
         ->paginate(20, '*', 'dossier-pagination');
         return view('livewire.dossiers-export', [
-            'dossiers' => $dossiers
+            'dossiers' => $dossiers, 'header_title'=>'Dossiers d\'exportation', 'create_modal'=>'modals.create-dossier-export'
         ]);
     }
 }

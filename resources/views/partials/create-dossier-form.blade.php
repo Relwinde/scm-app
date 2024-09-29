@@ -1,7 +1,7 @@
 <form wire:submit.prevent="create" >
     <div class="card form-input-elements">
         <div class="card-header">
-            <h3 class="mb-0 card-title">Création d'un nouveau dossier {{$title}}</h3>
+            <h3 class="mb-0 card-title"><b>{{$title}}</b></h3>
         </div>
         <div class="card-body">
             <div class="row">
@@ -42,7 +42,7 @@
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">N° DPI</label>
+                        <label class="form-label">N° SYLVIE</label>
                         <input wire:model='num_sylvie' type="text" class="form-control" name="example-text-input" placeholder="N° DPI">
                     </div>
                 </div>

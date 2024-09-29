@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('chauffeurs', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('telephone');
+            $table->string('contact');
             $table->timestamps();
         });
     }

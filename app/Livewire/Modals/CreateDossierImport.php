@@ -31,7 +31,7 @@ class CreateDossierImport extends ModalComponent
         $fournisseurs = Fournisseur::all(['id', 'nom']);
         $marchandises = Marchandise::all(['id', 'nom']);
 
-        return view('livewire.modals.create-dossier-import', ["clients"=>$clients, "fournisseurs"=>$fournisseurs, "marchandises"=>$marchandises, "title"=>"d'importation"]);
+        return view('livewire.modals.create-dossier-import', ["clients"=>$clients, "fournisseurs"=>$fournisseurs, "marchandises"=>$marchandises, "title"=>"Création d'un nouveau dossier d'importation"]);
     }
 
 /**
