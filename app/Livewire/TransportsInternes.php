@@ -21,7 +21,7 @@ class TransportsInternes extends Component
         ->orderBy('created_at', 'DESC')
         ->paginate(20, '*', 'dossier-pagination');
         return view('livewire.transports-internes', [
-            'dossiers' => $dossiers, 'header_title'=>'Dossiers de transports internes', 'create_modal'=>'modals.create-transport-interne'
+            'dossiers' => $dossiers, 'header_title'=>'Dossiers de transports internes', 'create_modal'=>'modals.create-transport-interne', 'button_title'=>'Nouveau dossier'
         ]);
     }
 }

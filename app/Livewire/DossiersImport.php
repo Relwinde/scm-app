@@ -27,7 +27,7 @@ class DossiersImport extends Component
             ->paginate(10, '*', 'dossier-pagination');
 
         return view('livewire.dossiers-import', [
-            'dossiers' => $dossiers, 'header_title'=>'Dossiers d\'importation', 'create_modal'=>'modals.create-dossier-import'
+            'dossiers' => $dossiers, 'header_title'=>'Dossiers d\'importation', 'create_modal'=>'modals.create-dossier-import', 'button_title'=>'Nouveau dossier'
         ]);
     }
 

@@ -22,14 +22,12 @@ class Chauffeur extends Component
     public function render()
     {
         $chauffeurs = ModelsChauffeur::select(['id', 'nom', 'contact'])
-        ->where('nom', 'like', "%{$this->search}%")
-        ->where('contact', 'like', "%{$this->search}%")
-        ->orderBy('nom', 'ASC')
-        ->paginate(10, '*', 'dossier-pagination');
-        
-        $this->resetPage();
+            ->where('nom', 'like', "%{$this->search}%")
+            ->where('contact', 'like', "%{$this->search}%")
+            ->orderBy('nom', 'ASC')
+            ->paginate(10, '*', 'chauffeur-pagination');
 
-        return view('livewire.outils.chauffeur',['chauffeurs'=>$chauffeurs, 'header_title'=>'Liste des chauffeurs', 'create_modal'=>'modals.outils.create-chauffeur']);
+        return view('livewire.outils.chauffeur',['chauffeurs'=>$chauffeurs, 'header_title'=>'Liste des chauffeurs', 'create_modal'=>'modals.outils.create-chauffeur', 'button_title'=>'Nouveau chauffeur']);
     }
 
     public function setEdit (ModelsChauffeur $chauffeur){

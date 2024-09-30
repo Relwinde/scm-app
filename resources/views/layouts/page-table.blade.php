@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex align-items-left">
-                        <button wire:click="$dispatch('openModal', {component: '{{$create_modal}}'})" class="btn btn-primary mb-4"> Nouveau Dossier</button>
+                        <button wire:click="$dispatch('openModal', {component: '{{$create_modal}}'})" class="btn btn-primary mb-4"> {{$button_title}}</button>
                         <div class="main-header-center ms-3 d-none d-lg-block">
                             {{-- <form  wire:submit="search" > --}}
                                 <input   wire:model.live.debounce="search" type="text" class="form-control" placeholder="Recherche...">

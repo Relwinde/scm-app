@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('itineraire_transport_interne', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transport_interne_id')->constrained()->onDelete('cascade');
-            $table->foreignId('itineraire_id')->constrained()->onDelete('cascade');
+            $table->foreignId('destination_id')->constrained()->onDelete('cascade');
+            $table->float('ordre');
             $table->timestamps();
         });
     }

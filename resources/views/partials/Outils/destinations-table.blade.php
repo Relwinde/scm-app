@@ -4,35 +4,35 @@
             <tr>
                 <th class="wd-15p border-bottom-0" style="max-width: 10px"><b></b></th>
                 <th class="wd-15p border-bottom-0"><b>Nom</b></th>
-                <th class="wd-15p border-bottom-0"><b>Contact</b></th>
+                <th class="wd-15p border-bottom-0"><b>Description</b></th>
                 <th class="wd-15p border-bottom-0"><b>Actions</b></th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($chauffeurs as $chauffeur)
-                <tr wire:key='{{$chauffeur->id}}'>
+            @foreach ($destinations as $destination)
+                <tr wire:key='{{$destination->id}}'>
                     <td style="max-width: 10px">{{$loop->iteration}}</td>
-                    <td> @if ($edit==true && $editId == $chauffeur->id)
-                        <input wire:model='nom' type="text" class="form-control" name="nom" placeholder="Nom du chauffeur">
+                    <td> @if ($edit==true && $editId == $destination->id)
+                        <input wire:model='nom' type="text" class="form-control" name="nom" placeholder="Nom du destination">
                     @else
-                        {{$chauffeur->nom}}
+                        {{$destination->nom}}
                     @endif</td>
-                    <td> @if ($edit==true && $editId == $chauffeur->id)
-                        <input wire:model='contact' type="text" class="form-control" name="contact" placeholder="Contact du chauffeur">
+                    <td> @if ($edit==true && $editId == $destination->id)
+                        <input wire:model='description' type="text" class="form-control" name="description" placeholder="Description du destination">
                     @else
-                        {{$chauffeur->contact}}
+                        {{$destination->description}}
                     @endif</td>
                     <td name="bstable-actions">
                         <div class="btn-list">
-                            @if ($edit==true && $editId == $chauffeur->id)
-                                <button wire:click='update({{$chauffeur->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
+                            @if ($edit==true && $editId == $destination->id)
+                                <button wire:click='update({{$destination->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
                                     <span class="fe fe-check"> </span>
                                 </button>
-                                <button wire:click='setEdit({{$chauffeur->id}})' type="button" class="btn btn-sm btn-primary">
+                                <button wire:click='setEdit({{$destination->id}})' type="button" class="btn btn-sm btn-primary">
                                     <span class="fe fe-x"> </span>
                                 </button>
                             @else
-                                <button wire:click='setEdit({{$chauffeur->id}})' type="button" class="btn btn-sm btn-primary">
+                                <button wire:click='setEdit({{$destination->id}})' type="button" class="btn btn-sm btn-primary">
                                     <span class="fe fe-edit"> </span>
                                 </button>
                             @endif
@@ -44,6 +44,6 @@
         </tbody>
     </table>
     <div>
-        {{$chauffeurs->links()}}
+        {{$destinations->links()}}
     </div>
 </div>

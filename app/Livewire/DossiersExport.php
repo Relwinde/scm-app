@@ -26,7 +26,7 @@ class DossiersExport extends Component
             ->paginate(20, '*', 'dossier-pagination');
 
         return view('livewire.dossiers-export', [
-            'dossiers' => $dossiers, 'header_title'=>'Dossiers d\'exportation', 'create_modal'=>'modals.create-dossier-export'
+            'dossiers' => $dossiers, 'header_title'=>'Dossiers d\'exportation', 'create_modal'=>'modals.create-dossier-export', 'button_title'=>'Nouveau dossier'
         ]);
     }
 }

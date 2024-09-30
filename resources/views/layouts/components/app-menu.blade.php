@@ -63,6 +63,7 @@
                                     <li><a href="{{url('/chauffeurs')}}" class="slide-item">Chauffeurs</a></li>
                                     <li><a href="{{url('/vehicules')}}" class="slide-item">Véhicules</a></li>
                                     <li><a href="{{url('/destinations')}}" class="slide-item">Destinations</a></li>
+                                    <li><a href="{{url('/marchandises')}}" class="slide-item">Marchandises</a></li>
                                 </ul>
 
                             </div>

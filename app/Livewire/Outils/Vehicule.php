@@ -23,8 +23,8 @@ class Vehicule extends Component
         $vehicules = ModelsVehicule::select(['id', 'immatriculation'])
             ->where('immatriculation', 'like', "%{$this->search}%")
             ->orderBy('created_at', 'DESC')
-            ->paginate(10, '*', 'dossier-pagination');
-        return view('livewire.outils.vehicule', ['vehicules'=>$vehicules, 'header_title'=>'Liste des véhicules', 'create_modal'=>'modals.outils.create-vehicule']);
+            ->paginate(10, '*', 'vehicule-pagination');
+        return view('livewire.outils.vehicule', ['vehicules'=>$vehicules, 'header_title'=>'Liste des véhicules', 'create_modal'=>'modals.outils.create-vehicule', 'button_title'=>'Nouveau véhicule']);
     }
 
     public function setEdit (ModelsVehicule $vehicule){
