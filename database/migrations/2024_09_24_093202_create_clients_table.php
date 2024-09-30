@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('ifu')->nullable();
             $table->string('rccm')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

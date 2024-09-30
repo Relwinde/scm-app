@@ -5,11 +5,14 @@ namespace App\Livewire;
 use App\Models\Dossier;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\WithPagination;
 use App\Models\TransportInterne;
 
 class TransportsInternes extends Component
 {
     public $search;
+
+    use WithPagination;
 
     #[On('new-dossier')]
     public function render()

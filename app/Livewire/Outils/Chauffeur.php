@@ -4,7 +4,8 @@ namespace App\Livewire\Outils;
 
 use Livewire\Component;
 use Livewire\Attributes\On;
-use App\Models\Chauffeur as Chauffeurs;
+use Livewire\WithPagination;
+use App\Models\Chauffeur as ModelsChauffeur;
 
 class Chauffeur extends Component
 {
@@ -13,15 +14,25 @@ class Chauffeur extends Component
     public $editId;
     public $nom;
     public $contact;
+    public $search;
+
+    use WithPagination;
 
     #[On('new-chauffeur')]
     public function render()
     {
-        $chauffeurs = Chauffeurs::all(['id', 'nom', 'contact']);
-        return view('livewire.outils.chauffeur',['chauffeurs'=>$chauffeurs, 'header_title'=>'Dossier d\'importation', 'create_modal'=>'modals.outils.create-chauffeur']);
+        $chauffeurs = ModelsChauffeur::select(['id', 'nom', 'contact'])
+        ->where('nom', 'like', "%{$this->search}%")
+        ->where('contact', 'like', "%{$this->search}%")
+        ->orderBy('nom', 'ASC')
+        ->paginate(10, '*', 'dossier-pagination');
+        
+        $this->resetPage();
+
+        return view('livewire.outils.chauffeur',['chauffeurs'=>$chauffeurs, 'header_title'=>'Liste des chauffeurs', 'create_modal'=>'modals.outils.create-chauffeur']);
     }
 
-    public function setEdit (Chauffeurs $chauffeur){
+    public function setEdit (ModelsChauffeur $chauffeur){
         if($this->edit == true){
             $this->edit=false;
         }
@@ -33,7 +44,7 @@ class Chauffeur extends Component
         }
     }
 
-    public function update (Chauffeurs $chauffeur){
+    public function update (ModelsChauffeur $chauffeur){
         $chauffeur->nom = $this->nom;
         $chauffeur->contact = $this->contact;
         if($chauffeur->save()){

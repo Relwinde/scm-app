@@ -10,7 +10,7 @@
         </thead>
         <tbody>
             @foreach ($chauffeurs as $chauffeur)
-                <tr>
+                <tr wire:key='{{$chauffeur->id}}'>
                     <td style="max-width: 10px">{{$loop->iteration}}</td>
                     <td> @if ($edit==true && $editId == $chauffeur->id)
                         <input wire:model='nom' type="text" class="form-control" name="nom" placeholder="Nom du chauffeur">
@@ -43,4 +43,7 @@
             @endforeach
         </tbody>
     </table>
+    <div>
+        {{$chauffeurs->links()}}
+    </div>
 </div>

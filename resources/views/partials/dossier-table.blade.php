@@ -25,7 +25,7 @@
             </thead>
             <tbody>
                 @foreach ($dossiers as $dossier)
-                    <tr>
+                    <tr wire:key='{{$dossier->id}}'>
                         <td>{{$dossier->numero}}</td>
                         <td>{{$dossier->client->nom}}</td>
                         <td>{{$dossier->fournisseur->nom}}</td>

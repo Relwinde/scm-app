@@ -13,7 +13,7 @@ class CreateChauffeur extends ModalComponent
 
     public function render()
     {
-        return view('livewire.modals.outils.create-chauffeur', ['title'=>"Création d'un nouveau dossier Chauffeur"]);
+        return view('livewire.modals.outils.create-chauffeur', ['title'=>"Création d'un nouveau Chauffeur"]);
     }
 
     public function create (){

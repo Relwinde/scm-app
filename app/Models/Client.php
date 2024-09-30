@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
+    protected $guarded = [];
 
     public function dossiers(){
         return $this->hasMany(Dossier::class);

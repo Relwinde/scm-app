@@ -12,8 +12,10 @@
                     <div class="d-flex align-items-left">
                         <button wire:click="$dispatch('openModal', {component: '{{$create_modal}}'})" class="btn btn-primary mb-4"> Nouveau Dossier</button>
                         <div class="main-header-center ms-3 d-none d-lg-block">
-                            <input type="text" class="form-control" placeholder="Recherche..." autocomplete="off">
-                            <button class="btn px-0 pt-2"><i class="fe fe-search" aria-hidden="true"></i></button>
+                            {{-- <form  wire:submit="search" > --}}
+                                <input   wire:model.live.debounce="search" type="text" class="form-control" placeholder="Recherche...">
+                                {{-- <button class="btn px-0 pt-2"><i class="fe fe-search" aria-hidden="true"></i></button> --}}
+                            {{-- </form> --}}
                         </div>
                     </div>
                         @yield('table')
