@@ -36,6 +36,6 @@
         </tbody>
     </table>
     <div>
-        {{$vehicules->links()}}
+        {{$dossiers->links()}}
     </div>
 </div>
