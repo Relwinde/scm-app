@@ -24,6 +24,7 @@ use App\Http\Controllers\ElementsController;
 use App\Http\Controllers\AdvanceduiController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardsController;
+use App\Livewire\Outils\Fournisseur;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,4 @@ Route::get('/bureaux-de-douane', BureauDeDouane::class);
 Route::get('/destinations', Destination::class);
 Route::get('/marchandises', Marchandise::class);
 Route::get('/clients', Client::class);
+Route::get('/fournisseurs', Fournisseur::class);

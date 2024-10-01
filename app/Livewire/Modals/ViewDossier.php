@@ -75,7 +75,6 @@ class ViewDossier extends ModalComponent
             request()->session()->flash("success", "Dossier modifié avec succès.");
         }else{
             request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
-
         }
     }
 }

@@ -1,7 +1,7 @@
 <div>
     <div class="row " >
         {{-- <div class="col-md-6 col-lg-6"> --}}
-            @include('partials.outils.view-client-form')
+            @include('partials.outils.create-fournisseur-form')
         {{-- </div> --}}
     </div>
 </div>
