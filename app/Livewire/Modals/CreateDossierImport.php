@@ -22,6 +22,8 @@ class CreateDossierImport extends ModalComponent
     public $num_lta;
     public $num_declaration;
     public $valeur_caf;
+    public $bureau_de_douane;
+
 
 
 
@@ -54,7 +56,7 @@ class CreateDossierImport extends ModalComponent
         'client_id'=>$this->client,
         'num_facture'=>$this->num_facture,
         'num_lta'=>$this->num_lta,
-        'num_dpi'=>$this->num_dpi,
+        'num_sylvie'=>$this->num_dpi,
         'num_declaration'=>$this->num_declaration,
         'valeur_caf'=>$this->valeur_caf,
         'nombre_colis'=>$this->nombre_colis,
@@ -71,6 +73,8 @@ class CreateDossierImport extends ModalComponent
         }else {
             $numero = "IM"."/".BureauDeDouane::find($this->bureau_de_douane)->code."/".strtoupper(substr($dossier->client->nom, 0, 3))."/".date('Y')."/".str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
         }
+
+        $dossier->numero = $numero;
 
         if($dossier->save()){
             $this->dispatch('new-dossier');
