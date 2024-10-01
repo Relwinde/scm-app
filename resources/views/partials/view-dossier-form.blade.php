@@ -14,7 +14,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Client</label>
-                        <select wire:model='client' name="client" class="form-control custom-select select2" @if ($edit==false) readonly @endif>
+                        <select wire:model='client' name="client" class="form-control custom-select select2" @if ($edit==false) readonly disabled="" @endif>
                             <option value="" >Sélectionnez un client</option>
                             @foreach ($clients as $client)
                                 <option value="{{$client->id}}" >{{$client->nom}}</option>
@@ -23,7 +23,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Fournisseur</label>
-                        <select wire:model='fournisseur' name="country" id="select-countries" class="form-control custom-select select2 " readonly>
+                        <select wire:model='fournisseur' name="country" id="select-countries" class="form-control custom-select select2 " @if ($edit==false) readonly disabled="" @endif>
                             <option value="" >Sélectionnez un fournisseur</option>
                             @foreach ($fournisseurs as $fournisseur)
                                 <option value="{{$fournisseur->id}}" >{{$fournisseur->nom}}</option>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Nature du colis</label>
-                        <select wire:model='marchandise' name="country" id="select-countries" class="form-control custom-select select2 " @if($edit==false) readonly @endif>
+                        <select wire:model='marchandise' name="country" id="select-countries" class="form-control custom-select select2 " @if ($edit==false) readonly disabled="" @endif>
                             <option value="" >Sélectionnez une marchandise</option>
                             @foreach ($marchandises as $marchandise)
                                 <option value="{{$marchandise->id}}" >{{$marchandise->nom}}</option>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Bureau de douane</label>
-                        <select wire:model='bureau_de_douane' name="bureau_de_douane" class="form-control custom-select select2" @if($edit==false) readonly @endif >
+                        <select wire:model='bureau_de_douane' name="bureau_de_douane" class="form-control custom-select select2" @if ($edit==false) readonly disabled="" @endif >
                             <option value="" >Sélectionnez une marchandise</option>
                             @foreach ($bureau_de_douanes as $bureau_de_douane)
                                 <option value="{{$bureau_de_douane->id}}" >{{$bureau_de_douane->nom}}</option>
