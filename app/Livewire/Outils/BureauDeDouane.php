@@ -20,7 +20,7 @@ class BureauDeDouane extends Component
     {
         $bureaux = ModelsBureauDeDouane::select(['id', 'nom', 'code'])
             ->where('nom', 'like', "%{$this->search}%")
-            ->where('code', 'like', "%{$this->search}%")
+            ->orWhere('code', 'like', "%{$this->search}%")
             ->orderBy('nom', 'ASC')
             ->paginate(10, '*', 'bureau-pagination');
 

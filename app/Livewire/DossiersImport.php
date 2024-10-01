@@ -19,10 +19,10 @@ class DossiersImport extends Component
     {
         $dossiers = Dossier::select(['numero', 'num_lta', 'num_sylvie', 'num_commande', 'created_at', 'num_declaration'])
             ->where('type', '=', "IMPORT")
-            ->where('numero', 'like', "%{$this->search}%")
-            ->where('num_facture', 'like', "%{$this->search}%")
-            ->where('num_commande', 'like', "%{$this->search}%")
-            ->where('num_sylvie', 'like', "%{$this->search}%")
+            ->orWhere('numero', 'like', "%{$this->search}%")
+            ->orWhere('num_facture', 'like', "%{$this->search}%")
+            ->orWhere('num_commande', 'like', "%{$this->search}%")
+            ->orWhere('num_sylvie', 'like', "%{$this->search}%")
             ->orderBy('created_at', 'DESC')
             ->paginate(10, '*', 'dossier-pagination');
 

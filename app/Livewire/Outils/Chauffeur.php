@@ -23,7 +23,7 @@ class Chauffeur extends Component
     {
         $chauffeurs = ModelsChauffeur::select(['id', 'nom', 'contact'])
             ->where('nom', 'like', "%{$this->search}%")
-            ->where('contact', 'like', "%{$this->search}%")
+            ->orWhere('contact', 'like', "%{$this->search}%")
             ->orderBy('nom', 'ASC')
             ->paginate(10, '*', 'chauffeur-pagination');
 

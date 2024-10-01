@@ -2,6 +2,7 @@
 
 use App\Livewire\Login;
 
+use App\Livewire\Outils\Client;
 use App\Livewire\DossiersExport;
 use App\Livewire\DossiersImport;
 use App\Livewire\Outils\Vehicule;
@@ -47,3 +48,4 @@ Route::get('/vehicules', Vehicule::class);
 Route::get('/bureaux-de-douane', BureauDeDouane::class);
 Route::get('/destinations', Destination::class);
 Route::get('/marchandises', Marchandise::class);
+Route::get('/clients', Client::class);

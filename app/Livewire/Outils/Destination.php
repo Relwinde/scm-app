@@ -24,7 +24,7 @@ class Destination extends Component
 
         $destinations = ModelsDestination::select(['id', 'nom', 'description'])
             ->where('nom', 'like', "%{$this->search}%")
-            ->where('description', 'like', "%{$this->search}%")
+            ->orWhere('description', 'like', "%{$this->search}%")
             ->orderBy('nom', 'ASC')
             ->paginate(10, '*', 'destination-pagination');
 

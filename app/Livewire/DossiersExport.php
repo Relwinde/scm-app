@@ -18,10 +18,10 @@ class DossiersExport extends Component
     {
         $dossiers = Dossier::select(['numero', 'num_lta', 'num_sylvie', 'num_commade', 'created_at', 'num_declaration'])
             ->where('type', '=', "EXPORT")
-            ->where('numero', 'like', "%{$this->search}%")
-            ->where('num_facture', 'like', "%{$this->search}%")
-            ->where('num_commande', 'like', "%{$this->search}%")
-            ->where('num_sylvie', 'like', "%{$this->search}%")
+            ->orWhere('numero', 'like', "%{$this->search}%")
+            ->orWhere('num_facture', 'like', "%{$this->search}%")
+            ->orWhere('num_commande', 'like', "%{$this->search}%")
+            ->orWhere('num_sylvie', 'like', "%{$this->search}%")
             ->orderBy('created_at', 'DESC')
             ->paginate(20, '*', 'dossier-pagination');
 
