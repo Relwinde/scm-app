@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Client;
 use App\Models\Marchandise;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -24,6 +25,10 @@ class Dossier extends Model
 
     public function marchandise(){
         return $this->belongsToMany(Marchandise::class);
+    }
+
+    public function bureau_de_douane(){
+        return $this->belongsToMany(BureauDeDouane::class);
     }
 
 }

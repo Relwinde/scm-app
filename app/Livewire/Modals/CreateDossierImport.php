@@ -48,7 +48,6 @@ class CreateDossierImport extends ModalComponent
 
     public function create(){
         $dossier=Dossier::make([
-        'numero'=>"NUMTESTDOSSIER",
         'num_commande'=>$this->num_commande,
         'client_id'=>$this->client,
         'num_facture'=>$this->num_facture,
@@ -59,8 +58,17 @@ class CreateDossierImport extends ModalComponent
         'nombre_colis'=>$this->nombre_colis,
         'poids'=>$this->poids,
         'fournisseur_id'=>$this->fournisseur,
-        'type'=>"IMPORT"
+        'bureau_de_douane_id'=>$this->bureau_de_douane,
+        'type'=>"IMPORT",
+        'user_id'=>1
         ]);
+
+        if(Dossier::latest()->first()==null){
+
+            $numero = "IM"."/".BureauDeDouane::find($this->bureau_de_douane)->code."/".strtoupper(substr($dossier->client->nom, 0, 3))."/".date('Y')."/".'0001';
+        }else {
+            $numero = "IM"."/".BureauDeDouane::find($this->bureau_de_douane)->code."/".strtoupper(substr($dossier->client->nom, 0, 3))."/".date('Y')."/".str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
+        }
 
         if($dossier->save()){
             $this->dispatch('new-dossier');
