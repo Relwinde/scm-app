@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Dossier;
 use App\Models\Fournisseur;
 use App\Models\Marchandise;
+use App\Models\BureauDeDouane;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateDossierImport extends ModalComponent
@@ -30,8 +31,9 @@ class CreateDossierImport extends ModalComponent
         $clients = Client::all(['id', 'nom']);
         $fournisseurs = Fournisseur::all(['id', 'nom']);
         $marchandises = Marchandise::all(['id', 'nom']);
+        $bureau_de_douanes = BureauDeDouane::all(['id', 'nom', 'code']);
 
-        return view('livewire.modals.create-dossier-import', ["clients"=>$clients, "fournisseurs"=>$fournisseurs, "marchandises"=>$marchandises, "title"=>"Création d'un nouveau dossier d'importation"]);
+        return view('livewire.modals.create-dossier-import', ["clients"=>$clients, "fournisseurs"=>$fournisseurs, "marchandises"=>$marchandises, 'bureau_de_douanes'=>$bureau_de_douanes, "title"=>"Création d'un nouveau dossier d'importation"]);
     }
 
 /**

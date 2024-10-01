@@ -7,6 +7,7 @@ use App\Models\Dossier;
 use Livewire\Component;
 use App\Models\Fournisseur;
 use App\Models\Marchandise;
+use App\Models\BureauDeDouane;
 use LivewireUI\Modal\ModalComponent;
 
 class ViewDossier extends ModalComponent
@@ -23,6 +24,7 @@ class ViewDossier extends ModalComponent
     public $num_lta;
     public $num_declaration;
     public $valeur_caf;
+    public $bureau_de_douane;
 
     public $edit = false;
 
@@ -31,6 +33,7 @@ class ViewDossier extends ModalComponent
         $this->num_commande = $this->dossier->num_commande;
         $this->client = $this->dossier->client_id;
         $this->fournisseur = $this->dossier->fournisseur_id;
+        $this->bureau_de_douane = $this->dossier->bureau_de_douane->id;
         $this->num_facture = $this->dossier->num_facture;
         // $this->marchandise = $this->dossier->marchandise->id;
         $this->num_sylvie = $this->dossier->num_sylvie;
@@ -43,8 +46,10 @@ class ViewDossier extends ModalComponent
         $clients = Client::all(['id', 'nom']);
         $fournisseurs = Fournisseur::all(['id', 'nom']);
         $marchandises = Marchandise::all(['id', 'nom']);
+        $bureau_de_douanes = BureauDeDouane::all(['id', 'nom']);
 
-        return view('livewire.modals.view-dossier', ["clients"=>$clients, "fournisseurs"=>$fournisseurs, "marchandises"=>$marchandises, "title"=>"d'importation"]);
+
+        return view('livewire.modals.view-dossier', ["clients"=>$clients, "fournisseurs"=>$fournisseurs, "marchandises"=>$marchandises, 'bureau_de_douanes'=>$bureau_de_douanes, "title"=>"d'importation"]);
     }
 
     public function setEdit(){
@@ -60,6 +65,7 @@ class ViewDossier extends ModalComponent
         $this->dossier->num_commande = $this->num_commande;
         $this->dossier->client_id = $this->client;
         $this->dossier->fournisseur_id = $this->fournisseur;
+        $this->dossier->bureau_de_douane_id = $this->bureau_de_douane;
         $this->dossier->num_facture = $this->num_facture;
         // $this->marchandise = $this->dossier->marchandise->id;
         $this->dossier->num_sylvie = $this->num_sylvie;

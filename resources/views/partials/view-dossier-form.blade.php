@@ -54,6 +54,15 @@
                         <input wire:model='nombre_colis' type="number" class="form-control" @if($edit==false) readonly @endif name="example-text-input" placeholder="Nombre de colis">
                     </div>
                     <div class="mb-4">
+                        <label class="form-label">Bureau de douane</label>
+                        <select wire:model='bureau_de_douane' name="bureau_de_douane" class="form-control custom-select select2" @if($edit==false) readonly @endif >
+                            <option value="" >Sélectionnez une marchandise</option>
+                            @foreach ($bureau_de_douanes as $bureau_de_douane)
+                                <option value="{{$bureau_de_douane->id}}" >{{$bureau_de_douane->nom}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-4">
                         <label class="form-label">Poids</label>
                         <input wire:model='poids' type="number" class="form-control " @if($edit==false) readonly @endif name="example-text-input" placeholder="Poids">
                     </div>

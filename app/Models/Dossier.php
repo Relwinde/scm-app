@@ -28,7 +28,7 @@ class Dossier extends Model
     }
 
     public function bureau_de_douane(){
-        return $this->belongsToMany(BureauDeDouane::class);
+        return $this->belongsTo(BureauDeDouane::class);
     }
 
 }
