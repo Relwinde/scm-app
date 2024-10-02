@@ -11,8 +11,8 @@
             x-on:close.stop="setShowPropertyTo(false)"
             x-on:keydown.escape.window="closeModalOnEscape()"
             x-show="show"
-            class="fixed inset-0 z-10 overflow-y-auto"
-            style="display: none;"
+            class="fixed inset-0 z-100 overflow-y-auto"
+            style="display: none; z-index: 100 !important;"
     >
         <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-10 text-center sm:block sm:p-0">
             <div

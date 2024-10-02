@@ -23,12 +23,17 @@ class Dossier extends Model
         return $this->belongsTo(Fournisseur::class);
     }
 
-    public function marchandise(){
+    public function marchandises(){
         return $this->belongsToMany(Marchandise::class);
     }
 
     public function bureau_de_douane(){
         return $this->belongsTo(BureauDeDouane::class);
+    }
+
+    public function observations(){
+        return $this->hasMany(Observation::class);
+        
     }
 
 }

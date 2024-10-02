@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Dossier;
 use App\Models\Fournisseur;
 use App\Models\Marchandise;
+use App\Models\Observation;
 use App\Models\BureauDeDouane;
 use LivewireUI\Modal\ModalComponent;
 
@@ -23,7 +24,7 @@ class CreateDossierImport extends ModalComponent
     public $num_declaration;
     public $valeur_caf;
     public $bureau_de_douane;
-
+    public $observation;
 
 
 
@@ -77,6 +78,11 @@ class CreateDossierImport extends ModalComponent
         $dossier->numero = $numero;
 
         if($dossier->save()){
+            Observation::create([
+                'content'=>$this->observation,
+                'user_id'=>1,
+                'dossier_id'=>$dossier->id
+            ]);
             $this->dispatch('new-dossier');
             request()->session()->flash("success", "Dossier ajouté avec succès.");
             $this->reset();

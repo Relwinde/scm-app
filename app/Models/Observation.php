@@ -10,4 +10,9 @@ class Observation extends Model
 {
     use SoftDeletes;
     use HasFactory;
+    protected $guarded = [];
+
+    public function dossiers(){
+        return $this->belongsToMany(Dossier::class);
+    }
 }

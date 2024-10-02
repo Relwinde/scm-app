@@ -78,10 +78,10 @@
                     </div>
                 </div>
                 <div class="col-md-12 ">
-                    {{-- <div class="mb-0">
-                        <label class="form-label">Message</label>
-                        <textarea class="form-control" name="example-textarea-input" rows="4" placeholder="text here.."></textarea>
-                    </div> --}}
+                    <div class="mb-0">
+                        <label class="form-label">Commentaire</label>
+                        <textarea wire:model='observation' class="form-control" name="example-textarea-input" rows="2" placeholder="text here.."></textarea>
+                    </div>
                 </div>
             </div>
         </div>
