@@ -29,4 +29,9 @@ class CreateVehicule extends ModalComponent
 
         }
     }
+
+    public static function destroyOnClose(): bool
+    {
+        return true;
+    }
 }

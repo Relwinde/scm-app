@@ -39,4 +39,9 @@ class CreateClient extends ModalComponent
             
         }
     } 
+
+    public static function destroyOnClose(): bool
+    {
+        return true;
+    }
 }

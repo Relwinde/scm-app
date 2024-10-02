@@ -1,9 +1,28 @@
+@php
+    $observations_number = $dossier->observations->count()
+@endphp
+
 @if ($edit==true)
 <form wire:submit.prevent="update" >
 @endif
     <div class="card form-input-elements">
-        <div class="card-header">
-            <h3 class="mb-0 card-title"><b>Détail du dossier</b></h3>
+        <div class="card-header d-flex justify-content-between">
+            <h3 class="mb-0 card-title"><b>Détail du dossier {{$dossier->numero}}</b></h3>
+            <div class="dropdown">
+                <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fe fe-list me-2 d-inline-flex"></i>Commentaires ({{$observations_number}})
+                </button>
+                <div class="dropdown-menu">
+
+                    @if ($observations_number>0)
+                        <a wire:click="$dispatch('openModal', {component: 'modals.dossier.view-observations', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Voir</a>
+                        <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-observation', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
+                    @else
+                        <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-observation', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
+                    @endif
+                    
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <div class="row">

@@ -29,4 +29,9 @@ class CreateMarchandise extends ModalComponent
 
         }
     }
+
+    public static function destroyOnClose(): bool
+    {
+        return true;
+    }
 }

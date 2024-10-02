@@ -83,4 +83,10 @@ class ViewDossier extends ModalComponent
             request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
         }
     }
+
+    public static function destroyOnClose(): bool
+    {
+        return true;
+    }
+    
 }

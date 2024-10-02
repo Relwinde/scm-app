@@ -32,5 +32,9 @@ class CreateChauffeur extends ModalComponent
         }
     }
 
+    public static function destroyOnClose(): bool
+    {
+        return true;
+    }
     
 }
