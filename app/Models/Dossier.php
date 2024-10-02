@@ -7,6 +7,7 @@ use App\Models\Marchandise;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Mpdf\Mpdf;
 
 class Dossier extends Model
 {
@@ -34,6 +35,21 @@ class Dossier extends Model
     public function observations(){
         return $this->hasMany(Observation::class);
         
+    }
+
+    public function print (){
+        ini_set('memory_limit', '440M');
+        
+        $mpdf = new Mpdf([
+            'mode'=>'utf-8',
+            'format' => 'A4-P',
+            'default_font_size' => 9,
+	        'default_font' => 'FreeSerif'
+        ]);
+
+        $html = view('prints.dossier', ['dossier'=>$this]);
+        $mpdf->writeHTML($html);
+        $mpdf->Output();
     }
 
 }

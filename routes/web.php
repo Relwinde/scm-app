@@ -25,6 +25,7 @@ use App\Http\Controllers\AdvanceduiController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardsController;
 use App\Livewire\Outils\Fournisseur;
+use App\Models\Dossier;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,7 @@ Route::get('/destinations', Destination::class);
 Route::get('/marchandises', Marchandise::class);
 Route::get('/clients', Client::class);
 Route::get('/fournisseurs', Fournisseur::class);
+
+Route::get('/print-dossier/{dossier}', function (Dossier $dossier){
+    $dossier->print();
+})->name('print-dossier');

@@ -16,7 +16,7 @@
                     <th class="wd-15p border-bottom-0"><b>Client</b></th>
                     <th class="wd-20p border-bottom-0"><b>Fournisseur</b></th>
                     <th class="wd-20p border-bottom-0"><b>N° LTA</b></th>
-                    <th class="wd-20p border-bottom-0"><b>N° DPI</b></th>
+                    <th class="wd-20p border-bottom-0"><b>N° SYLVIE</b></th>
                     <th class="wd-20p border-bottom-0"><b>N° de commande</b></th>
                     <th class="wd-15p border-bottom-0"><b>Date de création</b></th>
                     <th class="wd-10p border-bottom-0"><b>N° de déclaration</b></th>
@@ -30,7 +30,7 @@
                         <td>{{$dossier->client->nom}}</td>
                         <td>{{$dossier->fournisseur->nom}}</td>
                         <td>{{$dossier->num_lta}}</td>
-                        <td>{{$dossier->num_dpi}}</td>
+                        <td>{{$dossier->num_sylvie}}</td>
                         <td>{{$dossier->num_commande}}</td>
                         <td>{{$dossier->created_at}}</td>
                         <td>{{$dossier->num_declaration}}</td>

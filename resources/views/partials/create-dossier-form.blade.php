@@ -43,7 +43,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° SYLVIE</label>
-                        <input wire:model='num_sylvie' type="text" class="form-control" name="example-text-input" placeholder="N° DPI">
+                        <input wire:model='num_sylvie' type="text" class="form-control" name="example-text-input" placeholder="N° SYLVIE">
                     </div>
                 </div>
                 <div class="col-md-6">

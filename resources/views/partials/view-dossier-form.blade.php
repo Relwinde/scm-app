@@ -2,28 +2,28 @@
     $observations_number = $dossier->observations->count()
 @endphp
 
-@if ($edit==true)
-<form wire:submit.prevent="update" >
-@endif
-    <div class="card form-input-elements">
-        <div class="card-header d-flex justify-content-between">
-            <h3 class="mb-0 card-title"><b>Détail du dossier {{$dossier->numero}}</b></h3>
-            <div class="dropdown">
-                <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
-                    <i class="fe fe-list me-2 d-inline-flex"></i>Commentaires ({{$observations_number}})
-                </button>
-                <div class="dropdown-menu">
-
-                    @if ($observations_number>0)
-                        <a wire:click="$dispatch('openModal', {component: 'modals.dossier.view-observations', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Voir</a>
-                        <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-observation', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
-                    @else
-                        <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-observation', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
-                    @endif
-                    
-                </div>
+<div class="card form-input-elements">
+    <div class="card-header d-flex justify-content-between">
+        <h3 class="mb-0 card-title"><b>Détail du dossier {{$dossier->numero}} <a target="_blank"  href="{{route('print-dossier', $dossier->id)}}" class="btn btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Page de garde</a></b></h3>
+        <div class="dropdown">
+            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="fe fe-list me-2 d-inline-flex"></i>Commentaires ({{$observations_number}})
+            </button>
+            <div class="dropdown-menu">
+                
+                @if ($observations_number>0)
+                <a wire:click="$dispatch('openModal', {component: 'modals.dossier.view-observations', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Voir</a>
+                <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-observation', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
+                @else
+                <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-observation', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
+                @endif
+                
             </div>
         </div>
+    </div>
+    @if ($edit==true)
+    <form wire:submit.prevent="update" >
+    @endif
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
@@ -63,8 +63,8 @@
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">N° DPI</label>
-                        <input wire:model='num_sylvie' type="text" class="form-control" @if($edit==false) readonly @endif name="" placeholder="N° DPI">
+                        <label class="form-label">N° SYLVIE</label>
+                        <input wire:model='num_sylvie' type="text" class="form-control" @if($edit==false) readonly @endif name="" placeholder="N° SYLVIE">
                     </div>
                 </div>
                 <div class="col-md-6">

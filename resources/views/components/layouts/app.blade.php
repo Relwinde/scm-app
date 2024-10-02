@@ -31,9 +31,9 @@
 	<body class="app ltr sidebar-mini light-mode">
 
         <!-- GLOBAL-LOADER -->
-		<div id="global-loader">
+		{{-- <div id="global-loader">
             <img src="{{asset('build/assets/images/svgs/loader.svg')}}" class="loader-img" alt="Loader">
-		</div>
+		</div> --}}
 		<!-- GLOBAL-LOADER -->
 
 		<!-- PAGE -->
@@ -65,7 +65,7 @@
             </div>
 
             <!-- Sidebar-right -->
-            @include('layouts.components.sidebar-right')
+            {{-- @include('layouts.components.sidebar-right') --}}
             <!-- End Sidebar-right -->
 
             <!-- Country-selector modal -->
