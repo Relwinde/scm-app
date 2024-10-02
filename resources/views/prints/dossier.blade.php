@@ -30,45 +30,45 @@
     <h5 style="line-height: 0.5px;">tinfo@scmlogistics-bf.com&nbsp; www.scmlogistics-bf.com</h5>
 </center>
 
-<hr style="height:6px; color:black;">
+<hr style="height:6px; color:#0098db;">
 <div id="info">
-    <table style="width: 100%;">
+    <table style="width: 80%;  margin-left: auto; margin-right: auto;">
         <thead>
 
         </thead>
         <tbody>
             <tr>
-                <td><h4>CLIENT&nbsp;&nbsp;: </h4></td>
-                <td><h4>{{$dossier->client->nom}}</h4></td>
+                <td style="width: auto;"><h4>CLIENT&nbsp;&nbsp;: </h4></td>
+                <td><h>{{$dossier->client->nom}}</h></td>
             </tr>
             <tr>
-                <td><h4>FOURNISSEUR&nbsp;&nbsp;: </h4></td>
-                <td><h4>{{$dossier->fournisseur->nom}}</h4></td>
+                <td style="width: auto;"><h4>FOURNISSEUR&nbsp;&nbsp;: </h4></td>
+                <td><h>{{$dossier->fournisseur->nom}}</h></td>
             </tr>
             <tr>
-                <td><h4>N° DE FACTURE&nbsp;&nbsp;: </h4></td>
-                <td><h4>{{$dossier->num_facture}}</h4></td>
+                <td style="width: auto;"><h4>N° DE FACTURE&nbsp;&nbsp;: </h4></td>
+                <td><h>{{$dossier->num_facture}}</h></td>
             </tr>
             <tr>
-                <td><h4>N° SYLVIE&nbsp;&nbsp;: </h4></td>
-                <td><h4>{{$dossier->num_sylvie}}</h4></td>
+                <td style="width: auto;"><h4>N° SYLVIE&nbsp;&nbsp;: </h4></td>
+                <td><h>{{$dossier->num_sylvie}}</h></td>
             </tr>
             
             <tr>
-                <td><h4>N° DE COMMANDE&nbsp;&nbsp;: </h4></td>
-                <td><h4>{{$dossier->num_commande}}</h4></td>
+                <td style="width: auto;"><h4>N° DE COMMANDE&nbsp;&nbsp;: </h4></td>
+                <td><h>{{$dossier->num_commande}}</h></td>
             </tr>
             <tr>
-                <td><h4>N° DE DECLARATION&nbsp;&nbsp;: </h4></td>
-                <td><h4>{{$dossier->num_declaration}}</h4></td>
+                <td style="width: auto;"><h4>N° DE DECLARATION&nbsp;&nbsp;: </h4></td>
+                <td><h>{{$dossier->num_declaration}}</h></td>
             </tr>
             <tr>
-                <td><h4>NOMBRE DE COLIS&nbsp;&nbsp;: </h4></td>
-                <td><h4>{{$dossier->nombre_colis}}</h4></td>
+                <td style="width: auto;"><h4>NOMBRE DE COLIS&nbsp;&nbsp;: </h4></td>
+                <td><h>{{$dossier->nombre_colis}}</h></td>
             </tr>
             <tr>
-                <td><h4>POIDS&nbsp;&nbsp;: </h4></td>
-                <td><h4>{{$dossier->poids}}</h4></td>
+                <td style="width: auto;"><h4>POIDS&nbsp;&nbsp;: </h4></td>
+                <td><h>{{$dossier->poids}}</h></td>
             </tr>
         </tbody>
     </table>
