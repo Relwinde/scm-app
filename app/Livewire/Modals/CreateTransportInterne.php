@@ -14,6 +14,7 @@ class CreateTransportInterne extends ModalComponent
     public $vehicule;
     public $chauffeur;
     public $montant;
+    public $type_transport;
 
     public function render()
     {
@@ -26,13 +27,22 @@ class CreateTransportInterne extends ModalComponent
 
     public function create(){
         $dossier = TransportInterne::make([
-        'numero'=>"NUMERO-TRANS-INTERNE",
         'montant'=>$this->montant,
+        'type_transport'=>$this->type_transport,
         'client_id'=>$this->client,
         'vehicule_id'=>$this->vehicule,
         'chauffeur_id'=>$this->chauffeur
         ]);
 
+        if(TransportInterne::latest()->first()==null){
+
+            $numero = "TP".$this->type_transport.strtoupper(substr($dossier->client->nom, 0, 3))."/".substr(date('Y'), -2).'0001';
+        }else {
+            $numero = "TP".$this->type_transport.strtoupper(substr($dossier->client->nom, 0, 3))."/".substr(date('Y'), -2).str_pad(TransportInterne::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
+        }
+
+        $dossier->numero = $numero;
+    
         if($dossier->save()){
             $this->dispatch('new-dossier');
             request()->session()->flash("success", "Dossier ajouté avec succès.");

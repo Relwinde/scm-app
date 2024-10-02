@@ -59,9 +59,9 @@ class CreateDossierExport extends ModalComponent
 
         if(Dossier::latest()->first()==null){
 
-            $numero = "EX"."/".BureauDeDouane::find($this->bureau_de_douane)->code."/".strtoupper(substr($dossier->client->nom, 0, 3))."/".date('Y')."/".'0001';
+            $numero = "EX".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->nom, 0, 3))."/".substr(date('Y'), -2).'0001';
         }else {
-            $numero = "EX"."/".BureauDeDouane::find($this->bureau_de_douane)->code."/".strtoupper(substr($dossier->client->nom, 0, 3))."/".date('Y')."/".str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
+            $numero = "EX".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->nom, 0, 3))."/".substr(date('Y'), -2).str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
         }
 
 

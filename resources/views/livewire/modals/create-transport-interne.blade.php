@@ -42,6 +42,15 @@
                                     <label class="form-label">Montant</label>
                                     <input wire:model='montant' type="number" class="form-control" name="example-text-input" placeholder="Montant">
                                 </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Type de transport</label>
+                                    <select wire:model='type_transport' name="country" id="select-countries" class="form-control custom-select select2">
+                                        <option value="" >Sélectionnez le type de transport</option>
+                                        <option value="04" >Transport routier</option>
+                                        <option value="03" >Transport maritime</option>
+                                        <option value="02" >Transport aérien</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-md-12 ">
                                 {{-- <div class="mb-0">

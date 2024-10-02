@@ -69,9 +69,9 @@ class CreateDossierImport extends ModalComponent
 
         if(Dossier::latest()->first()==null){
 
-            $numero = "IM"."/".BureauDeDouane::find($this->bureau_de_douane)->code."/".strtoupper(substr($dossier->client->nom, 0, 3))."/".date('Y')."/".'0001';
+            $numero = "IM".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->nom, 0, 3))."/".date('Y').'0001';
         }else {
-            $numero = "IM"."/".BureauDeDouane::find($this->bureau_de_douane)->code."/".strtoupper(substr($dossier->client->nom, 0, 3))."/".date('Y')."/".str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
+            $numero = "IM".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->nom, 0, 3))."/".date('Y').str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
         }
 
         $dossier->numero = $numero;
