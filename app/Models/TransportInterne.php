@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Mpdf\Mpdf;
 use App\Models\Client;
 use App\Models\Vehicule;
 use App\Models\Chauffeur;
@@ -27,4 +28,22 @@ class TransportInterne extends Model
         return $this->belongsTo(Vehicule::class);
     }
 
+    public function destinations (){
+        return $this->belongsToMany(Destination::class, 'destination_transport_interne', 'transport_interne_id', 'depart')->withPivot('depart', 'arrivee', 'id');
+    }
+
+    public function print (){
+        ini_set('memory_limit', '440M');
+        
+        $mpdf = new Mpdf([
+            'mode'=>'utf-8',
+            'format' => 'A4-P',
+            'default_font_size' => 9,
+	        'default_font' => 'FreeSerif'
+        ]);
+
+        $html = view('prints.transport-interne', ['dossier'=>$this]);
+        $mpdf->writeHTML($html);
+        $mpdf->Output();
+    }
 }

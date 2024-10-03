@@ -84,10 +84,6 @@ class ViewDossier extends ModalComponent
         }
     }
 
-    public function print (){
-        $this->dossier->print();
-    }
-
     public static function destroyOnClose(): bool
     {
         return true;

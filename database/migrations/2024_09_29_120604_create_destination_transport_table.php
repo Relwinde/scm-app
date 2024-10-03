@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('itineraire_transport_interne', function (Blueprint $table) {
+        Schema::create('destination_transport_interne', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transport_interne_id')->constrained()->onDelete('cascade');
-            $table->foreignId('destination_id')->constrained()->onDelete('cascade');
-            $table->float('ordre');
+            $table->unsignedBigInteger('depart');
+            $table->foreign('depart')->references('id')->on('destinations')->onDelete('cascade');
+            $table->unsignedBigInteger('arrivee');
+            $table->foreign('arrivee')->references('id')->on('destinations')->onDelete('cascade');
             $table->timestamps();
         });
     }

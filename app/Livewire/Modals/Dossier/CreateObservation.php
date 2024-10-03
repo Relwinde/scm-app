@@ -28,4 +28,9 @@ class CreateObservation extends ModalComponent
 
         $this->reset(['observation']);
     }
+
+    public static function destroyOnClose(): bool
+    {
+        return true;
+    }
 }

@@ -6,7 +6,6 @@
                 <th class="wd-15p border-bottom-0"><b>Client</b></th>
                 <th class="wd-20p border-bottom-0"><b>Chauffeur</b></th>
                 <th class="wd-15p border-bottom-0"><b>Véhicule</b></th>
-                <th class="wd-10p border-bottom-0"><b>Itinéraire</b></th>
                 <th class="wd-25p border-bottom-0"><b>Actions</b></th>
             </tr>
         </thead>
@@ -17,7 +16,6 @@
                     <td>{{$dossier->client->nom}}</td>
                     <td>{{$dossier->chauffeur->nom}}</td>
                     <td>{{$dossier->vehicule->immatriculation}}</td>
-                    <td></td>
                     <td name="bstable-actions">
                         <div class="btn-list">
                             <button id="bEdit" type="button" class="btn btn-sm btn-primary">

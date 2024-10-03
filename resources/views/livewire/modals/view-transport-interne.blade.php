@@ -1,21 +1,41 @@
+@php
+    $destinations_number = $dossier->destinations->count()
+@endphp
 <div>
     <div class="row " >
         {{-- <div class="col-md-6 col-lg-6"> --}}
             {{-- @include('partials.create-dossier-form') --}}
-            @if ($edit==true)
-            <form wire:submit.prevent="update" >
-            @endif
-                <div class="card form-input-elements">
-                    <div class="card-header">
-                        <h3 class="mb-0 card-title"><b>Détails du dossier</b></h3>
+            <div class="card form-input-elements">
+                <div class="card-header d-flex justify-content-between">
+                    <h3 class="mb-0 card-title"><b>Détails du dossier {{$dossier->numero}}</b><a target="_blank"  href="{{route('print-transport', $dossier->id)}}" class="btn btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Page de garde</a></h3>
+
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fe fe-list me-2 d-inline-flex"></i>Itineraire ({{$destinations_number}})
+                        </button>
+                        <div class="dropdown-menu">
+                            
+                            @if ($destinations_number>0)
+                                <a wire:click="$dispatch('openModal', {component: 'modals.transport-interne.view-itineraires', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Voir</a>
+                                <a wire:click="$dispatch('openModal', {component: 'modals.transport-interne.create-itineraire', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
+                            @else
+                                <a wire:click="$dispatch('openModal', {component: 'modals.transport-interne.create-itineraire', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
+                            @endif
+                            
+                        </div>
                     </div>
+
+                </div>
+                @if ($edit==true)
+                <form wire:submit.prevent="update" >
+                @endif
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-4">
                                     <label class="form-label">Client</label>
-                                    <select wire:model='client' name="client" class="form-control custom-select select2">
-                                        <option  @if ($edit==false) readonly disabled="" @endif value="" >Sélectionnez un client</option>
+                                    <select  @if ($edit==false) readonly disabled="" @endif wire:model='client' name="client" class="form-control custom-select select2">
+                                        <option value="" >Sélectionnez un client</option>
                                         @foreach ($clients as $client)
                                             <option value="{{$client->id}}" >{{$client->nom}}</option>
                                         @endforeach
