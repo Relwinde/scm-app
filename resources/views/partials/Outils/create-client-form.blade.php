@@ -8,7 +8,7 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Nom</label>
-                        <input wire:model='nom' type="text" class="form-control" name="example-text-input" placeholder="Nom du client">
+                        <input required wire:model='nom' type="text" class="form-control" name="example-text-input" placeholder="Nom du client">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Téléphone</label>
@@ -16,7 +16,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Email</label>
-                        <input wire:model='email' type="text" class="form-control" name="example-text-input" placeholder="Adresse électronique du client">
+                        <input wire:model='email' type="email" class="form-control" name="example-text-input" placeholder="Adresse électronique du client">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Adresse</label>

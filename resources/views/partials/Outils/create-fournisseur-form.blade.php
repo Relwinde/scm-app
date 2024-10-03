@@ -8,17 +8,17 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Nom</label>
-                        <input wire:model='nom' type="text" class="form-control" name="nom" placeholder="Nom du fournisseur">
+                        <input required wire:model='nom' type="text" class="form-control" name="nom" placeholder="Nom du fournisseur">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Téléphone</label>
-                        <input wire:model='telephone' type="text" class="form-control" name="telephone" placeholder="N° de téléphone du fournisseur">
+                        <input wire:model='telephone' type="tel" class="form-control" name="telephone" placeholder="N° de téléphone du fournisseur">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Email</label>
-                        <input wire:model='email' type="text" class="form-control" name="email" placeholder="Adresse électronique du fournisseur">
+                        <input wire:model='email' type="email" class="form-control" name="email" placeholder="Adresse électronique du fournisseur">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Adresse</label>

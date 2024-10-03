@@ -8,7 +8,7 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Nom</label>
-                        <input wire:model='nom' type="text" class="form-control" name="nom" placeholder="Nom du chauffeur">
+                        <input required wire:model='nom' type="text" class="form-control" name="nom" placeholder="Nom du chauffeur">
                     </div>
                 </div>
                 <div class="col-md-6">

@@ -8,13 +8,13 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Nom</label>
-                        <input wire:model='nom' type="text" class="form-control" name="nom" placeholder="Nom du bureau de douane">
+                        <input required wire:model='nom' type="text" class="form-control" name="nom" placeholder="Nom du bureau de douane">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Code</label>
-                        <input wire:model='code' type="text" class="form-control" name="code" placeholder="Code du bureau de douane">
+                        <input required wire:model='code' type="text" class="form-control" name="code" placeholder="Code du bureau de douane">
                     </div>
                 </div>
                 <div class="col-md-12 ">

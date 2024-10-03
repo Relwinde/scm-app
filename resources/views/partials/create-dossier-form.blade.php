@@ -12,8 +12,8 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Client</label>
-                        <select wire:model='client' name="client" class="form-control custom-select select2">
-                            <option value="" >Sélectionnez un client</option>
+                        <select required wire:model='client' name="client" class="form-control custom-select select2">
+                            <option >Sélectionnez un client</option>
                             @foreach ($clients as $client)
                                 <option value="{{$client->id}}" >{{$client->nom}}</option>
                             @endforeach
@@ -21,8 +21,8 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Fournisseur</label>
-                        <select wire:model='fournisseur' name="country" id="select-countries" class="form-control custom-select select2">
-                            <option value="" >Sélectionnez un fournisseur</option>
+                        <select required wire:model='fournisseur' name="country" id="select-countries" class="form-control custom-select select2">
+                            <option >Sélectionnez un fournisseur</option>
                             @foreach ($fournisseurs as $fournisseur)
                                 <option value="{{$fournisseur->id}}" >{{$fournisseur->nom}}</option>
                             @endforeach
@@ -35,7 +35,7 @@
                     <div class="mb-4">
                         <label class="form-label">Nature du colis</label>
                         <select wire:model='marchandise' name="country" id="select-countries" class="form-control custom-select select2">
-                            <option value="" >Sélectionnez une marchandise</option>
+                            <option>Sélectionnez une marchandise</option>
                             @foreach ($marchandises as $marchandise)
                                 <option value="{{$marchandise->id}}" >{{$marchandise->nom}}</option>
                             @endforeach

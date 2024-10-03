@@ -11,8 +11,8 @@
                             <div class="col-md-6">
                                 <div class="mb-4">
                                     <label class="form-label">Client</label>
-                                    <select wire:model='client' name="client" class="form-control custom-select select2">
-                                        <option value="" >Sélectionnez un client</option>
+                                    <select required wire:model='client' name="client" class="form-control custom-select select2">
+                                        <option >Sélectionnez un client</option>
                                         @foreach ($clients as $client)
                                             <option value="{{$client->id}}" >{{$client->nom}}</option>
                                         @endforeach
@@ -20,8 +20,8 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Chauffeur</label>
-                                    <select wire:model='chauffeur' name="country" id="select-countries" class="form-control custom-select select2">
-                                        <option value="" >Sélectionnez un chauffeur</option>
+                                    <select required wire:model='chauffeur' name="country" id="select-countries" class="form-control custom-select select2">
+                                        <option >Sélectionnez un chauffeur</option>
                                         @foreach ($chauffeurs as $chauffeur)
                                             <option value="{{$chauffeur->id}}" >{{$chauffeur->nom}}</option>
                                         @endforeach
@@ -29,8 +29,8 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Véhicule</label>
-                                    <select wire:model='vehicule' name="country" id="select-countries" class="form-control custom-select select2">
-                                        <option value="" >Sélectionnez un véhicule</option>
+                                    <select required wire:model='vehicule' name="country" id="select-countries" class="form-control custom-select select2">
+                                        <option >Sélectionnez un véhicule</option>
                                         @foreach ($vehicules as $vehicule)
                                             <option value="{{$vehicule->id}}" >{{$vehicule->immatriculation}}</option>
                                         @endforeach
@@ -44,8 +44,8 @@
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Type de transport</label>
-                                    <select wire:model='type_transport' name="country" id="select-countries" class="form-control custom-select select2">
-                                        <option value="" >Sélectionnez le type de transport</option>
+                                    <select required wire:model='type_transport' name="country" id="select-countries" class="form-control custom-select select2">
+                                        <option >Sélectionnez le type de transport</option>
                                         <option value="04" >Transport routier</option>
                                         <option value="03" >Transport maritime</option>
                                         <option value="02" >Transport aérien</option>

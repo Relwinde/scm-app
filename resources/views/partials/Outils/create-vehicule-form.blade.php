@@ -8,7 +8,7 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Immatriculation</label>
-                        <input wire:model='immatriculation' type="text" class="form-control" name="nom" placeholder="Immatriculation du véhicule">
+                        <input required wire:model='immatriculation' type="text" class="form-control" name="nom" placeholder="Immatriculation du véhicule">
                     </div>
                 </div>
                 <div class="col-md-12 ">

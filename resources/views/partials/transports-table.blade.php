@@ -18,9 +18,9 @@
                     <td>{{$dossier->vehicule->immatriculation}}</td>
                     <td name="bstable-actions">
                         <div class="btn-list">
-                            <button id="bEdit" type="button" class="btn btn-sm btn-primary">
+                            {{-- <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                                 <span class="fe fe-edit"> </span>
-                            </button>
+                            </button> --}}
                             <button wire:click="$dispatch('openModal', {component: 'modals.view-transport-interne', arguments: { dossier : {{ $dossier->id }} }})" id="bAcep" type="button" class="btn  btn-sm btn-primary">
                                 <span class="fe fe-eye"> </span>
                             </button>
