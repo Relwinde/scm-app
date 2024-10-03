@@ -11,7 +11,7 @@
 
                         @include('layouts.components.page-header', ['title'=>'Acceuil'])
                             <!-- ROW-1 -->
-							<div class="row">
+							{{-- <div class="row">
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xl-6">
 									<div class="row">
 										<div class="col-lg-6 col-md-6 col-sm-12 col-xl-6">
@@ -733,7 +733,7 @@
 									</div>
 								</div>
 							</div>
-							<!-- End Row -->
+							<!-- End Row --> --}}
 
 @endsection
 
