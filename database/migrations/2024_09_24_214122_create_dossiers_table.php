@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('num_facture')->nullable();
             $table->string('num_sylvie')->nullable();
             $table->string('num_declaration')->nullable();
-            $table->float('valeur_caf')->nullable();
-            $table->float('nombre_colis')->nullable();
-            $table->float('poids')->nullable();
+            $table->decimal('valeur_caf', 14, 2)->nullable();
+            $table->decimal('nombre_colis', 14, 2)->nullable();
+            $table->decimal('poids', 14, 2)->nullable();
             $table->foreignId('client_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('fournisseur_id')->constrained()->onDelete('cascade');

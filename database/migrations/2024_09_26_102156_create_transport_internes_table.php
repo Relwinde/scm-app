@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transport_internes', function (Blueprint $table) {
             $table->id();
             $table->string('numero');
-            $table->float('montant')->nullable();
+            $table->decimal('montant', 14, 2)->nullable();
             $table->foreignId('client_id')->constrained()->onDelete('cascade');
             $table->foreignId('vehicule_id')->constrained()->onDelete('cascade');
             $table->foreignId('chauffeur_id')->constrained()->onDelete('cascade');
