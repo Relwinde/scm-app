@@ -29,7 +29,7 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">N° de Commande</label>
-                        <input wire:model='num_commande' type="text" class="form-control " @if ($edit==false) readonly @endif  name="example-text-input" placeholder="N° de Commande">
+                        <input wire:model='num_commande' type="text" class="form-control " @if ($edit==false) readonly @endif  name="example-text-input" placeholder="">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Client</label>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de Facture</label>
-                        <input wire:model='num_facture' type="text" class="form-control" @if ($edit==false) readonly @endif name="example-text-input" placeholder="N° de Facture">
+                        <input wire:model='num_facture' type="text" class="form-control" @if ($edit==false) readonly @endif name="example-text-input" placeholder="">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Nature du colis</label>
@@ -64,13 +64,13 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° SYLVIE</label>
-                        <input wire:model='num_sylvie' type="text" class="form-control" @if($edit==false) readonly @endif name="" placeholder="N° SYLVIE">
+                        <input wire:model='num_sylvie' type="text" class="form-control" @if($edit==false) readonly @endif name="" placeholder="">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Nombre de colis</label>
-                        <input wire:model='nombre_colis' type="number" class="form-control" @if($edit==false) readonly @endif name="example-text-input" placeholder="Nombre de colis">
+                        <input wire:model='nombre_colis' type="number" class="form-control" @if($edit==false) readonly @endif name="example-text-input" placeholder="">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Bureau de douane</label>
@@ -83,19 +83,19 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Poids</label>
-                        <input wire:model='poids' type="number" class="form-control " @if($edit==false) readonly @endif name="example-text-input" placeholder="Poids">
+                        <input wire:model='poids' type="number" class="form-control " @if($edit==false) readonly @endif name="example-text-input" placeholder="">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° LTA</label>
-                        <input wire:model='num_lta' type="text" class="form-control " @if($edit==false) readonly @endif name="example-text-input" placeholder="N° LTA">
+                        <input wire:model='num_lta' type="text" class="form-control " @if($edit==false) readonly @endif name="example-text-input" placeholder="">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de déclaration</label>
-                        <input wire:model='num_declaration' type="text" class="form-control " @if ($edit==false) readonly @endif name="example-text-input" placeholder="N° de déclaration">
+                        <input wire:model='num_declaration' type="text" class="form-control " @if ($edit==false) readonly @endif name="example-text-input" placeholder="">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Valeur CAF</label>
-                        <input wire:model='valeur_caf' type="number" class="form-control" @if($edit==false) readonly @endif name="example-text-input" placeholder="N° CAF">
+                        <input wire:model='valeur_caf' type="number" class="form-control" @if($edit==false) readonly @endif name="example-text-input" placeholder="">
                     </div>
                 </div>
                 <div class="col-md-12 ">

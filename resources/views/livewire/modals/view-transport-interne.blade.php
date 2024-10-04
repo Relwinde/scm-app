@@ -53,7 +53,7 @@
                                 <div class="mb-4">
                                     <label class="form-label">Véhicule</label>
                                     <select  @if ($edit==false) readonly disabled="" @endif wire:model='vehicule' name="country" id="select-countries" class="form-control custom-select select2">
-                                        <option value="" >Sélectionnez un véhicule</option>
+                                        <option ></option>
                                         @foreach ($vehicules as $vehicule)
                                             <option value="{{$vehicule->id}}" >{{$vehicule->immatriculation}}</option>
                                         @endforeach
@@ -63,12 +63,12 @@
                             <div class="col-md-6">
                                 <div class="mb-4">
                                     <label class="form-label">Montant</label>
-                                    <input  @if ($edit==false) readonly disabled="" @endif wire:model='montant' type="number" class="form-control" name="example-text-input" placeholder="Montant">
+                                    <input  @if ($edit==false) readonly disabled="" @endif wire:model='montant' type="number" class="form-control" name="example-text-input" placeholder="">
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Type de transport</label>
                                     <select  @if ($edit==false) readonly disabled="" @endif wire:model='type_transport' name="country" id="select-countries" class="form-control custom-select select2">
-                                        <option value="" >Sélectionnez le type de transport</option>
+                                        <option ></option>
                                         <option value="04" >Transport routier</option>
                                         <option value="03" >Transport maritime</option>
                                         <option value="02" >Transport aérien</option>
