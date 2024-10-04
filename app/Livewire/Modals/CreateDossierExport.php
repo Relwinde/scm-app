@@ -71,11 +71,13 @@ class CreateDossierExport extends ModalComponent
         $dossier->numero = $numero;
 
         if($dossier->save()){
-            Observation::create([
-                'content'=>$this->observation,
-                'user_id'=>1,
-                'dossier_id'=>$dossier->id
-            ]);
+            if ($this->observation != null && $this->observation != ""){
+                Observation::create([
+                    'content'=>$this->observation,
+                    'user_id'=>1,
+                    'dossier_id'=>$dossier->id
+                ]);
+            }
             $this->dispatch('new-dossier');
             request()->session()->flash("success", "Dossier ajuoté avec succès.");
             $this->reset();
