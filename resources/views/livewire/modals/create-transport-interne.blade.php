@@ -12,7 +12,7 @@
                                 <div class="mb-4">
                                     <label class="form-label">Client</label>
                                     <select required wire:model='client' name="client" class="form-control custom-select select2">
-                                        <option >Sélectionnez un client</option>
+                                        <option value="" >Sélectionnez un client</option>
                                         @foreach ($clients as $client)
                                             <option value="{{$client->id}}" >{{$client->nom}}</option>
                                         @endforeach
@@ -21,7 +21,7 @@
                                 <div class="mb-4">
                                     <label class="form-label">Chauffeur</label>
                                     <select required wire:model='chauffeur' name="country" id="select-countries" class="form-control custom-select select2">
-                                        <option >Sélectionnez un chauffeur</option>
+                                        <option value="">Sélectionnez un chauffeur</option>
                                         @foreach ($chauffeurs as $chauffeur)
                                             <option value="{{$chauffeur->id}}" >{{$chauffeur->nom}}</option>
                                         @endforeach
@@ -30,7 +30,7 @@
                                 <div class="mb-4">
                                     <label class="form-label">Véhicule</label>
                                     <select required wire:model='vehicule' name="country" id="select-countries" class="form-control custom-select select2">
-                                        <option >Sélectionnez un véhicule</option>
+                                        <option value="">Sélectionnez un véhicule</option>
                                         @foreach ($vehicules as $vehicule)
                                             <option value="{{$vehicule->id}}" >{{$vehicule->immatriculation}}</option>
                                         @endforeach
