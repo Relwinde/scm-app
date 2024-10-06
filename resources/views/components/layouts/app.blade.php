@@ -69,7 +69,7 @@
             <!-- End Sidebar-right -->
 
             <!-- Country-selector modal -->
-            @include('layouts.components.modal')
+            {{-- @include('layouts.components.modal') --}}
             <!-- End Country-selector modal -->
 
             <!-- Footer opened -->

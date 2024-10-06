@@ -83,9 +83,18 @@
                         <label class="form-label">Numéro de T1</label>
                         <input wire:model='num_t' type="text" class="form-control" name="example-text-input" placeholder="N° de T1">
                     </div>
-                    <div class="mb-4">
-                        <label class="form-label">Valeur de la marchandise</label>
-                        <input wire:model='valeur_marchandise' type="number" step="0.001" class="form-control" name="example-text-input" placeholder="Valeur de la marchandise">
+                    <div class="mb-6">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="form-label">Valeur de la marchandise</label>
+                                <input wire:model='valeur_marchandise' type="number" step="0.001" class="form-control" name="example-text-input" placeholder="Valeur de la marchandise">
+                            </div>
+                            <div class="col-md-4">     
+                                <label class="form-label">Devise</label>
+                                <input wire:model='devise' type="text" step="0.001" class="form-control" name="example-text-input" placeholder="Devise de la valeur de la marchandise">
+                            </div>
+                        </div>
+        
                     </div>
                 </div>
                 <div class="col-md-12 ">
