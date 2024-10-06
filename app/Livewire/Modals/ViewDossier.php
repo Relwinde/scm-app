@@ -25,6 +25,10 @@ class ViewDossier extends ModalComponent
     public $num_declaration;
     public $valeur_caf;
     public $bureau_de_douane;
+    public $num_exo;
+    public $num_lta_bl;
+    public $num_t;
+    public $valeur_marchandise;
 
     public $edit = false;
 
@@ -32,11 +36,15 @@ class ViewDossier extends ModalComponent
     {
         $this->num_commande = $this->dossier->num_commande;
         $this->client = $this->dossier->client_id;
-        $this->fournisseur = $this->dossier->fournisseur_id;
+        $this->fournisseur = $this->dossier->fournisseur;
         $this->bureau_de_douane = $this->dossier->bureau_de_douane->id;
         $this->num_facture = $this->dossier->num_facture;
         // $this->marchandise = $this->dossier->marchandise->id;
         $this->num_sylvie = $this->dossier->num_sylvie;
+        $this->num_exo = $this->dossier->num_exo;
+        $this->num_lta_bl = $this->dossier->num_lta_bl;
+        $this->num_t = $this->dossier->num_t;
+        $this->valeur_marchandise = $this->dossier->valeur_marchandise;
         $this->nombre_colis = $this->dossier->nombre_colis;
         $this->poids = $this->dossier->poids;
         $this->num_lta = $this->dossier->num_lta;
@@ -64,11 +72,15 @@ class ViewDossier extends ModalComponent
     public function update(){
         $this->dossier->num_commande = $this->num_commande;
         $this->dossier->client_id = $this->client;
-        $this->dossier->fournisseur_id = $this->fournisseur;
+        $this->dossier->fournisseur = $this->fournisseur;
         $this->dossier->bureau_de_douane_id = $this->bureau_de_douane;
         $this->dossier->num_facture = $this->num_facture;
         // $this->marchandise = $this->dossier->marchandise->id;
         $this->dossier->num_sylvie = $this->num_sylvie;
+        $this->dossier->num_exo = $this->num_exo;
+        $this->dossier->num_lta_bl = $this->num_lta_bl;
+        $this->dossier->num_t = $this->num_t;
+        $this->dossier->valeur_marchandise = $this->valeur_marchandise;
         $this->dossier->nombre_colis = $this->nombre_colis;
         $this->dossier->poids = $this->poids;
         $this->dossier->num_lta = $this->num_lta;

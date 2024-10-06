@@ -17,7 +17,7 @@ class DossiersImport extends Component
     #[On('new-dossier')]
     public function render()
     {
-        $dossiers = Dossier::select(['id', 'numero', 'num_lta', 'num_sylvie', 'num_commande', 'created_at', 'num_declaration', 'client_id', 'fournisseur_id'])
+        $dossiers = Dossier::select(['id', 'numero', 'num_lta', 'num_sylvie', 'num_commande', 'created_at', 'num_declaration', 'client_id', 'fournisseur'])
         ->where('type', 'IMPORT') // Filtre général
         ->where(function ($query) {
             $query->where('numero', 'like', "%{$this->search}%")

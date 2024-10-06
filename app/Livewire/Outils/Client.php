@@ -18,7 +18,7 @@ class Client extends Component
     public function render()
     {
 
-        $clients = ModelsClient::select(['id', 'nom', 'telephone', 'email', 'adresse', 'ifu', 'rccm'])
+        $clients = ModelsClient::select(['id', 'nom', 'telephone', 'email', 'adresse', 'ifu', 'rccm', 'code'])
             ->where('nom', 'like', "%{$this->search}%")
             ->orWhere('telephone', 'like', "%{$this->search}%")
             ->orWhere('email', 'like', "%{$this->search}%")

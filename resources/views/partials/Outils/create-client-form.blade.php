@@ -11,16 +11,16 @@
                         <input required wire:model='nom' type="text" class="form-control" name="example-text-input" placeholder="Nom du client">
                     </div>
                     <div class="mb-4">
+                        <label class="form-label">Code client</label>
+                        <input required wire:model='code' type="text" class="form-control" name="example-text-input" placeholder="Code du client">
+                    </div>
+                    <div class="mb-4">
                         <label class="form-label">Téléphone</label>
                         <input wire:model='telephone' type="text" class="form-control" name="example-text-input" placeholder="N° de téléphone du client">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Email</label>
                         <input wire:model='email' type="email" class="form-control" name="example-text-input" placeholder="Adresse électronique du client">
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Adresse</label>
-                        <textarea wire:model='adresse' class="form-control" name="example-textarea-input" rows="4" placeholder="Adresse du client"></textarea>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -31,6 +31,10 @@
                     <div class="mb-4">
                         <label class="form-label">N° RCCM</label>
                         <input wire:model='rccm' type="text" class="form-control" name="example-text-input" placeholder="N° RCCM du client">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Adresse</label>
+                        <textarea wire:model='adresse' class="form-control" name="example-textarea-input" rows="4" placeholder="Adresse du client"></textarea>
                     </div>
                 </div>
                 <div class="col-md-12 ">

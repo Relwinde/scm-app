@@ -28,7 +28,7 @@
                     <tr wire:key='{{$dossier->id}}'>
                         <td>{{$dossier->numero}}</td>
                         <td>{{$dossier->client->nom}}</td>
-                        <td>{{$dossier->fournisseur->nom}}</td>
+                        <td>{{$dossier->fournisseur}}</td>
                         <td>{{$dossier->num_lta}}</td>
                         <td>{{$dossier->num_sylvie}}</td>
                         <td>{{$dossier->num_commande}}</td>

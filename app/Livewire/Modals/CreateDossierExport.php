@@ -26,15 +26,18 @@ class CreateDossierExport extends ModalComponent
     public $valeur_caf;
     public $bureau_de_douane;
     public $observation;
+    public $num_exo;
+    public $num_lta_bl;
+    public $num_t;
+    public $valeur_marchandise;
 
     public function render()
     {
         $clients = Client::all(['id', 'nom']);
-        $fournisseurs = Fournisseur::all(['id', 'nom']);
         $marchandises = Marchandise::all(['id', 'nom']);
         $bureau_de_douanes = BureauDeDouane::all(['id', 'nom', 'code']);
         
-        return view('livewire.modals.create-dossier-export', ["clients"=>$clients, "fournisseurs"=>$fournisseurs, "marchandises"=>$marchandises, 'bureau_de_douanes'=>$bureau_de_douanes, "title"=>"Création d'un nouveau dossier d'importation"]);
+        return view('livewire.modals.create-dossier-export', ["clients"=>$clients,  "marchandises"=>$marchandises, 'bureau_de_douanes'=>$bureau_de_douanes, "title"=>"Création d'un nouveau dossier d'importation"]);
     }
 
     public static function destroyOnClose(): bool
@@ -49,11 +52,15 @@ class CreateDossierExport extends ModalComponent
         'num_facture'=>$this->num_facture,
         'num_lta'=>$this->num_lta,
         'num_sylvie'=>$this->num_sylvie,
+        'num_exo'=>$this->num_exo,
+        'num_lta_bl'=>$this->num_lta_bl,
+        'num_t'=>$this->num_t,
+        'valeur_marchandise'=>$this->valeur_marchandise,
         'num_declaration'=>$this->num_declaration,
         'valeur_caf'=>$this->valeur_caf,
         'nombre_colis'=>$this->nombre_colis,
         'poids'=>$this->poids,
-        'fournisseur_id'=>$this->fournisseur,
+        'fournisseur'=>$this->fournisseur,
         'bureau_de_douane_id'=>$this->bureau_de_douane,
         'type'=>"EXPORT",
         'user_id'=>1
@@ -62,9 +69,9 @@ class CreateDossierExport extends ModalComponent
 
         if(Dossier::latest()->first()==null){
 
-            $numero = "EX".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->nom, 0, 3))."/".substr(date('Y'), -2).'0001';
+            $numero = "EX".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".substr(date('Y'), -2).'0001';
         }else {
-            $numero = "EX".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->nom, 0, 3))."/".substr(date('Y'), -2).str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
+            $numero = "EX".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".substr(date('Y'), -2).str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
         }
 
 

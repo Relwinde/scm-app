@@ -29,7 +29,7 @@ class TransportInterne extends Model
     }
 
     public function destinations (){
-        return $this->belongsToMany(Destination::class, 'destination_transport_interne', 'transport_interne_id', 'depart')->withPivot('depart', 'arrivee', 'id');
+        return $this->belongsToMany(Destination::class, 'destination_transport_interne', 'transport_interne_id', 'depart')->withPivot('depart', 'arrivee', 'id')->orderBy('destination_transport_interne.id', 'ASC');
     }
 
     public function print (){

@@ -15,6 +15,7 @@ class ViewClient extends ModalComponent
     public $adresse;
     public $ifu;
     public $rccm;
+    public $code;
 
     public $edit = false;
 
@@ -27,6 +28,7 @@ class ViewClient extends ModalComponent
         $this->adresse =         $this->client->adresse;
         $this->ifu =         $this->client->ifu;
         $this->rccm =         $this->client->rccm;
+        $this->code =         $this->client->code;
 
         return view('livewire.modals.outils.view-client');
     }
@@ -47,6 +49,7 @@ class ViewClient extends ModalComponent
         $this->client->adresse = $this->adresse;
         $this->client->ifu = $this->ifu;
         $this->client->rccm = $this->rccm;
+        $this->client->code = $this->code;
 
         if($this->client->save()){
             $this->dispatch('new-client');

@@ -14,7 +14,7 @@
                 <tr>
                     <th class="wd-15p border-bottom-0"></th>
                     <th class="wd-15p border-bottom-0"><b>Nom</b></th>
-                    <th class="wd-20p border-bottom-0"><b>Adresse</b></th>
+                    <th class="wd-20p border-bottom-0"><b>Code client</b></th>
                     <th class="wd-20p border-bottom-0"><b>Téléphone</b></th>
                     <th class="wd-20p border-bottom-0"><b>Email</b></th>
                     <th class="wd-20p border-bottom-0"><b>N° IFU</b></th>
@@ -27,7 +27,7 @@
                     <tr wire:key='{{$client->id}}'>
                         <td style="max-width: 10px">{{$loop->iteration}}</td>
                         <td>{{$client->nom}}</td>
-                        <td>{{$client->adresse}}</td>
+                        <td>{{$client->code}}</td>
                         <td>{{$client->telephone}}</td>
                         <td>{{$client->email}}</td>
                         <td>{{$client->ifu}}</td>

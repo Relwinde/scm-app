@@ -10,7 +10,11 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Nom</label>
-                        <input wire:model='nom' type="text" class="form-control " @if ($edit==false) readonly @endif  name="nom" placeholder="Nom du client">
+                        <input required wire:model='nom' type="text" class="form-control " @if ($edit==false) readonly @endif  name="nom" placeholder="Nom du client">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Code client</label>
+                        <input required wire:model='code' type="text" class="form-control " @if ($edit==false) readonly @endif  name="code" placeholder="Code du client">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Téléphone</label>

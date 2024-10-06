@@ -14,6 +14,7 @@ class CreateClient extends ModalComponent
     public $adresse;
     public $ifu;
     public $rccm;
+    public $code;
 
     public function render()
     {
@@ -23,6 +24,7 @@ class CreateClient extends ModalComponent
     public function create(){
         $client = Client::make([
             'nom'=>$this->nom,
+            'code'=>$this->code,
             'telephone'=>$this->telephone,
             'email'=>$this->email,
             'adresse'=>$this->adresse,

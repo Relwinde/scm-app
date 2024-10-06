@@ -28,12 +28,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <label class="form-label">N° de Commande</label>
-                        <input wire:model='num_commande' type="text" class="form-control " @if ($edit==false) readonly @endif  name="example-text-input" placeholder="">
-                    </div>
-                    <div class="mb-4">
                         <label class="form-label">Client</label>
-                        <select wire:model='client' name="client" class="form-control custom-select select2" @if ($edit==false) readonly disabled="" @endif>
+                        <select required wire:model='client' name="client" class="form-control custom-select select2" @if ($edit==false) readonly disabled="" @endif>
                             <option value="" >Sélectionnez un client</option>
                             @foreach ($clients as $client)
                                 <option value="{{$client->id}}" >{{$client->nom}}</option>
@@ -41,13 +37,12 @@
                         </select>
                     </div>
                     <div class="mb-4">
+                        <label class="form-label">N° de Commande</label>
+                        <input wire:model='num_commande' type="text" class="form-control " @if ($edit==false) readonly @endif  name="example-text-input" placeholder="">
+                    </div>
+                    <div class="mb-4">
                         <label class="form-label">Fournisseur</label>
-                        <select wire:model='fournisseur' name="country" id="select-countries" class="form-control custom-select select2 " @if ($edit==false) readonly disabled="" @endif>
-                            <option value="" >Sélectionnez un fournisseur</option>
-                            @foreach ($fournisseurs as $fournisseur)
-                                <option value="{{$fournisseur->id}}" >{{$fournisseur->nom}}</option>
-                            @endforeach
-                        </select>
+                        <input wire:model='fournisseur' type="text" class="form-control " @if ($edit==false) readonly @endif  name="example-text-input" placeholder="">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de Facture</label>
@@ -64,7 +59,15 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° SYLVIE</label>
-                        <input wire:model='num_sylvie' type="text" class="form-control" @if($edit==false) readonly @endif name="" placeholder="">
+                        <input wire:model='num_sylvie' type="text" class="form-control" @if($edit==false) readonly @endif name="num_sylvie" >
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">N° de décision EXO</label>
+                        <input wire:model='num_exo' type="text" class="form-control" name="num_exo" @if($edit==false) readonly @endif>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">N° BL/LTA</label>
+                        <input wire:model='num_lta_bl' type="text" class="form-control" name="example-text-input" @if($edit==false) readonly @endif>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -83,19 +86,27 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Poids</label>
-                        <input wire:model='poids' type="number" class="form-control " @if($edit==false) readonly @endif name="example-text-input" placeholder="">
+                        <input wire:model='poids' type="number" class="form-control " @if($edit==false) readonly @endif name="example-text-input">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° LTA</label>
-                        <input wire:model='num_lta' type="text" class="form-control " @if($edit==false) readonly @endif name="example-text-input" placeholder="">
+                        <input wire:model='num_lta' type="text" class="form-control " @if($edit==false) readonly @endif name="example-text-input">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de déclaration</label>
-                        <input wire:model='num_declaration' type="text" class="form-control " @if ($edit==false) readonly @endif name="example-text-input" placeholder="">
+                        <input wire:model='num_declaration' type="text" class="form-control " @if ($edit==false) readonly @endif name="example-text-input" >
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Valeur CAF</label>
-                        <input wire:model='valeur_caf' type="number" class="form-control" @if($edit==false) readonly @endif name="example-text-input" placeholder="">
+                        <input wire:model='valeur_caf' type="number" class="form-control" @if($edit==false) readonly @endif name="valeur_caf" >
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Numéro de T1</label>
+                        <input wire:model='num_t' type="text" class="form-control" name="num_t" @if($edit==false) readonly @endif>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Valeur de la marchandise</label>
+                        <input wire:model='valeur_marchandise' type="number" step="0.001" class="form-control" name="valeur_marchandise" @if($edit==false) readonly @endif>
                     </div>
                 </div>
                 <div class="col-md-12 ">
