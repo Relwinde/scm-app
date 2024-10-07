@@ -17,16 +17,19 @@ class DossiersImport extends Component
     #[On('new-dossier')]
     public function render()
     {
-        $dossiers = Dossier::select(['id', 'numero', 'num_lta', 'num_sylvie', 'num_commande', 'created_at', 'num_declaration', 'client_id', 'fournisseur'])
-        ->where('type', 'IMPORT') // Filtre général
-        ->where(function ($query) {
-            $query->where('numero', 'like', "%{$this->search}%")
-                ->orWhere('num_facture', 'like', "%{$this->search}%")
-                ->orWhere('num_commande', 'like', "%{$this->search}%")
-                ->orWhere('num_sylvie', 'like', "%{$this->search}%");
-        })
-        ->orderBy('created_at', 'DESC')
-        ->paginate(10, '*', 'dossier-pagination');
+        $dossiers = Dossier::select(['dossiers.id', 'dossiers.numero', 'dossiers.num_lta', 'dossiers.num_sylvie', 'dossiers.num_commande', 'dossiers.created_at', 'dossiers.num_declaration', 'dossiers.client_id', 'dossiers.fournisseur'])
+            ->join('clients', 'dossiers.client_id', '=', 'clients.id') 
+            ->where('dossiers.type', 'IMPORT') 
+            ->where(function ($query) {
+                $query->where('dossiers.numero', 'like', "%{$this->search}%")
+                    ->orWhere('dossiers.num_facture', 'like', "%{$this->search}%")
+                    ->orWhere('dossiers.num_commande', 'like', "%{$this->search}%")
+                    ->orWhere('dossiers.num_sylvie', 'like', "%{$this->search}%")
+                    ->orWhere('clients.nom', 'like', "%{$this->search}%");
+            })
+            ->orderBy('dossiers.created_at', 'DESC')
+            ->paginate(10, '*', 'dossier-pagination');
+
 
         return view('livewire.dossiers-import', [
             'dossiers' => $dossiers, 'header_title'=>'Dossiers d\'importation', 'create_modal'=>'modals.create-dossier-import', 'button_title'=>'Nouveau dossier'

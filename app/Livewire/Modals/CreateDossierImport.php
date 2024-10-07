@@ -101,4 +101,8 @@ class CreateDossierImport extends ModalComponent
             request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
         }
     }
+
+    public function reformat_marche_value (){
+        $this->valeur_marchandise = number_format(floatval( str_replace(' ', '',$this->valeur_marchandise)), 0, '.', ' ');
+    }
 }

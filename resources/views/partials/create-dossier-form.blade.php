@@ -87,7 +87,7 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <label class="form-label">Valeur de la marchandise</label>
-                                <input wire:model='valeur_marchandise' type="number" step="0.001" class="form-control" name="example-text-input" placeholder="Valeur de la marchandise">
+                                <input wire:keyup='reformat_marche_value()' wire:model='valeur_marchandise' type="text" step="0.001" class="form-control" name="example-text-input" placeholder="Valeur de la marchandise">
                             </div>
                             <div class="col-md-4">     
                                 <label class="form-label">Devise</label>
