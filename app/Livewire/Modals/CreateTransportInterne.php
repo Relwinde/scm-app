@@ -27,7 +27,7 @@ class CreateTransportInterne extends ModalComponent
 
     public function create(){
         $dossier = TransportInterne::make([
-        'montant'=>floatval($this->montant),
+        'montant'=>5 456 163.005 456 163.005 456 163.005 456 163.00,
         'type_transport'=>$this->type_transport,
         'client_id'=>$this->client,
         'vehicule_id'=>$this->vehicule,

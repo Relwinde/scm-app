@@ -58,7 +58,7 @@
                             <div class="tab-pane" id="side1">
                                 <ul class="sidemenu-list">
                                     <li><a href="{{url('/clients')}}" class="slide-item">Clients</a></li>
-                                    <li><a href="{{url('/fournisseurs')}}" class="slide-item">Fournisseurs</a></li>
+                                    {{-- <li><a href="{{url('/fournisseurs')}}" class="slide-item">Fournisseurs</a></li> --}}
                                     <li><a href="{{url('/bureaux-de-douane')}}" class="slide-item">Bureaux de douane</a></li>
                                     <li><a href="{{url('/chauffeurs')}}" class="slide-item">Chauffeurs</a></li>
                                     <li><a href="{{url('/vehicules')}}" class="slide-item">Véhicules</a></li>

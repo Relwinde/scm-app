@@ -32,8 +32,8 @@ class ViewDossier extends ModalComponent
 
     public $edit = false;
 
-    public function render()
-    {
+
+    public function mount(){
         $this->num_commande = $this->dossier->num_commande;
         $this->client = $this->dossier->client_id;
         $this->fournisseur = $this->dossier->fournisseur;
@@ -44,12 +44,16 @@ class ViewDossier extends ModalComponent
         $this->num_exo = $this->dossier->num_exo;
         $this->num_lta_bl = $this->dossier->num_lta_bl;
         $this->num_t = $this->dossier->num_t;
-        $this->valeur_marchandise = $this->dossier->valeur_marchandise;
+        $this->valeur_marchandise = number_format($this->dossier->valeur_marchandise, 2, '.', ' ') ;
         $this->nombre_colis = $this->dossier->nombre_colis;
-        $this->poids = $this->dossier->poids;
+        $this->poids = number_format($this->dossier->poids, 2, '.', ' ');
         $this->num_lta = $this->dossier->num_lta;
         $this->num_declaration = $this->dossier->num_declaration;
-        $this->valeur_caf = $this->dossier->valeur_caf;
+        $this->valeur_caf = number_format($this->dossier->valeur_caf, 2, '.', ' ');
+    }
+
+    public function render()
+    {
 
         $clients = Client::all(['id', 'nom']);
         $fournisseurs = Fournisseur::all(['id', 'nom']);
@@ -63,6 +67,7 @@ class ViewDossier extends ModalComponent
     public function setEdit(){
         if($this->edit == true){
             $this->edit=false;
+            $this->mount();
         }
         else{
             $this->edit=true;
@@ -80,12 +85,12 @@ class ViewDossier extends ModalComponent
         $this->dossier->num_exo = $this->num_exo;
         $this->dossier->num_lta_bl = $this->num_lta_bl;
         $this->dossier->num_t = $this->num_t;
-        $this->dossier->valeur_marchandise = $this->valeur_marchandise;
+        $this->dossier->valeur_marchandise = floatval( str_replace(' ', '',$this->valeur_marchandise));
         $this->dossier->nombre_colis = $this->nombre_colis;
-        $this->dossier->poids = $this->poids;
+        $this->dossier->poids = floatval( str_replace(' ', '',$this->poids));
         $this->dossier->num_lta = $this->num_lta;
         $this->dossier->num_declaration = $this->num_declaration;
-        $this->dossier->valeur_caf =$this->valeur_caf;
+        $this->dossier->valeur_caf =floatval( str_replace(' ', '',$this->valeur_caf));
 
         if($this->dossier->save()){
             $this->dispatch('new-dossier');
@@ -99,6 +104,18 @@ class ViewDossier extends ModalComponent
     public static function destroyOnClose(): bool
     {
         return true;
+    }
+
+    public function reformat_marche_value (){
+        $this->valeur_marchandise = number_format(floatval( str_replace(' ', '',45646)), 2, '.', ' ');
+    }
+
+    public function reformat_poids (){
+        $this->poids = number_format(floatval( str_replace(' ', '',$this->poids)), 2, '.', ' ');
+    }
+
+    public function reformat_valeur_caf (){
+        $this->valeur_caf = number_format(floatval( str_replace(' ', '',$this->valeur_caf)), 2, '.', ' ');
     }
     
 }

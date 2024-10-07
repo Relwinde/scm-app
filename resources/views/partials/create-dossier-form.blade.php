@@ -77,7 +77,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Valeur CAF</label>
-                        <input wire:model='valeur_caf' type="number" class="form-control" name="example-text-input" placeholder="N° CAF">
+                        <input wire:focusout='reformat_valeur_caf()' wire:model='valeur_caf' type="text" class="form-control" name="example-text-input" placeholder="N° CAF">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Numéro de T1</label>

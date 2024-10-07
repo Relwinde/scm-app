@@ -22,18 +22,19 @@ class ViewTransportInterne extends ModalComponent
 
     public $edit = false;
 
+    public function mount (){
+        $this->client = $this->dossier->client_id;
+        $this->vehicule = $this->dossier->vehicule_id;
+        $this->chauffeur = $this->dossier->chauffeur_id;
+        $this->montant = number_format(floatval( str_replace(' ', '',$this->dossier->montant)), 2, '.', ' ') ;
+        $this->type_transport = $this->dossier->type_transport;
+    }
 
     public function render()
     {
         $clients = Client::all(['id', 'nom']);
         $chauffeurs = Chauffeur::all(['id', 'nom']);
         $vehicules = Vehicule::all(['id', 'immatriculation']);
-
-        $this->client = $this->dossier->client_id;
-        $this->vehicule = $this->dossier->vehicule_id;
-        $this->chauffeur = $this->dossier->chauffeur_id;
-        $this->montant = $this->dossier->montant;
-        $this->type_transport = $this->dossier->type_transport;
 
         return view('livewire.modals.view-transport-interne',["clients"=>$clients, "chauffeurs"=>$chauffeurs, "vehicules"=>$vehicules, "title"=>"de transport interne"]);
     }
@@ -56,7 +57,7 @@ class ViewTransportInterne extends ModalComponent
         $this->dossier->client_id = $this->client;
         $this->dossier->vehicule_id = $this->vehicule;
         $this->dossier->chauffeur_id = $this->chauffeur;
-        $this->dossier->montant = $this->montant;
+        $this->dossier->montant = floatval(str_replace(' ', '',$this->montant));
         $this->dossier->type_transport = $this->type_transport;
 
         if($this->dossier->save()){
@@ -67,5 +68,9 @@ class ViewTransportInterne extends ModalComponent
             request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
         }
 
+    }
+
+    public function reformat_montant (){
+        $this->montant = number_format(floatval( str_replace(' ', '',$this->montant)), 2, '.', ' ');
     }
 }

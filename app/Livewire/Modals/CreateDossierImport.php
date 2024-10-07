@@ -67,7 +67,7 @@ class CreateDossierImport extends ModalComponent
         'num_t'=>$this->num_t,
         'valeur_marchandise'=>floatval($this->valeur_marchandise),
         'num_declaration'=>$this->num_declaration,
-        'valeur_caf'=>$this->valeur_caf,
+        'valeur_caf'=>floatval($this->valeur_caf),
         'nombre_colis'=>$this->nombre_colis,
         'devise_marchandise'=>$this->devise,
         'poids'=>floatval($this->poids),
@@ -110,5 +110,9 @@ class CreateDossierImport extends ModalComponent
 
     public function reformat_poids (){
         $this->poids = number_format(floatval( str_replace(' ', '',$this->poids)), 2, '.', ' ');
+    }
+
+    public function reformat_valeur_caf (){
+        $this->valeur_caf = number_format(floatval( str_replace(' ', '',$this->valeur_caf)), 2, '.', ' ');
     }
 }

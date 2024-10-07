@@ -86,7 +86,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Poids</label>
-                        <input wire:model='poids' type="number" class="form-control " @if($edit==false) readonly @endif name="example-text-input">
+                        <input wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control " @if($edit==false) readonly @endif name="example-text-input">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° LTA</label>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Valeur CAF</label>
-                        <input wire:model='valeur_caf' type="number" class="form-control" @if($edit==false) readonly @endif name="valeur_caf" >
+                        <input wire:focusout='reformat_valeur_caf()' wire:model='valeur_caf' type="text" class="form-control" @if($edit==false) readonly @endif name="valeur_caf" >
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Numéro de T1</label>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Valeur de la marchandise</label>
-                        <input wire:model='valeur_marchandise' type="number" step="0.001" class="form-control" name="valeur_marchandise" @if($edit==false) readonly @endif>
+                        <input wire:focusout='reformat_marche_value()' wire:model='valeur_marchandise' type="text" class="form-control" name="valeur_marchandise" @if($edit==false) readonly @endif>
                     </div>
                 </div>
                 <div class="col-md-12 ">
