@@ -72,9 +72,27 @@
                 </li>
             </ul>
         </li>
-        <li>
-            <a class="side-menu__item has-link" href="{{url('/users')}}"><i class="side-menu__icon fe fe-user"></i><span
-            class="side-menu__label">Utilisateurs</span></a>
+        <li class="slide">
+            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fe fe-log-in"></i><span
+                class="side-menu__label">Gestion d'accès</span><i
+                class="angle fe fe-chevron-right"></i>
+            </a>
+            <ul class="slide-menu">
+                <li class="panel sidetab-menu">
+
+                    <div class="panel-body tabs-menu-body p-0 border-0">
+                        <div class="tab-content">
+                            <div class="tab-pane" id="side1">
+                                <ul class="sidemenu-list">
+                                    <li><a href="{{url('/users')}}" class="slide-item">Utilisateurs</a></li>
+                                    <li><a href="{{url('/roles')}}" class="slide-item">Profiles</a></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </li>
     </ul>
     <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"

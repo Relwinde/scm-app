@@ -25,10 +25,13 @@ use App\Http\Controllers\AdvanceduiController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardsController;
 use App\Livewire\Home;
+use App\Livewire\Outils\CreateProfile;
 use App\Livewire\Outils\Fournisseur;
+use App\Livewire\Outils\Profile;
 use App\Livewire\Outils\User;
 use App\Models\Dossier;
 use App\Models\TransportInterne;
+use GuzzleHttp\Promise\Create;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +61,8 @@ Route::get('/fournisseurs', Fournisseur::class)->middleware("auth");
 
 
 Route::get('/users', User::class)->middleware("auth");
+Route::get('/roles', Profile::class)->middleware("auth");
+Route::get('/new-role', CreateProfile::class)->middleware("auth");
 
 
 
