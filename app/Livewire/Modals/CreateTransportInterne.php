@@ -27,7 +27,7 @@ class CreateTransportInterne extends ModalComponent
 
     public function create(){
         $dossier = TransportInterne::make([
-        'montant'=>$this->montant,
+        'montant'=>floatval($this->montant),
         'type_transport'=>$this->type_transport,
         'client_id'=>$this->client,
         'vehicule_id'=>$this->vehicule,
@@ -56,5 +56,9 @@ class CreateTransportInterne extends ModalComponent
     public static function destroyOnClose(): bool
     {
         return true;
+    }
+
+    public function reformat_montant (){
+        $this->montant = number_format(floatval( str_replace(' ', '',$this->montant)), 2, '.', ' ');
     }
 }

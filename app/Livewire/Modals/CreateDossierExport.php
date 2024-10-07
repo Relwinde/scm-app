@@ -30,6 +30,7 @@ class CreateDossierExport extends ModalComponent
     public $num_lta_bl;
     public $num_t;
     public $valeur_marchandise;
+    public $devise;
 
     public function render()
     {
@@ -55,11 +56,12 @@ class CreateDossierExport extends ModalComponent
         'num_exo'=>$this->num_exo,
         'num_lta_bl'=>$this->num_lta_bl,
         'num_t'=>$this->num_t,
-        'valeur_marchandise'=>$this->valeur_marchandise,
+        'valeur_marchandise'=>floatval($this->valeur_marchandise),
         'num_declaration'=>$this->num_declaration,
         'valeur_caf'=>$this->valeur_caf,
         'nombre_colis'=>$this->nombre_colis,
-        'poids'=>$this->poids,
+        'devise_marchandise'=>$this->devise,
+        'poids'=>floatval($this->poids),
         'fournisseur'=>$this->fournisseur,
         'bureau_de_douane_id'=>$this->bureau_de_douane,
         'type'=>"EXPORT",
@@ -92,5 +94,13 @@ class CreateDossierExport extends ModalComponent
             request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
 
         }
+    }
+
+    public function reformat_marche_value (){
+        $this->valeur_marchandise = number_format(floatval( str_replace(' ', '',$this->valeur_marchandise)), 2, '.', ' ');
+    }
+
+    public function reformat_poids (){
+        $this->poids = number_format(floatval( str_replace(' ', '',$this->poids)), 2, '.', ' ');
     }
 }

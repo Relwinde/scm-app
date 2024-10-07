@@ -65,7 +65,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Poids</label>
-                        <input wire:model='poids' type="number" class="form-control" name="example-text-input" placeholder="Poids">
+                        <input  wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control" name="example-text-input" placeholder="Poids">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° LTA</label>
@@ -87,7 +87,7 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <label class="form-label">Valeur de la marchandise</label>
-                                <input wire:keyup='reformat_marche_value()' wire:model='valeur_marchandise' type="text" step="0.001" class="form-control" name="example-text-input" placeholder="Valeur de la marchandise">
+                                <input wire:focusout='reformat_marche_value()' wire:model='valeur_marchandise' type="text" step="0.001" class="form-control" name="example-text-input" placeholder="Valeur de la marchandise">
                             </div>
                             <div class="col-md-4">     
                                 <label class="form-label">Devise</label>

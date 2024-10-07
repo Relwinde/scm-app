@@ -40,7 +40,7 @@
                             <div class="col-md-6">
                                 <div class="mb-4">
                                     <label class="form-label">Montant</label>
-                                    <input wire:model='montant' type="number" class="form-control" name="example-text-input" placeholder="Montant">
+                                    <input wire:focusout='reformat_montant()' wire:model='montant' type="text" class="form-control" name="example-text-input" placeholder="Montant">
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Type de transport</label>

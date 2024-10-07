@@ -32,7 +32,7 @@
                         <td>{{$dossier->num_lta}}</td>
                         <td>{{$dossier->num_sylvie}}</td>
                         <td>{{$dossier->num_commande}}</td>
-                        <td>{{$dossier->created_at}}</td>
+                        <td>{{strftime("%e %B %Y", strtotime($dossier->created_at));}}</td>
                         <td>{{$dossier->num_declaration}}</td>
                         <td name="bstable-actions">
                             <div class="btn-list">
