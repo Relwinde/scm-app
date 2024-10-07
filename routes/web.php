@@ -24,6 +24,7 @@ use App\Http\Controllers\ElementsController;
 use App\Http\Controllers\AdvanceduiController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardsController;
+use App\Livewire\Home;
 use App\Livewire\Outils\Fournisseur;
 use App\Models\Dossier;
 use App\Models\TransportInterne;
@@ -40,24 +41,24 @@ use App\Models\TransportInterne;
 */
 
 
-Route::get('/', [DashboardsController::class, 'index']);
+Route::get('/login', Login::class)->name('login');
+Route::get('/', Home::class)->middleware("auth");
 
-Route::get('/dossiers-import', DossiersImport::class);
-Route::get('/dossiers-export', DossiersExport::class);
-Route::get('/dossiers-internes', TransportsInternes::class);
-Route::get('/login', Login::class);
-Route::get('/chauffeurs', Chauffeur::class);
-Route::get('/vehicules', Vehicule::class);
-Route::get('/bureaux-de-douane', BureauDeDouane::class);
-Route::get('/destinations', Destination::class);
-Route::get('/marchandises', Marchandise::class);
+Route::get('/dossiers-import', DossiersImport::class)->middleware("auth");
+Route::get('/dossiers-export', DossiersExport::class)->middleware("auth");
+Route::get('/dossiers-internes', TransportsInternes::class)->middleware("auth");
+Route::get('/chauffeurs', Chauffeur::class)->middleware("auth");
+Route::get('/vehicules', Vehicule::class)->middleware("auth");
+Route::get('/bureaux-de-douane', BureauDeDouane::class)->middleware("auth");
+Route::get('/destinations', Destination::class)->middleware("auth");
+Route::get('/marchandises', Marchandise::class)->middleware("auth");
 Route::get('/clients', Client::class);
-Route::get('/fournisseurs', Fournisseur::class);
+Route::get('/fournisseurs', Fournisseur::class)->middleware("auth");
 
 Route::get('/print-dossier/{dossier}', function (Dossier $dossier){
     $dossier->print();
-})->name('print-dossier');
+})->name('print-dossier')->middleware("auth");
 
 Route::get('/print-transport/{dossier}', function (TransportInterne $dossier){
     $dossier->print();
-})->name('print-transport');
+})->name('print-transport')->middleware("auth");

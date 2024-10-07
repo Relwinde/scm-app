@@ -26,7 +26,7 @@ class Login extends Component
         if (Auth::attempt(['email'=>$this->userName, 'password'=>$this->password])) {
             // $request->session()->regenerate();
             $this->reset();
-            // $this->redirect(BillOfLading::class, navigate: true);
+            $this->redirect(Home::class);
         }
 
         $this->reset(['password']);
