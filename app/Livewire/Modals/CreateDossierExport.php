@@ -2,14 +2,15 @@
 
 namespace App\Livewire\Modals;
 
-use App\Models\BureauDeDouane;
 use App\Models\Client;
 use App\Models\Dossier;
-use App\Models\DossierObservation;
-use LivewireUI\Modal\ModalComponent;
 use App\Models\Fournisseur;
 use App\Models\Marchandise;
 use App\Models\Observation;
+use App\Models\BureauDeDouane;
+use App\Models\DossierObservation;
+use Illuminate\Support\Facades\Auth;
+use LivewireUI\Modal\ModalComponent;
 
 class CreateDossierExport extends ModalComponent
 {
@@ -65,7 +66,7 @@ class CreateDossierExport extends ModalComponent
         'fournisseur'=>$this->fournisseur,
         'bureau_de_douane_id'=>$this->bureau_de_douane,
         'type'=>"EXPORT",
-        'user_id'=>1
+        'user_id'=>Auth::User()->id
         ]);
 
 

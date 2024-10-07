@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Vehicule;
 use App\Models\Chauffeur;
 use App\Models\TransportInterne;
+use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateTransportInterne extends ModalComponent
@@ -31,7 +32,8 @@ class CreateTransportInterne extends ModalComponent
         'type_transport'=>$this->type_transport,
         'client_id'=>$this->client,
         'vehicule_id'=>$this->vehicule,
-        'chauffeur_id'=>$this->chauffeur
+        'chauffeur_id'=>$this->chauffeur,
+        'user_id'=>Auth::User()->id
         ]);
 
         if(TransportInterne::latest()->first()==null){

@@ -26,6 +26,7 @@ use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardsController;
 use App\Livewire\Home;
 use App\Livewire\Outils\Fournisseur;
+use App\Livewire\Outils\User;
 use App\Models\Dossier;
 use App\Models\TransportInterne;
 
@@ -54,6 +55,11 @@ Route::get('/destinations', Destination::class)->middleware("auth");
 Route::get('/marchandises', Marchandise::class)->middleware("auth");
 Route::get('/clients', Client::class);
 Route::get('/fournisseurs', Fournisseur::class)->middleware("auth");
+
+
+Route::get('/users', User::class)->middleware("auth");
+
+
 
 Route::get('/print-dossier/{dossier}', function (Dossier $dossier){
     $dossier->print();

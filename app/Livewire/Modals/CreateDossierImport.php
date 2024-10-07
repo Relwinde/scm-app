@@ -8,6 +8,7 @@ use App\Models\Fournisseur;
 use App\Models\Marchandise;
 use App\Models\Observation;
 use App\Models\BureauDeDouane;
+use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateDossierImport extends ModalComponent
@@ -74,7 +75,7 @@ class CreateDossierImport extends ModalComponent
         'fournisseur'=>$this->fournisseur,
         'bureau_de_douane_id'=>$this->bureau_de_douane,
         'type'=>"IMPORT",
-        'user_id'=>1
+        'user_id'=>Auth::User()->id
         ]);
 
         if(Dossier::latest()->first()==null){
