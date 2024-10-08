@@ -35,9 +35,11 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name'=> 'Créer bons de caisse']);
         Permission::create(['name'=> 'Modifier bons de caisse']);
         Permission::create(['name'=> 'Supprimer bons de caisse']);
-        Permission::create(['name'=> 'Annuler bons de caisse']);
+        Permission::create(['name'=> 'Annuler bon de caisse']);
+        Permission::create(['name'=> 'Retourner bon de caisse']);
         Permission::create(['name'=> 'Envoyer bon de caisse au manager']);
-        Permission::create(['name'=> 'Envoyer bon de caisse à la comptabilité']);
+        // Permission::create(['name'=> 'Envoyer bon de caisse à la comptabilité']);
+        Permission::create(['name'=> 'Envoyer bon de caisse au responsable finance']);
         Permission::create(['name'=> 'Envoyer bon de caisse à la caisser']);
         Permission::create(['name'=> 'Payer bon de caisse']);
 
@@ -46,6 +48,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name'=> 'Créer utlisateur']);
         Permission::create(['name'=> 'Modifier utlisateur']);
         Permission::create(['name'=> 'Supprimer utlisateur']);
+
+        // Permissions de client
+        Permission::create(['name'=> 'Voir la liste des clients']);
+        Permission::create(['name'=> 'Créer client']);
+        Permission::create(['name'=> 'Modifier client']);
+        Permission::create(['name'=> 'Supprimer client']);
 
         // Permissions de profile
         Permission::create(['name'=> 'Voir la liste des profiles']);

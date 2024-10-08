@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Mpdf\Mpdf;
+use App\Models\User;
 use App\Models\Client;
 use App\Models\Marchandise;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Mpdf\Mpdf;
 
 class Dossier extends Model
 {
@@ -18,6 +19,10 @@ class Dossier extends Model
 
     public function client(){
         return $this->belongsTo(Client::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
     public function fournisseur(){

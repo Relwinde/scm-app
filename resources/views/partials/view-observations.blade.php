@@ -14,10 +14,10 @@
                         <div class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1"></h5>
-                            <small class="text-muted">{{$observation->created_at}}</small>
+                            <small class="text-muted">{{strftime("%e %B %Y", strtotime($observation->created_at))}}</small>
                         </div>
                         <p class="mb-1">{!! $observation->content !!}</p>
-                        <small class="text-muted">Nom De l'émeteur</small>
+                        <small class="text-muted">{{Auth::user()->name}}</small>
                     </div>
                     @endforeach
                     

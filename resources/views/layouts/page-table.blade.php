@@ -10,9 +10,9 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex align-items-left">
-                        @can('Créer dossier')
-                            <button wire:click="$dispatch('openModal', {component: '{{$create_modal}}'})" class="btn btn-primary mb-4"> {{$button_title}}</button>
-                        @endcan
+
+                        @yield('create-button')
+                       
                         <div class="main-header-center ms-3 d-none d-lg-block">
                             {{-- <form  wire:submit="search" > --}}
                                 <input   wire:model.live.debounce="search" type="text" class="form-control" placeholder="Recherche...">
