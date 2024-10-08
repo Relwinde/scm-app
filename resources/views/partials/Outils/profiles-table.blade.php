@@ -20,7 +20,7 @@
             <tbody>
                 @foreach ($profiles as $profile)
                     <tr wire:key='{{$profile->id}}'>
-                        <td>{{$profile->nom}}</td>
+                        <td>{{$profile->name}}</td>
                         <td></td>
                         <td name="bstable-actions">
                             <div class="btn-list">
