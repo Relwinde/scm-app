@@ -23,9 +23,16 @@
                         <div class="tab-content">
                             <div class="tab-pane" id="side1">
                                 <ul class="sidemenu-list">
-                                    <li><a href="{{url('/dossiers-import')}}" class="slide-item">Dossiers Imports</a></li>
-                                    <li><a href="{{url('/dossiers-export')}}" class="slide-item">Dossiers Exports</a></li>
-                                    <li><a href="{{url('/dossiers-internes')}}" class="slide-item"> Transports internes</a></li>
+                                    @can('Voir la liste des dossiers imports')
+                                        <li><a href="{{url('/dossiers-import')}}" class="slide-item">Dossiers Imports</a></li>               
+                                    @endcan
+                                    @can('Voir la liste des dossiers exports')
+                                        <li><a href="{{url('/dossiers-export')}}" class="slide-item">Dossiers Exports</a></li>
+                                    @endcan
+
+                                    @can('Voir la liste des transports internes')
+                                        <li><a href="{{url('/dossiers-internes')}}" class="slide-item"> Transports internes</a></li>  
+                                    @endcan
                                 </ul>
 
                             </div>
@@ -84,8 +91,13 @@
                         <div class="tab-content">
                             <div class="tab-pane" id="side1">
                                 <ul class="sidemenu-list">
-                                    <li><a href="{{url('/users')}}" class="slide-item">Utilisateurs</a></li>
-                                    <li><a href="{{url('/roles')}}" class="slide-item">Profiles</a></li>
+                                    @can('Voir la liste des utlisateurs')
+                                        <li><a href="{{url('/users')}}" class="slide-item">Utilisateurs</a></li>
+                                    @endcan
+
+                                    @can('Voir la liste des profiles')
+                                        <li><a href="{{url('/roles')}}" class="slide-item">Profiles</a></li>
+                                    @endcan
                                 </ul>
 
                             </div>

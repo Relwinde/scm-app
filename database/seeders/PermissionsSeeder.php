@@ -18,16 +18,20 @@ class PermissionsSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Permissions de dossier
+        Permission::create(['name'=> 'Voir la liste des dossiers imports']);
+        Permission::create(['name'=> 'Voir la liste des dossiers exports']);
         Permission::create(['name'=> 'Créer dossier']);
         Permission::create(['name'=> 'Modifier dossier']);
         Permission::create(['name'=> 'Supprimer dossier']);
 
         // Permissions de transport interne
+        Permission::create(['name'=> 'Voir la liste des transports internes']);
         Permission::create(['name'=> 'Créer transport interne']);
         Permission::create(['name'=> 'Modifier transport interne']);
         Permission::create(['name'=> 'Supprimer transport interne']);
 
         // Permissions de bons de caisse
+        Permission::create(['name'=> 'Voir toute la liste des bons de caisse']);
         Permission::create(['name'=> 'Créer bons de caisse']);
         Permission::create(['name'=> 'Modifier bons de caisse']);
         Permission::create(['name'=> 'Supprimer bons de caisse']);

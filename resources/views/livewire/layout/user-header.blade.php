@@ -8,7 +8,9 @@
             <div class="drop-heading">
                 <div class="text-center">
                     <h5 class="text-dark mb-0 fs-14 fw-semibold">{{Auth::user()->name}}</h5>
-                    <small class="text-muted">Agent de saisie</small>
+                    <small class="text-muted">@foreach (Auth::user()->roles as $role)
+                        {{$role->name}}
+                    @endforeach</small>
                 </div>
             </div>
             <div class="dropdown-divider m-0"></div>

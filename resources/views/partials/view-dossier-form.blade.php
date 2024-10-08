@@ -120,12 +120,16 @@
         <div class="card-footer">
             @if ($edit==true)
                 <div class="btn-list">
-                    <button type="submit" href="javascript:void(0);" class="btn btn-primary">Enregistrer</button>
+                    @can('Modifier dossier')
+                        <button type="submit" href="javascript:void(0);" class="btn btn-primary">Enregistrer</button>
+                    @endcan
                     <a href="javascript:void(0);" wire:click='setEdit' class="btn btn-danger">Annuler</a>
                 </div>
             @else
                 <div class="btn-list">
-                    <button wire:click='setEdit' href="javascript:void(0);" class="btn btn-primary">Modifier</button>
+                    @can('Modifier dossier')
+                        <button wire:click='setEdit' href="javascript:void(0);" class="btn btn-primary">Modifier</button>       
+                    @endcan
                     <a href="javascript:void(0);" wire:click="$dispatch('closeModal')" class="btn btn-danger">Annuler</a>
                 </div>
             @endif
