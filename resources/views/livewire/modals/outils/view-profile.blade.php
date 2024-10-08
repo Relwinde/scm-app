@@ -1,3 +1,8 @@
 <div>
-    {{-- The best athlete wants his opponent at his best. --}}
+    <div class="row " >
+        {{-- <div class="col-md-6 col-lg-6"> --}}
+            @include('partials.view-modal')
+        {{-- </div> --}}
+    </div>
 </div>
+

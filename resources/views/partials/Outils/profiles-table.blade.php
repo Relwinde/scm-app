@@ -27,12 +27,12 @@
                                 {{-- <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                                     <span class="fe fe-edit"> </span>
                                 </button> --}}
-                                <button id="bAcep" type="button" class="btn btn-sm btn-primary-light me-2">
+                                <button id="bAcep" type="button" class="btn btn-sm btn-primary-light me-2" wire:click="$dispatch('openModal', {component: 'modals.outils.view-profile', arguments: { profile : {{ $profile->id }} }})">
                                     <span class="fe fe-eye"> </span>
                                 </button>
-                                <button id="bDel" type="button" class="btn  btn-sm btn-danger">
+                                {{-- <button id="bDel" type="button" class="btn  btn-sm btn-danger">
                                     <span class="fe fe-trash-2"> </span>
-                                </button>
+                                </button> --}}
                             </div>
                         </td>
                     </tr>
