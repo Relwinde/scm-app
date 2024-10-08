@@ -26,7 +26,11 @@
                             <p class="fs-14 fw-semibold text-dark mb-0">{{$user->name}} </p>
                             <p class="fs-13 text-muted mb-0">{{$user->email}}</p>
                         </td>
-                        <td></td>
+                        <td>@foreach ($user->roles as $role)
+                            <span class="badge fw-semibold badge-pill bg-secondary-transparent text-secondary fs-11">
+                                {{$role->name}}
+                            </span>
+                        @endforeach</td>
                         <td></td>
                         <td> <span class="text-muted fs-13">{{strftime("%e %B %Y", strtotime($user->created_at));}}</span></td>
                         <td name="bstable-actions">

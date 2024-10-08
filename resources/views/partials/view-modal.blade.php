@@ -2,9 +2,35 @@
     <div class="card-header d-flex justify-content-between">
         <h3 class="mb-0 card-title"><b>Profile : {{$profile->name}}</b></h3>
     </div>
-
+    
     <div class="card-body">
         <div class="row">
+            <div class="col-md-12">
+                <div class="mb-4">
+                    <label class="form-label">Chercher une permission</label>
+                    <div class="row gutters-xs">
+                        <div class="col">
+                            <input wire:model.live.debounce='search' type="text" class="form-control" placeholder="Chercher une permission">
+                        </div>
+                        <span class="col-auto">
+                            <button class="btn btn-primary" type="button"><i class="fe fe-search"></i></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="mb-4 form-elements">
+                    <div class="btn-list">
+                        <label class="custom-control custom-radio" style="display: inline-block; margin:5px;">
+                            <input wire:model.live='ownedPermissions' type="radio" class="custom-control-input" name="example-radios" value="1">
+                            <span class="custom-control-label">Permissions du profile</span>
+                        </label>
+                        <label class="custom-control custom-radio" style="display: inline-block; margin:5px;">
+                            <input wire:model.live='ownedPermissions' type="radio" class="custom-control-input" name="example-radios" value="0">
+                            <span class="custom-control-label">Toutes les permissions</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
             <div class="col-md-12 table-responsive">
                 <table class="table table-striped table-bordered text-nowrap">
                     <thead>

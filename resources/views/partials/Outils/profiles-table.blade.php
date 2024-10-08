@@ -13,7 +13,6 @@
                 </tr> --}}
                 <tr>
                     <th class="wd-15p border-bottom-0"><b>Nom</b></th>
-                    <th class="wd-20p border-bottom-0"><b>Permissions</b></th>
                     <th class="wd-25p border-bottom-0"><b>Actions</b></th>
                 </tr>
             </thead>
@@ -21,7 +20,6 @@
                 @foreach ($profiles as $profile)
                     <tr wire:key='{{$profile->id}}'>
                         <td>{{$profile->name}}</td>
-                        <td></td>
                         <td name="bstable-actions">
                             <div class="btn-list">
                                 {{-- <button id="bEdit" type="button" class="btn btn-sm btn-primary">
