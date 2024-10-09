@@ -42,7 +42,7 @@
             </ul>
         </li>
         <li>
-            <a class="side-menu__item has-link" href="javascript:void(0);"><i class="side-menu__icon fe fe-package"></i><span
+            <a class="side-menu__item has-link" href="{{url('bons-de-caisse')}}"><i class="side-menu__icon fe fe-package"></i><span
             class="side-menu__label">Bons de caisses</span></a>
         </li>
         <li>

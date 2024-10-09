@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\BonDeCaisse;
 use App\Livewire\Login;
 
 use App\Livewire\Outils\Client;
@@ -12,18 +13,6 @@ use App\Livewire\Outils\Marchandise;
 use App\Livewire\TransportsInternes;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Outils\BureauDeDouane;
-use App\Http\Controllers\MapsController;
-use App\Http\Controllers\FormsController;
-use App\Http\Controllers\IconsController;
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\ChartsController;
-use App\Http\Controllers\TablesController;
-use App\Http\Controllers\DossierController;
-use App\Http\Controllers\WidgetsController;
-use App\Http\Controllers\ElementsController;
-use App\Http\Controllers\AdvanceduiController;
-use App\Http\Controllers\ComponentsController;
-use App\Http\Controllers\DashboardsController;
 use App\Livewire\Home;
 use App\Livewire\Outils\Fournisseur;
 use App\Livewire\Outils\Profile;
@@ -61,6 +50,9 @@ Route::get('/fournisseurs', Fournisseur::class)->middleware("auth");
 
 Route::get('/users', User::class)->middleware("auth");
 Route::get('/roles', Profile::class)->middleware("auth");
+
+
+Route::get('/bons-de-caisse', BonDeCaisse::class)->middleware("auth");
 
 
 

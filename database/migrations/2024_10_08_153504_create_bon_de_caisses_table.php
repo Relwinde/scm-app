@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('bon_de_caisses', function (Blueprint $table) {
             $table->id();
-            $table->decimal('montant', 14, 2)->nullable();
-            $table->enum('etape', ['EMETTEUR', 'RESPONSABLE', 'COMPTABLE', 'RAF', 'MANAGER', 'CAISSE']);
+            $table->decimal('montant', 14, 2);
+            $table->string('depense');
+            $table->enum('etape', ['EMETTEUR', 'RESPONSABLE', 'COMPTABLE', 'RAF', 'MANAGER', 'CAISSE'])->default('EMETTEUR');
             $table->boolean('rejected')->default(false);
-            $table->foreignId('dossier_id')->constrained()->onDelete('cascade');
+            $table->foreignId('dossier_id')->constrained()->onDelete('cascade')->default(null);
+            $table->foreignId('transport_interne_id')->constrained()->onDelete('cascade')->default(null);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->float('numero', 16);
+            $table->string('numero', 20);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

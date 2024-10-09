@@ -6,12 +6,9 @@
 		<meta charset="UTF-8">
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="description" content="Volgh – Laravel Bootstrap 5 Responsive Application Admin panel Theme Ui Kit & Premium Dashboard Design Modern Flat Laravel Template">
-		<meta name="author" content="Spruko Technologies Private Limited">
-		<meta name="keywords" content="admin template, admin dashboard, admin panel template, laravel template, bootstrap dashboard, admin dashboard bootstrap, bootstrap admin template, laravel admin panel, laravel dashboard, admin dashboard laravel, template dashboard, dashboard, theme ui, admin dashboard template, bootstrap 5 admin template, laravel bootstrap">
 
 		<!-- TITLE -->
-		<title>Volgh – Laravel Bootstrap 5 Responsive Application Admin panel Template</title>
+		<title>SCM LOGISTICS</title>
 
 		<!-- Favicon -->
 		<link rel="icon" href="{{asset('build/assets/images/brand/favicon.ico')}}" type="image/x-icon">
