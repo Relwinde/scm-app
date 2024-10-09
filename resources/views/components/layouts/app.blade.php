@@ -19,6 +19,14 @@
         @vite(['resources/css/app.css' , 'resources/sass/app.scss'])
 
         @yield('styles')
+        <style>
+            .error-message{
+                width: 100%;
+                margin-top: 0.25rem;
+                font-size: 0.875em;
+                color: var(--bs-form-invalid-color);
+            }
+        </style>
         @livewireStyles
         {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     
