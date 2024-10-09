@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('dossier_id')->constrained()->onDelete('cascade')->default(null);
             $table->foreignId('transport_interne_id')->constrained()->onDelete('cascade')->default(null);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('numero', 20);
+            $table->string('numero', 2000);
             $table->timestamps();
             $table->softDeletes();
         });
