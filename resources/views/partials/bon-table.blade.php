@@ -1,5 +1,5 @@
 <div>
-    <div class="table-responsive">
+    <div wire:poll.3s class="table-responsive">
         <table class="table table-bordered border text-nowrap mb-0">
             <thead>
                 {{-- <tr>
