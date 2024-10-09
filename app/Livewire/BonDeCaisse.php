@@ -159,6 +159,30 @@ class BonDeCaisse extends Component
             ->orderBy('bon_de_caisses.created_at', 'DESC')
             ->paginate(10, '*', 'bons-pagination');        
            
+        }else{
+            $bonsDeCaisse = ModelsBonDeCaisse::select([
+                'bon_de_caisses.id',
+                'bon_de_caisses.numero',
+                'bon_de_caisses.montant',
+                'bon_de_caisses.depense',
+                'bon_de_caisses.etape',
+                'bon_de_caisses.rejected',
+                'bon_de_caisses.dossier_id',
+                'bon_de_caisses.transport_interne_id',
+                'bon_de_caisses.user_id',
+                'bon_de_caisses.created_at'
+            ])
+            ->leftJoin('users', 'bon_de_caisses.user_id', '=', 'users.id')
+            ->leftJoin('dossiers', 'bon_de_caisses.dossier_id', '=', 'dossiers.id')
+            ->leftJoin('transport_internes', 'bon_de_caisses.transport_interne_id', '=', 'transport_internes.id')
+            ->where('bon_de_caisses.user_id', Auth::user()->id)
+            ->where(function ($query) {
+                $query->where('bon_de_caisses.numero', 'like', "%{$this->search}%")
+                      ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
+                      ->orWhere('users.name', 'like', "%{$this->search}%");
+            })
+            ->orderBy('bon_de_caisses.created_at', 'DESC')
+            ->paginate(10, '*', 'bons-pagination');         
         }
 
         return view('livewire.bon-de-caisse', [
