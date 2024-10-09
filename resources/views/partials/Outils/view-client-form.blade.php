@@ -10,35 +10,35 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Nom</label>
-                        <input required wire:model='nom' type="text" class="form-control " @if ($edit==false) readonly @endif  name="nom" placeholder="Nom du client">
+                        <input required wire:model='nom' type="text" class="form-control " @if ($edit==false) readonly @endif  name="nom">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Code client</label>
-                        <input required wire:model='code' type="text" class="form-control " @if ($edit==false) readonly @endif  name="code" placeholder="Code du client">
+                        <input required wire:model='code' type="text" class="form-control " @if ($edit==false) readonly @endif  name="code">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Téléphone</label>
-                        <input wire:model='telephone' type="text" class="form-control " @if ($edit==false) readonly @endif  name="telephone" placeholder="N° de téléphone du client">
+                        <input wire:model='telephone' type="text" class="form-control " @if ($edit==false) readonly @endif  name="telephone">
                         
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Email</label>
-                        <input wire:model='email' type="text" class="form-control " @if ($edit==false) readonly @endif  name="email" placeholder="Adresse électronique du client">
+                        <input wire:model='email' type="text" class="form-control " @if ($edit==false) readonly @endif  name="email">
                         
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Adresse</label>
-                        <textarea @if ($edit==false) readonly @endif wire:model='adresse' class="form-control" name="adresse" rows="4" placeholder="Adresse du client"></textarea>
+                        <textarea @if ($edit==false) readonly @endif wire:model='adresse' class="form-control" name="adresse" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">N° IFU</label>
-                        <input wire:model='ifu' type="text" class="form-control " @if($edit==false) readonly @endif name="ifu" placeholder="N° IFU du client">
+                        <input wire:model='ifu' type="text" class="form-control " @if($edit==false) readonly @endif name="ifu">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° RCCM</label>
-                        <input wire:model='rccm' type="text" class="form-control " @if ($edit==false) readonly @endif name="rccm" placeholder="N° RCCM du client">
+                        <input wire:model='rccm' type="text" class="form-control " @if ($edit==false) readonly @endif name="rccm">
                     </div>
                 </div>
                 <div class="col-md-12 ">
@@ -52,12 +52,16 @@
         <div class="card-footer">
             @if ($edit==true)
                 <div class="btn-list">
-                    <button type="submit" href="javascript:void(0);" class="btn btn-primary">Enregistrer</button>
+                    @can('Modifier client')                     
+                        <button type="submit" href="javascript:void(0);" class="btn btn-primary">Enregistrer</button>
+                    @endcan
                     <a href="javascript:void(0);" wire:click='setEdit' class="btn btn-danger">Annuler</a>
                 </div>
             @else
                 <div class="btn-list">
-                    <button wire:click='setEdit' href="javascript:void(0);" class="btn btn-primary">Modifier</button>
+                    @can('Modifier client')      
+                        <button wire:click='setEdit' href="javascript:void(0);" class="btn btn-primary">Modifier</button>
+                    @endcan
                     <a href="javascript:void(0);" wire:click="$dispatch('closeModal')" class="btn btn-danger">Annuler</a>
                 </div>
             @endif

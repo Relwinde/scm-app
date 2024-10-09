@@ -14,10 +14,10 @@
                 </div>
             </div>
             <div class="dropdown-divider m-0"></div>
-            {{-- <a class="dropdown-item" href="{{url('profile')}}">
-                <i class="dropdown-icon fe fe-user"></i> Profile
+            <a wire:click="$dispatch('openModal', {component: 'user-profile'})" class="dropdown-item" href="javascript:void(0);">
+                <i class="dropdown-icon fe fe-user"></i> Modifier mes infos
             </a>
-            <a class="dropdown-item" href="{{url('email')}}">
+            {{-- <a class="dropdown-item" href="{{url('email')}}">
                 <i class="dropdown-icon fe fe-mail"></i> Inbox
                 <span class="badge bg-danger rounded-pill float-end">5</span>
             </a> --}}

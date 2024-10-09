@@ -38,15 +38,15 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de Commande</label>
-                        <input wire:model='num_commande' type="text" class="form-control " @if ($edit==false) readonly @endif  name="example-text-input" placeholder="">
+                        <input wire:model='num_commande' type="text" class="form-control " @if ($edit==false) readonly @endif  name="example-text-input" >
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Fournisseur</label>
-                        <input wire:model='fournisseur' type="text" class="form-control " @if ($edit==false) readonly @endif  name="example-text-input" placeholder="">
+                        <input wire:model='fournisseur' type="text" class="form-control " @if ($edit==false) readonly @endif  name="example-text-input" >
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de Facture</label>
-                        <input wire:model='num_facture' type="text" class="form-control" @if ($edit==false) readonly @endif name="example-text-input" placeholder="">
+                        <input wire:model='num_facture' type="text" class="form-control" @if ($edit==false) readonly @endif name="example-text-input" >
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Nature du colis</label>
@@ -73,7 +73,7 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Nombre de colis</label>
-                        <input wire:model='nombre_colis' type="number" class="form-control" @if($edit==false) readonly @endif name="example-text-input" placeholder="">
+                        <input wire:model='nombre_colis' type="number" class="form-control" @if($edit==false) readonly @endif name="example-text-input" >
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Bureau de douane</label>

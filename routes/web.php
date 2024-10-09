@@ -17,6 +17,7 @@ use App\Livewire\Home;
 use App\Livewire\Outils\Fournisseur;
 use App\Livewire\Outils\Profile;
 use App\Livewire\Outils\User;
+use App\Livewire\UserProfile;
 use App\Models\Dossier;
 use App\Models\TransportInterne;
 use GuzzleHttp\Promise\Create;
@@ -50,6 +51,7 @@ Route::get('/fournisseurs', Fournisseur::class)->middleware("auth");
 
 Route::get('/users', User::class)->middleware("auth");
 Route::get('/roles', Profile::class)->middleware("auth");
+Route::get('/profile', UserProfile::class)->middleware("auth");
 
 
 Route::get('/bons-de-caisse', BonDeCaisse::class)->middleware("auth");
