@@ -53,7 +53,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-4">
-                                <label class="form-label">Votre nouveau mot de passe</label>
+                                <label class="form-label">Confirmer votre nouveau mot de passe</label>
                                 <input type="password" required wire:model='password_confirmation' type="text" class="form-control">
                                 @error('password_confirmation')<div class="error-message"> {{ $message }} </div>@enderror
                         </div>

@@ -23,7 +23,7 @@ class UserProfile extends ModalComponent
 
     public function render()
     {
-        return view('livewire.user-profile', ['title'=> "Création d'un nouvel utilisateur"]);
+        return view('livewire.user-profile', ['title'=> "Modification de mes données de connexion"]);
     }
 
     public function update (){

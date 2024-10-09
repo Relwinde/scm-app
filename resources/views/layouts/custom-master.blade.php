@@ -20,15 +20,22 @@
         @vite(['resources/css/app.css' , 'resources/sass/app.scss'])
 
         @yield('styles')
-
+		<style>
+            .error-message{
+                width: 100%;
+                margin-top: 0.25rem;
+                font-size: 0.875em;
+                color: var(--bs-form-invalid-color);
+            }
+        </style>
 	</head>
 
 	<body class="login-img">
 
 		<!-- GLOBAL-LOADER -->
-		<div id="global-loader">
+		{{-- <div id="global-loader">
 			<img src="{{asset('build/assets/images/svgs/loader.svg')}}" class="loader-img" alt="Loader">
-		</div>
+		</div> --}}
 		<!-- GLOBAL-LOADER -->
 
 		<!-- PAGE -->
