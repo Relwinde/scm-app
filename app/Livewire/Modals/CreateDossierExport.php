@@ -88,6 +88,7 @@ class CreateDossierExport extends ModalComponent
                     'dossier_id'=>$dossier->id
                 ]);
             }
+            $dossier->marchandises()->attach($this->marchandise);
             $this->dispatch('new-dossier');
             request()->session()->flash("success", "Dossier ajuoté avec succès.");
             $this->reset();

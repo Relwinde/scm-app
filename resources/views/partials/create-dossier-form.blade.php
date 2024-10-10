@@ -29,7 +29,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Nature du colis</label>
-                        <select wire:model='marchandise' name="country" id="select-countries" class="form-control custom-select select2">
+                        <select required wire:model='marchandise' name="country" id="select-countries" class="form-control custom-select select2">
                             <option value="">Sélectionnez une marchandise</option>
                             @foreach ($marchandises as $marchandise)
                                 <option value="{{$marchandise->id}}" >{{$marchandise->nom}}</option>

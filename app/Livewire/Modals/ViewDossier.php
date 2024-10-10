@@ -39,7 +39,7 @@ class ViewDossier extends ModalComponent
         $this->fournisseur = $this->dossier->fournisseur;
         $this->bureau_de_douane = $this->dossier->bureau_de_douane->id;
         $this->num_facture = $this->dossier->num_facture;
-        // $this->marchandise = $this->dossier->marchandise->id;
+        $this->marchandise = $this->dossier->marchandises->first()->id ?? null;
         $this->num_sylvie = $this->dossier->num_sylvie;
         $this->num_exo = $this->dossier->num_exo;
         $this->num_lta_bl = $this->dossier->num_lta_bl;
@@ -80,7 +80,7 @@ class ViewDossier extends ModalComponent
         $this->dossier->fournisseur = $this->fournisseur;
         $this->dossier->bureau_de_douane_id = $this->bureau_de_douane;
         $this->dossier->num_facture = $this->num_facture;
-        // $this->marchandise = $this->dossier->marchandise->id;
+        // $this->marchandise = $this->dossier->marchandises->first()->id;
         $this->dossier->num_sylvie = $this->num_sylvie;
         $this->dossier->num_exo = $this->num_exo;
         $this->dossier->num_lta_bl = $this->num_lta_bl;
