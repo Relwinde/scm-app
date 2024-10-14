@@ -42,7 +42,7 @@
                                 <button wire:click="$dispatch('openModal', {component: 'modals.view-dossier', arguments: { dossier : {{ $dossier->id }} }})" id="bAcep" type="button" class="btn  btn-sm btn-primary">
                                     <span class="fe fe-eye"> </span>
                                 </button>
-                                <button id="bDel" type="button" class="btn  btn-sm btn-danger">
+                                <button wire:click='delete({{$dossier->id}})' wire:confirm="Souhaitez vous vraiment supprimer ce élément??" type="button" class="btn  btn-sm btn-danger">
                                     <span class="fe fe-trash-2"> </span>
                                 </button>
                             </div>

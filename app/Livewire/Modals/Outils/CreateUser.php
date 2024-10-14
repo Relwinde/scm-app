@@ -33,7 +33,7 @@ class CreateUser extends ModalComponent
         ]);
 
         if ($user->save()){
-            $user->assignRole(Role::findById($this->profile));
+            $user->syncRoles(Role::findById($this->profile));
             $this->dispatch('new-user');
             request()->session()->flash("success", "Utilisateur ajuoté avec succès.");
             $this->reset();

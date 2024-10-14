@@ -39,7 +39,7 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name'=> 'Retourner bon de caisse']);
         Permission::create(['name'=> 'Envoyer bon de caisse au manager']);
         // Permission::create(['name'=> 'Envoyer bon de caisse à la comptabilité']);
-        Permission::create(['name'=> 'Envoyer bon de caisse au responsable finance']);
+        // Permission::create(['name'=> 'Envoyer bon de caisse au responsable finance']);
         Permission::create(['name'=> 'Envoyer bon de caisse à la caisser']);
         Permission::create(['name'=> 'Payer bon de caisse']);
 

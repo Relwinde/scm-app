@@ -36,4 +36,8 @@ class DossiersImport extends Component
         ]);
     }
 
+    public function delete (Dossier $dossier){
+        $dossier->delete();
+    }
+
 }

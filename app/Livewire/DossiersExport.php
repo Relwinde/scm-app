@@ -34,4 +34,8 @@ class DossiersExport extends Component
             'dossiers' => $dossiers, 'header_title'=>'Dossiers d\'exportation', 'create_modal'=>'modals.create-dossier-export', 'button_title'=>'Nouveau dossier'
         ]);
     }
+
+    public function delete (Dossier $dossier){
+        $dossier->delete();
+    }
 }

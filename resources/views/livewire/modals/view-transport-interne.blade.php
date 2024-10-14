@@ -7,7 +7,7 @@
             {{-- @include('partials.create-dossier-form') --}}
             <div class="card form-input-elements">
                 <div class="card-header d-flex justify-content-between">
-                    <h3 class="mb-0 card-title"><b>Détails du dossier {{$dossier->numero}}</b><a target="_blank"  href="{{route('print-transport', $dossier->id)}}" class="btn btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Page de garde</a></h3>
+                    <h3 class="mb-0 card-title"><b>Détails du dossier {{$dossier->numero}}</b>&nbsp; &nbsp;<a target="_blank"  href="{{route('print-transport', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Page de garde</a></h3>
 
                     <div class="dropdown">
                         <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
