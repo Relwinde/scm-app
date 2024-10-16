@@ -1,10 +1,10 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Bon De: <b>{{$bon->user->name}}</b></h3>&nbsp; &nbsp; 
-        <h3 class="card-title">Pour: {{$bon->depense}}</h3> 
+        <h3 class="card-title">Pour: <b>{{$bon->depense}}</b></h3> 
         <div class="card-options">
             @if ($bon->etape != "PAYE")
-                <a href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer à l'étape suivante</a>      
+                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer à l'étape suivante</a>      
             @endif
             @if ($bon->etape != "PAYE")
                 <a href="javascript:void(0);" class="btn btn-secondary btn-sm ms-2">Retourner</a>

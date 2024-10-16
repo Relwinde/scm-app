@@ -14,15 +14,19 @@
             <span class="login100-form-title">
                 Connexion
             </span>
-            <div class="wrap-input100 validate-input mb-4" data-validate = "Entrez un email valide: ex@abc.xyz">
-                <input class="input100" type="text" name="email" placeholder="Email" wire:model="userName">
+            
+            @error('userName')<div class="error-message"> {{ $message }} </div>@enderror
+            @error('auth')<div class="error-message"> {{ $message }} </div>@enderror
+            <div class="wrap-input100 mb-4" data-validate = "Entrez un email valide: ex@abc.xyz">
+                <input class="input100" type="email" placeholder="Email" wire:model="userName">
                 <span class="focus-input100"></span>
                 <span class="symbol-input100">
                     <i class="zmdi zmdi-email" aria-hidden="true"></i>
                 </span>
             </div>
-            <div class="wrap-input100 validate-input" data-validate = "Mot de passe réquis">
-                <input class="input100" type="password" name="password" placeholder="Mot de passe" wire:model="password">
+            @error('password')<div class="error-message"> {{ $message }} </div>@enderror
+            <div class="wrap-input100" data-validate = "Mot de passe réquis">
+                <input class="input100" type="password" placeholder="Mot de passe" wire:model="password">
                 <span class="focus-input100"></span>
                 <span class="symbol-input100">
                     <i class="zmdi zmdi-lock" aria-hidden="true"></i>

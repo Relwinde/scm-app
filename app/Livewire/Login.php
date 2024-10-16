@@ -3,16 +3,17 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class Login extends Component
 {
-    #[Rule(['required'])]
+    #[Validate('required', message: 'Entrez une adresse mail valide')]
+    #[Validate('email', message: 'Entrez une adresse mail valide')]
     public $userName;
 
-    #[Rule(['required'])]
+    #[Validate('required', message: 'Entrez votre mot de passe')]
     public $password;
 
     public function render()

@@ -4,7 +4,7 @@
 
 <div class="card form-input-elements">
     <div class="card-header d-flex justify-content-between">
-        <h3 class="mb-0 card-title"><b>Détail du dossier {{$dossier->numero}}</b>&nbsp;&nbsp; <a target="_blank"  href="{{route('print-dossier', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Page de garde</a></h3>
+        <h3 class="mb-0 card-title">Détail du dossier <b>{{$dossier->numero}}</b>&nbsp;&nbsp; <a target="_blank"  href="{{route('print-dossier', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Page de garde</a></h3>
         <div class="dropdown">
             <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
                 <i class="fe fe-list me-2 d-inline-flex"></i>Commentaires ({{$observations_number}})
