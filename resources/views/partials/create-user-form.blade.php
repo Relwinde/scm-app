@@ -7,11 +7,11 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <label class="form-label">Nom</label>
+                        <label class="form-label">Nom<span class="required">*</span></label>
                         <input required wire:model='nom' type="text" class="form-control" name="user_name" placeholder="Nom d'utilisateur">
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Profile</label>
+                        <label class="form-label">Profile<span class="required">*</span></label>
                         <select required wire:model='profile' name="user_profile" class="form-control custom-select select2">
                             <option value="">Sélectionnez une profile</option>
                             @foreach ($profiles as $profile)
@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <label class="form-label">Email</label>
+                        <label class="form-label">Email<span class="required">*</span></label>
                         <input required wire:model='email' type="text" class="form-control" name="user_email" placeholder="Email">
                     </div>
                 </div>

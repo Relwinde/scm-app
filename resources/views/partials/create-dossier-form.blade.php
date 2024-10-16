@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <label class="form-label">Client</label>
+                        <label class="form-label">Client<span class="required">*</span></label>
                         <select required wire:model='client' name="client" class="form-control custom-select select2">
                             <option value="">Sélectionnez un client</option>
                             @foreach ($clients as $client)
@@ -16,19 +16,19 @@
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">N° de Commande</label>
-                        <input wire:model='num_commande' type="text" class="form-control" name="example-text-input" placeholder="N° de Commande">
+                        <label class="form-label">N° de Commande<span class="required">*</span></label>
+                        <input required wire:model='num_commande' type="text" class="form-control" name="example-text-input" placeholder="N° de Commande">
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Fournisseur</label>
-                        <input wire:model='fournisseur' type="text" class="form-control" name="example-text-input" placeholder="Fournisseur">
+                        <label class="form-label">Fournisseur<span class="required">*</span></label>
+                        <input required wire:model='fournisseur' type="text" class="form-control" name="example-text-input" placeholder="Fournisseur">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de Facture</label>
                         <input wire:model='num_facture' type="text" class="form-control" name="example-text-input" placeholder="N° de Facture">
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Nature du colis</label>
+                        <label class="form-label">Nature du colis<span class="required">*</span></label>
                         <select required wire:model='marchandise' name="country" id="select-countries" class="form-control custom-select select2">
                             <option value="">Sélectionnez une marchandise</option>
                             @foreach ($marchandises as $marchandise)
@@ -44,10 +44,6 @@
                         <label class="form-label">N° de décision EXO</label>
                         <input wire:model='num_exo' type="text" class="form-control" name="example-text-input" placeholder="N° de décision EXO">
                     </div>
-                    <div class="mb-4">
-                        <label class="form-label">N° BL/LTA</label>
-                        <input wire:model='num_lta_bl' type="text" class="form-control" name="example-text-input" placeholder="N° de décision EXO">
-                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
@@ -55,7 +51,7 @@
                         <input wire:model='nombre_colis' type="number" class="form-control" name="example-text-input" placeholder="Nombre de colis">
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Bureau de douane</label>
+                        <label class="form-label">Bureau de douane<span class="required">*</span></label>
                         <select required wire:model='bureau_de_douane' name="bureau_de_douane" class="form-control custom-select select2">
                             <option value="" >Bureau de douane</option>
                             @foreach ($bureau_de_douanes as $bureau_de_douane)
@@ -64,12 +60,12 @@
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Poids</label>
-                        <input  wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control" name="example-text-input" placeholder="Poids">
+                        <label class="form-label">N° BL/LTA</label>
+                        <input wire:model='num_lta_bl' type="text" class="form-control" name="example-text-input" placeholder="N° de décision EXO">
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">N° LTA</label>
-                        <input wire:model='num_lta' type="text" class="form-control" name="example-text-input" placeholder="N° LTA">
+                        <label class="form-label">Poids</label>
+                        <input  wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control" name="example-text-input" placeholder="Poids">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de déclaration</label>
@@ -82,19 +78,6 @@
                     <div class="mb-4">
                         <label class="form-label">Numéro de T1</label>
                         <input wire:model='num_t' type="text" class="form-control" name="example-text-input" placeholder="N° de T1">
-                    </div>
-                    <div class="mb-6">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <label class="form-label">Valeur de la marchandise</label>
-                                <input wire:focusout='reformat_marche_value()' wire:model='valeur_marchandise' type="text" step="0.001" class="form-control" name="example-text-input" placeholder="Valeur de la marchandise">
-                            </div>
-                            <div class="col-md-4">     
-                                <label class="form-label">Devise</label>
-                                <input wire:model='devise' type="text" step="0.001" class="form-control" name="example-text-input" placeholder="Devise de la valeur de la marchandise">
-                            </div>
-                        </div>
-        
                     </div>
                 </div>
                 <div class="col-md-12 ">

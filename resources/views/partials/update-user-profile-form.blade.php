@@ -18,14 +18,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <label class="form-label">Nom</label>
+                        <label class="form-label">Nom<span class="required">*</span></label>
                         <input required wire:model='name' type="text" class="form-control">
                         @error('name')<div class="error-message"> {{ $message }} </div>@enderror
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <label class="form-label">Email</label>
+                        <label class="form-label">Email<span class="required">*</span></label>
                         <input required wire:model='email' type="text" class="form-control">
                         @error('email')<div class="error-message"> {{ $message }} </div>@enderror
                     </div>
@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-4">
-                            <label class="form-label">Votre mot de passe actuel</label>
+                            <label class="form-label">Votre mot de passe actuel<span class="required">*</span></label>
                             <input type="password" required wire:model='actualPassword' type="text" class="form-control">
                             @error('actualPassword')<div class="error-message" > {{ $message }} </div>@enderror
                         </div>
@@ -44,7 +44,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-4">
-                                <label class="form-label">Votre nouveau mot de passe</label>
+                                <label class="form-label">Votre nouveau mot de passe<span class="required">*</span></label>
                                 <input type="password" required wire:model='password' type="text" class="form-control">
                                 @error('password')<div class="error-message"> {{ $message }} </div>@enderror
                         </div>
@@ -53,7 +53,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-4">
-                                <label class="form-label">Confirmer votre nouveau mot de passe</label>
+                                <label class="form-label">Confirmer votre nouveau mot de passe<span class="required">*</span></label>
                                 <input type="password" required wire:model='password_confirmation' type="text" class="form-control">
                                 @error('password_confirmation')<div class="error-message"> {{ $message }} </div>@enderror
                         </div>

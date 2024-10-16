@@ -7,14 +7,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <label class="form-label">Nom</label>
+                        <label class="form-label">Nom<span class="required">*</span></label>
                         <input required wire:model='nom' type="text" class="form-control" name="nom" placeholder="Nom de la destination">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Description</label>
-                        <input wire:model='description' type="text" class="form-control" name="description" placeholder="Description de la destination">
+                        <input wire:model='description' type="text" class="form-control" placeholder="Description de la destination">
                     </div>
                 </div>
                 <div class="col-md-12 ">

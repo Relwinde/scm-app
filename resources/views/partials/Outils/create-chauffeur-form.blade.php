@@ -7,13 +7,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <label class="form-label">Nom</label>
+                        <label class="form-label">Nom<span class="required">*</span></label>
                         <input required wire:model='nom' type="text" class="form-control" name="nom" placeholder="Nom du chauffeur">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <label class="form-label">Contact</label>
+                        <label class="form-label">Contact<span class="required">*</span></label>
                         <input wire:model='contact' type="text" class="form-control" name="contact" placeholder="Contact du chauffeur">
                     </div>
                 </div>

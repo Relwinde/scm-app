@@ -22,9 +22,7 @@ return new class extends Migration
             $table->string('num_t')->nullable();
             $table->string('num_lta_bl')->nullable();
             $table->string('fournisseur')->nullable();
-            $table->string('devise_marchandise')->nullable();
             $table->decimal('valeur_caf', 14, 2)->nullable();
-            $table->decimal('valeur_marchandise', 14, 2)->nullable();
             $table->decimal('nombre_colis', 14, 2)->nullable();
             $table->decimal('poids', 14, 2)->nullable();
             $table->foreignId('client_id')->constrained()->onDelete('cascade');

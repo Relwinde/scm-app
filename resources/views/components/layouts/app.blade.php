@@ -26,6 +26,11 @@
                 font-size: 0.875em;
                 color: var(--bs-form-invalid-color);
             }
+            .required{
+                font-size: 14px;
+                font-weight: bold;
+                color: red;
+            }
         </style>
         @livewireStyles
         {{-- <script src="https://cdn.tailwindcss.com"></script> --}}

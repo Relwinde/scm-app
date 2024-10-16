@@ -8,13 +8,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <label class="form-label">Montant</label>
+                        <label class="form-label">Montant<span class="required">*</span></label>
                         <input wire:focusout='reformat_montant()' required wire:model='montant' type="text" class="form-control"  placeholder="Montant">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <label class="form-label">Dépense engagée</label>
+                        <label class="form-label">Dépense engagée<span class="required">*</span></label>
                         <input required wire:model='depense' type="text" class="form-control"  placeholder="Dépense engagée">
                     </div>
                 </div>

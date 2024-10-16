@@ -7,8 +7,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <label class="form-label">Nom</label>
-                        <input required wire:model='name' type="text" class="form-control" name="nom" placeholder="Nom du profile">
+                        <label class="form-label">Nom<span class="required">*</span></label>
+                        <input required wire:model='name' type="text" class="form-control" placeholder="Nom du profile">
                     </div>
                 </div>
                 <div class="col-md-12 ">

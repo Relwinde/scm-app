@@ -11,8 +11,8 @@
             <div class="row">
                 <div class="col-md-6 ">
                     <div class="mb-4">
-                        <label class="form-label">Lieu de départ</label>
-                        <select wire:model='depart' name="destination" class="form-control custom-select select2">
+                        <label class="form-label">Lieu de départ<span class="required">*</span></label>
+                        <select required wire:model='depart' name="destination" class="form-control custom-select select2">
                             <option value="" >Sélectionnez un client</option>
                             @foreach ($destinations as $destination)
                                 <option value="{{$destination->id}}" >{{$destination->nom}}</option>
@@ -22,8 +22,8 @@
                 </div>
                 <div class="col-md-6 ">
                     <div class="mb-4">
-                        <label class="form-label">Lieu d'arrivée</label>
-                        <select wire:model='arrivee' name="destination" class="form-control custom-select select2">
+                        <label class="form-label">Lieu d'arrivée<span class="required">*</span></label>
+                        <select required wire:model='arrivee' name="destination" class="form-control custom-select select2">
                             <option value="" >Sélectionnez un client</option>
                             @foreach ($destinations as $destination)
                                 <option value="{{$destination->id}}" >{{$destination->nom}}</option>

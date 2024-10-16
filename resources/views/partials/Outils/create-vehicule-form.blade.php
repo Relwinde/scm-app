@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-4">
-                        <label class="form-label">Immatriculation</label>
+                        <label class="form-label">Immatriculation<span class="required">*</span></label>
                         <input required wire:model='immatriculation' type="text" class="form-control" name="nom" placeholder="Immatriculation du véhicule">
                     </div>
                 </div>
