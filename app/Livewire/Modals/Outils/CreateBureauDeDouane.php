@@ -24,11 +24,9 @@ class CreateBureauDeDouane extends ModalComponent
 
         if($bureau->save()){
             $this->dispatch('new-bureau-de-douane');
-            request()->session()->flash("success", "Chauffeur ajouté avec succès.");
             $this->reset();
         }else{
-            request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
-
+            $this->dispatch('error');
         }
     }
 

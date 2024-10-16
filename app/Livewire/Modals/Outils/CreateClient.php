@@ -34,11 +34,9 @@ class CreateClient extends ModalComponent
 
         if($client->save()){
             $this->dispatch('new-client');
-            request()->session()->flash("success", "Client ajouté avec succès.");
             $this->reset();
         } else{
-            request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
-            
+            $this->dispatch('error');            
         }
     } 
 

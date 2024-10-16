@@ -33,3 +33,26 @@
         </div>
     </div>
 </form>
+@script
+    <script>
+        $wire.on('new-destination', () => {
+            (function () {
+                $(function () {
+                    return $.growl.notice({
+                        message: "La destination a été ajoutée"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.warning({
+                        message: "Une erreur est survenue"
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript

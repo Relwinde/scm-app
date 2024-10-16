@@ -3,7 +3,7 @@
 @endif
     <div class="card form-input-elements">
         <div class="card-header">
-            <h3 class="mb-0 card-title"><b>Détail du client</b></h3>
+            <h3 class="mb-0 card-title"><b>Détail du client {{$client->nom}}</b></h3>
         </div>
         <div class="card-body">
             <div class="row">

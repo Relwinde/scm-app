@@ -53,3 +53,28 @@
         </div>
     </div>
 </form>
+
+@script
+    <script>
+        $wire.on('new-client', () => {
+            (function () {
+                $(function () {
+                    return $.growl.notice({
+                        message: "Le client a été ajouté"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.warning({
+                        message: "Une erreur est survenue"
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript
+

@@ -8,7 +8,7 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Nom<span class="required">*</span></label>
-                        <input required wire:model='nom' type="text" class="form-control" placeholder="nom du véhicule">
+                        <input required wire:model='nom' type="text" class="form-control" placeholder="Nom de la marchandise">
                     </div>
                 </div>
                 <div class="col-md-12 ">
@@ -27,3 +27,26 @@
         </div>
     </div>
 </form>
+@script
+    <script>
+        $wire.on('new-marchandise', () => {
+            (function () {
+                $(function () {
+                    return $.growl.notice({
+                        message: "La marchandise a été ajoutée"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.warning({
+                        message: "Une erreur est survenue"
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript

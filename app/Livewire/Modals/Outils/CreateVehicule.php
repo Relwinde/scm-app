@@ -22,11 +22,9 @@ class CreateVehicule extends ModalComponent
 
         if($vehicule->save()){
             $this->dispatch('new-vehicule');
-            request()->session()->flash("success", "Véhicule ajouté avec succès.");
             $this->reset();
         }else{
-            request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
-
+            $this->dispatch('error');
         }
     }
 

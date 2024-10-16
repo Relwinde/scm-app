@@ -24,10 +24,9 @@ class CreateDestination extends ModalComponent
 
         if($destination->save()){
             $this->dispatch('new-destination');
-            request()->session()->flash("success", "Destination ajoutée avec succès.");
             $this->reset();
         }else{
-            request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
+            $this->dispatch('error');
         }
     }
 

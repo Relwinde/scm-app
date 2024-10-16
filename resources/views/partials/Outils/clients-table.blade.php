@@ -37,7 +37,7 @@
                                 {{-- <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                                     <span class="fe fe-edit"> </span>
                                 </button> --}}
-                                <button wire:click="$dispatch('openModal', {component: 'modals.outils.view-client', arguments: { client : {{ $client->id }} }})" id="bAcep" type="button" class="btn  btn-sm btn-primary">
+                                <button wire:click="$dispatch('openModal', {component: 'modals.outils.view-client', arguments: { client : {{ $client->id }} }})" type="button" class="btn  btn-sm btn-primary">
                                     <span class="fe fe-eye"> </span>
                                 </button>
                                 {{-- <button id="bDel" type="button" class="btn  btn-sm btn-danger">

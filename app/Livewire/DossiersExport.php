@@ -16,7 +16,7 @@ class DossiersExport extends Component
     #[On('new-dossier')]
     public function render()
     {
-        $dossiers = Dossier::select(['dossiers.id', 'dossiers.numero', 'dossiers.num_lta', 'dossiers.num_sylvie', 'dossiers.num_commande', 'dossiers.created_at', 'dossiers.num_declaration', 'dossiers.client_id', 'dossiers.fournisseur'])
+        $dossiers = Dossier::select(['dossiers.id', 'dossiers.numero', 'dossiers.num_lta_bl', 'dossiers.num_sylvie', 'dossiers.num_commande', 'dossiers.created_at', 'dossiers.num_declaration', 'dossiers.client_id', 'dossiers.fournisseur'])
             ->join('clients', 'dossiers.client_id', '=', 'clients.id')
             ->where('dossiers.type', 'EXPORT') 
             ->where(function ($query) {
@@ -24,6 +24,7 @@ class DossiersExport extends Component
                     ->orWhere('dossiers.num_facture', 'like', "%{$this->search}%")
                     ->orWhere('dossiers.num_commande', 'like', "%{$this->search}%")
                     ->orWhere('dossiers.num_sylvie', 'like', "%{$this->search}%")
+                    ->orWhere('dossiers.num_lta_bl', 'like', "%{$this->search}%")
                     ->orWhere('clients.nom', 'like', "%{$this->search}%"); 
             })
             ->orderBy('dossiers.created_at', 'DESC')

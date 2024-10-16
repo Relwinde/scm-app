@@ -23,5 +23,14 @@
         <script src="{{asset('build/assets/plugins/p-scroll/pscroll.js')}}"></script>
         <script src="{{asset('build/assets/plugins/p-scroll/pscroll-1.js')}}"></script> --}}
 
+        <!-- POPOVER JS -->
+		@vite('resources/assets/js/popover.js')
+
+		<!-- NOTIFICATIONS JS -->
+		<script src="{{asset('build/assets/plugins/notify/js/rainbow.js')}}"></script>
+		{{-- <script src="{{asset('build/assets/plugins/notify/js/custom-notification.js')}}"></script> --}}
+		<script src="{{asset('build/assets/plugins/notify/js/jquery.growl.js')}}"></script>
+
         @yield('scripts')
 
+        

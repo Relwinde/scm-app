@@ -33,3 +33,27 @@
         </div>
     </div>
 </form>
+
+@script
+    <script>
+        $wire.on('new-chauffeur', () => {
+            (function () {
+                $(function () {
+                    return $.growl.notice({
+                        message: "Le chauffeur a été ajouté"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.warning({
+                        message: "Une erreur est survenue"
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript

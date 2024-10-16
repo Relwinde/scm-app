@@ -22,11 +22,9 @@ class CreateMarchandise extends ModalComponent
 
         if($marchandise->save()){
             $this->dispatch('new-marchandise');
-            request()->session()->flash("success", "Marchandise ajouté avec succès.");
             $this->reset();
         }else{
-            request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
-
+            $this->dispatch('error');
         }
     }
 

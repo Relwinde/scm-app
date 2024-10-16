@@ -15,7 +15,7 @@
                     <th class="wd-15p border-bottom-0"><b>Numéro</b></th>
                     <th class="wd-15p border-bottom-0"><b>Client</b></th>
                     <th class="wd-20p border-bottom-0"><b>Fournisseur</b></th>
-                    <th class="wd-20p border-bottom-0"><b>N° LTA</b></th>
+                    <th class="wd-20p border-bottom-0"><b>N° LTA/BL</b></th>
                     <th class="wd-20p border-bottom-0"><b>N° SYLVIE</b></th>
                     <th class="wd-20p border-bottom-0"><b>N° de commande</b></th>
                     <th class="wd-15p border-bottom-0"><b>Date de création</b></th>

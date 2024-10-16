@@ -21,14 +21,12 @@ class ViewDossier extends ModalComponent
     public $num_sylvie;
     public $nombre_colis;
     public $poids;
-    public $num_lta;
     public $num_declaration;
     public $valeur_caf;
     public $bureau_de_douane;
     public $num_exo;
     public $num_lta_bl;
     public $num_t;
-    public $valeur_marchandise;
 
     public $edit = false;
 
@@ -44,10 +42,8 @@ class ViewDossier extends ModalComponent
         $this->num_exo = $this->dossier->num_exo;
         $this->num_lta_bl = $this->dossier->num_lta_bl;
         $this->num_t = $this->dossier->num_t;
-        $this->valeur_marchandise = number_format($this->dossier->valeur_marchandise, 2, '.', ' ') ;
         $this->nombre_colis = $this->dossier->nombre_colis;
         $this->poids = number_format($this->dossier->poids, 2, '.', ' ');
-        $this->num_lta = $this->dossier->num_lta;
         $this->num_declaration = $this->dossier->num_declaration;
         $this->valeur_caf = number_format($this->dossier->valeur_caf, 2, '.', ' ');
     }
@@ -85,10 +81,8 @@ class ViewDossier extends ModalComponent
         $this->dossier->num_exo = $this->num_exo;
         $this->dossier->num_lta_bl = $this->num_lta_bl;
         $this->dossier->num_t = $this->num_t;
-        $this->dossier->valeur_marchandise = floatval( str_replace(' ', '',$this->valeur_marchandise));
         $this->dossier->nombre_colis = $this->nombre_colis;
         $this->dossier->poids = floatval( str_replace(' ', '',$this->poids));
-        $this->dossier->num_lta = $this->num_lta;
         $this->dossier->num_declaration = $this->num_declaration;
         $this->dossier->valeur_caf =floatval( str_replace(' ', '',$this->valeur_caf));
 
@@ -104,10 +98,6 @@ class ViewDossier extends ModalComponent
     public static function destroyOnClose(): bool
     {
         return true;
-    }
-
-    public function reformat_marche_value (){
-        $this->valeur_marchandise = number_format(floatval( str_replace(' ', '',45646)), 2, '.', ' ');
     }
 
     public function reformat_poids (){
