@@ -27,3 +27,27 @@
         </div>
     </div>
 </form>
+
+@script
+    <script>
+        $wire.on('new-profile', () => {
+            (function () {
+                $(function () {
+                    return $.growl.notice({
+                        message: "Nouveau profile créé"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.warning({
+                        message: "Une erreur est survenue"
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript

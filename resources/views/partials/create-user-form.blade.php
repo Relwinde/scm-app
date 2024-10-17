@@ -39,3 +39,26 @@
 
 
 </form>
+@script
+    <script>
+        $wire.on('new-user', () => {
+            (function () {
+                $(function () {
+                    return $.growl.notice({
+                        message: "Nouveau utilisateur créé"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.warning({
+                        message: "Une erreur est survenue"
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript

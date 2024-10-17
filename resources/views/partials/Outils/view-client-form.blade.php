@@ -71,4 +71,27 @@
 </form>
 @endif
 
+@script
+    <script>
+        $wire.on('new-client', () => {
+            (function () {
+                $(function () {
+                    return $.growl.notice({
+                        message: "Les informations du client ont été mises à jour"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.warning({
+                        message: "Une erreur est survenue"
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript
 

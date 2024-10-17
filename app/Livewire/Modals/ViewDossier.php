@@ -89,9 +89,8 @@ class ViewDossier extends ModalComponent
         if($this->dossier->save()){
             $this->dispatch('new-dossier');
             $this->edit=false;
-            request()->session()->flash("success", "Dossier modifié avec succès.");
         }else{
-            request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
+            $this->dispatch('error');
         }
     }
 

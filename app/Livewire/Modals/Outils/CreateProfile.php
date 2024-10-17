@@ -21,11 +21,9 @@ class CreateProfile extends ModalComponent
         ]);
         if($profile->save()){
             $this->dispatch('new-profile');
-            request()->session()->flash("success", "Profile ajouté avec succès.");
             $this->reset();
         }else{
-            request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
-
+            $this->dispatch('error');
         }
     }
 

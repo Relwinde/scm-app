@@ -92,10 +92,9 @@ class CreateDossierImport extends ModalComponent
             }
             $dossier->marchandises()->attach($this->marchandise);
             $this->dispatch('new-dossier');
-            request()->session()->flash("success", "Dossier ajouté avec succès.");
             $this->reset();
         }else{
-            request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
+            $this->dispatch('erreur');
         }
     }
 

@@ -42,10 +42,9 @@ class ViewUser extends ModalComponent
         if ($this->user->save()){
             $this->user->syncRoles(Role::findById($this->profile));
             $this->dispatch('new-user');
-            request()->session()->flash("success", "Utilisateur modifié avec succès.");
             $this->closeModal();
         }else{
-            request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
+            $this->dispatch('error');
         }
     }
     public function setEdit(){

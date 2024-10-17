@@ -54,9 +54,8 @@ class ViewClient extends ModalComponent
         if($this->client->save()){
             $this->dispatch('new-client');
             $this->edit=false;
-            request()->session()->flash("success", "Client modifié avec succès.");
         }else{
-            request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
+            $this->dispatch('error');
         }
     }
 

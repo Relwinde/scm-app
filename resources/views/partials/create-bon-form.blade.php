@@ -67,3 +67,27 @@
 
 
 </form>
+
+@script
+    <script>
+        $wire.on('new-bon-de-caisse', () => {
+            (function () {
+                $(function () {
+                    return $.growl.notice({
+                        message: "Bon de caisse créé"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.warning({
+                        message: "Une erreur est survenue"
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript

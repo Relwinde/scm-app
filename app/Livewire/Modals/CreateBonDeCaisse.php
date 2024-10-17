@@ -70,10 +70,9 @@ class CreateBonDeCaisse extends ModalComponent
 
         if ($bon->save()){
             $this->dispatch('new-bon-de-caisse');
-            request()->session()->flash("success", "Utilisateur ajuoté avec succès.");
             $this->reset();
         }else{
-            request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
+            $this->dispatch('error');
         }
     }
 

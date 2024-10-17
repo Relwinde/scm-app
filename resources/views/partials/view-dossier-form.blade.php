@@ -139,4 +139,28 @@
 </form>
 @endif
 
+@script
+    <script>
+        $wire.on('new-dossier', () => {
+            (function () {
+                $(function () {
+                    return $.growl.notice({
+                        message: "Le dossier a été modifié"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.warning({
+                        message: "Une erreur est survenue"
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript
+
 

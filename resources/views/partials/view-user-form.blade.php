@@ -56,3 +56,27 @@
 @if ($edit==true)
 </form>
 @endif
+
+@script
+    <script>
+        $wire.on('new-user', () => {
+            (function () {
+                $(function () {
+                    return $.growl.notice({
+                        message: "Les informations de l'utilisateur ont été mises à jour"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.warning({
+                        message: "Une erreur est survenue"
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript
