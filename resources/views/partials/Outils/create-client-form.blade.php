@@ -59,7 +59,8 @@
         $wire.on('new-client', () => {
             (function () {
                 $(function () {
-                    return $.growl.notice({
+                    return $.growl({
+                        title: "Succès :",
                         message: "Le client a été ajouté"
                     });
                 });

@@ -31,7 +31,7 @@ class Login extends Component
         }
 
         $this->reset(['password']);
-        throw ValidationException::withMessages(['auth' => "Les informations d'identification fournies ne correspondent à aucun compte"]);
+        throw ValidationException::withMessages(['auth' => "Les informations d'identification fournies ne correspondent à aucun compte, si le problème persiste, prenez contact avec l'administrateur."]);
 
     }
 

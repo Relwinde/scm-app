@@ -33,7 +33,8 @@
         $wire.on('new-profile', () => {
             (function () {
                 $(function () {
-                    return $.growl.notice({
+                    return $.growl({
+                        title: "Succès :",
                         message: "Nouveau profile créé"
                     });
                 });

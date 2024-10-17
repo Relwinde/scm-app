@@ -73,7 +73,8 @@
         $wire.on('new-bon-de-caisse', () => {
             (function () {
                 $(function () {
-                    return $.growl.notice({
+                    return $.growl({
+                        title: "Succès :",
                         message: "Bon de caisse créé"
                     });
                 });

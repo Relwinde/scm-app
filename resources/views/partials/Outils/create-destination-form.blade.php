@@ -38,7 +38,8 @@
         $wire.on('new-destination', () => {
             (function () {
                 $(function () {
-                    return $.growl.notice({
+                    return $.growl({
+                        title: "Succès :",
                         message: "La destination a été ajoutée"
                     });
                 });

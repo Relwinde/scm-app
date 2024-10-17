@@ -44,7 +44,8 @@
         $wire.on('new-user', () => {
             (function () {
                 $(function () {
-                    return $.growl.notice({
+                    return $.growl({
+                        title: "Succès :",
                         message: "Nouveau utilisateur créé"
                     });
                 });

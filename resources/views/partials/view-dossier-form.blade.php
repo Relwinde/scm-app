@@ -144,7 +144,7 @@
         $wire.on('new-dossier', () => {
             (function () {
                 $(function () {
-                    return $.growl.notice({
+                    return $.growl({
                         message: "Le dossier a été modifié"
                     });
                 });
@@ -155,6 +155,7 @@
             (function () {
                 $(function () {
                     return $.growl.warning({
+                        title: "Succès :",
                         message: "Une erreur est survenue"
                     });
                 });

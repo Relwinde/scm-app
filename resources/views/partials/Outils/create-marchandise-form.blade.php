@@ -32,7 +32,8 @@
         $wire.on('new-marchandise', () => {
             (function () {
                 $(function () {
-                    return $.growl.notice({
+                    return $.growl({
+                        title: "Succès :",
                         message: "La marchandise a été ajoutée"
                     });
                 });

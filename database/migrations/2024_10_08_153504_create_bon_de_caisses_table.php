@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('depense');
             $table->enum('etape', ['EMETTEUR', 'RESPONSABLE', 'MANAGER', 'CAISSE', 'PAYE'])->default('EMETTEUR');
             $table->boolean('rejected')->default(false);
-            $table->foreignId('dossier_id')->constrained()->onDelete('cascade')->default(null);
-            $table->foreignId('transport_interne_id')->constrained()->onDelete('cascade')->default(null);
+            $table->foreignId('dossier_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('transport_interne_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('numero', 2000);
             $table->timestamps();

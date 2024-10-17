@@ -39,7 +39,8 @@
         $wire.on('new-chauffeur', () => {
             (function () {
                 $(function () {
-                    return $.growl.notice({
+                    return $.growl({
+                        title: "Succès :",
                         message: "Le chauffeur a été ajouté"
                     });
                 });

@@ -39,7 +39,8 @@
         $wire.on('new-bureau-de-douane', () => {
             (function () {
                 $(function () {
-                    return $.growl.notice({
+                    return $.growl({
+                        title: "Succès :",
                         message: "Le bureau de douane a été ajouté"
                     });
                 });

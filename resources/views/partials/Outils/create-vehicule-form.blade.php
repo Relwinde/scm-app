@@ -32,7 +32,8 @@
         $wire.on('new-vehicule', () => {
             (function () {
                 $(function () {
-                    return $.growl.notice({
+                    return $.growl({
+                        title: "Succès :",
                         message: "Le véhicule a été ajouté"
                     });
                 });

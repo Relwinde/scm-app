@@ -62,7 +62,8 @@
         $wire.on('new-user', () => {
             (function () {
                 $(function () {
-                    return $.growl.notice({
+                    return $.growl({
+                        title: "Succès :",
                         message: "Les informations de l'utilisateur ont été mises à jour"
                     });
                 });

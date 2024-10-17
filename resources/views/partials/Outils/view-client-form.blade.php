@@ -76,7 +76,8 @@
         $wire.on('new-client', () => {
             (function () {
                 $(function () {
-                    return $.growl.notice({
+                    return $.growl({
+                        title: "Succès :",
                         message: "Les informations du client ont été mises à jour"
                     });
                 });
