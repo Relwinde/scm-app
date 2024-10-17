@@ -73,7 +73,8 @@
         $wire.on('new-dossier', () => {
             (function () {
                 $(function () {
-                    return $.growl.notice({
+                    return $.growl({
+                        title: "Succès :",
                         message: "Le dossier a été créé"
                     });
                 });

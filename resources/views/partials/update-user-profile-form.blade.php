@@ -10,7 +10,7 @@
                         <label class="custom-switch">
                             <input type="checkbox" wire:model.live='updatePassword' class="custom-switch-input">
                             <span class="custom-switch-indicator"></span>
-                            <span class="custom-switch-description">Modifier mon pot de passe</span>
+                            <span class="custom-switch-description">Modifier mon mot de passe</span>
                         </label>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-4">
-                                <label class="form-label">Confirmer votre nouveau mot de passe<span class="required">*</span></label>
+                                <label class="form-label">Confirmez votre nouveau mot de passe<span class="required">*</span></label>
                                 <input type="password" required wire:model='password_confirmation' type="text" class="form-control">
                                 @error('password_confirmation')<div class="error-message"> {{ $message }} </div>@enderror
                         </div>
