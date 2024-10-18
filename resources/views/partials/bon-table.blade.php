@@ -17,6 +17,7 @@
                     <th class="wd-20p border-bottom-0"><b>Emetteur</b></th>
                     <th class="wd-20p border-bottom-0"><b>Montant</b></th>
                     <th class="wd-20p border-bottom-0"><b>Dépenses engagées</b></th>
+                    <th class="wd-20p border-bottom-0"><b>Etape</b></th>
                     <th class="wd-25p border-bottom-0"><b>Actions</b></th>
                 </tr>
             </thead>
@@ -28,7 +29,25 @@
                         <td>{{$bon->user->name}}</td>
                         <td>{{number_format($bon->montant, 2, '.', ' ')}}</td>
                         <td>{{$bon->depense}}</td>
-                        
+                        <td>@switch($bon->etape)
+                            @case("EMETTEUR")
+                                <span class="badge bg-success ms-3 px-5">Emetteur</span>
+                                @break
+                            @case("RESPONSABLE")
+                                <span class="badge bg-success ms-3 px-5">Emetteur</span>
+                                @break
+                            @case("MANAGER")
+                                <span class="badge bg-success ms-3 px-5">Manager</span>
+                                @break
+                            @case("CAISSE")
+                                <span class="badge bg-success ms-3 px-5">Caisse</span>
+                                @break
+                            @case("PAYE")
+                                <span class="badge bg-danger ms-3 px-5">Payé</span>
+                                @break
+                            @default
+                                
+                        @endswitch</td>
                         <td name="bstable-actions">
                             <div class="btn-list">
                                 {{-- <button id="bEdit" type="button" class="btn btn-sm btn-primary">
