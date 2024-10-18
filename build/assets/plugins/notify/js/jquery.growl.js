@@ -268,7 +268,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         Growl.settings = {
             namespace: 'growl',
-            duration: 3800,
+            duration: 5000,
             close: "&#215;",
             location: "default",
             style: "default",
@@ -292,7 +292,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         var settings;
         settings = {
-            title: "Error!",
+            title: "Echec!",
             style: "error"
         };
         return $.growl($.extend(settings, options));
@@ -324,7 +324,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         var settings;
         settings = {
-            title: "Error!",
+            title: "Echec!",
             style: "error1"
         };
         return $.growl($.extend(settings, options));

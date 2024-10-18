@@ -40,7 +40,7 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name'=> 'Envoyer bon de caisse au manager']);
         // Permission::create(['name'=> 'Envoyer bon de caisse à la comptabilité']);
         // Permission::create(['name'=> 'Envoyer bon de caisse au responsable finance']);
-        Permission::create(['name'=> 'Envoyer bon de caisse à la caisser']);
+        Permission::create(['name'=> 'Envoyer bon de caisse à la caisse']);
         Permission::create(['name'=> 'Payer bon de caisse']);
 
         // Permissions de utlisateur
@@ -60,6 +60,14 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name'=> 'Créer profile']);
         Permission::create(['name'=> 'Modifier profile']);
         Permission::create(['name'=> 'Supprimer profile']);
+
+        // Permissions des dépots
+        Permission::create(['name'=> 'Effectuer un dépôt']);
+
+        // Permissions des caisse
+        Permission::create(['name'=> 'Voir l\'état de la caisse']);
+
+
 
 
     }

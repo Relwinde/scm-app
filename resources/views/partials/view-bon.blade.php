@@ -3,11 +3,23 @@
         <h3 class="card-title">Bon De: <b>{{$bon->user->name}}</b></h3>&nbsp; &nbsp; 
         <h3 class="card-title">Pour: <b>{{$bon->depense}}</b></h3> 
         <div class="card-options">
-            @if ($bon->etape != "PAYE")
-                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer à l'étape suivante</a>      
+            @if ($bon->etape == "EMETTEUR" && Auth::user()->id == $bon->user->id)
+                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer au responsable</a>      
             @endif
+            @if ($bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager'))
+                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer au manager</a>      
+            @endif
+            @if ($bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse à la caisse'))
+                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer à la caisse</a>      
+            @endif
+            @if ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse'))
+                <a wire:click='nextStep' wire:confirm="Êtes vous sûr de vouloir payer ce bon, cette action iréversible impactera votre caisse"  href="javascript:void(0);" class="btn btn-danger btn-sm"><span class="fa fa-ticket"></span> Payer</a>      
+            @endif
+            @if ($bon->etape == "PAYE")
+            <a href="javascript:void(0);" class="btn btn-primary btn-sm">Imprimer le reçu</a>      
+        @endif
             @if ($bon->etape != "PAYE")
-                <a href="javascript:void(0);" class="btn btn-secondary btn-sm ms-2">Retourner</a>
+                <a href="javascript:void(0);" class="btn btn-secondary btn-sm ms-2">Retourner le bon</a>
             @endif
         </div>
     </div>
@@ -69,3 +81,28 @@
 
     </div>
 </div>
+
+@script
+    <script>
+        $wire.on('insufficient-funds', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        message: "Le solde de votre caisse est insuffisant pour effectuer cette opération"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('operation-success', () => {
+            (function () {
+                $(function () {
+                    return $.growl({
+                        title: "Succès :",
+                        message: "Le paiement a été effectué avec succès"
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript

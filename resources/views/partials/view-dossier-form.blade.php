@@ -63,17 +63,13 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de décision EXO</label>
-                        <input wire:model='num_exo' type="text" class="form-control" name="num_exo" @if($edit==false) readonly @endif>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">N° BL/LTA</label>
-                        <input wire:model='num_lta_bl' type="text" class="form-control" name="example-text-input" @if($edit==false) readonly @endif>
+                        <input wire:model='num_exo' type="text" class="form-control"  @if($edit==false) readonly @endif>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Nombre de colis</label>
-                        <input wire:model='nombre_colis' type="number" class="form-control" @if($edit==false) readonly @endif name="example-text-input" >
+                        <input wire:model='nombre_colis' type="number" class="form-control" @if($edit==false) readonly @endif >
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Bureau de douane</label>
@@ -85,12 +81,12 @@
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Poids</label>
-                        <input wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control " @if($edit==false) readonly @endif name="example-text-input">
+                        <label class="form-label">N° BL/LTA</label>
+                        <input wire:model='num_lta_bl' type="text" class="form-control" @if($edit==false) readonly @endif>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">N° LTA</label>
-                        <input wire:model='num_lta' type="text" class="form-control " @if($edit==false) readonly @endif name="example-text-input">
+                        <label class="form-label">Poids</label>
+                        <input wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control " @if($edit==false) readonly @endif name="example-text-input">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de déclaration</label>
@@ -103,10 +99,6 @@
                     <div class="mb-4">
                         <label class="form-label">Numéro de T1</label>
                         <input wire:model='num_t' type="text" class="form-control" name="num_t" @if($edit==false) readonly @endif>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Valeur de la marchandise</label>
-                        <input wire:focusout='reformat_marche_value()' wire:model='valeur_marchandise' type="text" class="form-control" name="valeur_marchandise" @if($edit==false) readonly @endif>
                     </div>
                 </div>
                 <div class="col-md-12 ">
@@ -145,6 +137,7 @@
             (function () {
                 $(function () {
                     return $.growl({
+                        title: "Succès :",
                         message: "Le dossier a été modifié"
                     });
                 });

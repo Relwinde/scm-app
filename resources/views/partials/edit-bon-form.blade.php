@@ -28,3 +28,28 @@
         </div>
     </div>
 </form>
+
+@script
+    <script>
+        $wire.on('new-bon-de-caisse', () => {
+            (function () {
+                $(function () {
+                    return $.growl({
+                        title: "Succès :",
+                        message: "Le bon de caisse a été modifié"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.warning({
+                        message: "Une erreur est survenue"
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript

@@ -60,12 +60,12 @@
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">N° BL/LTA</label>
-                        <input wire:model='num_lta_bl' type="text" class="form-control" name="example-text-input" placeholder="N° de décision EXO">
+                        <label class="form-label">N° BL/LTA<span class="required">*</span></label>
+                        <input required wire:model='num_lta_bl' type="text" class="form-control" name="example-text-input" placeholder="N° de décision EXO">
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Poids</label>
-                        <input  wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control" name="example-text-input" placeholder="Poids">
+                        <label class="form-label">Poids<span class="required">*</span></label>
+                        <input required wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control" name="example-text-input" placeholder="Poids">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de déclaration</label>

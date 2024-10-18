@@ -45,10 +45,14 @@
             <a class="side-menu__item has-link" href="{{url('bons-de-caisse')}}"><i class="side-menu__icon fe fe-package"></i><span
             class="side-menu__label">Bons de caisses</span></a>
         </li>
-        <li>
-            <a class="side-menu__item has-link" href="javascript:void(0);"><i class="side-menu__icon fe fe-package"></i><span
-            class="side-menu__label">Caisses</span></a>
-        </li>
+        @can('Voir l\'état de la caisse')
+            <li>
+                <a class="side-menu__item has-link" href="{{url('caisse')}}"><i class="side-menu__icon fe fe-package"></i><span
+                class="side-menu__label">Caisses</span></a>
+            </li>
+        @endcan
+
+        
         <li class="sub-category">
             <h3>Paramètres</h3>
         </li>

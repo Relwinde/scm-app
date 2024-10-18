@@ -29,7 +29,7 @@
                         <td>{{$dossier->numero}}</td>
                         <td>{{$dossier->client->nom}}</td>
                         <td>{{$dossier->fournisseur}}</td>
-                        <td>{{$dossier->num_lta}}</td>
+                        <td>{{$dossier->num_lta_bl}}</td>
                         <td>{{$dossier->num_sylvie}}</td>
                         <td>{{$dossier->num_commande}}</td>
                         <td>{{strftime("%e %B %Y", strtotime($dossier->created_at));}}</td>

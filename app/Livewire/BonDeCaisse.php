@@ -101,7 +101,7 @@ class BonDeCaisse extends Component
             ->orderBy('bon_de_caisses.created_at', 'DESC')
             ->paginate(10, '*', 'bons-pagination');           
         }
-        else if (Auth::user()->can('Envoyer bon de caisse à la caisser')){
+        else if (Auth::user()->can('Envoyer bon de caisse à la caisse')){
             $bonsDeCaisse = ModelsBonDeCaisse::select([
                 'bon_de_caisses.id',
                 'bon_de_caisses.numero',

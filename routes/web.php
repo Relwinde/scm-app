@@ -1,26 +1,27 @@
 <?php
 
-use App\Livewire\BonDeCaisse;
+use App\Livewire\Home;
 use App\Livewire\Login;
 
+use App\Models\Dossier;
+use App\Livewire\Caisse;
+use App\Livewire\BonDeCaisse;
+use App\Livewire\Outils\User;
+use App\Livewire\UserProfile;
+use GuzzleHttp\Promise\Create;
 use App\Livewire\Outils\Client;
 use App\Livewire\DossiersExport;
 use App\Livewire\DossiersImport;
+use App\Livewire\Outils\Profile;
+use App\Models\TransportInterne;
 use App\Livewire\Outils\Vehicule;
 use App\Livewire\Outils\Chauffeur;
 use App\Livewire\Outils\Destination;
+use App\Livewire\Outils\Fournisseur;
 use App\Livewire\Outils\Marchandise;
 use App\Livewire\TransportsInternes;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Outils\BureauDeDouane;
-use App\Livewire\Home;
-use App\Livewire\Outils\Fournisseur;
-use App\Livewire\Outils\Profile;
-use App\Livewire\Outils\User;
-use App\Livewire\UserProfile;
-use App\Models\Dossier;
-use App\Models\TransportInterne;
-use GuzzleHttp\Promise\Create;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,8 @@ Route::get('/profile', UserProfile::class)->middleware("auth");
 
 
 Route::get('/bons-de-caisse', BonDeCaisse::class)->middleware("auth");
+
+Route::get('/caisse', Caisse::class)->middleware("auth");
 
 
 

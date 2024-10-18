@@ -3,7 +3,9 @@
 namespace App\Livewire\Modals\BonDeCaisse;
 
 use App\Models\BonDeCaisse;
+use App\Models\Caisse;
 use App\Models\EtapeBon;
+use App\Models\SuiviCaisse;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 
@@ -54,6 +56,36 @@ class ViewBon extends ModalComponent
                     ]);
                 }
             break;
+
+            case "CAISSE": 
+                
+                if ($this->bon->montant > Caisse::find(1)->solde){
+                    $this->dispatch('insufficient-funds');
+                    $this->closeModal();
+                } else {
+                    $montantBon = $this->bon->montant;
+                    $caisse = Caisse::find(1);
+                    $soldeBefore = $caisse->solde;
+                    
+                    $caisse->solde = $caisse->solde - $montantBon;
+
+                    if($caisse->save()){
+                        SuiviCaisse::create([
+                            'bon_de_caisse_id'=>$this->bon->id,
+                            'solde_before'=>$soldeBefore,
+                            'montant'=>$montantBon,
+                            'solde_after'=>$caisse->solde,
+                            'user_id'=> Auth::user()->id
+                        ]);
+
+                        $this->bon->etape = "PAYE";
+
+                        $this->bon->save();
+
+                        $this->dispatch('operation-success');
+                    }
+
+                }
 
         }
     }
