@@ -59,7 +59,7 @@
                                 <button wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.view-bon', arguments: { bon : {{ $bon->id }} }})" type="button" class="btn  btn-sm btn-primary">
                                     <span class="fe fe-eye"> </span>
                                 </button>
-                                @if ($bon->etape == "EMETTEUR" && $bon->user->id == Auth::user()->id) 
+                                @if (($bon->etape == "EMETTEUR" && $bon->user->id == Auth::user()->id) || ($bon->etape == "RESPONSABLE" && Auth::user()->can("Envoyer bon de caisse au manager")) || ($bon->etape == "MANAGER" && Auth::user()->can("Envoyer bon de caisse à la caisse"))) 
                                     <button wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.edit-bon', arguments: { bon : {{ $bon->id }} }})" type="button" class="btn  btn-sm btn-primary">
                                         <span class="fe fe-edit"> </span>
                                     </button>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('depots', function (Blueprint $table) {
             $table->id();
-            $table->string('déposant');
+            $table->string('deposant');
             $table->string('libelle');
             $table->decimal('montant', 14, 2);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

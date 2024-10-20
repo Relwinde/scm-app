@@ -6,7 +6,9 @@
     <div class="row">
         <div class="row">
             <div class="col-md-4">
-                <button wire:click="" class="btn btn-primary m-4"><i class="fa fa-dollar text-white"></i> Effectuer un dépôt</button>
+                @can('Effectuer un dépôt')
+                    <button wire:click="$dispatch('openModal', {component: 'modals.create-depot'})" class="btn btn-primary m-4"><i class="fa fa-dollar text-white"></i> Effectuer un dépôt</button>
+                @endcan
             </div>
         </div>
 
