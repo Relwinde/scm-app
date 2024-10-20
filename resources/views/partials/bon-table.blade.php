@@ -27,14 +27,14 @@
                         <td>{{$bon->numero}}</td>
                         <td>{{$bon->dossier->numero ?? $bon->transport->numero ?? "AUTRES"}}</td>
                         <td>{{$bon->user->name}}</td>
-                        <td>{{number_format($bon->montant, 2, '.', ' ')}}</td>
+                        <td>{{number_format($bon->montant_definitif, 2, '.', ' ')}}</td>
                         <td>{{$bon->depense}}</td>
                         <td>@switch($bon->etape)
                             @case("EMETTEUR")
                                 <span class="badge bg-success ms-3 px-5">Emetteur</span>
                                 @break
                             @case("RESPONSABLE")
-                                <span class="badge bg-success ms-3 px-5">Emetteur</span>
+                                <span class="badge bg-success ms-3 px-5">Responsable</span>
                                 @break
                             @case("MANAGER")
                                 <span class="badge bg-success ms-3 px-5">Manager</span>

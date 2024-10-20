@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Modals\BonDeCaisse;
 
-use App\Models\BonDeCaisse;
 use App\Models\Caisse;
 use App\Models\EtapeBon;
+use App\Models\BonDeCaisse;
 use App\Models\SuiviCaisse;
+use Livewire\Attributes\On;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 
@@ -13,6 +14,7 @@ class ViewBon extends ModalComponent
 {
     public BonDeCaisse $bon;
 
+    #[On('new-ajustement')]
     public function render()
     {
 
@@ -27,6 +29,7 @@ class ViewBon extends ModalComponent
                     EtapeBon::create([
                         'etape_precedente'=>"EMETTEUR",
                         'etape_actuelle'=>"RESPONSABLE",
+                        'montant'=>$this->bon->montant_definitif,
                         'bon_de_caisse_id'=>$this->bon->id,
                         'user_id'=>Auth::user()->id,
                     ]);
@@ -39,6 +42,7 @@ class ViewBon extends ModalComponent
                     EtapeBon::create([
                         'etape_precedente'=>"RESPONSABLE",
                         'etape_actuelle'=>"MANAGER",
+                        'montant'=>$this->bon->montant_definitif,
                         'bon_de_caisse_id'=>$this->bon->id,
                         'user_id'=>Auth::user()->id,
                     ]);
@@ -51,6 +55,7 @@ class ViewBon extends ModalComponent
                     EtapeBon::create([
                         'etape_precedente'=>"MANAGER",
                         'etape_actuelle'=>"CAISSE",
+                        'montant'=>$this->bon->montant_definitif,
                         'bon_de_caisse_id'=>$this->bon->id,
                         'user_id'=>Auth::user()->id,
                     ]);
@@ -63,7 +68,7 @@ class ViewBon extends ModalComponent
                     $this->dispatch('insufficient-funds');
                     $this->closeModal();
                 } else {
-                    $montantBon = $this->bon->montant;
+                    $montantBon = $this->bon->montant_definitif;
                     $caisse = Caisse::find(1);
                     $soldeBefore = $caisse->solde;
                     
@@ -80,13 +85,26 @@ class ViewBon extends ModalComponent
 
                         $this->bon->etape = "PAYE";
 
-                        $this->bon->save();
-
+                        if ($this->bon->save()){
+                            EtapeBon::create([
+                                'etape_precedente'=>"CAISSE",
+                                'etape_actuelle'=>"PAYE",
+                                'montant'=>$this->bon->montant_definitif,
+                                'bon_de_caisse_id'=>$this->bon->id,
+                                'user_id'=>Auth::user()->id,
+                            ]);
+                        }
+                        
                         $this->dispatch('operation-success');
                     }
 
                 }
 
         }
+    }
+
+    public static function destroyOnClose(): bool
+    {
+        return true;
     }
 }

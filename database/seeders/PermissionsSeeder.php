@@ -23,6 +23,7 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name'=> 'Créer dossier']);
         Permission::create(['name'=> 'Modifier dossier']);
         Permission::create(['name'=> 'Supprimer dossier']);
+        Permission::create(['name'=> 'Voir le total des dépenses']);
 
         // Permissions de transport interne
         Permission::create(['name'=> 'Voir la liste des transports internes']);
@@ -42,6 +43,7 @@ class PermissionsSeeder extends Seeder
         // Permission::create(['name'=> 'Envoyer bon de caisse au responsable finance']);
         Permission::create(['name'=> 'Envoyer bon de caisse à la caisse']);
         Permission::create(['name'=> 'Payer bon de caisse']);
+        Permission::create(['name'=> 'Effectuer un ajustement de bon']);
 
         // Permissions de utlisateur
         Permission::create(['name'=> 'Voir la liste des utlisateurs']);

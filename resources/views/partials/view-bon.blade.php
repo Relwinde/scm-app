@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Bon De: <b>{{$bon->user->name}}</b></h3>&nbsp; &nbsp; 
-        <h3 class="card-title">Pour: <b>{{$bon->depense}}</b></h3> 
+        <h3 class="card-title">Pour: <b>{{$bon->depense}}</b></h3>&nbsp; &nbsp;
         <div class="card-options">
             @if ($bon->etape == "EMETTEUR" && Auth::user()->id == $bon->user->id)
                 <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer au responsable</a>      
@@ -16,10 +16,13 @@
                 <a wire:click='nextStep' wire:confirm="Êtes vous sûr de vouloir payer ce bon, cette action iréversible impactera votre caisse"  href="javascript:void(0);" class="btn btn-danger btn-sm"><span class="fa fa-ticket"></span> Payer</a>      
             @endif
             @if ($bon->etape == "PAYE")
-            <a href="javascript:void(0);" class="btn btn-primary btn-sm">Imprimer le reçu</a>      
-        @endif
+                <a href="javascript:void(0);" class="btn btn-primary btn-sm">Imprimer le reçu</a>      
+            @endif
             @if ($bon->etape != "PAYE")
                 <a href="javascript:void(0);" class="btn btn-secondary btn-sm ms-2">Retourner le bon</a>
+            @endif
+            @if ($bon->etape == "PAYE" && Auth::user()->can('Effectuer un ajustement de bon'))
+                <a wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.create-ajustement', arguments: { bon : {{ $bon->id }} }})" href="javascript:void(0);" class="btn btn-danger btn-sm ms-2"><span class="fa fa-ticket"></span> Ajuster le bon</a>      
             @endif
         </div>
     </div>
@@ -29,7 +32,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4>Montant:</h4>
-                        <h1 class="mb-1 number-font" style="font-size: 17px;">{{number_format($bon->montant, 2, '.', ' ')}} CFA</h1>
+                        <h1 class="mb-1 number-font" style="font-size: 17px;">{{number_format($bon->montant_definitif, 2, '.', ' ')}} CFA</h1>
                     </div>
                 </div>
             </div>

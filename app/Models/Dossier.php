@@ -5,6 +5,7 @@ namespace App\Models;
 use Mpdf\Mpdf;
 use App\Models\User;
 use App\Models\Client;
+use App\Models\BonDeCaisse;
 use App\Models\Marchandise;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -55,6 +56,10 @@ class Dossier extends Model
         $html = view('prints.dossier', ['dossier'=>$this]);
         $mpdf->writeHTML($html);
         $mpdf->Output();
+    }
+
+    public function bon_de_caisse (){
+        return $this->hasMany(BonDeCaisse::class);
     }
 
 }

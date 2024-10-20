@@ -23,7 +23,7 @@ class BonDeCaisse extends Component
             $bonsDeCaisse = ModelsBonDeCaisse::select([
                 'bon_de_caisses.id',
                 'bon_de_caisses.numero',
-                'bon_de_caisses.montant',
+                'bon_de_caisses.montant_definitif',
                 'bon_de_caisses.depense',
                 'bon_de_caisses.etape',
                 'bon_de_caisses.rejected',
@@ -37,10 +37,11 @@ class BonDeCaisse extends Component
             ->leftjoin('transport_internes', 'bon_de_caisses.transport_interne_id', '=', 'transport_internes.id')
             ->where(function ($query) {
                 $query->where('bon_de_caisses.numero', 'like', "%{$this->search}%")
-                      ->orWhere('bon_de_caisses.depense', 'like', "%{$this->search}%")
-                      ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
-                      ->orWhere('transport_internes.numero', 'like', "%{$this->search}%")
-                      ->orWhere('users.name', 'like', "%{$this->search}%");
+                        ->orWhere('bon_de_caisses.etape', 'like', "%{$this->search}%")
+                        ->orWhere('bon_de_caisses.depense', 'like', "%{$this->search}%")
+                        ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
+                        ->orWhere('transport_internes.numero', 'like', "%{$this->search}%")
+                        ->orWhere('users.name', 'like', "%{$this->search}%");
             })
             ->orderBy('bon_de_caisses.created_at', 'DESC')
             ->paginate(10, '*', 'bons-pagination');
@@ -49,7 +50,7 @@ class BonDeCaisse extends Component
             $bonsDeCaisse = ModelsBonDeCaisse::select([
                 'bon_de_caisses.id',
                 'bon_de_caisses.numero',
-                'bon_de_caisses.montant',
+                'bon_de_caisses.montant_definitif',
                 'bon_de_caisses.depense',
                 'bon_de_caisses.etape',
                 'bon_de_caisses.rejected',
@@ -67,8 +68,11 @@ class BonDeCaisse extends Component
             })
             ->where(function ($query) {
                 $query->where('bon_de_caisses.numero', 'like', "%{$this->search}%")
-                      ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
-                      ->orWhere('users.name', 'like', "%{$this->search}%");
+                        ->orWhere('bon_de_caisses.etape', 'like', "%{$this->search}%")
+                        ->orWhere('bon_de_caisses.depense', 'like', "%{$this->search}%")
+                        ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
+                        ->orWhere('transport_internes.numero', 'like', "%{$this->search}%")
+                        ->orWhere('users.name', 'like', "%{$this->search}%");
             })
             ->orderBy('bon_de_caisses.created_at', 'DESC')
             ->paginate(10, '*', 'bons-pagination');           
@@ -77,7 +81,7 @@ class BonDeCaisse extends Component
             $bonsDeCaisse = ModelsBonDeCaisse::select([
                 'bon_de_caisses.id',
                 'bon_de_caisses.numero',
-                'bon_de_caisses.montant',
+                'bon_de_caisses.montant_definitif',
                 'bon_de_caisses.depense',
                 'bon_de_caisses.etape',
                 'bon_de_caisses.rejected',
@@ -95,8 +99,11 @@ class BonDeCaisse extends Component
             })
             ->where(function ($query) {
                 $query->where('bon_de_caisses.numero', 'like', "%{$this->search}%")
-                      ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
-                      ->orWhere('users.name', 'like', "%{$this->search}%");
+                        ->orWhere('bon_de_caisses.etape', 'like', "%{$this->search}%")
+                        ->orWhere('bon_de_caisses.depense', 'like', "%{$this->search}%")
+                        ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
+                        ->orWhere('transport_internes.numero', 'like', "%{$this->search}%")
+                        ->orWhere('users.name', 'like', "%{$this->search}%");
             })
             ->orderBy('bon_de_caisses.created_at', 'DESC')
             ->paginate(10, '*', 'bons-pagination');           
@@ -105,7 +112,7 @@ class BonDeCaisse extends Component
             $bonsDeCaisse = ModelsBonDeCaisse::select([
                 'bon_de_caisses.id',
                 'bon_de_caisses.numero',
-                'bon_de_caisses.montant',
+                'bon_de_caisses.montant_definitif',
                 'bon_de_caisses.depense',
                 'bon_de_caisses.etape',
                 'bon_de_caisses.rejected',
@@ -123,8 +130,11 @@ class BonDeCaisse extends Component
             })
             ->where(function ($query) {
                 $query->where('bon_de_caisses.numero', 'like', "%{$this->search}%")
-                      ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
-                      ->orWhere('users.name', 'like', "%{$this->search}%");
+                            ->orWhere('bon_de_caisses.etape', 'like', "%{$this->search}%")
+                            ->orWhere('bon_de_caisses.depense', 'like', "%{$this->search}%")
+                            ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
+                            ->orWhere('transport_internes.numero', 'like', "%{$this->search}%")
+                            ->orWhere('users.name', 'like', "%{$this->search}%");
             })
             ->orderBy('bon_de_caisses.created_at', 'DESC')
             ->paginate(10, '*', 'bons-pagination');        
@@ -135,7 +145,7 @@ class BonDeCaisse extends Component
             $bonsDeCaisse = ModelsBonDeCaisse::select([
                 'bon_de_caisses.id',
                 'bon_de_caisses.numero',
-                'bon_de_caisses.montant',
+                'bon_de_caisses.montant_definitif',
                 'bon_de_caisses.depense',
                 'bon_de_caisses.etape',
                 'bon_de_caisses.rejected',
@@ -153,8 +163,11 @@ class BonDeCaisse extends Component
             })
             ->where(function ($query) {
                 $query->where('bon_de_caisses.numero', 'like', "%{$this->search}%")
-                      ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
-                      ->orWhere('users.name', 'like', "%{$this->search}%");
+                            ->orWhere('bon_de_caisses.etape', 'like', "%{$this->search}%")
+                            ->orWhere('bon_de_caisses.depense', 'like', "%{$this->search}%")
+                            ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
+                            ->orWhere('transport_internes.numero', 'like', "%{$this->search}%")
+                            ->orWhere('users.name', 'like', "%{$this->search}%");
             })
             ->orderBy('bon_de_caisses.created_at', 'DESC')
             ->paginate(10, '*', 'bons-pagination');        
@@ -163,7 +176,7 @@ class BonDeCaisse extends Component
             $bonsDeCaisse = ModelsBonDeCaisse::select([
                 'bon_de_caisses.id',
                 'bon_de_caisses.numero',
-                'bon_de_caisses.montant',
+                'bon_de_caisses.montant_definitif',
                 'bon_de_caisses.depense',
                 'bon_de_caisses.etape',
                 'bon_de_caisses.rejected',
@@ -178,8 +191,11 @@ class BonDeCaisse extends Component
             ->where('bon_de_caisses.user_id', Auth::user()->id)
             ->where(function ($query) {
                 $query->where('bon_de_caisses.numero', 'like', "%{$this->search}%")
-                      ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
-                      ->orWhere('users.name', 'like', "%{$this->search}%");
+                            ->orWhere('bon_de_caisses.etape', 'like', "%{$this->search}%")
+                            ->orWhere('bon_de_caisses.depense', 'like', "%{$this->search}%")
+                            ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
+                            ->orWhere('transport_internes.numero', 'like', "%{$this->search}%")
+                            ->orWhere('users.name', 'like', "%{$this->search}%");
             })
             ->orderBy('bon_de_caisses.created_at', 'DESC')
             ->paginate(10, '*', 'bons-pagination');         

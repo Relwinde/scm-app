@@ -27,7 +27,7 @@ class ViewDossier extends ModalComponent
     public $num_exo;
     public $num_lta_bl;
     public $num_t;
-
+    public $total_depenses;
     public $edit = false;
 
 
@@ -55,6 +55,7 @@ class ViewDossier extends ModalComponent
         $fournisseurs = Fournisseur::all(['id', 'nom']);
         $marchandises = Marchandise::all(['id', 'nom']);
         $bureau_de_douanes = BureauDeDouane::all(['id', 'nom']);
+        $this->total_depenses = $this->dossier->bon_de_caisse()->where('etape', 'PAYE')->sum('montant_definitif');;
 
 
         return view('livewire.modals.view-dossier', ["clients"=>$clients, "fournisseurs"=>$fournisseurs, "marchandises"=>$marchandises, 'bureau_de_douanes'=>$bureau_de_douanes, "title"=>"d'importation"]);

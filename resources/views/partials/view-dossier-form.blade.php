@@ -4,20 +4,26 @@
 
 <div class="card form-input-elements">
     <div class="card-header d-flex justify-content-between">
-        <h3 class="mb-0 card-title">Détail du dossier <b>{{$dossier->numero}}</b>&nbsp;&nbsp; <a target="_blank"  href="{{route('print-dossier', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Page de garde</a></h3>
-        <div class="dropdown">
-            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
-                <i class="fe fe-list me-2 d-inline-flex"></i>Commentaires ({{$observations_number}})
-            </button>
-            <div class="dropdown-menu">
-                
-                @if ($observations_number>0)
-                    <a wire:click="$dispatch('openModal', {component: 'modals.dossier.view-observations', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Voir</a>
-                    <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-observation', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
-                @else
-                    <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-observation', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
-                @endif
-                
+        <h3 class="mb-0 card-title">Dossier N°: <b>{{$dossier->numero}}</b>&nbsp;&nbsp;</h3>
+        @can('Voir le total des dépenses')
+            <h3 class="card-title">Dépenses: <b>{{number_format($total_depenses, 2, '.', ' ')}} CFA</b></h3>&nbsp; &nbsp;
+        @endcan
+        <h3 class="card-title"><a target="_blank"  href="{{route('print-dossier', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Page de garde</a></b></h3>&nbsp; &nbsp;
+        <div class="card-options">
+            <div class="dropdown">
+                <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fe fe-list me-2 d-inline-flex"></i>Commentaires ({{$observations_number}})
+                </button>
+                <div class="dropdown-menu">
+                    
+                    @if ($observations_number>0)
+                        <a wire:click="$dispatch('openModal', {component: 'modals.dossier.view-observations', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Voir</a>
+                        <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-observation', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
+                    @else
+                        <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-observation', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
+                    @endif
+                    
+                </div>
             </div>
         </div>
     </div>

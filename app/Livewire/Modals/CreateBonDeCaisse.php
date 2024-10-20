@@ -39,6 +39,7 @@ class CreateBonDeCaisse extends ModalComponent
                  $bon = BonDeCaisse::make([
                     'depense'=> $this->depense,
                     'montant'=> floatval(str_replace(' ', '',$this->montant)),
+                    'montant_definitif'=> floatval(str_replace(' ', '',$this->montant)),
                     'dossier_id'=>$this->dossier,
                     'user_id'=>Auth::user()->id
                  ]);
@@ -48,6 +49,7 @@ class CreateBonDeCaisse extends ModalComponent
                 $bon = BonDeCaisse::make([
                     'depense'=> $this->depense,
                     'montant'=> floatval(str_replace(' ', '',$this->montant)),
+                    'montant_definitif'=> floatval(str_replace(' ', '',$this->montant)),
                     'transport_interne_id'=>$this->dossier,
                     'user_id'=>Auth::user()->id
                  ]);
@@ -57,6 +59,7 @@ class CreateBonDeCaisse extends ModalComponent
                 $bon = BonDeCaisse::make([
                     'depense'=> $this->depense,
                     'montant'=> floatval(str_replace(' ', '',$this->montant)),
+                    'montant_definitif'=> floatval(str_replace(' ', '',$this->montant)),
                     'user_id'=>Auth::user()->id
                  ]);
                 break;
