@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Modals;
 
+use App\Exports\DossierDepenses;
 use App\Models\Client;
 use App\Models\Dossier;
 use Livewire\Component;
@@ -9,6 +10,7 @@ use App\Models\Fournisseur;
 use App\Models\Marchandise;
 use App\Models\BureauDeDouane;
 use LivewireUI\Modal\ModalComponent;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ViewDossier extends ModalComponent
 {
@@ -55,7 +57,7 @@ class ViewDossier extends ModalComponent
         $fournisseurs = Fournisseur::all(['id', 'nom']);
         $marchandises = Marchandise::all(['id', 'nom']);
         $bureau_de_douanes = BureauDeDouane::all(['id', 'nom']);
-        $this->total_depenses = $this->dossier->bon_de_caisse()->where('etape', 'PAYE')->sum('montant_definitif');;
+        $this->total_depenses = $this->dossier->bon_de_caisse()->where('etape', 'PAYE')->sum('montant_definitif');
 
 
         return view('livewire.modals.view-dossier', ["clients"=>$clients, "fournisseurs"=>$fournisseurs, "marchandises"=>$marchandises, 'bureau_de_douanes'=>$bureau_de_douanes, "title"=>"d'importation"]);
@@ -106,6 +108,10 @@ class ViewDossier extends ModalComponent
 
     public function reformat_valeur_caf (){
         $this->valeur_caf = number_format(floatval( str_replace(' ', '',$this->valeur_caf)), 2, '.', ' ');
+    }
+
+    public function export (){
+        return Excel::download(new DossierDepenses($this->dossier), str_replace('/', '-',$this->dossier->numero).'.xlsx');
     }
     
 }

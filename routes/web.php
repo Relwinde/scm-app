@@ -6,6 +6,7 @@ use App\Livewire\Login;
 use App\Models\Dossier;
 use App\Livewire\Caisse;
 use App\Livewire\BonDeCaisse;
+use App\Models\BonDeCaisse as ModelsBonDeCaisse;
 use App\Livewire\Outils\User;
 use App\Livewire\UserProfile;
 use GuzzleHttp\Promise\Create;
@@ -64,6 +65,10 @@ Route::get('/caisse', Caisse::class)->middleware("auth");
 Route::get('/print-dossier/{dossier}', function (Dossier $dossier){
     $dossier->print();
 })->name('print-dossier')->middleware("auth");
+
+Route::get('/print-bon/{bon}', function (ModelsBonDeCaisse $bon){
+    $bon->print();
+})->name('print-bon')->middleware("auth");
 
 Route::get('/print-transport/{dossier}', function (TransportInterne $dossier){
     $dossier->print();

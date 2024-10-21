@@ -46,4 +46,9 @@ class TransportInterne extends Model
         $mpdf->writeHTML($html);
         $mpdf->Output();
     }
+
+    public function bon_de_caisse (){
+        return $this->hasMany(BonDeCaisse::class);
+    }
+    
 }

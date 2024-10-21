@@ -7,23 +7,33 @@
             {{-- @include('partials.create-dossier-form') --}}
             <div class="card form-input-elements">
                 <div class="card-header d-flex justify-content-between">
-                    <h3 class="mb-0 card-title"><b>Détails du dossier {{$dossier->numero}}</b>&nbsp; &nbsp;<a target="_blank"  href="{{route('print-transport', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Page de garde</a></h3>
+                    <h3 class="mb-0 card-title">Dossier N°: <b>{{$dossier->numero}}</b></h3>&nbsp; &nbsp;
+                        @can('Voir le total des dépenses')
+                            <button wire:click="export" id="bAcep" type="button" class="btn btn-sm btn-outline-primary">
+                            <span class="fa fa-file-excel-o"> </span>
+                            </button>
+                            <h3 class="card-title">Dépenses: <b>{{number_format($total_depenses, 2, '.', ' ')}} CFA</b></h3>&nbsp; &nbsp;
+                        @endcan
+                        <h3 class="card-title"><a target="_blank"  href="{{route('print-transport', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Page de garde</a></h3>
 
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fe fe-list me-2 d-inline-flex"></i>Itineraire ({{$destinations_number}})
-                        </button>
-                        <div class="dropdown-menu">
-                            
-                            @if ($destinations_number>0)
-                                <a wire:click="$dispatch('openModal', {component: 'modals.transport-interne.view-itineraires', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Voir</a>
-                                <a wire:click="$dispatch('openModal', {component: 'modals.transport-interne.create-itineraire', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
-                            @else
-                                <a wire:click="$dispatch('openModal', {component: 'modals.transport-interne.create-itineraire', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
-                            @endif
-                            
+                    <card class="card-options">
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
+                                <i class="fe fe-list me-2 d-inline-flex"></i>Itineraire ({{$destinations_number}})
+                            </button>
+                            <div class="dropdown-menu">
+                                
+                                @if ($destinations_number>0)
+                                    <a wire:click="$dispatch('openModal', {component: 'modals.transport-interne.view-itineraires', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Voir</a>
+                                    <a wire:click="$dispatch('openModal', {component: 'modals.transport-interne.create-itineraire', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
+                                @else
+                                    <a wire:click="$dispatch('openModal', {component: 'modals.transport-interne.create-itineraire', arguments: { dossier : {{ $dossier->id }} }})" class="dropdown-item" href="javascript:void(0);">Nouveau</a>
+                                @endif
+                                
+                            </div>
                         </div>
-                    </div>
+                    </card>
+                    
 
                 </div>
                 @if ($edit==true)

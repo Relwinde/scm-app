@@ -2,12 +2,14 @@
 
 namespace App\Livewire\Modals;
 
+use App\Exports\TransportDepenses;
 use App\Models\Client;
 use Livewire\Component;
 use App\Models\Vehicule;
 use App\Models\Chauffeur;
 use App\Models\TransportInterne;
 use LivewireUI\Modal\ModalComponent;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class ViewTransportInterne extends ModalComponent
@@ -19,7 +21,7 @@ class ViewTransportInterne extends ModalComponent
     public $chauffeur;
     public $montant;
     public $type_transport;
-
+    public $total_depenses;
     public $edit = false;
 
     public function mount (){
@@ -35,6 +37,7 @@ class ViewTransportInterne extends ModalComponent
         $clients = Client::all(['id', 'nom']);
         $chauffeurs = Chauffeur::all(['id', 'nom']);
         $vehicules = Vehicule::all(['id', 'immatriculation']);
+        $this->total_depenses = $this->dossier->bon_de_caisse()->where('etape', 'PAYE')->sum('montant_definitif');
 
         return view('livewire.modals.view-transport-interne',["clients"=>$clients, "chauffeurs"=>$chauffeurs, "vehicules"=>$vehicules, "title"=>"de transport interne"]);
     }
@@ -71,5 +74,9 @@ class ViewTransportInterne extends ModalComponent
 
     public function reformat_montant (){
         $this->montant = number_format(floatval( str_replace(' ', '',$this->montant)), 2, '.', ' ');
+    }
+
+    public function export (){
+        return Excel::download(new TransportDepenses($this->dossier), str_replace('/', '-',$this->dossier->numero).'.xlsx');
     }
 }
