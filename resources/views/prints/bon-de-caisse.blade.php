@@ -14,7 +14,7 @@
     <p>Emétteur: <b>{{$bon->user->name}}</b></p>
     <p>Dossier: <b>{{$bon->dossier->numero ?? $bon->transport->numero ?? "AUTRES"}}</b></p>
     <p>Intitullé de la dépense: <b>{{$bon->depense}}</b></p>
-    <p>Montant: <b>{{number_format($bon->montant_definitif, 2, '.', ' ')}}</b></p>
+    <p>Montant: <b>{{number_format($bon->montant_definitif, 2, '.', ' ')}} CFA</b></p>
     <p>Emis le: <b>{{ strftime("%e %B %Y", strtotime($bon->etapes()->where('etape_actuelle', 'RESPONSABLE')->first()->created_at)); }}</b></p>
     <p>Payé le: <b>{{ strftime("%e %B %Y", strtotime($bon->etapes()->where('etape_actuelle', 'PAYE')->first()->created_at)); }}</b></p>
 

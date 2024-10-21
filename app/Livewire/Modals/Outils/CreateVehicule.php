@@ -9,6 +9,7 @@ class CreateVehicule extends ModalComponent
 {
 
     public $immatriculation;
+    public $description;
 
     public function render()
     {
@@ -17,7 +18,8 @@ class CreateVehicule extends ModalComponent
 
     public function create() {
         $vehicule = Vehicule::make([
-            'immatriculation'=>$this->immatriculation
+            'immatriculation'=>$this->immatriculation,
+            'description'=>$this->description
         ]);
 
         if($vehicule->save()){

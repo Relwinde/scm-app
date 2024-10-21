@@ -13,6 +13,7 @@ class Vehicule extends Component
     public $edit = false; 
     public $editId;
     public $immatriculation;
+    public $description;
     public $search;
 
     use WithPagination;
@@ -20,7 +21,7 @@ class Vehicule extends Component
     #[On('new-vehicule')]
     public function render()
     {
-        $vehicules = ModelsVehicule::select(['id', 'immatriculation'])
+        $vehicules = ModelsVehicule::select(['id', 'immatriculation', 'description'])
             ->where('immatriculation', 'like', "%{$this->search}%")
             ->orderBy('created_at', 'DESC')
             ->paginate(10, '*', 'vehicule-pagination');
@@ -34,18 +35,19 @@ class Vehicule extends Component
         else{
             $this->edit=true;
             $this->immatriculation = $vehicule->immatriculation;
+            $this->description = $vehicule->description;
             $this->editId = $vehicule->id;
         }
     }
 
     public function update (ModelsVehicule $vehicule){
         $vehicule->immatriculation = $this->immatriculation;
+        $vehicule->description = $this->description;
         if($vehicule->save()){
             $this->dispatch('new-vehicule');
-            request()->session()->flash("success", "Véhicule modifié avec succès.");
             $this->reset();
         }else{
-            request()->session()->flash("error", "Une erreur est survenue lors de l'enregistrement.");
+            $this->dispatch('error');
         }
     }
 }

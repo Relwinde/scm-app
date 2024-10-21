@@ -11,11 +11,11 @@
                         <input required wire:model='immatriculation' type="text" class="form-control" name="nom" placeholder="Immatriculation du véhicule">
                     </div>
                 </div>
-                <div class="col-md-12 ">
-                    {{-- <div class="mb-0">
-                        <label class="form-label">Message</label>
-                        <textarea class="form-control" name="example-textarea-input" rows="4" placeholder="text here.."></textarea>
-                    </div> --}}
+                <div class="col-md-6">
+                    <div class="mb-4">
+                        <label class="form-label">Description<span class="required">*</span></label>
+                        <input required wire:model='description' type="text" class="form-control" name="nom" placeholder="Description du véhicule">
+                    </div>
                 </div>
             </div>
         </div>

@@ -32,7 +32,7 @@
                                     <select required wire:model='vehicule' name="country" id="select-countries" class="form-control custom-select select2">
                                         <option value="">Sélectionnez un véhicule</option>
                                         @foreach ($vehicules as $vehicule)
-                                            <option value="{{$vehicule->id}}" >{{$vehicule->immatriculation}}</option>
+                                            <option value="{{$vehicule->id}}" >{{$vehicule->description}}-{{$vehicule->immatriculation}}</option>
                                         @endforeach
                                     </select>
                                 </div>

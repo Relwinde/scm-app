@@ -4,6 +4,7 @@
             <tr>
                 <th class="wd-15p border-bottom-0" style="max-width: 10px"><b></b></th>
                 <th class="wd-15p border-bottom-0"><b>Immatriculation</b></th>
+                <th class="wd-15p border-bottom-0"><b>Description</b></th>
                 <th class="wd-15p border-bottom-0"><b>Action</b></th>
             </tr>
         </thead>
@@ -15,6 +16,11 @@
                         <input wire:model='immatriculation' type="text" class="form-control" name="nom" placeholder="Immatriculation du vehicule">
                     @else
                         {{$vehicule->immatriculation}}
+                    @endif</td>
+                    <td> @if ($edit==true && $editId == $vehicule->id)
+                        <input wire:model='description' type="text" class="form-control" name="nom" placeholder="Immatriculation du vehicule">
+                    @else
+                        {{$vehicule->description}}
                     @endif</td>
                     <td name="bstable-actions">
                         <div class="btn-list">
@@ -41,3 +47,28 @@
         {{$vehicules->links()}}
     </div>
 </div>
+
+@script
+    <script>
+        $wire.on('new-vehicule', () => {
+            (function () {
+                $(function () {
+                    return $.growl({
+                        title: "Succès :",
+                        message: "Le véhicule a été modifié"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.warning({
+                        message: "Une erreur est survenue"
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript
