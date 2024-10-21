@@ -27,8 +27,7 @@ class ClientSeeder extends Seeder
 
         Client::create([
             'nom'=> 'Move One',
-            'code'=>'MOV',
-            'ifu' => 'DUBAÏ'
+            'code'=>'MOV'
         ]);
 
         Client::create([
