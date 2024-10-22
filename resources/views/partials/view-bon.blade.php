@@ -4,18 +4,14 @@
         <h3 class="card-title">Pour: <b>{{$bon->depense}}</b></h3>&nbsp; &nbsp;
         <div class="card-options">
             @if ($bon->etape == "EMETTEUR" && Auth::user()->id == $bon->user->id)
-                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer au responsable</a>      
-            @endif
-            @if ($bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager'))
+                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer au responsable</a>
+            @elseif ($bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager'))
                 <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer au manager</a>      
-            @endif
-            @if ($bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse à la caisse'))
-                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer à la caisse</a>      
-            @endif
-            @if ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse'))
-                <a wire:click='nextStep' wire:confirm="Êtes vous sûr de vouloir payer ce bon, cette action iréversible impactera votre caisse"  href="javascript:void(0);" class="btn btn-danger btn-sm"><span class="fa fa-ticket"></span> Payer</a>      
-            @endif
-            @if ($bon->etape == "PAYE")
+            @elseif ($bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse à la caisse'))
+                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer à la caisse</a>
+            @elseif ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse'))
+                <a wire:click='nextStep' wire:confirm="Êtes vous sûr de vouloir payer ce bon, cette action iréversible impactera votre caisse"  href="javascript:void(0);" class="btn btn-danger btn-sm"><span class="fa fa-ticket"></span> Payer</a>
+            @elseif ($bon->etape == "PAYE")
                 <a target="_blank"  href="{{route('print-bon', $bon->id)}}" class="btn btn-primary btn-sm">Imprimer le reçu</a>      
             @endif
             @if ($bon->etape != "PAYE")

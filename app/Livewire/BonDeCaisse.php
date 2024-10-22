@@ -46,7 +46,7 @@ class BonDeCaisse extends Component
             ->orderBy('bon_de_caisses.created_at', 'DESC')
             ->paginate(10, '*', 'bons-pagination');
         
-        }else if (Auth::user()->can('Envoyer bon de caisse au responsable finance')){
+        }else if (Auth::user()->can('Envoyer bon de caisse au manager')){
             $bonsDeCaisse = ModelsBonDeCaisse::select([
                 'bon_de_caisses.id',
                 'bon_de_caisses.numero',
@@ -63,38 +63,7 @@ class BonDeCaisse extends Component
             ->leftjoin('dossiers', 'bon_de_caisses.dossier_id', '=', 'dossiers.id')
             ->leftjoin('transport_internes', 'bon_de_caisses.transport_interne_id', '=', 'transport_internes.id')
             ->where(function ($query) {
-                $query->where('bon_de_caisses.etape', 'COMPTABLE')
-                      ->orWhere('bon_de_caisses.user_id', Auth::user()->id);
-            })
-            ->where(function ($query) {
-                $query->where('bon_de_caisses.numero', 'like', "%{$this->search}%")
-                        ->orWhere('bon_de_caisses.etape', 'like', "%{$this->search}%")
-                        ->orWhere('bon_de_caisses.depense', 'like', "%{$this->search}%")
-                        ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
-                        ->orWhere('transport_internes.numero', 'like', "%{$this->search}%")
-                        ->orWhere('users.name', 'like', "%{$this->search}%");
-            })
-            ->orderBy('bon_de_caisses.created_at', 'DESC')
-            ->paginate(10, '*', 'bons-pagination');           
-        }
-        else if (Auth::user()->can('Envoyer bon de caisse au manager')){
-            $bonsDeCaisse = ModelsBonDeCaisse::select([
-                'bon_de_caisses.id',
-                'bon_de_caisses.numero',
-                'bon_de_caisses.montant_definitif',
-                'bon_de_caisses.depense',
-                'bon_de_caisses.etape',
-                'bon_de_caisses.rejected',
-                'bon_de_caisses.dossier_id',
-                'transport_interne_id',
-                'bon_de_caisses.user_id',
-                'bon_de_caisses.created_at'
-            ])
-            ->leftjoin('users', 'bon_de_caisses.user_id', '=', 'users.id')
-            ->leftjoin('dossiers', 'bon_de_caisses.dossier_id', '=', 'dossiers.id')
-            ->leftjoin('transport_internes', 'bon_de_caisses.transport_interne_id', '=', 'transport_internes.id')
-            ->where(function ($query) {
-                $query->where('bon_de_caisses.etape', 'RAF')
+                $query->where('bon_de_caisses.etape', 'RESPONSABLE')
                       ->orWhere('bon_de_caisses.user_id', Auth::user()->id);
             })
             ->where(function ($query) {

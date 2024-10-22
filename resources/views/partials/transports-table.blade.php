@@ -24,9 +24,12 @@
                             <button wire:click="$dispatch('openModal', {component: 'modals.view-transport-interne', arguments: { dossier : {{ $dossier->id }} }})" id="bAcep" type="button" class="btn  btn-sm btn-primary">
                                 <span class="fe fe-eye"> </span>
                             </button>
-                            <button id="bDel" type="button" class="btn  btn-sm btn-danger">
-                                <span class="fe fe-trash-2"> </span>
-                            </button>
+                            @can('Supprimer transport interne')
+                                <button id="bDel" type="button" class="btn  btn-sm btn-danger">
+                                    <span class="fe fe-trash-2"> </span>
+                                </button>
+                            @endcan
+                            
                         </div>
                     </td>
                 </tr>

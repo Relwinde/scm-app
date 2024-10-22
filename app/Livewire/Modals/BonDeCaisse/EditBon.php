@@ -27,6 +27,7 @@ class EditBon extends ModalComponent
 
     public function update(){
         $this->bon->montant_definitif = floatval(str_replace(' ', '',$this->montant));
+        $this->bon->montant = floatval(str_replace(' ', '',$this->montant));
         $this->bon->depense = $this->depense;
         if ($this->bon->save()){
             $this->dispatch('new-bon-de-caisse');

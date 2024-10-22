@@ -34,7 +34,6 @@ class PermissionsSeeder extends Seeder
         // Permissions de bons de caisse
         Permission::create(['name'=> 'Voir toute la liste des bons de caisse']);
         Permission::create(['name'=> 'Créer bons de caisse']);
-        Permission::create(['name'=> 'Modifier bons de caisse']);
         Permission::create(['name'=> 'Supprimer bons de caisse']);
         Permission::create(['name'=> 'Annuler bon de caisse']);
         Permission::create(['name'=> 'Retourner bon de caisse']);

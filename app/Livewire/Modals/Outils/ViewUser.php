@@ -59,4 +59,14 @@ class ViewUser extends ModalComponent
     {
         return true;
     }
+
+    public function resetPassword (){
+        $this->user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        if ($this->user->save()){
+            $this->dispatch('password-reset');
+            $this->closeModal();
+        }else{
+            $this->dispatch('error');
+        }
+    }
 }

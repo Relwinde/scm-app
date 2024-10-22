@@ -53,7 +53,7 @@
                     <div class="mb-4">
                         <label class="form-label">Bureau de douane<span class="required">*</span></label>
                         <select required wire:model='bureau_de_douane' name="bureau_de_douane" class="form-control custom-select select2">
-                            <option value="" >Bureau de douane</option>
+                            <option value="" >Selectionnez un bureau de douane</option>
                             @foreach ($bureau_de_douanes as $bureau_de_douane)
                                 <option value="{{$bureau_de_douane->id}}" >{{$bureau_de_douane->nom}}</option>
                             @endforeach

@@ -5,7 +5,7 @@
         <div class="card-header">
             <h3 class="mb-0 card-title"><b>{{$title}}</b></h3>
             <div class="card-options">
-                    <a href="javascript:void(0);" class="btn btn-secondary btn-sm ms-2">Réinitialiser le mot de passe</a>
+                    <a wire:click='resetPassword' wire:confirm='Êtes vous sûr de vouloir réinitialiser le mot de passe de cet utilisateur ?' href="javascript:void(0);" class="btn btn-secondary btn-sm ms-2">Réinitialiser le mot de passe</a>
             </div>
         </div>
         <div class="card-body">
@@ -75,6 +75,17 @@
                 $(function () {
                     return $.growl.warning({
                         message: "Une erreur est survenue"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('password-reset', () => {
+            (function () {
+                $(function () {
+                    return $.growl({
+                        title: "Succès :",
+                        message: "Le mot de passe de l'utilisateur a été réinitialisé"
                     });
                 });
             }).call(this);
