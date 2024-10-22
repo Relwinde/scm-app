@@ -39,7 +39,8 @@ class Caisse extends Component
         ->leftjoin('transport_internes', 'bon_de_caisses.transport_interne_id', '=', 'transport_internes.id')
         ->where(function ($query) {
             $query->where('bon_de_caisses.etape', 'CAISSE')
-                    ->orWhere('bon_de_caisses.etape', 'PAYE');
+                    ->orWhere('bon_de_caisses.etape', 'PAYE')
+                    ->orWhere('bon_de_caisses.etape', 'CLOS');
         })
         ->where(function ($query) {
             $query->where('bon_de_caisses.numero', 'like', "%{$this->search}%")

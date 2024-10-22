@@ -118,6 +118,9 @@
                                                 @case("PAYE")
                                                     <span class="badge bg-danger ms-3 px-5">Payé</span>
                                                     @break
+                                                @case("CLOS")
+                                                    <span class="badge bg-danger ms-3 px-5">Clos</span>
+                                                    @break
                                                 @default
                                                     
                                             @endswitch</td>

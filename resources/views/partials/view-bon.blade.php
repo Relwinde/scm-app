@@ -12,14 +12,17 @@
                 <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer à la caisse</a>
             @elseif ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse'))
                 <a wire:click='nextStep' wire:confirm="Êtes vous sûr de vouloir payer ce bon, cette action iréversible impactera votre caisse"  href="javascript:void(0);" class="btn btn-danger btn-sm"><span class="fa fa-ticket"></span> Payer</a>
-            @elseif ($bon->etape == "PAYE")
+            @elseif ($bon->etape == "PAYE" || $bon->etape == "CLOS")
                 <a target="_blank"  href="{{route('print-bon', $bon->id)}}" class="btn btn-primary btn-sm">Imprimer le reçu</a>      
             @endif
-            @if ($bon->etape != "PAYE")
+            {{-- @if ($bon->etape != "PAYE")
                 <a href="javascript:void(0);" class="btn btn-secondary btn-sm ms-2">Retourner le bon</a>
-            @endif
+            @endif --}}
             @if ($bon->etape == "PAYE" && Auth::user()->can('Effectuer un ajustement de bon'))
                 <a wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.create-ajustement', arguments: { bon : {{ $bon->id }} }})" href="javascript:void(0);" class="btn btn-danger btn-sm ms-2"><span class="fa fa-ticket"></span> Ajuster le bon</a>      
+            @endif
+            @if ($bon->etape == "PAYE" && Auth::user()->can('Clore un bon'))
+                <a wire:click="close" href="javascript:void(0);" class="btn btn-danger btn-sm ms-2" wire:confirm="Êtes vous sûr de vouloir clore ce bon, vous ne pourrez plus effectuer d'ajustement">Clore ce bon</a>      
             @endif
         </div>
     </div>
@@ -55,7 +58,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4>Dépenses sur le dossier à ce jour: </h4>
-                                <h1 class="mb-1 number-font" style="font-size: 17px;">{{ $bon->dossier ? number_format($bon->dossier->bon_de_caisse()->where('etape', 'PAYE')->sum('montant_definitif'), 2, '.', ' ') : number_format($bon->transport->bon_de_caisse()->where('etape', 'PAYE')->sum('montant_definitif'), 2, '.', ' ') }} CFA</h1>
+                                <h1 class="mb-1 number-font" style="font-size: 17px;">{{ $bon->dossier ? number_format($bon->dossier->bon_de_caisse()->where('etape', 'PAYE')->orWhere('etape', 'CLOS')->sum('montant_definitif'), 2, '.', ' ') : number_format($bon->transport->bon_de_caisse()->where('etape', 'PAYE')->orWhere('etape', 'CLOS')->sum('montant_definitif'), 2, '.', ' ') }} CFA</h1>
                                 {{-- <div class="progress progress-sm ">
                                     <div class="progress-bar bg-primary @if ($bon->etape == "EMETTEUR")
                                         w-10
@@ -132,6 +135,26 @@
                     return $.growl({
                         title: "Succès :",
                         message: "Le paiement a été effectué avec succès"
+                    });
+                });
+            }).call(this);
+        });
+        $wire.on('next-step', () => {
+            (function () {
+                $(function () {
+                    return $.growl({
+                        title: "Succès :",
+                        message: "Le bon a été envoyé à la prochaine étape"
+                    });
+                });
+            }).call(this);
+        });
+        $wire.on('closed', () => {
+            (function () {
+                $(function () {
+                    return $.growl({
+                        title: "Succès :",
+                        message: "Le bon a été clos et archivé"
                     });
                 });
             }).call(this);

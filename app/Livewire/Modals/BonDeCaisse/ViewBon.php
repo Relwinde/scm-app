@@ -34,6 +34,7 @@ class ViewBon extends ModalComponent
                         'user_id'=>Auth::user()->id,
                     ]);
                 }
+                $this->dispatch('next-step');
             break;
 
             case "RESPONSABLE":
@@ -47,6 +48,7 @@ class ViewBon extends ModalComponent
                         'user_id'=>Auth::user()->id,
                     ]);
                 }
+                $this->dispatch('next-step');
             break;
 
             case "MANAGER":
@@ -60,6 +62,7 @@ class ViewBon extends ModalComponent
                         'user_id'=>Auth::user()->id,
                     ]);
                 }
+                $this->dispatch('next-step');
             break;
 
             case "CAISSE": 
@@ -101,6 +104,22 @@ class ViewBon extends ModalComponent
                 }
 
         }
+    }
+
+    public function close (){
+        $this->bon->etape = "CLOS";
+
+        if ($this->bon->save()){
+            EtapeBon::create([
+                'etape_precedente'=>"PAYE",
+                'etape_actuelle'=>"CLOS",
+                'montant'=>$this->bon->montant_definitif,
+                'bon_de_caisse_id'=>$this->bon->id,
+                'user_id'=>Auth::user()->id,
+            ]);
+        }
+        
+        $this->dispatch('closed');
     }
 
     public static function destroyOnClose(): bool

@@ -43,6 +43,7 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name'=> 'Envoyer bon de caisse à la caisse']);
         Permission::create(['name'=> 'Payer bon de caisse']);
         Permission::create(['name'=> 'Effectuer un ajustement de bon']);
+        Permission::create(['name'=> 'Clore un bon']);
 
         // Permissions de utlisateur
         Permission::create(['name'=> 'Voir la liste des utlisateurs']);

@@ -37,7 +37,7 @@ class ViewTransportInterne extends ModalComponent
         $clients = Client::all(['id', 'nom']);
         $chauffeurs = Chauffeur::all(['id', 'nom']);
         $vehicules = Vehicule::all(['id', 'immatriculation']);
-        $this->total_depenses = $this->dossier->bon_de_caisse()->where('etape', 'PAYE')->sum('montant_definitif');
+        $this->total_depenses = $this->dossier->bon_de_caisse()->where('etape', 'PAYE')->orWhere('etape', 'CLOS')->sum('montant_definitif');
 
         return view('livewire.modals.view-transport-interne',["clients"=>$clients, "chauffeurs"=>$chauffeurs, "vehicules"=>$vehicules, "title"=>"de transport interne"]);
     }
