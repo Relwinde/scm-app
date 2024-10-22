@@ -8,7 +8,7 @@
             <div class="card form-input-elements">
                 <div class="card-header d-flex justify-content-between">
                     <h3 class="mb-0 card-title">Dossier N°: <b>{{$dossier->numero}}</b></h3>&nbsp; &nbsp;
-                        @can('Voir le total des dépenses')
+                        @can('Voir le total des dépenses du dossier')
                             <button wire:click="export" id="bAcep" type="button" class="btn btn-sm btn-outline-primary">
                             <span class="fa fa-file-excel-o"> </span>
                             </button>

@@ -35,14 +35,6 @@
             <div class="col-sm-6 col-lg-4 col-md-4 ">
                 <div class="card">
                     <div class="card-body">
-                        <h4>Dossier:</h4>
-                        <h1 class="mb-1 number-font" style="font-size: 17px;">{{$bon->dossier->numero ?? $bon->transport->numero ?? "AUTRES"}}</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 col-md-4 ">
-                <div class="card">
-                    <div class="card-body">
                         <h4>Position: </h4>
                         <h1 class="mb-1 number-font" style="font-size: 17px;">{{$bon->etape}}</h1>
                         {{-- <div class="progress progress-sm ">
@@ -53,22 +45,62 @@
                     </div>
                 </div>
             </div>
-            @if ($bon->dossier != null)
-                 <div class="col-sm-6 col-lg-4 col-md-4 ">
+            <div class="col-sm-6 col-lg-4 col-md-4 ">
                 <div class="card">
                     <div class="card-body">
-                        <h4>Poids: </h4>
-                        <h1 class="mb-1 number-font" style="font-size: 17px;">{{$bon->dossier->poids}}</h1>
-                        {{-- <div class="progress progress-sm ">
-                            <div class="progress-bar bg-primary @if ($bon->etape == "EMETTEUR")
-                                w-10
-                            @endif " role="progressbar"></div>
-                        </div> --}}
+                        <h4>Dossier:</h4>
+                        <h1 class="mb-1 number-font" style="font-size: 17px;">{{$bon->dossier->numero ?? $bon->transport->numero ?? "AUTRES"}}</h1>
                     </div>
                 </div>
             </div>
+            @can('Voir le total des dépenses du dossier')
+                
+            @endcan
+                @if ($bon->dossier != null)
+                    <div class="col-sm-6 col-lg-4 col-md-4 ">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Dépenses à jour: </h4>
+                                <h1 class="mb-1 number-font" style="font-size: 17px;">{{number_format($bon->dossier->bon_de_caisse()->where('etape', 'PAYE')->sum('montant_definitif'), 2, '.', ' ') }} CFA</h1>
+                                {{-- <div class="progress progress-sm ">
+                                    <div class="progress-bar bg-primary @if ($bon->etape == "EMETTEUR")
+                                        w-10
+                                    @endif " role="progressbar"></div>
+                                </div> --}}
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                @if ($bon->transport != null)
+                    <div class="col-sm-6 col-lg-4 col-md-4 ">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Dépenses à jour: </h4>
+                                <h1 class="mb-1 number-font" style="font-size: 17px;">{{number_format($bon->transport->bon_de_caisse()->where('etape', 'PAYE')->sum('montant_definitif'), 2, '.', ' ')}} CFA</h1>
+                                {{-- <div class="progress progress-sm ">
+                                    <div class="progress-bar bg-primary @if ($bon->etape == "EMETTEUR")
+                                        w-10
+                                    @endif " role="progressbar"></div>
+                                </div> --}}
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @if ($bon->dossier != null)
+                <div class="col-sm-6 col-lg-4 col-md-4 ">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Poids: </h4>
+                            <h1 class="mb-1 number-font" style="font-size: 17px;">{{number_format($bon->dossier->poids, 2, '.', ' ')}} KG</h1>
+                            {{-- <div class="progress progress-sm ">
+                                <div class="progress-bar bg-primary @if ($bon->etape == "EMETTEUR")
+                                    w-10
+                                @endif " role="progressbar"></div>
+                            </div> --}}
+                        </div>
+                    </div>
+                </div>
             @endif
-           
         </div>
 
         <hr>

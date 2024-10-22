@@ -23,7 +23,7 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name'=> 'Créer dossier']);
         Permission::create(['name'=> 'Modifier dossier']);
         Permission::create(['name'=> 'Supprimer dossier']);
-        Permission::create(['name'=> 'Voir le total des dépenses']);
+        Permission::create(['name'=> 'Voir le total des dépenses du dossier']);
 
         // Permissions de transport interne
         Permission::create(['name'=> 'Voir la liste des transports internes']);
