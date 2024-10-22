@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-bordered text-nowrap border-bottom" id="responsive-datatable">
+    <table class="table table-striped table-bordered text-nowrap border-bottom" id="responsive-datatable">
         <thead>
             <tr>
                 <th class="wd-15p border-bottom-0"><b>Numéro</b></th>

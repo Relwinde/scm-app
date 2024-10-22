@@ -31,7 +31,7 @@
                                     @endcan
 
                                     @can('Voir la liste des transports internes')
-                                        <li><a href="{{url('/dossiers-internes')}}" class="slide-item"> Transports internes</a></li>  
+                                        <li><a href="{{url('/dossiers-internes')}}" class="slide-item"> Transports Internes</a></li>  
                                     @endcan
                                 </ul>
 

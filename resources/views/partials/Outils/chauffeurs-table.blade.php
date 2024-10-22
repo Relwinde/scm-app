@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-bordered border text-nowrap mb-0">
+    <table class="table table-bordered table-striped border text-nowrap mb-0">
         <thead>
             <tr>
                 <th class="wd-15p border-bottom-0" style="max-width: 10px"><b></b></th>

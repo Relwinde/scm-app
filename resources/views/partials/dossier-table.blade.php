@@ -1,6 +1,6 @@
 <div>
     <div class="table-responsive">
-        <table class="table table-bordered border text-nowrap mb-0">
+        <table class="table table-striped table-bordered border text-nowrap mb-0">
             <thead>
                 {{-- <tr>
                     <th>First name</th>

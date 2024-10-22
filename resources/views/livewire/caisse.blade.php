@@ -81,8 +81,8 @@
                         </div>
                     </div>
                     <div>
-                        <div wire:poll.3s class="table-responsive">
-                            <table class="table table-bordered border text-nowrap mb-0">
+                        <div wire:poll.5s class="table-responsive">
+                            <table class="table table-striped table-bordered border text-nowrap mb-0">
                                 <thead>
                                     <tr>
                                         <th class="wd-15p border-bottom-0"><b>Numéro</b></th>
