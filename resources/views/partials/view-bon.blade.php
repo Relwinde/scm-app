@@ -2,6 +2,7 @@
     <div class="card-header">
         <h3 class="card-title">Bon De: <b>{{$bon->user->name}}</b></h3>&nbsp; &nbsp; 
         <h3 class="card-title">Pour: <b>{{$bon->depense}}</b></h3>&nbsp; &nbsp;
+        <h3 class="card-title">Position: <b>{{$bon->etape}}</b></h3>&nbsp; &nbsp;
         <div class="card-options">
             @if ($bon->etape == "EMETTEUR" && Auth::user()->id == $bon->user->id)
                 <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer au responsable</a>
@@ -27,24 +28,19 @@
             <div class="col-sm-6 col-lg-4 col-md-4 ">
                 <div class="card">
                     <div class="card-body">
-                        <h4>Montant:</h4>
+                        <h4>Montant du bon de caisse:</h4>
                         <h1 class="mb-1 number-font" style="font-size: 17px;">{{number_format($bon->montant_definitif, 2, '.', ' ')}} CFA</h1>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-lg-4 col-md-4 ">
+            {{-- <div class="col-sm-6 col-lg-4 col-md-4 ">
                 <div class="card">
                     <div class="card-body">
                         <h4>Position: </h4>
                         <h1 class="mb-1 number-font" style="font-size: 17px;">{{$bon->etape}}</h1>
-                        {{-- <div class="progress progress-sm ">
-                            <div class="progress-bar bg-primary @if ($bon->etape == "EMETTEUR")
-                                w-10
-                            @endif " role="progressbar"></div>
-                        </div> --}}
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-sm-6 col-lg-4 col-md-4 ">
                 <div class="card">
                     <div class="card-body">
@@ -54,44 +50,29 @@
                 </div>
             </div>
             @can('Voir le total des dépenses du dossier')
-                
+                 @if ($bon->dossier != null || $bon->transport != null)
+                    <div class="col-sm-6 col-lg-4 col-md-4 ">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Dépenses sur le dossier à ce jour: </h4>
+                                <h1 class="mb-1 number-font" style="font-size: 17px;">{{ $bon->dossier ? number_format($bon->dossier->bon_de_caisse()->where('etape', 'PAYE')->sum('montant_definitif'), 2, '.', ' ') : number_format($bon->transport->bon_de_caisse()->where('etape', 'PAYE')->sum('montant_definitif'), 2, '.', ' ') }} CFA</h1>
+                                {{-- <div class="progress progress-sm ">
+                                    <div class="progress-bar bg-primary @if ($bon->etape == "EMETTEUR")
+                                        w-10
+                                    @endif " role="progressbar"></div>
+                                </div> --}}
+                            </div>
+                        </div>
+                    </div>
+                @endif
             @endcan
-                @if ($bon->dossier != null)
-                    <div class="col-sm-6 col-lg-4 col-md-4 ">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>Dépenses à jour: </h4>
-                                <h1 class="mb-1 number-font" style="font-size: 17px;">{{number_format($bon->dossier->bon_de_caisse()->where('etape', 'PAYE')->sum('montant_definitif'), 2, '.', ' ') }} CFA</h1>
-                                {{-- <div class="progress progress-sm ">
-                                    <div class="progress-bar bg-primary @if ($bon->etape == "EMETTEUR")
-                                        w-10
-                                    @endif " role="progressbar"></div>
-                                </div> --}}
-                            </div>
-                        </div>
-                    </div>
-                @endif
-                @if ($bon->transport != null)
-                    <div class="col-sm-6 col-lg-4 col-md-4 ">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>Dépenses à jour: </h4>
-                                <h1 class="mb-1 number-font" style="font-size: 17px;">{{number_format($bon->transport->bon_de_caisse()->where('etape', 'PAYE')->sum('montant_definitif'), 2, '.', ' ')}} CFA</h1>
-                                {{-- <div class="progress progress-sm ">
-                                    <div class="progress-bar bg-primary @if ($bon->etape == "EMETTEUR")
-                                        w-10
-                                    @endif " role="progressbar"></div>
-                                </div> --}}
-                            </div>
-                        </div>
-                    </div>
-                @endif
+               
             @if ($bon->dossier != null)
                 <div class="col-sm-6 col-lg-4 col-md-4 ">
                     <div class="card">
                         <div class="card-body">
                             <h4>Poids: </h4>
-                            <h1 class="mb-1 number-font" style="font-size: 17px;">{{number_format($bon->dossier->poids, 2, '.', ' ')}} KG</h1>
+                            <h1 class="mb-1 number-font" style="font-size: 17px;">{{$bon->dossier ? number_format($bon->dossier->poids, 2, '.', ' ') : number_format($bon->transport->bon_de_caisse()->where('etape', 'PAYE')->sum('montant_definitif'), 2, '.', ' ')}} KG</h1>
                             {{-- <div class="progress progress-sm ">
                                 <div class="progress-bar bg-primary @if ($bon->etape == "EMETTEUR")
                                     w-10
