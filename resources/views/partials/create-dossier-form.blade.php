@@ -61,7 +61,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° BL/LTA<span class="required">*</span></label>
-                        <input required wire:model='num_lta_bl' type="text" class="form-control" name="example-text-input" placeholder="N° de décision EXO">
+                        <input required wire:model='num_lta_bl' type="text" class="form-control" name="example-text-input" placeholder="N° BL/LTA">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Poids<span class="required">*</span></label>
