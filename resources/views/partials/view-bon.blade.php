@@ -12,7 +12,7 @@
                 <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer à la caisse</a>
             @elseif ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse'))
                 <a wire:click='nextStep' wire:confirm="Êtes vous sûr de vouloir payer ce bon, cette action iréversible impactera votre caisse"  href="javascript:void(0);" class="btn btn-danger btn-sm"><span class="fa fa-ticket"></span> Payer</a>
-            @elseif ($bon->etape == "PAYE" || $bon->etape == "CLOS")
+            @elseif ($bon->etape == "PAYE" || $bon->etape == "CLOS" && Auth::user()->can('Payer bon de caisse'))
                 <a target="_blank"  href="{{route('print-bon', $bon->id)}}" class="btn btn-primary btn-sm">Imprimer le reçu</a>      
             @endif
             {{-- @if ($bon->etape != "PAYE")
