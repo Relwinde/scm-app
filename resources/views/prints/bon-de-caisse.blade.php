@@ -52,15 +52,6 @@
                     <p>Payé le: <b>{{ strftime("%e %B %Y", strtotime($bon->etapes()->where('etape_actuelle', 'PAYE')->first()->created_at)); }}</b></p>
                 </td>
             </tr>
-        </tbody>
-    </table>
-
-
-</div>
-
-<div style="width: 100%;  margin-left: auto; margin-right: auto;">
-    <table style="width: 100%;  margin-left: auto; margin-right: auto;">
-        <tbody>
             <tr>
                 <td>
                     La caisse
@@ -69,21 +60,16 @@
                     Le recepteur
                 </td>
             </tr>
-            <tr>
-                <td>
-
-                </td>
-                <td>
-
-                </td>
-            </tr>
         </tbody>
     </table>
 
-    <center style="text-align: center;">
-        <p style="font-size: 10; margin-top:20px;">
-            Reçu imprimé le {{$formattedDate}}
-        </p>
-</center>
+
 </div>
+
+
+<center style="text-align: center;">
+    <p style="font-size: 10; margin-top:20px;">
+            Reçu imprimé le {{$formattedDate}}
+     </p>
+</center>
 
