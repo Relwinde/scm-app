@@ -27,15 +27,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="mb-4">
-                                    <label class="form-label">Véhicule<span class="required">*</span></label>
-                                    <select required wire:model='vehicule' name="country" id="select-countries" class="form-control custom-select select2">
-                                        <option value="">Sélectionnez un véhicule</option>
-                                        @foreach ($vehicules as $vehicule)
-                                            <option value="{{$vehicule->id}}" >{{$vehicule->description}}-{{$vehicule->immatriculation}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-4">
@@ -43,12 +35,12 @@
                                     <input wire:focusout='reformat_montant()' wire:model='montant' type="text" class="form-control" name="example-text-input" placeholder="Montant">
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label">Type de transport<span class="required">*</span></label>
-                                    <select required wire:model='type_transport' name="country" id="select-countries" class="form-control custom-select select2">
-                                        <option >Sélectionnez le type de transport</option>
-                                        <option value="04" >Transport routier</option>
-                                        <option value="03" >Transport maritime</option>
-                                        <option value="02" >Transport aérien</option>
+                                    <label class="form-label">Véhicule<span class="required">*</span></label>
+                                    <select required wire:model='vehicule' name="country" id="select-countries" class="form-control custom-select select2">
+                                        <option value="">Sélectionnez un véhicule</option>
+                                        @foreach ($vehicules as $vehicule)
+                                            <option value="{{$vehicule->id}}" >{{$vehicule->description}}-{{$vehicule->immatriculation}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

@@ -68,7 +68,7 @@
 
 
 <center style="text-align: center;">
-    <p style="font-size: 10; margin-top:20px;">
+    <p style="font-size: 10; margin-top:50px;">
             Reçu imprimé le {{$formattedDate}}
      </p>
 </center>

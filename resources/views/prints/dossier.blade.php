@@ -6,15 +6,15 @@
     th, td {
         padding: 10px;
         margin: 10px;
-        }
+    }
     #info table, th, td {
         border: 1px solid white;
         border-collapse: collapse;
         border-radius: 90px;
-        }
-        th, td {
+    }
+    th, td {
         background-color: #f4effd;
-        }
+    }
 </style>
 
 <center style="text-align: center;">

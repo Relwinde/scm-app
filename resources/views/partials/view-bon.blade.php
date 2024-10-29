@@ -52,6 +52,14 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-6 col-lg-4 col-md-4 ">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Client:</h4>
+                        <h1 class="mb-1 number-font" style="font-size: 17px;">{{$bon->dossier->client->nom ?? $bon->transport->client->nom ?? "AUTRES"}}</h1>
+                    </div>
+                </div>
+            </div>
             @can('Voir le total des dépenses du dossier')
                  @if ($bon->dossier != null || $bon->transport != null)
                     <div class="col-sm-6 col-lg-4 col-md-4 ">

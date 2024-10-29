@@ -8,7 +8,7 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Client<span class="required">*</span></label>
-                        <select required wire:model='client' name="client" class="form-control custom-select select2">
+                        <select @if ($isPartial) readonly disabled="" @endif required wire:model='client' name="client" class="form-control custom-select select2">
                             <option value="">Sélectionnez un client</option>
                             @foreach ($clients as $client)
                                 <option value="{{$client->id}}" >{{$client->nom}}</option>
@@ -17,7 +17,10 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de Commande<span class="required">*</span></label>
-                        <input required wire:model='num_commande' type="text" class="form-control" name="example-text-input" placeholder="N° de Commande">
+                        <input wire:keydown='checkPartial' required wire:model='num_commande' type="text" class="form-control" name="example-text-input" placeholder="N° de Commande">
+                        @if ($isPartial)
+                            <div class="error-message">Bon de commande trouvé: ce dossier sera un partiel</div>
+                        @endif
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Fournisseur<span class="required">*</span></label>
@@ -52,7 +55,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Bureau de douane<span class="required">*</span></label>
-                        <select required wire:model='bureau_de_douane' name="bureau_de_douane" class="form-control custom-select select2">
+                        <select @if ($isPartial) readonly disabled=""@endif  required wire:model='bureau_de_douane' name="bureau_de_douane" class="form-control custom-select select2">
                             <option value="" >Selectionnez un bureau de douane</option>
                             @foreach ($bureau_de_douanes as $bureau_de_douane)
                                 <option value="{{$bureau_de_douane->id}}" >{{$bureau_de_douane->nom}}</option>
@@ -64,7 +67,7 @@
                         <input required wire:model='num_lta_bl' type="text" class="form-control" name="example-text-input" placeholder="N° BL/LTA">
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Poids<span class="required">*</span></label>
+                        <label class="form-label">Poids (KG)<span class="required">*</span></label>
                         <input required wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control" name="example-text-input" placeholder="Poids">
                     </div>
                     <div class="mb-4">

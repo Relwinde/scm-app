@@ -7,7 +7,7 @@
         <h3 class="mb-0 card-title">Dossier N°: <b>{{$dossier->numero}}</b>&nbsp;&nbsp;</h3>
         @can('Voir le total des dépenses du dossier')
             <button wire:click="export" id="bAcep" type="button" class="btn btn-sm btn-outline-primary">
-            <span class="fa fa-file-excel-o"> </span>
+            <span class="fa fa-file-excel-o"></span>
             </button>
             <h3 class="card-title">Dépenses: <b>{{number_format($total_depenses, 2, '.', ' ')}} CFA</b></h3>&nbsp; &nbsp;
         @endcan
@@ -95,7 +95,7 @@
                         <input wire:model='num_lta_bl' type="text" class="form-control" @if($edit==false) readonly @endif>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Poids</label>
+                        <label class="form-label">Poids (KG)</label>
                         <input wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control " @if($edit==false) readonly @endif name="example-text-input">
                     </div>
                     <div class="mb-4">

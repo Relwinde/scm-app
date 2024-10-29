@@ -60,15 +60,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="mb-4">
-                                    <label class="form-label">Véhicule</label>
-                                    <select  @if ($edit==false) readonly disabled="" @endif wire:model='vehicule' name="country" id="select-countries" class="form-control custom-select select2">
-                                        <option ></option>
-                                        @foreach ($vehicules as $vehicule)
-                                            <option value="{{$vehicule->id}}" >{{$vehicule->immatriculation}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-4">
@@ -76,12 +68,12 @@
                                     <input wire:focusout='reformat_montant ()'  @if ($edit==false) readonly disabled="" @endif wire:model='montant' type="text" class="form-control" name="example-text-input" placeholder="">
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label">Type de transport</label>
-                                    <select  @if ($edit==false) readonly disabled="" @endif wire:model='type_transport' name="country" id="select-countries" class="form-control custom-select select2">
+                                    <label class="form-label">Véhicule</label>
+                                    <select  @if ($edit==false) readonly disabled="" @endif wire:model='vehicule' name="country" id="select-countries" class="form-control custom-select select2">
                                         <option ></option>
-                                        <option value="04" >Transport routier</option>
-                                        <option value="03" >Transport maritime</option>
-                                        <option value="02" >Transport aérien</option>
+                                        @foreach ($vehicules as $vehicule)
+                                            <option value="{{$vehicule->id}}" >{{$vehicule->immatriculation}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

@@ -21,6 +21,12 @@ class CreateDepot extends ModalComponent
     #[Validate('required', 'Renseignez un libellé pour effectuer le dépôt')]
     public $libelle;
 
+    #[Validate('required', 'Renseignez la banque de provénance pour effectuer le dépôt')]
+    public $banque;
+
+    #[Validate('required', 'Renseignez la banque de provénance pour effectuer le dépôt')]
+    public $ref_cheque;
+
     public function render()
     {
         return view('livewire.modals.create-depot', ['title'=>'Nouveau dépôt']);
@@ -36,6 +42,8 @@ class CreateDepot extends ModalComponent
             'deposant'=>$this->deposant,
             'montant'=>floatval(str_replace(' ', '',$this->montant)), 
             'libelle'=>$this->libelle,
+            'banque'=>$this->banque,
+            'ref_cheque'=>$this->ref_cheque,
             'user_id'=>Auth::user()->id
         ]);
 

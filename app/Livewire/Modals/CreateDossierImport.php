@@ -29,7 +29,7 @@ class CreateDossierImport extends ModalComponent
     public $num_lta_bl;
     public $num_t;
 
-
+    public $isPartial = false;
 
 
     public function render()
@@ -54,6 +54,7 @@ class CreateDossierImport extends ModalComponent
     }
 
     public function create(){
+
         $dossier=Dossier::make([
         'num_commande'=>$this->num_commande,
         'client_id'=>$this->client,
@@ -72,12 +73,19 @@ class CreateDossierImport extends ModalComponent
         'user_id'=>Auth::User()->id
         ]);
 
-        if(Dossier::latest()->first()==null){
+        if($this->isPartial){
+            $partialsNumber = Dossier::where('num_commande', $this->num_commande)->count();
+            $firstPartial = Dossier::where('num_commande', $this->num_commande)->first();
+            $numero = $firstPartial->numero."/PO".$partialsNumber;       
+        }else{
+            if(Dossier::latest()->first()==null){
 
-            $numero = "IM".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').'0001';
-        }else {
-            $numero = "IM".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
+                $numero = "IM".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').'0001';
+            }else{
+                $numero = "IM".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
+            }
         }
+        
 
         $dossier->numero = $numero;
 
@@ -104,5 +112,18 @@ class CreateDossierImport extends ModalComponent
 
     public function reformat_valeur_caf (){
         $this->valeur_caf = number_format(floatval( str_replace(' ', '',$this->valeur_caf)), 2, '.', ' ');
+    }
+
+    public function checkPartial (){
+        $partial = Dossier::where('num_commande', $this->num_commande)->first();
+
+        if($partial != null){
+            $this->isPartial = true;
+            $this->client = $partial->client_id;
+            $this->bureau_de_douane = $partial->bureau_de_douane_id;
+        } else {
+            $this->isPartial = false;
+            $this->reset(['client', 'bureau_de_douane']);
+        }
     }
 }
