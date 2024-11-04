@@ -28,7 +28,7 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Banque de provenance<span class="required">*</span></label>
-                        <input required wire:model='banque' type="text" class="form-control"  placeholder="Nom du déposant">
+                        <input required wire:model='banque' type="text" class="form-control"  placeholder="Banque de provenance des fonds">
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Référence du chèque<span class="required">*</span></label>
-                        <input required wire:model='ref_cheque' type="text" class="form-control"  placeholder="Nom du déposant">
+                        <input required wire:model='ref_cheque' type="text" class="form-control"  placeholder="Référence du chèque">
                     </div>
                 </div>
             </div>
