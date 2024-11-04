@@ -9,6 +9,7 @@ use App\Models\Marchandise;
 use App\Models\Observation;
 use App\Models\BureauDeDouane;
 use App\Models\DossierObservation;
+use App\Models\NumeroDossier;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 
@@ -67,8 +68,8 @@ class CreateDossierExport extends ModalComponent
         ]);
 
         if($this->isPartial){
-            $partialsNumber = Dossier::where('num_commande', $this->num_commande)->count();
-            $firstPartial = Dossier::where('num_commande', $this->num_commande)->first();
+            $partialsNumber = Dossier::where('num_commande', $this->num_commande)->where('type', 'EXPORT')->count();
+            $firstPartial = Dossier::where('num_commande', $this->num_commande)->where('type', 'EXPORT')->first();
             $numero = $firstPartial->numero."/PO".$partialsNumber;       
         }
         else {
@@ -91,6 +92,12 @@ class CreateDossierExport extends ModalComponent
                 ]);
             }
             $dossier->marchandises()->attach($this->marchandise);
+
+            NumeroDossier::create([
+                'dossier_id'=>$dossier->id,
+                'numero'=>$dossier->numero
+            ]);
+
             $this->dispatch('new-dossier');
             $this->reset();
         }else{
@@ -107,7 +114,7 @@ class CreateDossierExport extends ModalComponent
     }
 
     public function checkPartial (){
-        $partial = Dossier::where('num_commande', $this->num_commande)->first();
+        $partial = Dossier::where('num_commande', $this->num_commande)->Where('type', 'EXPORT')->first();
 
         if($partial != null){
             $this->isPartial = true;
@@ -115,7 +122,7 @@ class CreateDossierExport extends ModalComponent
             $this->bureau_de_douane = $partial->bureau_de_douane_id;
         } else {
             $this->isPartial = false;
-            $this->reset(['client', 'bureau_de_douane']);
+            // $this->reset(['client', 'bureau_de_douane']);
         }
     }
 }

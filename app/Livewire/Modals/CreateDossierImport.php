@@ -7,6 +7,7 @@ use App\Models\Dossier;
 use App\Models\Fournisseur;
 use App\Models\Marchandise;
 use App\Models\Observation;
+use App\Models\NumeroDossier;
 use App\Models\BureauDeDouane;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
@@ -74,8 +75,8 @@ class CreateDossierImport extends ModalComponent
         ]);
 
         if($this->isPartial){
-            $partialsNumber = Dossier::where('num_commande', $this->num_commande)->count();
-            $firstPartial = Dossier::where('num_commande', $this->num_commande)->first();
+            $partialsNumber = Dossier::where('num_commande', $this->num_commande)->where('type', 'IMPORT')->count();
+            $firstPartial = Dossier::where('num_commande', $this->num_commande)->where('type', 'IMPORT')->first();
             $numero = $firstPartial->numero."/PO".$partialsNumber;       
         }else{
             if(Dossier::latest()->first()==null){
@@ -99,6 +100,12 @@ class CreateDossierImport extends ModalComponent
                 ]);
             }
             $dossier->marchandises()->attach($this->marchandise);
+
+            NumeroDossier::create([
+                'dossier_id'=>$dossier->id,
+                'numero'=>$dossier->numero
+            ]);
+            
             $this->dispatch('new-dossier');
             $this->reset();
         }else{
@@ -115,7 +122,7 @@ class CreateDossierImport extends ModalComponent
     }
 
     public function checkPartial (){
-        $partial = Dossier::where('num_commande', $this->num_commande)->first();
+        $partial = Dossier::where('num_commande', $this->num_commande)->where('type', 'IMPORT')->first();
 
         if($partial != null){
             $this->isPartial = true;
@@ -123,7 +130,7 @@ class CreateDossierImport extends ModalComponent
             $this->bureau_de_douane = $partial->bureau_de_douane_id;
         } else {
             $this->isPartial = false;
-            $this->reset(['client', 'bureau_de_douane']);
+            // $this->reset(['client', 'bureau_de_douane']);
         }
     }
 }

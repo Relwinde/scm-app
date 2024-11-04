@@ -2,13 +2,14 @@
 
 namespace App\Livewire\Modals;
 
-use App\Exports\DossierDepenses;
 use App\Models\Client;
 use App\Models\Dossier;
 use Livewire\Component;
 use App\Models\Fournisseur;
 use App\Models\Marchandise;
+use App\Models\NumeroDossier;
 use App\Models\BureauDeDouane;
+use App\Exports\DossierDepenses;
 use LivewireUI\Modal\ModalComponent;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -89,12 +90,30 @@ class ViewDossier extends ModalComponent
         $this->dossier->num_declaration = $this->num_declaration;
         $this->dossier->valeur_caf =floatval( str_replace(' ', '',$this->valeur_caf));
 
-        if($this->dossier->save()){
+
+        if ($this->dossier->isDirty('bureau_de_douane_id')){
+            $this->dossier->updateNumero();
+            if($this->dossier->save()){
+                NumeroDossier::create([
+                    'dossier_id'=>$this->dossier->id,
+                    'numero'=>$this->dossier->numero
+                ]);
+                $this->dispatch('new-dossier');
+                $this->edit=false;
+            }else{
+                $this->dispatch('error');
+            }
+        } else {
+            if($this->dossier->save()){
+            
             $this->dispatch('new-dossier');
             $this->edit=false;
-        }else{
-            $this->dispatch('error');
+            }else{
+                $this->dispatch('error');
+            }
         }
+        
+        
     }
 
     public static function destroyOnClose(): bool

@@ -62,4 +62,19 @@ class Dossier extends Model
         return $this->hasMany(BonDeCaisse::class);
     }
 
+    public function updateNumero (){
+        switch($this->type){
+            case "IMPORT": 
+                $this->numero = "IM".BureauDeDouane::find($this->bureau_de_douane_id)->code.strtoupper(substr($this->client->code, 0, 3))."/".date('Y').str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
+                break;
+
+            case "EXPORT": 
+                $this->numero = "EX".BureauDeDouane::find($this->bureau_de_douane_id)->code.strtoupper(substr($this->client->code, 0, 3))."/".date('Y').str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
+                break;
+            
+            default;
+        }
+
+    }
+
 }
