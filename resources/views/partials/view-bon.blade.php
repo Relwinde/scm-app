@@ -5,15 +5,15 @@
         <h3 class="card-title">Position: <b>{{$bon->etape}}</b></h3>&nbsp; &nbsp;
         <div class="card-options">
             @if ($bon->etape == "EMETTEUR" && Auth::user()->id == $bon->user->id)
-                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer au responsable</a>
+                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm m-1">Envoyer au responsable</a>
             @elseif ($bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager'))
-                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer au manager</a>       
+                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm m-1">Envoyer au manager</a>       
             @elseif ($bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse au RAF'))
-                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer au RAF</a>
+                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm m-1">Envoyer au RAF</a>
             @elseif ($bon->etape == "RAF" && Auth::user()->can('Envoyer bon de caisse à la caisse'))
 
+            <div class="custom-controls-stacked">
                 <form wire:confirm="Souhaitez vous vraiment exécuter cette action?" wire:submit.prevent="nextStep">
-                    <div class="custom-controls-stacked">
                         <div class="row m-1 form-elements">
                             <div class="col">
                                 <label class="custom-control custom-radio">
@@ -28,22 +28,19 @@
                                 </label>
                             </div>
                         </div>
-                        <button href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer pour paiement</button>
-                    </div>
-                </form>
+                        <button href="javascript:void(0);" class="btn btn-primary btn-sm m-1">Envoyer pour paiement</button>
+                    </form>
+                </div>
             @elseif ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse'))
-                <a wire:click='nextStep' wire:confirm="Êtes vous sûr de vouloir payer ce bon, cette action iréversible impactera votre caisse"  href="javascript:void(0);" class="btn btn-danger btn-sm"><span class="fa fa-ticket"></span> Payer</a>
+                <a wire:click='nextStep' wire:confirm="Êtes vous sûr de vouloir payer ce bon, cette action iréversible impactera votre caisse"  href="javascript:void(0);" class="btn btn-danger btn-sm m-1"><span class="fa fa-ticket"></span> Payer</a>
             @elseif ($bon->etape == "PAYE" || $bon->etape == "CLOS" && Auth::user()->can('Payer bon de caisse'))
-                <a target="_blank"  href="{{route('print-bon', $bon->id)}}" class="btn btn-primary btn-sm">Imprimer le reçu</a>      
+                <a target="_blank"  href="{{route('print-bon', $bon->id)}}" class="btn btn-primary btn-sm m-1">Imprimer le reçu</a>      
             @endif
-            {{-- @if ($bon->etape != "PAYE")
-                <a href="javascript:void(0);" class="btn btn-secondary btn-sm ms-2">Retourner le bon</a>
-            @endif --}}
             @if ($bon->etape == "PAYE" && $bon->type_paiement == "ESPECE" && Auth::user()->can('Effectuer un ajustement de bon'))
-                <a wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.create-ajustement', arguments: { bon : {{ $bon->id }} }})" href="javascript:void(0);" class="btn btn-danger btn-sm ms-2"><span class="fa fa-ticket"></span> Ajuster le bon</a>      
+                <a wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.create-ajustement', arguments: { bon : {{ $bon->id }} }})" href="javascript:void(0);" class="btn btn-danger btn-sm m-1"><span class="fa fa-ticket"></span> Ajuster le bon</a>      
             @endif
             @if ($bon->etape == "PAYE" && Auth::user()->can('Clore un bon'))
-                <a wire:click="close" href="javascript:void(0);" class="btn btn-danger btn-sm ms-2" wire:confirm="Êtes vous sûr de vouloir clore ce bon, vous ne pourrez plus effectuer d'ajustement">Clore ce bon</a>      
+                <a wire:click="close" href="javascript:void(0);" class="btn btn-danger btn-sm m-1" wire:confirm="Êtes vous sûr de vouloir clore ce bon, vous ne pourrez plus effectuer d'ajustement">Clore ce bon</a>      
             @endif
         </div>
     </div>
@@ -57,14 +54,6 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="col-sm-6 col-lg-4 col-md-4 ">
-                <div class="card">
-                    <div class="card-body">
-                        <h4>Position: </h4>
-                        <h1 class="mb-1 number-font" style="font-size: 17px;">{{$bon->etape}}</h1>
-                    </div>
-                </div>
-            </div> --}}
             <div class="col-sm-6 col-lg-4 col-md-4 ">
                 <div class="card">
                     <div class="card-body">
@@ -88,11 +77,6 @@
                             <div class="card-body">
                                 <h4>Dépenses sur le dossier à ce jour: </h4>
                                 <h1 class="mb-1 number-font" style="font-size: 17px;">{{ $bon->dossier ? number_format($bon->dossier->bon_de_caisse()->where('etape', 'PAYE')->orWhere('etape', 'CLOS')->sum('montant_definitif'), 2, '.', ' ') : number_format($bon->transport->bon_de_caisse()->where('etape', 'PAYE')->orWhere('etape', 'CLOS')->sum('montant_definitif'), 2, '.', ' ') }} CFA</h1>
-                                {{-- <div class="progress progress-sm ">
-                                    <div class="progress-bar bg-primary @if ($bon->etape == "EMETTEUR")
-                                        w-10
-                                    @endif " role="progressbar"></div>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -158,6 +142,12 @@
         </div>
 
 
+    </div>
+
+    <div class="card-footer">
+        @if ($bon->etape != "PAYE" && $bon->etape != "PAYE" && $bon->etape != "EMETTEUR")
+                <a wire:click='backStep' wire:confirm="Souhaitez vous vraiment raméner le bon à l'étape précédente?"  href="javascript:void(0);" class="btn btn-secondary btn-sm m-1">Retourner le bon</a>
+        @endif
     </div>
 </div>
 

@@ -30,108 +30,39 @@ class ViewBon extends ModalComponent
             case "EMETTEUR": 
                 $this->bon->etape = "RESPONSABLE";
                 if ($this->bon->save()){
-                    EtapeBon::create([
-                        'etape_precedente'=>"EMETTEUR",
-                        'etape_actuelle'=>"RESPONSABLE",
-                        'montant'=>$this->bon->montant_definitif,
-                        'bon_de_caisse_id'=>$this->bon->id,
-                        'user_id'=>Auth::user()->id,
-                    ]);
+                    $this->createEtapeBon("EMETTEUR", "RESPONSABLE");
                 }
-                $this->dispatch('next-step');
             break;
 
             case "RESPONSABLE":
                 $this->bon->etape = "MANAGER";
                 if ($this->bon->save()){
-                    EtapeBon::create([
-                        'etape_precedente'=>"RESPONSABLE",
-                        'etape_actuelle'=>"MANAGER",
-                        'montant'=>$this->bon->montant_definitif,
-                        'bon_de_caisse_id'=>$this->bon->id,
-                        'user_id'=>Auth::user()->id,
-                    ]);
+                    $this->createEtapeBon("RESPONSABLE", "MANAGER");
                 }
-                $this->dispatch('next-step');
             break;
 
             case "MANAGER":
                 $this->bon->etape = "RAF";
                 if ($this->bon->save()){
-                    EtapeBon::create([
-                        'etape_precedente'=>"MANAGER",
-                        'etape_actuelle'=>"RAF",
-                        'montant'=>$this->bon->montant_definitif,
-                        'bon_de_caisse_id'=>$this->bon->id,
-                        'user_id'=>Auth::user()->id,
-                    ]);
+                    $this->createEtapeBon("MANAGER", "RAF");
                 }
-                $this->dispatch('next-step');
             break;
 
             case "RAF":
                 $this->bon->etape = "CAISSE";
                 $this->bon->type_paiement = $this->method;
                 if ($this->bon->save()){
-                    EtapeBon::create([
-                        'etape_precedente'=>"RAF",
-                        'etape_actuelle'=>"CAISSE",
-                        'montant'=>$this->bon->montant_definitif,
-                        'bon_de_caisse_id'=>$this->bon->id,
-                        'user_id'=>Auth::user()->id,
-                    ]);
+                    $this->createEtapeBon("RAF", "CAISSE");
                 }
-                $this->dispatch('next-step');
             break;
 
             case "CAISSE": 
                 if($this->bon->type_paiement == "ESPECE"){
-                    if ($this->bon->montant > Caisse::find(1)->solde){
-                        $this->dispatch('insufficient-funds');
-                        $this->closeModal();
-                    } else {
-                        $montantBon = $this->bon->montant_definitif;
-                        $caisse = Caisse::find(1);
-                        $soldeBefore = $caisse->solde;
-                        
-                        $caisse->solde = $caisse->solde - $montantBon;
-
-                        if($caisse->save()){
-                            SuiviCaisse::create([
-                                'bon_de_caisse_id'=>$this->bon->id,
-                                'solde_before'=>$soldeBefore,
-                                'montant'=>$montantBon,
-                                'solde_after'=>$caisse->solde,
-                                'user_id'=> Auth::user()->id
-                            ]);
-
-                            $this->bon->etape = "PAYE";
-
-                            if ($this->bon->save()){
-                                EtapeBon::create([
-                                    'etape_precedente'=>"CAISSE",
-                                    'etape_actuelle'=>"PAYE",
-                                    'montant'=>$this->bon->montant_definitif,
-                                    'bon_de_caisse_id'=>$this->bon->id,
-                                    'user_id'=>Auth::user()->id,
-                                ]);
-                            }
-                            
-                            $this->dispatch('operation-success');
-                        }
-
-                    }
+                    $this->cashPayment();
                 } else if ($this->bon->type_paiement == "CHEQUE"){
                     $this->bon->etape = "PAYE";
                     if ($this->bon->save()){
-                        EtapeBon::create([
-                            'etape_precedente'=>"CAISSE",
-                            'etape_actuelle'=>"PAYE",
-                            'montant'=>$this->bon->montant_definitif,
-                            'bon_de_caisse_id'=>$this->bon->id,
-                            'user_id'=>Auth::user()->id,
-                        ]);
-                        $this->dispatch('operation-success');
+                        $this->createEtapeBon("CAISSE", "PAYE");
                     }
                     
                 }
@@ -141,8 +72,80 @@ class ViewBon extends ModalComponent
         }
     }
 
-    public function sendToPay (){
+    public function backStep() {
+        switch ($this->bon->etape) {
+            case "CAISSE":
+                $this->bon->etape = "RAF";
+                $this->bon->type_paiement = null;  // Optionally reset payment type
+                if ($this->bon->save()) {
+                    $this->createEtapeBon("CAISSE", "RAF");
+                }
+                break;
+    
+            case "RAF":
+                $this->bon->etape = "MANAGER";
+                if ($this->bon->save()) {
+                    $this->createEtapeBon("RAF", "MANAGER");
+                }
+                break;
+    
+            case "MANAGER":
+                $this->bon->etape = "RESPONSABLE";
+                if ($this->bon->save()) {
+                    $this->createEtapeBon("MANAGER", "RESPONSABLE");
+                }
+                break;
+    
+            case "RESPONSABLE":
+                $this->bon->etape = "EMETTEUR";
+                if ($this->bon->save()) {
+                    $this->createEtapeBon("RESPONSABLE", "EMETTEUR");
+                }
+                break;
+        }
+    }    
 
+    private function createEtapeBon($previous, $current) {
+        EtapeBon::create([
+            'etape_precedente' => $previous,
+            'etape_actuelle' => $current,
+            'montant' => $this->bon->montant_definitif,
+            'bon_de_caisse_id' => $this->bon->id,
+            'user_id' => Auth::user()->id,
+        ]);
+        $this->dispatch('next-step');
+    }
+
+
+    private function cashPayment (){
+        if ($this->bon->montant > Caisse::find(1)->solde){
+            $this->dispatch('insufficient-funds');
+            $this->closeModal();
+        } else {
+            $montantBon = $this->bon->montant_definitif;
+            $caisse = Caisse::find(1);
+            $soldeBefore = $caisse->solde;
+            
+            $caisse->solde = $caisse->solde - $montantBon;
+
+            if($caisse->save()){
+                SuiviCaisse::create([
+                    'bon_de_caisse_id'=>$this->bon->id,
+                    'solde_before'=>$soldeBefore,
+                    'montant'=>$montantBon,
+                    'solde_after'=>$caisse->solde,
+                    'user_id'=> Auth::user()->id
+                ]);
+
+                $this->bon->etape = "PAYE";
+
+                if ($this->bon->save()){
+                    $this->createEtapeBon("CAISSE", "PAYE");
+                }
+                
+            }
+
+        }
     }
 
     public function close (){
@@ -165,4 +168,7 @@ class ViewBon extends ModalComponent
     {
         return true;
     }
+
+    
+    
 }
