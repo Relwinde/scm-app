@@ -30,21 +30,21 @@ class ViewBon extends ModalComponent
             case "EMETTEUR": 
                 $this->bon->etape = "RESPONSABLE";
                 if ($this->bon->save()){
-                    $this->createEtapeBon("EMETTEUR", "RESPONSABLE");
+                    $this->createEtapeBon("EMETTEUR", "RESPONSABLE", 'next-step');
                 }
             break;
 
             case "RESPONSABLE":
                 $this->bon->etape = "MANAGER";
                 if ($this->bon->save()){
-                    $this->createEtapeBon("RESPONSABLE", "MANAGER");
+                    $this->createEtapeBon("RESPONSABLE", "MANAGER", 'next-step');
                 }
             break;
 
             case "MANAGER":
                 $this->bon->etape = "RAF";
                 if ($this->bon->save()){
-                    $this->createEtapeBon("MANAGER", "RAF");
+                    $this->createEtapeBon("MANAGER", "RAF", 'next-step');
                 }
             break;
 
@@ -52,7 +52,7 @@ class ViewBon extends ModalComponent
                 $this->bon->etape = "CAISSE";
                 $this->bon->type_paiement = $this->method;
                 if ($this->bon->save()){
-                    $this->createEtapeBon("RAF", "CAISSE");
+                    $this->createEtapeBon("RAF", "CAISSE", 'next-step');
                 }
             break;
 
@@ -62,7 +62,7 @@ class ViewBon extends ModalComponent
                 } else if ($this->bon->type_paiement == "CHEQUE"){
                     $this->bon->etape = "PAYE";
                     if ($this->bon->save()){
-                        $this->createEtapeBon("CAISSE", "PAYE");
+                        $this->createEtapeBon("CAISSE", "PAYE", 'next-step');
                     }
                     
                 }
@@ -78,34 +78,34 @@ class ViewBon extends ModalComponent
                 $this->bon->etape = "RAF";
                 $this->bon->type_paiement = null;  // Optionally reset payment type
                 if ($this->bon->save()) {
-                    $this->createEtapeBon("CAISSE", "RAF");
+                    $this->createEtapeBon("CAISSE", "RAF", 'back-step');
                 }
                 break;
     
             case "RAF":
                 $this->bon->etape = "MANAGER";
                 if ($this->bon->save()) {
-                    $this->createEtapeBon("RAF", "MANAGER");
+                    $this->createEtapeBon("RAF", "MANAGER", 'back-step');
                 }
                 break;
     
             case "MANAGER":
                 $this->bon->etape = "RESPONSABLE";
                 if ($this->bon->save()) {
-                    $this->createEtapeBon("MANAGER", "RESPONSABLE");
+                    $this->createEtapeBon("MANAGER", "RESPONSABLE", 'back-step');
                 }
                 break;
     
             case "RESPONSABLE":
                 $this->bon->etape = "EMETTEUR";
                 if ($this->bon->save()) {
-                    $this->createEtapeBon("RESPONSABLE", "EMETTEUR");
+                    $this->createEtapeBon("RESPONSABLE", "EMETTEUR", 'back-step');
                 }
                 break;
         }
     }    
 
-    private function createEtapeBon($previous, $current) {
+    private function createEtapeBon($previous, $current, $event) {
         EtapeBon::create([
             'etape_precedente' => $previous,
             'etape_actuelle' => $current,
@@ -113,7 +113,7 @@ class ViewBon extends ModalComponent
             'bon_de_caisse_id' => $this->bon->id,
             'user_id' => Auth::user()->id,
         ]);
-        $this->dispatch('next-step');
+        $this->dispatch($event);
     }
 
 

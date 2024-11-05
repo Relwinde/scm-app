@@ -145,8 +145,10 @@
     </div>
 
     <div class="card-footer">
-        @if ($bon->etape != "PAYE" && $bon->etape != "PAYE" && $bon->etape != "EMETTEUR")
-                <a wire:click='backStep' wire:confirm="Souhaitez vous vraiment raméner le bon à l'étape précédente?"  href="javascript:void(0);" class="btn btn-secondary btn-sm m-1">Retourner le bon</a>
+        @if (($bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager')) || ($bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse au RAF')) || ($bon->etape == "RAF" && Auth::user()->can('Envoyer bon de caisse à la caisse')) || ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse')))
+            <a wire:click='backStep' wire:confirm="Souhaitez vous vraiment raméner le bon à l'étape précédente?"  href="javascript:void(0);" class="btn btn-secondary btn-sm m-1">
+                        Retourner le bon  
+                    </a>
         @endif
     </div>
 </div>
@@ -179,6 +181,16 @@
                     return $.growl({
                         title: "Succès :",
                         message: "Le bon a été envoyé à la prochaine étape"
+                    });
+                });
+            }).call(this);
+        });
+        $wire.on('back-step', () => {
+            (function () {
+                $(function () {
+                    return $.growl({
+                        title: "Succès :",
+                        message: "Le bon a été renvoyé à l'étape précédente"
                     });
                 });
             }).call(this);
