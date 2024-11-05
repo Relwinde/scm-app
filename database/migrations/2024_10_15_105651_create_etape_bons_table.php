@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('etape_bons', function (Blueprint $table) {
             $table->id();
-            $table->enum('etape_precedente', ['EMETTEUR', 'RESPONSABLE', 'MANAGER', 'CAISSE', 'PAYE','CLOS'])->default('EMETTEUR');
-            $table->enum('etape_actuelle', ['EMETTEUR', 'RESPONSABLE', 'MANAGER', 'CAISSE', 'PAYE','CLOS'])->default('EMETTEUR');
+            $table->enum('etape_precedente', ['EMETTEUR', 'RESPONSABLE', 'MANAGER', 'RAF', 'CAISSE', 'PAYE', 'CLOS'])->default('EMETTEUR');
+            $table->enum('etape_actuelle', ['EMETTEUR', 'RESPONSABLE', 'MANAGER', 'RAF', 'CAISSE', 'PAYE', 'CLOS'])->default('EMETTEUR');
             $table->foreignId('bon_de_caisse_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();

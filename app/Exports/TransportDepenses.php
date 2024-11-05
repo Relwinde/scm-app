@@ -27,6 +27,7 @@ class TransportDepenses implements FromCollection,  ShouldAutoSize, WithHeadings
             'bon_de_caisses.depense',
             'bon_de_caisses.montant_definitif',
             'users.name',
+            'bon_de_caisses.type_paiement',
             'bon_de_caisses.created_at'
         ])
         ->join('transport_internes', 'bon_de_caisses.transport_interne_id', '=', 'transport_internes.id')
@@ -49,6 +50,6 @@ class TransportDepenses implements FromCollection,  ShouldAutoSize, WithHeadings
 
     public function headings(): array
     {
-        return ["N° de bon", "Dépenses", "Montant (CFA)", "Emetteur", "Date"];
+        return ["N° de bon", "Dépenses", "Montant (CFA)", "Emetteur", "Mode de paiement", "Date"];
     }
 }

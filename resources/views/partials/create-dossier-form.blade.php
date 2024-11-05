@@ -8,7 +8,7 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Client<span class="required">*</span></label>
-                        <select @if ($isPartial) readonly disabled="" @endif required wire:model='client' name="client" class="form-control custom-select select2">
+                        <select @if ($isPartial) readonly disabled="" @endif required wire:model='client' name="client" class="form-control">
                             <option value="">Sélectionnez un client</option>
                             @foreach ($clients as $client)
                                 <option value="{{$client->id}}" >{{$client->nom}}</option>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Nature du colis<span class="required">*</span></label>
-                        <select required wire:model='marchandise' name="country" id="select-countries" class="form-control custom-select select2">
+                        <select required wire:model='marchandise' class="form-control">
                             <option value="">Sélectionnez une marchandise</option>
                             @foreach ($marchandises as $marchandise)
                                 <option value="{{$marchandise->id}}" >{{$marchandise->nom}}</option>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Bureau de douane<span class="required">*</span></label>
-                        <select @if ($isPartial) readonly disabled=""@endif  required wire:model='bureau_de_douane' name="bureau_de_douane" class="form-control custom-select select2">
+                        <select required wire:model='bureau_de_douane' name="bureau_de_douane" class="form-control custom-select select2">
                             <option value="" >Selectionnez un bureau de douane</option>
                             @foreach ($bureau_de_douanes as $bureau_de_douane)
                                 <option value="{{$bureau_de_douane->id}}" >{{$bureau_de_douane->nom}}</option>

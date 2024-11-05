@@ -28,6 +28,7 @@ class Caisse extends Component
             'bon_de_caisses.montant_definitif',
             'bon_de_caisses.depense',
             'bon_de_caisses.etape',
+            'bon_de_caisses.type_paiement',
             'bon_de_caisses.rejected',
             'bon_de_caisses.dossier_id',
             'transport_interne_id',

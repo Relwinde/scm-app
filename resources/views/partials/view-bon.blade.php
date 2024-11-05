@@ -7,9 +7,30 @@
             @if ($bon->etape == "EMETTEUR" && Auth::user()->id == $bon->user->id)
                 <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer au responsable</a>
             @elseif ($bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager'))
-                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer au manager</a>      
-            @elseif ($bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse à la caisse'))
-                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer à la caisse</a>
+                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer au manager</a>       
+            @elseif ($bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse au RAF'))
+                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer au RAF</a>
+            @elseif ($bon->etape == "RAF" && Auth::user()->can('Envoyer bon de caisse à la caisse'))
+
+                <form wire:confirm="Souhaitez vous vraiment exécuter cette action?" wire:submit.prevent="nextStep">
+                    <div class="custom-controls-stacked">
+                        <div class="row m-1 form-elements">
+                            <div class="col">
+                                <label class="custom-control custom-radio">
+                                    <input wire:model='method' required type="radio" class="custom-control-input" name="method" value="ESPECE">
+                                    <span style="color: black;" class="custom-control-label">Espèces</span>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="custom-control custom-radio">
+                                    <input wire:model='method' required type="radio" class="custom-control-input" name="method" value="CHEQUE">
+                                    <span style="color: black;" class="custom-control-label">Chèque</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button href="javascript:void(0);" class="btn btn-primary btn-sm">Envoyer pour paiement</button>
+                    </div>
+                </form>
             @elseif ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse'))
                 <a wire:click='nextStep' wire:confirm="Êtes vous sûr de vouloir payer ce bon, cette action iréversible impactera votre caisse"  href="javascript:void(0);" class="btn btn-danger btn-sm"><span class="fa fa-ticket"></span> Payer</a>
             @elseif ($bon->etape == "PAYE" || $bon->etape == "CLOS" && Auth::user()->can('Payer bon de caisse'))
@@ -18,7 +39,7 @@
             {{-- @if ($bon->etape != "PAYE")
                 <a href="javascript:void(0);" class="btn btn-secondary btn-sm ms-2">Retourner le bon</a>
             @endif --}}
-            @if ($bon->etape == "PAYE" && Auth::user()->can('Effectuer un ajustement de bon'))
+            @if ($bon->etape == "PAYE" && $bon->type_paiement == "ESPECE" && Auth::user()->can('Effectuer un ajustement de bon'))
                 <a wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.create-ajustement', arguments: { bon : {{ $bon->id }} }})" href="javascript:void(0);" class="btn btn-danger btn-sm ms-2"><span class="fa fa-ticket"></span> Ajuster le bon</a>      
             @endif
             @if ($bon->etape == "PAYE" && Auth::user()->can('Clore un bon'))
@@ -83,7 +104,22 @@
                     <div class="card">
                         <div class="card-body">
                             <h4>Poids: </h4>
-                            <h1 class="mb-1 number-font" style="font-size: 17px;">{{$bon->dossier ? number_format($bon->dossier->poids, 2, '.', ' ') : number_format($bon->transport->bon_de_caisse()->where('etape', 'PAYE')->sum('montant_definitif'), 2, '.', ' ')}} KG</h1>
+                            <h1 class="mb-1 number-font" style="font-size: 17px;">{{number_format($bon->dossier->poids, 2, '.', ' ')}} KG</h1>
+                            {{-- <div class="progress progress-sm ">
+                                <div class="progress-bar bg-primary @if ($bon->etape == "EMETTEUR")
+                                    w-10
+                                @endif " role="progressbar"></div>
+                            </div> --}}
+                        </div>
+                    </div>
+                </div>
+            @endif
+            @if ($bon->type_paiement != null)
+                <div class="col-sm-6 col-lg-4 col-md-4 ">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Mode de règlement: </h4>
+                            <h1 class="mb-1 number-font" style="font-size: 17px;">{{$bon->type_paiement}}</h1>
                             {{-- <div class="progress progress-sm ">
                                 <div class="progress-bar bg-primary @if ($bon->etape == "EMETTEUR")
                                     w-10

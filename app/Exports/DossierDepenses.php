@@ -27,6 +27,7 @@ class DossierDepenses implements FromCollection, ShouldAutoSize, WithHeadings
             'bon_de_caisses.depense',
             'bon_de_caisses.montant_definitif',
             'users.name',
+            'bon_de_caisses.type_paiement',
             'bon_de_caisses.created_at'
         ])
         ->join('dossiers', 'bon_de_caisses.dossier_id', '=', 'dossiers.id')
@@ -52,6 +53,6 @@ class DossierDepenses implements FromCollection, ShouldAutoSize, WithHeadings
 
     public function headings(): array
     {
-        return ["N° de bon", "Dépenses", "Montant (CFA)", "Emetteur", "Date"];
+        return ["N° de bon", "Dépenses", "Montant (CFA)", "Emetteur", "Mode de paiement", "Date"];
     }
 }

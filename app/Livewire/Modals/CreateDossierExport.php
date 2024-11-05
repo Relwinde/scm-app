@@ -67,19 +67,13 @@ class CreateDossierExport extends ModalComponent
         'user_id'=>Auth::User()->id
         ]);
 
-        if($this->isPartial){
-            $partialsNumber = Dossier::where('num_commande', $this->num_commande)->where('type', 'EXPORT')->count();
-            $firstPartial = Dossier::where('num_commande', $this->num_commande)->where('type', 'EXPORT')->first();
-            $numero = $firstPartial->numero."/PO".$partialsNumber;       
+        
+        if(Dossier::latest()->first()==null){
+            $numero = "EX".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').'0001';
+        }else{
+            $numero = "EX".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
         }
-        else {
-            if(Dossier::latest()->first()==null){
-                $numero = "EX".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').'0001';
-            }else{
-                $numero = "EX".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
-            }
-        }
-
+        
 
         $dossier->numero = $numero;
 
@@ -119,7 +113,6 @@ class CreateDossierExport extends ModalComponent
         if($partial != null){
             $this->isPartial = true;
             $this->client = $partial->client_id;
-            $this->bureau_de_douane = $partial->bureau_de_douane_id;
         } else {
             $this->isPartial = false;
             // $this->reset(['client', 'bureau_de_douane']);

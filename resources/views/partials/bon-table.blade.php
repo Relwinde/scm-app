@@ -39,6 +39,9 @@
                             @case("MANAGER")
                                 <span class="badge bg-success ms-3 px-5">Manager</span>
                                 @break
+                            @case("RAF")
+                                <span class="badge bg-success ms-3 px-5">Responsable finance</span>
+                                @break
                             @case("CAISSE")
                                 <span class="badge bg-success ms-3 px-5">Caisse</span>
                                 @break
