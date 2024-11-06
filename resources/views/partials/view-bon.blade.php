@@ -145,7 +145,7 @@
     </div>
 
     <div class="card-footer">
-        @if (($bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager')) || ($bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse au RAF')) || ($bon->etape == "RAF" && Auth::user()->can('Envoyer bon de caisse à la caisse')) || ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse')))
+        @if (($bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager') && Auth::user()->can('Retourner bon de caisse')) || ($bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse au RAF') && Auth::user()->can('Retourner bon de caisse')) || ($bon->etape == "RAF" && Auth::user()->can('Envoyer bon de caisse à la caisse') && Auth::user()->can('Retourner bon de caisse')) || ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse') && Auth::user()->can('Retourner bon de caisse')))
             <a wire:click='backStep' wire:confirm="Souhaitez vous vraiment raméner le bon à l'étape précédente?"  href="javascript:void(0);" class="btn btn-secondary btn-sm m-1">
                         Retourner le bon  
                     </a>

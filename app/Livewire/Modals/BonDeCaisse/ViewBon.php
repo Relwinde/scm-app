@@ -65,9 +65,8 @@ class ViewBon extends ModalComponent
                         $this->createEtapeBon("CAISSE", "PAYE", 'next-step');
                     }
                     
-                }
-                
-                
+                } 
+            break;
 
         }
     }
