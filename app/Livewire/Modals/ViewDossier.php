@@ -45,7 +45,7 @@ class ViewDossier extends ModalComponent
         $this->num_exo = $this->dossier->num_exo;
         $this->num_lta_bl = $this->dossier->num_lta_bl;
         $this->num_t = $this->dossier->num_t;
-        $this->nombre_colis = $this->dossier->nombre_colis;
+        $this->nombre_colis = number_format($this->dossier->nombre_colis, 2, '.', ' ');
         $this->poids = number_format($this->dossier->poids, 2, '.', ' ');
         $this->num_declaration = $this->dossier->num_declaration;
         $this->valeur_caf = number_format($this->dossier->valeur_caf, 2, '.', ' ');
@@ -85,13 +85,13 @@ class ViewDossier extends ModalComponent
         $this->dossier->num_exo = $this->num_exo;
         $this->dossier->num_lta_bl = $this->num_lta_bl;
         $this->dossier->num_t = $this->num_t;
-        $this->dossier->nombre_colis = $this->nombre_colis;
+        $this->dossier->nombre_colis = floatval(str_replace(' ', '', $this->nombre_colis));
         $this->dossier->poids = floatval( str_replace(' ', '',$this->poids));
         $this->dossier->num_declaration = $this->num_declaration;
         $this->dossier->valeur_caf =floatval( str_replace(' ', '',$this->valeur_caf));
 
 
-        if ($this->dossier->isDirty('bureau_de_douane_id')){
+        if ($this->dossier->isDirty('bureau_de_douane_id') || $this->dossier->isDirty('client_id')){
             $this->dossier->updateNumero();
             if($this->dossier->save()){
                 NumeroDossier::create([
@@ -127,6 +127,10 @@ class ViewDossier extends ModalComponent
 
     public function reformat_valeur_caf (){
         $this->valeur_caf = number_format(floatval( str_replace(' ', '',$this->valeur_caf)), 2, '.', ' ');
+    }
+
+    public function reformat_nombre_colis (){
+        $this->nombre_colis = number_format(floatval( str_replace(' ', '',$this->nombre_colis)), 2, '.', ' ');
     }
 
     public function export (){

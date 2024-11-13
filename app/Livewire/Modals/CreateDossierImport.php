@@ -66,7 +66,7 @@ class CreateDossierImport extends ModalComponent
         'num_t'=>$this->num_t,
         'num_declaration'=>$this->num_declaration,
         'valeur_caf'=>floatval(str_replace(' ', '',$this->valeur_caf)),
-        'nombre_colis'=>$this->nombre_colis,
+        'nombre_colis'=>floatval(str_replace(' ', '',$this->nombre_colis)),
         'poids'=>floatval(str_replace(' ', '',$this->poids)),
         'fournisseur'=>$this->fournisseur,
         'bureau_de_douane_id'=>$this->bureau_de_douane,
@@ -79,7 +79,14 @@ class CreateDossierImport extends ModalComponent
 
             $numero = "IM".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').'0001';
         }else{
-            $numero = "IM".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
+            $ordre = Dossier::latest()->first()->id+1;
+
+            do {
+                $numero = "IM".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
+
+                $ordre++;
+                $pattern = explode('/', $numero)[1];
+            } while (NumeroDossier::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);
         }
         
 
@@ -114,6 +121,10 @@ class CreateDossierImport extends ModalComponent
 
     public function reformat_valeur_caf (){
         $this->valeur_caf = number_format(floatval( str_replace(' ', '',$this->valeur_caf)), 2, '.', ' ');
+    }
+
+    public function reformat_nombre_colis (){
+        $this->nombre_colis = number_format(floatval( str_replace(' ', '',$this->nombre_colis)), 2, '.', ' ');
     }
 
     public function checkPartial (){

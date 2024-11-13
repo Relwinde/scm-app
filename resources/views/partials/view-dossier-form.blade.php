@@ -79,7 +79,7 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Nombre de colis</label>
-                        <input wire:model='nombre_colis' type="number" class="form-control" @if($edit==false) readonly @endif >
+                        <input wire:focusout='reformat_nombre_colis()' wire:model='nombre_colis' type="text" class="form-control" @if($edit==false) readonly @endif >
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Bureau de douane</label>

@@ -49,12 +49,6 @@ class ClientSeeder extends Seeder
         ]);
 
         Client::create([
-            'nom'=> 'SEMAFO BURKINA',
-            'code'=>'SEMBF',
-            'ifu' => '00009763S'
-        ]);
-
-        Client::create([
             'nom'=> 'ASECNA',
             'code'=>'ASE',
             'ifu' => '00008341W'

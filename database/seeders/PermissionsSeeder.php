@@ -126,8 +126,6 @@ class PermissionsSeeder extends Seeder
             $caissier->givePermissionTo($permission);
             $raf->givePermissionTo($permission);
 
-        
-
 
 
 

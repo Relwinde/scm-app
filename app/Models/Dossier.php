@@ -65,11 +65,25 @@ class Dossier extends Model
     public function updateNumero (){
         switch($this->type){
             case "IMPORT": 
-                $this->numero = "IM".BureauDeDouane::find($this->bureau_de_douane_id)->code.strtoupper(substr($this->client->code, 0, 3))."/".date('Y').str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
+                $ordre = Dossier::latest()->first()->id+1;
+                do {
+                    $numero = "IM".BureauDeDouane::find($this->bureau_de_douane_id)->code.strtoupper(substr($this->client->code, 0, 3))."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
+                    $ordre++;
+                    $pattern = explode('/', $numero)[1];
+                } while (NumeroDossier::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);
+                
+                $this->numero = $numero;
                 break;
 
             case "EXPORT": 
-                $this->numero = "EX".BureauDeDouane::find($this->bureau_de_douane_id)->code.strtoupper(substr($this->client->code, 0, 3))."/".date('Y').str_pad(Dossier::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
+                $ordre = Dossier::latest()->first()->id+1;
+                do {
+                    $numero = "EX".BureauDeDouane::find($this->bureau_de_douane_id)->code.strtoupper(substr($this->client->code, 0, 3))."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
+                    $ordre++;
+                    $pattern = explode('/', $numero)[1];
+                } while (NumeroDossier::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);
+
+                $this->numero = $numero;
                 break;
             
             default;

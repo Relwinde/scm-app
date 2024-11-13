@@ -17,18 +17,18 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de Commande<span class="required">*</span></label>
-                        <input wire:keydown='checkPartial' wire:focusout='checkPartial' wire:focus='checkPartial' wire:paste='checkPartial' required wire:model='num_commande' type="text" class="form-control" name="example-text-input" placeholder="N° de Commande">
+                        <input wire:keydown='checkPartial' wire:focusout='checkPartial' wire:focus='checkPartial' wire:paste='checkPartial' required wire:model='num_commande' type="text" class="form-control" placeholder="N° de Commande">
                         @if ($isPartial)
                             <div class="error-message">Bon de commande trouvé: ce dossier sera un partiel</div>
                         @endif
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Fournisseur<span class="required">*</span></label>
-                        <input required wire:model='fournisseur' type="text" class="form-control" name="example-text-input" placeholder="Fournisseur">
+                        <input required wire:model='fournisseur' type="text" class="form-control" placeholder="Fournisseur">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de Facture</label>
-                        <input wire:model='num_facture' type="text" class="form-control" name="example-text-input" placeholder="N° de Facture">
+                        <input wire:model='num_facture' type="text" class="form-control" placeholder="N° de Facture">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Nature du colis<span class="required">*</span></label>
@@ -41,17 +41,17 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° SYLVIE</label>
-                        <input wire:model='num_sylvie' type="text" class="form-control" name="example-text-input" placeholder="N° SYLVIE">
+                        <input wire:model='num_sylvie' type="text" class="form-control" placeholder="N° SYLVIE">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de décision EXO</label>
-                        <input wire:model='num_exo' type="text" class="form-control" name="example-text-input" placeholder="N° de décision EXO">
+                        <input wire:model='num_exo' type="text" class="form-control" placeholder="N° de décision EXO">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Nombre de colis</label>
-                        <input wire:model='nombre_colis' type="number" class="form-control" name="example-text-input" placeholder="Nombre de colis">
+                        <input wire:focusout='reformat_nombre_colis()' wire:model='nombre_colis' type="text" class="form-control" placeholder="Nombre de colis">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Bureau de douane<span class="required">*</span></label>
@@ -64,29 +64,29 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° BL/LTA<span class="required">*</span></label>
-                        <input required wire:model='num_lta_bl' type="text" class="form-control" name="example-text-input" placeholder="N° BL/LTA">
+                        <input required wire:model='num_lta_bl' type="text" class="form-control" placeholder="N° BL/LTA">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Poids (KG)<span class="required">*</span></label>
-                        <input required wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control" name="example-text-input" placeholder="Poids">
+                        <input required wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control" placeholder="Poids">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de déclaration</label>
-                        <input wire:model='num_declaration' type="text" class="form-control" name="example-text-input" placeholder="N° de déclaration">
+                        <input wire:model='num_declaration' type="text" class="form-control" placeholder="N° de déclaration">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Valeur CAF</label>
-                        <input wire:focusout='reformat_valeur_caf()' wire:model='valeur_caf' type="text" class="form-control" name="example-text-input" placeholder="Valeur CAF">
+                        <input wire:focusout='reformat_valeur_caf()' wire:model='valeur_caf' type="text" class="form-control" placeholder="Valeur CAF">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Numéro de T1</label>
-                        <input wire:model='num_t' type="text" class="form-control" name="example-text-input" placeholder="N° de T1">
+                        <input wire:model='num_t' type="text" class="form-control" placeholder="N° de T1">
                     </div>
                 </div>
                 <div class="col-md-12 ">
                     <div class="mb-0">
                         <label class="form-label">Commentaire</label>
-                        <textarea wire:model='observation' class="form-control" name="example-textarea-input" rows="2" placeholder="text here.."></textarea>
+                        <textarea wire:model='observation' class="form-control" rows="2" placeholder="text here.."></textarea>
                     </div>
                 </div>
             </div>

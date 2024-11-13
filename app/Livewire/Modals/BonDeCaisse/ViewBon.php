@@ -139,7 +139,7 @@ class ViewBon extends ModalComponent
                 $this->bon->etape = "PAYE";
 
                 if ($this->bon->save()){
-                    $this->createEtapeBon("CAISSE", "PAYE");
+                    $this->createEtapeBon("CAISSE", "PAYE", 'operation-success');
                 }
                 
             }
