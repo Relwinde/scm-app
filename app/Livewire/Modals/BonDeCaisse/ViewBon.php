@@ -18,7 +18,10 @@ class ViewBon extends ModalComponent
     #[Validate('required')]
     public $method;
 
+    public $viewComments = false;
+
     #[On('new-ajustement')]
+    #[On('new-status')]
     public function render()
     {
 
@@ -70,39 +73,6 @@ class ViewBon extends ModalComponent
 
         }
     }
-
-    public function backStep() {
-        switch ($this->bon->etape) {
-            case "CAISSE":
-                $this->bon->etape = "RAF";
-                $this->bon->type_paiement = null;  // Optionally reset payment type
-                if ($this->bon->save()) {
-                    $this->createEtapeBon("CAISSE", "RAF", 'back-step');
-                }
-                break;
-    
-            case "RAF":
-                $this->bon->etape = "MANAGER";
-                if ($this->bon->save()) {
-                    $this->createEtapeBon("RAF", "MANAGER", 'back-step');
-                }
-                break;
-    
-            case "MANAGER":
-                $this->bon->etape = "RESPONSABLE";
-                if ($this->bon->save()) {
-                    $this->createEtapeBon("MANAGER", "RESPONSABLE", 'back-step');
-                }
-                break;
-    
-            case "RESPONSABLE":
-                $this->bon->etape = "EMETTEUR";
-                if ($this->bon->save()) {
-                    $this->createEtapeBon("RESPONSABLE", "EMETTEUR", 'back-step');
-                }
-                break;
-        }
-    }    
 
     private function createEtapeBon($previous, $current, $event) {
         EtapeBon::create([
@@ -167,7 +137,7 @@ class ViewBon extends ModalComponent
     {
         return true;
     }
-
     
+
     
 }

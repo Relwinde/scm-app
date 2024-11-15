@@ -45,6 +45,27 @@
         </div>
     </div>
     <div class="card-body">
+        <div class="row m-2">
+            @if ($bon->commentaires->count() > 0)
+                <div class="custom-controls-stacked">
+                    <label class="custom-control custom-checkbox">
+                        <input wire:model.live='viewComments' type="checkbox" class="custom-control-input">
+                        <span class="custom-control-label">Commentaires de retour</span>
+                    </label>
+                </div>
+
+                @if ($viewComments == true)
+                    @foreach ($bon->commentaires as $comment)
+                        <div class="alert alert-primary" >   
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>{{$comment->user->name}}: <br> {{$comment->content}} <br> <span>{{strftime("%e %B %Y %H:%M", strtotime($comment->created_at));}} -- {{$comment->etape}}</span>
+                        </div>
+                    @endforeach
+                @endif
+
+            @endif
+            
+            
+        </div>
         <div class="row">
             <div class="col-sm-6 col-lg-4 col-md-4 ">
                 <div class="card">
@@ -117,36 +138,39 @@
 
         <hr>
 
-        <div class="card m-b-20">
-            <div class="card-header">
-                <h3 class="card-title">Ajustements (Montant initial: {{number_format($bon->montant, 2, '.', ' ')}} CFA): </h3>
-                <div class="card-options">
-                    {{-- <a href="javascript:void(0);" class="btn btn-primary btn-sm">Ajouter un commentaire</a> --}}
-                    <a href="javascript:void(0);" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="visitor-list">
-                    <div class="m-0 mt-0 pb-2 border-bottom align-items-center">
-                       
-                        @foreach ($bon->ajustements as $ajustement)
-                            <div class="">
-                                <a href="javascript:void(0);" class="text-default fw-semibold"> {{number_format($ajustement->montant, 2, '.', ' ')}} CFA</a>
-                                <p class="text-muted mb-0">{{$ajustement->type}} :  {{$ajustement->libelle}}, {{ strftime("%e %B %Y", strtotime($ajustement->created_at)); }}</p>
-                            </div>
-                        @endforeach
-                       
+        @if ($bon->ajustements->count() > 0)
+            <div class="card m-b-20">
+                <div class="card-header">
+                    <h3 class="card-title">Ajustements (Montant initial: {{number_format($bon->montant, 2, '.', ' ')}} CFA): </h3>
+                    <div class="card-options">
+                        {{-- <a href="javascript:void(0);" class="btn btn-primary btn-sm">Ajouter un commentaire</a> --}}
+                        <a href="javascript:void(0);" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
                     </div>
                 </div>
+                <div class="card-body">
+                        <div class="visitor-list">
+                            <div class="m-0 mt-0 pb-2 border-bottom align-items-center">
+                            
+                                @foreach ($bon->ajustements as $ajustement)
+                                    <div class="">
+                                        <a href="javascript:void(0);" class="text-default fw-semibold"> {{number_format($ajustement->montant, 2, '.', ' ')}} CFA</a>
+                                        <p class="text-muted mb-0">{{$ajustement->type}} :  {{$ajustement->libelle}}, {{ strftime("%e %B %Y", strtotime($ajustement->created_at)); }}</p>
+                                    </div>
+                                @endforeach
+                            
+                            </div>
+                        </div>
+                        
+                </div>
             </div>
-        </div>
+        @endif
 
 
     </div>
 
     <div class="card-footer">
         @if (($bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager') && Auth::user()->can('Retourner bon de caisse')) || ($bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse au RAF') && Auth::user()->can('Retourner bon de caisse')) || ($bon->etape == "RAF" && Auth::user()->can('Envoyer bon de caisse à la caisse') && Auth::user()->can('Retourner bon de caisse')) || ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse') && Auth::user()->can('Retourner bon de caisse')))
-            <a wire:click='backStep' wire:confirm="Souhaitez vous vraiment raméner le bon à l'étape précédente?"  href="javascript:void(0);" class="btn btn-secondary btn-sm m-1">
+            <a wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.return-bon', arguments: { bon : {{ $bon->id }} }})"  href="javascript:void(0);" class="btn btn-secondary btn-sm m-1">
                         Retourner le bon  
                     </a>
         @endif

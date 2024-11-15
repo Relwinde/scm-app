@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bon_de_caisse_commentaire', function (Blueprint $table) {
+        Schema::create('bon_de_caisse_commentaires', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bon_de_caisses_id')->constrained()->onDelete('cascade');
-            $table->foreignId('commentaires_id')->constrained()->onDelete('cascade');
+            $table->text('content');
+            $table->enum('etape', ['EMETTEUR', 'RESPONSABLE', 'MANAGER', 'RAF', 'CAISSE', 'PAYE', 'CLOS'])->default('EMETTEUR');
+            $table->foreignId('bon_de_caisse_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

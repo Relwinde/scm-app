@@ -35,6 +35,10 @@ class BonDeCaisse extends Model
         return $this->hasMany(AjustementBon::class);
     }
 
+    public function commentaires (){
+        return $this->hasMany(BonDeCaisseCommentaire::class)->orderBy('bon_de_caisse_commentaires.created_at', 'DESC');
+    }
+
 
     public function print (){
         ini_set('memory_limit', '440M');

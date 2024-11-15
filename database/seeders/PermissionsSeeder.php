@@ -22,7 +22,7 @@ class PermissionsSeeder extends Seeder
 
         $agent = Role::create(['name' => 'Agent Ouverture Dossier']);
         $responsable = Role::create(['name' => 'Responsable']);
-        $caissier = Role::create(['name' => 'Caisser']);
+        $caissier = Role::create(['name' => 'Caissier']);
         $manager = Role::create(['name' => 'Manager']);
         $raf = Role::create(['name' => 'Responsable financier']);
 
