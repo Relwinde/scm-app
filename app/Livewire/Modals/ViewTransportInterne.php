@@ -2,12 +2,13 @@
 
 namespace App\Livewire\Modals;
 
-use App\Exports\TransportDepenses;
 use App\Models\Client;
 use Livewire\Component;
 use App\Models\Vehicule;
 use App\Models\Chauffeur;
+use App\Models\NumeroTransport;
 use App\Models\TransportInterne;
+use App\Exports\TransportDepenses;
 use LivewireUI\Modal\ModalComponent;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -20,7 +21,6 @@ class ViewTransportInterne extends ModalComponent
     public $vehicule;
     public $chauffeur;
     public $montant;
-    public $type_transport;
     public $total_depenses;
     public $edit = false;
 
@@ -29,7 +29,6 @@ class ViewTransportInterne extends ModalComponent
         $this->vehicule = $this->dossier->vehicule_id;
         $this->chauffeur = $this->dossier->chauffeur_id;
         $this->montant = number_format(floatval( str_replace(' ', '',$this->dossier->montant)), 2, '.', ' ') ;
-        $this->type_transport = $this->dossier->type_transport;
     }
 
     public function render()
@@ -61,7 +60,16 @@ class ViewTransportInterne extends ModalComponent
         $this->dossier->vehicule_id = $this->vehicule;
         $this->dossier->chauffeur_id = $this->chauffeur;
         $this->dossier->montant = floatval(str_replace(' ', '',$this->montant));
-        $this->dossier->type_transport = $this->type_transport;
+
+
+        if ($this->dossier->isDirty('client_id')){
+
+            $this->dossier->updateNumero();
+            NumeroTransport::create([
+                'transport_interne_id'=>$this->dossier->id,
+                'numero'=>$this->dossier->numero
+            ]);
+        }
 
         if($this->dossier->save()){
             $this->dispatch('new-dossier');

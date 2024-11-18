@@ -9,13 +9,15 @@ use LivewireUI\Modal\ModalComponent;
 
 class CreateUser extends ModalComponent
 {
-    #[Validate('required')]
+    #[Validate('required', message: "Entrez le nom de l'utilisateur")]
     public $nom; 
 
-    #[Validate('required|email')]
+    #[Validate('email', message: "Entrez l'email de l'utilisateur")]
+    #[Validate('required', message: "Entrez le nom de l'utilisateur")]
+    #[Validate('unique:users,email', message: "Cet email existe déjà")]
     public $email; 
 
-    #[Validate('required')]
+    #[Validate('required', "Attribuez un profile au nouvel utilisateur")]
     public $profile;
 
     public function render()
@@ -26,6 +28,9 @@ class CreateUser extends ModalComponent
     }
 
     public function create (){
+
+        $this->validate();
+        
         $user = User::make([
             'name'=>$this->nom,
             'email'=>$this->email,

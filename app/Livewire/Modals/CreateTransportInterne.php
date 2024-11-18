@@ -5,6 +5,7 @@ namespace App\Livewire\Modals;
 use App\Models\Client;
 use App\Models\Vehicule;
 use App\Models\Chauffeur;
+use App\Models\NumeroTransport;
 use App\Models\TransportInterne;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
@@ -36,19 +37,28 @@ class CreateTransportInterne extends ModalComponent
 
         if(TransportInterne::latest()->first()==null){
 
-            $numero = "TP04".strtoupper(substr($dossier->client->nom, 0, 3))."/".substr(date('Y'), -2).'0001';
+            $numero = "TP04".strtoupper($dossier->client->code)."/".date('Y').'0001';
         }else {
-            $numero = "TP04".strtoupper(substr($dossier->client->nom, 0, 3))."/".substr(date('Y'), -2).str_pad(TransportInterne::latest()->first()->id+1, 4, '0', STR_PAD_LEFT);
+            $ordre = NumeroTransport::latest()->first()->id + 1;
+            do{
+                $numero = "TP04".strtoupper($dossier->client->code)."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
+                $ordre++; 
+                $pattern = explode('/', $numero)[1];
+            }
+            while(NumeroTransport::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);
         }
 
         $dossier->numero = $numero;
     
         if($dossier->save()){
+            NumeroTransport::create([
+                'transport_interne_id'=>$dossier->id,
+                'numero'=>$dossier->numero
+            ]);
             $this->dispatch('new-dossier');
             $this->reset();
         }else{
             $this->dispatch('error');
-
         }
     }
 

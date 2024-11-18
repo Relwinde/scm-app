@@ -55,7 +55,7 @@ class UserProfile extends ModalComponent
         }else{
             if ($this->validate([ 
                 'name' => 'required',
-                'email' => 'required|email'
+                'email' => 'required|email|unique:users,email'
             ])){
                 $user = Auth::user();
                 $user->name = $this->name;

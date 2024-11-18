@@ -1,4 +1,4 @@
-<form wire:confirm="Êtes vous sûr de vouloir payer ce bon, cette action iréversible impactera votre caisse" wire:submit.prevent="pay">
+<form wire:submit.prevent="pay">
     <div class="card form-input-elements">
         <div class="card-header">
             <h3 class="mb-0 card-title"><b>Paiement par chèque du bon N° {{$bon->numero}}</b></h3>

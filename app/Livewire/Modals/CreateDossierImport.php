@@ -79,7 +79,7 @@ class CreateDossierImport extends ModalComponent
 
             $numero = "IM".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').'0001';
         }else{
-            $ordre = Dossier::latest()->first()->id+1;
+            $ordre = NumeroDossier::latest()->first()->id+1;
 
             do {
                 $numero = "IM".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);

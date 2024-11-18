@@ -65,7 +65,7 @@ class Dossier extends Model
     public function updateNumero (){
         switch($this->type){
             case "IMPORT": 
-                $ordre = Dossier::latest()->first()->id+1;
+                $ordre = NumeroDossier::latest()->first()->id + 1;
                 do {
                     $numero = "IM".BureauDeDouane::find($this->bureau_de_douane_id)->code.strtoupper(substr($this->client->code, 0, 3))."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
                     $ordre++;
@@ -76,7 +76,7 @@ class Dossier extends Model
                 break;
 
             case "EXPORT": 
-                $ordre = Dossier::latest()->first()->id+1;
+                $ordre = NumeroDossier::latest()->first()->id+1;
                 do {
                     $numero = "EX".BureauDeDouane::find($this->bureau_de_douane_id)->code.strtoupper(substr($this->client->code, 0, 3))."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
                     $ordre++;

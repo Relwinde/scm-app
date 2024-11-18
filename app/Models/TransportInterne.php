@@ -51,4 +51,15 @@ class TransportInterne extends Model
         return $this->hasMany(BonDeCaisse::class);
     }
     
+    public function updateNumero (){
+        $ordre = NumeroTransport::latest()->first()->id + 1;
+        do{
+            $numero = "TP04".strtoupper(substr($this->client->code, 0, 3))."/".substr(date('Y'), -2).str_pad($ordre, 4, '0', STR_PAD_LEFT);
+            $ordre++; 
+            $pattern = explode('/', $numero)[1];
+        }
+        while(NumeroTransport::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);
+        $this->numero = $numero;
+    }
+    
 }

@@ -8,16 +8,18 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Nom<span class="required">*</span></label>
-                        <input required wire:model='nom' type="text" class="form-control" name="user_name" placeholder="Nom d'utilisateur">
+                        <input required wire:model='nom' type="text" class="form-control" placeholder="Nom d'utilisateur">
+                        @error('nom')<div class="error-message"> {{ $message }} </div>@enderror
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Profile<span class="required">*</span></label>
-                        <select required wire:model='profile' name="user_profile" class="form-control custom-select select2">
+                        <select required wire:model='profile' class="form-control custom-select select2">
                             <option value="">Sélectionnez une profile</option>
                             @foreach ($profiles as $profile)
                                 <option value="{{$profile->id}}" >{{$profile->name}}</option>
                             @endforeach
                         </select>
+                        @error('profile')<div class="error-message"> {{ $message }} </div>@enderror
                     </div>
                     
                 </div>
@@ -25,6 +27,7 @@
                     <div class="mb-4">
                         <label class="form-label">Email<span class="required">*</span></label>
                         <input required wire:model='email' type="text" class="form-control" name="user_email" placeholder="Email">
+                        @error('email')<div class="error-message"> {{ $message }} </div>@enderror
                     </div>
                 </div>
             </div>

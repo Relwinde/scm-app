@@ -72,7 +72,7 @@ class CreateDossierExport extends ModalComponent
             $numero = "EX".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').'0001';
         }else{
 
-            $ordre = Dossier::latest()->first()->id+1;
+            $ordre = NumeroDossier::latest()->first()->id+1;
 
             do {
                 $numero = "EX".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
@@ -80,7 +80,7 @@ class CreateDossierExport extends ModalComponent
                 $ordre++;
                 $pattern = explode('/', $numero)[1];
             } while (NumeroDossier::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);
-            
+              
         }
         
 
