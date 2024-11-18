@@ -19,6 +19,7 @@ class DossiersImport extends Component
     {
         $dossiers = Dossier::select(['dossiers.id', 'dossiers.numero', 'dossiers.num_lta_bl', 'dossiers.num_sylvie', 'dossiers.num_commande', 'dossiers.created_at', 'dossiers.num_declaration', 'dossiers.client_id', 'dossiers.fournisseur'])
             ->join('clients', 'dossiers.client_id', '=', 'clients.id') 
+            ->join('numero_dossiers', 'dossiers.id', '=', 'numero_dossiers.dossier_id') 
             ->where('dossiers.type', 'IMPORT') 
             ->where(function ($query) {
                 $query->where('dossiers.numero', 'like', "%{$this->search}%")
@@ -26,9 +27,12 @@ class DossiersImport extends Component
                     ->orWhere('dossiers.num_commande', 'like', "%{$this->search}%")
                     ->orWhere('dossiers.num_sylvie', 'like', "%{$this->search}%")
                     ->orWhere('dossiers.num_lta_bl', 'like', "%{$this->search}%")
-                    ->orWhere('clients.nom', 'like', "%{$this->search}%");
+                    ->orWhere('clients.nom', 'like', "%{$this->search}%")
+                    ->orWhere('numero_dossiers.numero', 'like', "%{$this->search}%");
+
             })
             ->orderBy('dossiers.created_at', 'DESC')
+            ->groupBy('numero')
             ->paginate(10, '*', 'dossier-pagination');
 
 

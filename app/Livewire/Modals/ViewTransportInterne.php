@@ -63,7 +63,6 @@ class ViewTransportInterne extends ModalComponent
 
 
         if ($this->dossier->isDirty('client_id')){
-
             $this->dossier->updateNumero();
             NumeroTransport::create([
                 'transport_interne_id'=>$this->dossier->id,
