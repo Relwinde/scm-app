@@ -12,10 +12,8 @@
             </button>
             <h3 class="card-title">Dépenses: <b>{{number_format($total_depenses, 2, '.', ' ')}} CFA</b></h3>&nbsp; &nbsp;
         @endcan
-        <button href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Créer un bon</button>
+        <button wire:click="$dispatch('openModal', {component: 'modals.dossier.create-bon', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Créer un bon</button>
 
-
-        
         <div class="card-options">
             <div class="dropdown">
                 <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">

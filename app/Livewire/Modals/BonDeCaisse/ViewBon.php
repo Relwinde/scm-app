@@ -64,7 +64,7 @@ class ViewBon extends ModalComponent
                     $this->cashPayment();
                 } else if ($this->bon->type_paiement == "CHEQUE"){
 
-                    $this->dispatch('openModal', ChequePayment::class, ['bon'=>$this->bon]);
+                    $this->dispatch('openModal', ChequePayment::class, ['bon'=>$this->bon->id]);
                     
                     // $this->bon->etape = "PAYE";
                     // if ($this->bon->save()){
