@@ -50,7 +50,7 @@
                 <div class="custom-controls-stacked">
                     <label class="custom-control custom-checkbox">
                         <input wire:model.live='viewComments' type="checkbox" class="custom-control-input">
-                        <span class="custom-control-label"> <b>Commentaires de retour</b></span>
+                        <span class="custom-control-label" style="color: red;"> <b>Commentaires de retour</b></span>
                     </label>
                 </div>
 

@@ -54,7 +54,7 @@ class Caisse extends Component
         ->orderBy('bon_de_caisses.created_at', 'DESC')
         ->paginate(10, '*', 'bons-pagination');
         
-        $sommeAttente= BonDeCaisse::where('bon_de_caisses.etape', 'CAISSE')->sum('montant');
+        $sommeAttente= BonDeCaisse::where('bon_de_caisses.etape', 'CAISSE')->where('type_paiement', 'ESPECE')->sum('montant');
 
         $solde = ModelsCaisse::find(1)->solde;
         

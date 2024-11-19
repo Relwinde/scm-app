@@ -18,7 +18,7 @@
 </style>
 
 <center style="text-align: center;">
-        <p style="font-size: 14; margin-top:-150px;">
+        <p style="font-size: 14; margin-top:-150px;  line-height: 0;">
             Reçu de bon de caisse N° {{$bon->numero}}
         </p>
 </center>
@@ -35,6 +35,9 @@
                 <td>
                     <p>Dossier: <b>{{$bon->dossier->numero ?? $bon->transport->numero ?? "AUTRES"}}</b></p>
                 </td>
+                <td>
+
+                </td>
             </tr>
             <tr>
                 <td>
@@ -42,6 +45,9 @@
                 </td>
                 <td>
                     <p>Montant: <b>{{number_format($bon->montant_definitif, 2, '.', ' ')}} CFA</b></p>
+                </td>
+                <td>
+
                 </td>
             </tr>
             <tr>
@@ -51,6 +57,9 @@
                 <td>
                     <p>Payé le: <b>{{ strftime("%e %B %Y", strtotime($bon->etapes()->where('etape_actuelle', 'PAYE')->first()->created_at)); }}</b></p>
                 </td>
+                <td>
+                    <p>Mode: <b>{{$bon->type_paiement}}</b></p>
+                </td>
             </tr>
             <tr>
                 <td>
@@ -58,6 +67,9 @@
                 </td>
                 <td>
                     Le recepteur
+                </td>
+                <td>
+
                 </td>
             </tr>
         </tbody>
@@ -68,7 +80,7 @@
 
 
 <center style="text-align: center;">
-    <p style="font-size: 10; margin-top:50px;">
+    <p style="font-size: 10; margin-top:20px;">
             Reçu imprimé le {{$formattedDate}}
      </p>
 </center>

@@ -74,14 +74,21 @@ class ReturnBon extends ModalComponent
     }
 
     private function createBonCommentaire($etape) {
-        BonDeCaisseCommentaire::create([
-            'etape' => $etape,
-            'content' => $this->commentaire,
-            'bon_de_caisse_id' => $this->bon->id,
-            'user_id' => Auth::user()->id,
-        ]);
+
+        if ($this->commentaire != "FYI"){
+            BonDeCaisseCommentaire::create([
+                'etape' => $etape,
+                'content' => $this->commentaire,
+                'bon_de_caisse_id' => $this->bon->id,
+                'user_id' => Auth::user()->id,
+            ]);
+        }
+        
     }
 
-
+    public static function destroyOnClose(): bool
+    {
+        return true;
+    }
 
 }
