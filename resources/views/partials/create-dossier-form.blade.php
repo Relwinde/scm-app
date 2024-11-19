@@ -24,7 +24,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Fournisseur<span class="required">*</span></label>
-                        <input required wire:model='fournisseur' type="text" class="form-control" placeholder="Fournisseur">
+                        <input @if ($isPartial) readonly disabled="" @endif required wire:model='fournisseur' type="text" class="form-control" placeholder="Fournisseur">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de Facture</label>

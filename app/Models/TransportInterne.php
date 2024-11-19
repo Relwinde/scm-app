@@ -54,7 +54,7 @@ class TransportInterne extends Model
     public function updateNumero (){
         $ordre = NumeroTransport::latest()->first()->id + 1;
         do{
-            $numero = "TP04".strtoupper(substr($this->client->code, 0, 3))."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
+            $numero = "TP04-".strtoupper($this->client->code)."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
             $ordre++; 
             $pattern = explode('/', $numero)[1];
         }

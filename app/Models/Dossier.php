@@ -67,7 +67,7 @@ class Dossier extends Model
             case "IMPORT": 
                 $ordre = NumeroDossier::latest()->first()->id + 1;
                 do {
-                    $numero = "IM".BureauDeDouane::find($this->bureau_de_douane_id)->code.strtoupper(substr($this->client->code, 0, 3))."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
+                    $numero = "IM-".BureauDeDouane::find($this->bureau_de_douane_id)->code."-".strtoupper($this->client->code)."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
                     $ordre++;
                     $pattern = explode('/', $numero)[1];
                 } while (NumeroDossier::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);
@@ -78,7 +78,7 @@ class Dossier extends Model
             case "EXPORT": 
                 $ordre = NumeroDossier::latest()->first()->id+1;
                 do {
-                    $numero = "EX".BureauDeDouane::find($this->bureau_de_douane_id)->code.strtoupper(substr($this->client->code, 0, 3))."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
+                    $numero = "EX-".BureauDeDouane::find($this->bureau_de_douane_id)->code."-".strtoupper($this->client->code)."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
                     $ordre++;
                     $pattern = explode('/', $numero)[1];
                 } while (NumeroDossier::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);

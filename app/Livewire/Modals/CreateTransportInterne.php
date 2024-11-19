@@ -37,11 +37,11 @@ class CreateTransportInterne extends ModalComponent
 
         if(TransportInterne::latest()->first()==null){
 
-            $numero = "TP04".strtoupper($dossier->client->code)."/".date('Y').'0001';
+            $numero = "TP04-".strtoupper($dossier->client->code)."/".date('Y').'0001';
         }else {
             $ordre = NumeroTransport::latest()->first()->id + 1;
             do{
-                $numero = "TP04".strtoupper($dossier->client->code)."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
+                $numero = "TP04-".strtoupper($dossier->client->code)."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
                 $ordre++; 
                 $pattern = explode('/', $numero)[1];
             }

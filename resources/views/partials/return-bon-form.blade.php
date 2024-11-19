@@ -15,8 +15,8 @@
         </div>
         <div class="card-footer">
             <div class="btn-list">
-                <button class="btn btn-primary">Renvoyer le bon</button>
-                <a href="javascript:void(0);" wire:click="$dispatch('closeModal')" class="btn btn-danger">Annuler</a>
+                <button class="btn btn-warning">Renvoyer le bon</button>
+                <a href="javascript:void(0);" wire:click="$dispatch('closeModal')" class="btn btn-primary">Annuler</a>
             </div>
         </div>
     </div>

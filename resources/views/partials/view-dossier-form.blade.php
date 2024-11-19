@@ -5,10 +5,10 @@
 <div class="card form-input-elements">
     <div class="card-header d-flex justify-content-between">
         <h3 class="card-title"><a target="_blank"  href="{{route('print-dossier', $dossier->id)}}" class="btn btn-sm btn-outline-primary">Page de garde</a></b></h3>&nbsp; &nbsp;
-        <h3 class="mb-0 card-title">Dossier N°: <b>{{$dossier->numero}}</b>&nbsp;&nbsp;</h3>
+        <h3 class="mb-0 card-title">N°: <b>{{$dossier->numero}}</b>&nbsp;&nbsp;</h3>
         @can('Voir le total des dépenses du dossier')
             <button wire:click="export" id="bAcep" type="button" class="btn btn-sm btn-outline-primary">
-            <span class="fa fa-file-excel-o"></span>
+            <i class="fa fa-download"></i>
             </button>
             <h3 class="card-title">Dépenses: <b>{{number_format($total_depenses, 2, '.', ' ')}} CFA</b></h3>&nbsp; &nbsp;
         @endcan

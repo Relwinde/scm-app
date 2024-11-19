@@ -77,12 +77,12 @@ class CreateDossierImport extends ModalComponent
         
         if(Dossier::latest()->first()==null){
 
-            $numero = "IM".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').'0001';
+            $numero = "IM-".BureauDeDouane::find($this->bureau_de_douane)->code."-".strtoupper($dossier->client->code)."/".date('Y').'0001';
         }else{
             $ordre = NumeroDossier::latest()->first()->id+1;
 
             do {
-                $numero = "IM".BureauDeDouane::find($this->bureau_de_douane)->code.strtoupper(substr($dossier->client->code, 0, 3))."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
+                $numero = "IM-".BureauDeDouane::find($this->bureau_de_douane)->code."-".strtoupper($dossier->client->code)."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
 
                 $ordre++;
                 $pattern = explode('/', $numero)[1];
@@ -133,6 +133,7 @@ class CreateDossierImport extends ModalComponent
         if($partial != null){
             $this->isPartial = true;
             $this->client = $partial->client_id;
+            $this->fournisseur = $partial->fournisseur;
         } else {
             $this->isPartial = false;
             // $this->reset(['client', 'bureau_de_douane']);
