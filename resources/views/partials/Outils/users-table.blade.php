@@ -15,7 +15,7 @@
                     <th>E-mail</th>
                     <th>Actions</th>
                 </tr> --}}
-                <tr>
+                <tr style="font-weight:700;">
                     <th class="wd-15p border-bottom-0"><b>Nom</b></th>
                     <th class="wd-20p border-bottom-0"><b>Profile</b></th>
                     <th class="wd-20p border-bottom-0"><b>Activité</b></th>
@@ -25,7 +25,7 @@
             </thead>
             <tbody>
                 @foreach ($users as $user)
-                    <tr wire:key='{{$user->id}}'>
+                    <tr style="font-weight:600;" wire:key='{{$user->id}}'>
                         <td>     
                             <p class="fs-14 fw-semibold text-dark mb-0">{{$user->name}} </p>
                             <p class="fs-13 text-muted mb-0">{{$user->email}}</p>

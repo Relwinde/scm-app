@@ -11,7 +11,7 @@
                     <th>E-mail</th>
                     <th>Actions</th>
                 </tr> --}}
-                <tr>
+                <tr style="font-weight:700;">
                     <th class="wd-15p border-bottom-0"><b>Numéro</b></th>
                     <th class="wd-15p border-bottom-0"><b>Dossier</b></th>
                     <th class="wd-20p border-bottom-0"><b>Emetteur</b></th>
@@ -23,7 +23,7 @@
             </thead>
             <tbody>
                 @foreach ($bonsDeCaisse as $bon)
-                    <tr wire:key='{{$bon->id}}'>
+                    <tr style="font-weight:600;" wire:key='{{$bon->id}}'>
                         <td>{{$bon->numero}}</td>
                         <td>{{$bon->dossier->numero ?? $bon->transport->numero ?? "AUTRES"}}</td>
                         <td>{{$bon->user->name}}</td>

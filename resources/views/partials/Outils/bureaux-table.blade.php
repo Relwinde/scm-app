@@ -1,7 +1,7 @@
 <div class="table-responsive">
     <table class="table table-bordered table-striped border text-nowrap mb-0">
         <thead>
-            <tr>
+            <tr style="font-weight:700;">
                 <th class="wd-15p border-bottom-0" style="max-width: 10px"><b></b></th>
                 <th class="wd-15p border-bottom-0"><b>Nom</b></th>
                 <th class="wd-15p border-bottom-0"><b>Code</b></th>
@@ -10,7 +10,7 @@
         </thead>
         <tbody>
             @foreach ($bureaux as $bureau)
-                <tr wire:key='{{$bureau->id}}'>
+                <tr style="font-weight:600;" wire:key='{{$bureau->id}}'>
                     <td style="max-width: 10px">{{$loop->iteration}}</td>
                     <td> @if ($edit==true && $editId == $bureau->id)
                         <input wire:model='nom' type="text" class="form-control" name="nom" placeholder="Nom du bureau">

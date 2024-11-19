@@ -11,14 +11,14 @@
                     <th>E-mail</th>
                     <th>Actions</th>
                 </tr> --}}
-                <tr>
+                <tr style="font-weight:700;">
                     <th class="wd-15p border-bottom-0"><b>Nom</b></th>
                     <th class="wd-25p border-bottom-0"><b>Actions</b></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($profiles as $profile)
-                    <tr wire:key='{{$profile->id}}'>
+                    <tr style="font-weight:600;" wire:key='{{$profile->id}}'>
                         <td>{{$profile->name}}</td>
                         <td name="bstable-actions">
                             <div class="btn-list">

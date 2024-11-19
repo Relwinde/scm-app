@@ -1,7 +1,7 @@
 <div class="table-responsive">
     <table class="table table-striped table-bordered text-nowrap border-bottom" id="responsive-datatable">
         <thead>
-            <tr>
+            <tr style="font-weight:700;">
                 <th class="wd-15p border-bottom-0"><b>Numéro</b></th>
                 <th class="wd-15p border-bottom-0"><b>Client</b></th>
                 <th class="wd-20p border-bottom-0"><b>Chauffeur</b></th>
@@ -11,7 +11,7 @@
         </thead>
         <tbody>
             @foreach ($dossiers as $dossier)
-                <tr wire:key='{{$dossier->id}}'>
+                <tr style="font-weight:600;" wire:key='{{$dossier->id}}'>
                     <td>{{$dossier->numero}}</td>
                     <td>{{$dossier->client->nom}}</td>
                     <td>{{$dossier->chauffeur->nom}}</td>

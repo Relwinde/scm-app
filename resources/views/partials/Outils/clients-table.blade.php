@@ -11,7 +11,7 @@
                     <th>E-mail</th>
                     <th>Actions</th>
                 </tr> --}}
-                <tr>
+                <tr style="font-weight:700;">
                     <th class="wd-15p border-bottom-0"></th>
                     <th class="wd-15p border-bottom-0"><b>Nom</b></th>
                     <th class="wd-20p border-bottom-0"><b>Code client</b></th>
@@ -24,7 +24,7 @@
             </thead>
             <tbody>
                 @foreach ($clients as $client)
-                    <tr wire:key='{{$client->id}}'>
+                    <tr style="font-weight:600;" wire:key='{{$client->id}}'>
                         <td style="max-width: 10px">{{$loop->iteration}}</td>
                         <td>{{$client->nom}}</td>
                         <td>{{$client->code}}</td>

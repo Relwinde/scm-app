@@ -11,7 +11,7 @@
                     <th>E-mail</th>
                     <th>Actions</th>
                 </tr> --}}
-                <tr>
+                <tr style="font-weight:700;">
                     <th class="wd-15p border-bottom-0"><b>Numéro</b></th>
                     <th class="wd-15p border-bottom-0"><b>Client</b></th>
                     <th class="wd-20p border-bottom-0"><b>Fournisseur</b></th>
@@ -25,8 +25,8 @@
             </thead>
             <tbody>
                 @foreach ($dossiers as $dossier)
-                    <tr wire:key='{{$dossier->id}}'>
-                        <td>{{$dossier->numero}}</td>
+                    <tr style="font-weight:600;" wire:key='{{$dossier->id}}'>
+                        <td >{{$dossier->numero}}</td>
                         <td>{{$dossier->client->nom}}</td>
                         <td>{{$dossier->fournisseur}}</td>
                         <td>{{$dossier->num_lta_bl}}</td>

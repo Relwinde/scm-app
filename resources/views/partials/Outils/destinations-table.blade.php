@@ -1,7 +1,7 @@
 <div class="table-responsive">
     <table class="table table-striped table-bordered border text-nowrap mb-0">
         <thead>
-            <tr>
+            <tr style="font-weight:700;">
                 <th class="wd-15p border-bottom-0" style="max-width: 10px"><b></b></th>
                 <th class="wd-15p border-bottom-0"><b>Nom</b></th>
                 <th class="wd-15p border-bottom-0"><b>Description</b></th>
@@ -10,7 +10,7 @@
         </thead>
         <tbody>
             @foreach ($destinations as $destination)
-                <tr wire:key='{{$destination->id}}'>
+                <tr style="font-weight:600;" wire:key='{{$destination->id}}'>
                     <td style="max-width: 10px">{{$loop->iteration}}</td>
                     <td> @if ($edit==true && $editId == $destination->id)
                         <input wire:model='nom' type="text" class="form-control" name="nom" placeholder="Nom du destination">
