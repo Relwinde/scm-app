@@ -114,29 +114,31 @@
                                                     @default
                                                 @endswitch
                                             </td>
-                                            <td>
-                                                @switch($bon->etape)
-                                                    @case("EMETTEUR")
-                                                        <span class="badge bg-success ms-3 px-5">Emetteur</span>
-                                                        @break
-                                                    @case("RESPONSABLE")
-                                                        <span class="badge bg-success ms-3 px-5">Responsable</span>
-                                                        @break
-                                                    @case("MANAGER")
-                                                        <span class="badge bg-success ms-3 px-5">Manager</span>
-                                                        @break
-                                                    @case("CAISSE")
-                                                        <span class="badge bg-success ms-3 px-5">Caisse</span>
-                                                        @break
-                                                    @case("PAYE")
-                                                        <span class="badge bg-danger ms-3 px-5">Payé</span>
-                                                        @break
-                                                    @case("CLOS")
-                                                        <span class="badge bg-danger ms-3 px-5">Clos</span>
-                                                        @break
-                                                    @default
-                                                @endswitch
-                                            </td>
+                                            <td>@switch($bon->etape)
+                                                @case("EMETTEUR")
+                                                    <span class="tag tag-azure">Emetteur</span>
+                                                    @break
+                                                @case("RESPONSABLE")
+                                                    <span class="tag tag-indigo">Responsable</span>
+                                                    @break
+                                                @case("MANAGER")
+                                                    <span class="tag tag-purple">Manager</span>
+                                                    @break
+                                                @case("RAF")
+                                                    <span class="tag tag-blue">Responsable finance</span>
+                                                    @break
+                                                @case("CAISSE")
+                                                    <span class="tag tag-red">Caisse</span>
+                                                    @break
+                                                @case("PAYE")
+                                                    <span class="tag tag-orange">Payé</span>
+                                                    @break
+                                                @case("CLOS")
+                                                    <span class="tag tag-gray-dark">Clos</span>
+                                                    @break
+                                                @default
+                                                    
+                                            @endswitch</td>
                                             <td name="bstable-actions">
                                                 <div class="btn-list">
                                                     {{-- <button id="bEdit" type="button" class="btn btn-sm btn-primary">

@@ -31,25 +31,25 @@
                         <td>{{$bon->depense}}</td>
                         <td>@switch($bon->etape)
                             @case("EMETTEUR")
-                                <span class="badge bg-success ms-3 px-5">Emetteur</span>
+                                <span class="tag tag-azure">Emetteur</span>
                                 @break
                             @case("RESPONSABLE")
-                                <span class="badge bg-success ms-3 px-5">Responsable</span>
+                                <span class="tag tag-indigo">Responsable</span>
                                 @break
                             @case("MANAGER")
-                                <span class="badge bg-success ms-3 px-5">Manager</span>
+                                <span class="tag tag-purple">Manager</span>
                                 @break
                             @case("RAF")
-                                <span class="badge bg-success ms-3 px-5">Responsable finance</span>
+                                <span class="tag tag-blue">Responsable finance</span>
                                 @break
                             @case("CAISSE")
-                                <span class="badge bg-success ms-3 px-5">Caisse</span>
+                                <span class="tag tag-red">Caisse</span>
                                 @break
                             @case("PAYE")
-                                <span class="badge bg-danger ms-3 px-5">Payé</span>
+                                <span class="tag tag-orange">Payé</span>
                                 @break
                             @case("CLOS")
-                                <span class="badge bg-danger ms-3 px-5">Clos</span>
+                                <span class="tag tag-gray-dark">Clos</span>
                                 @break
                             @default
                                 
