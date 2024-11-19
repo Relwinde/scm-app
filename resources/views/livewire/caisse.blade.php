@@ -86,10 +86,10 @@
                                 <thead>
                                     <tr style="font-weight:700;">
                                         <th class="wd-15p border-bottom-0"><b>Numéro</b></th>
+                                        <th class="wd-20p border-bottom-0"><b>Dépenses engagées</b></th>
+                                        <th class="wd-20p border-bottom-0"><b>Montant</b></th>
                                         <th class="wd-15p border-bottom-0"><b>Dossier</b></th>
                                         <th class="wd-20p border-bottom-0"><b>Emetteur</b></th>
-                                        <th class="wd-20p border-bottom-0"><b>Montant</b></th>
-                                        <th class="wd-20p border-bottom-0"><b>Dépenses engagées</b></th>
                                         <th class="wd-20p border-bottom-0"><b>Mode de paiement</b></th>
                                         <th class="wd-20p border-bottom-0"><b>Etape</b></th>
                                         <th class="wd-25p border-bottom-0"><b>Actions</b></th>
@@ -98,11 +98,11 @@
                                 <tbody>
                                     @foreach ($bonsDeCaisse as $bon)
                                         <tr style="font-weight:600;" wire:key='{{$bon->id}}'>
-                                            <td>{{$bon->numero}}</td>
+                                            <td wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.view-bon', arguments: { bon : {{ $bon->id }} }})" style="cursor: pointer;">{{$bon->numero}}</td>
+                                            <td>{{$bon->depense}}</td>
+                                            <td>{{number_format($bon->montant_definitif, 2, '.', ' ')}}</td>
                                             <td>{{$bon->dossier->numero ?? $bon->transport->numero ?? "AUTRES"}}</td>
                                             <td>{{$bon->user->name}}</td>
-                                            <td>{{number_format($bon->montant_definitif, 2, '.', ' ')}}</td>
-                                            <td>{{$bon->depense}}</td>
                                             <td>
                                                 @switch($bon->type_paiement)
                                                     @case("ESPECE")

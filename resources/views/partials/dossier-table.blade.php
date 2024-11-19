@@ -26,7 +26,7 @@
             <tbody>
                 @foreach ($dossiers as $dossier)
                     <tr style="font-weight:600;" wire:key='{{$dossier->id}}'>
-                        <td >{{$dossier->numero}}</td>
+                        <td wire:click="$dispatch('openModal', {component: 'modals.view-dossier', arguments: { dossier : {{ $dossier->id }} }})" style="cursor:pointer;"> {{$dossier->numero}}</td>
                         <td>{{$dossier->client->nom}}</td>
                         <td>{{$dossier->fournisseur}}</td>
                         <td>{{$dossier->num_lta_bl}}</td>
@@ -39,7 +39,7 @@
                                 {{-- <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                                     <span class="fe fe-edit"> </span>
                                 </button> --}}
-                                <button wire:click="$dispatch('openModal', {component: 'modals.view-dossier', arguments: { dossier : {{ $dossier->id }} }})" id="bAcep" type="button" class="btn  btn-sm btn-primary">
+                                <button wire:click="$dispatch('openModal', {component: 'modals.view-dossier', arguments: { dossier : {{ $dossier->id }} }})" type="button" class="btn  btn-sm btn-primary">
                                     <span class="fe fe-eye"> </span>
                                 </button>
                                 @can('Supprimer dossier')

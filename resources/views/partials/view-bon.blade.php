@@ -170,7 +170,7 @@
 
     <div class="card-footer">
         @if (($bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager') && Auth::user()->can('Retourner bon de caisse')) || ($bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse au RAF') && Auth::user()->can('Retourner bon de caisse')) || ($bon->etape == "RAF" && Auth::user()->can('Envoyer bon de caisse à la caisse') && Auth::user()->can('Retourner bon de caisse')) || ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse') && Auth::user()->can('Retourner bon de caisse')))
-            <a wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.return-bon', arguments: { bon : {{ $bon->id }} }})"  href="javascript:void(0);" class="btn btn-danger btn-sm m-1">
+            <a wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.return-bon', arguments: { bon : {{ $bon->id }} }})"  href="javascript:void(0);" class="btn btn-warning btn-sm m-1">
                         Retourner le bon  
                     </a>
         @endif
