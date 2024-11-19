@@ -1,3 +1,7 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 <div>
     <div class="table-responsive">
         <table class="table table-striped table-striped table-bordered text-nowrap">
@@ -14,7 +18,7 @@
                 <tr>
                     <th class="wd-15p border-bottom-0"><b>Nom</b></th>
                     <th class="wd-20p border-bottom-0"><b>Profile</b></th>
-                    <th class="wd-20p border-bottom-0"><b>Status</b></th>
+                    <th class="wd-20p border-bottom-0"><b>Activité</b></th>
                     <th class="wd-20p border-bottom-0"><b>Date de création</b></th>
                     <th class="wd-25p border-bottom-0"><b>Actions</b></th>
                 </tr>
@@ -31,7 +35,13 @@
                                 {{$role->name}}
                             </span>
                         @endforeach</td>
-                        <td></td>
+                        <td class="text-red">
+                            @if ($user->last_activity > now()->subMinutes(2)->getTimestamp())
+                                En ligne
+                            @else
+                                Vu dernièrement le <br> {{ Carbon::createFromTimestamp($user->last_activity)->translatedFormat('d M Y \à H\h i\m s\s')}}
+                            @endif
+                        </td>
                         <td> <span class="text-muted fs-13">{{strftime("%e %B %Y", strtotime($user->created_at));}}</span></td>
                         <td name="bstable-actions">
                             <div class="btn-list">
