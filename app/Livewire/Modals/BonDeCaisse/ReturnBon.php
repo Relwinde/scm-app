@@ -75,7 +75,7 @@ class ReturnBon extends ModalComponent
 
     private function createBonCommentaire($etape) {
 
-        if ($this->commentaire != "FYI"){
+        if ($this->commentaire != "FYI" && $this->commentaire != "fyi" && $this->commentaire != " " && $this->commentaire != null && $this->commentaire != ""){
             BonDeCaisseCommentaire::create([
                 'etape' => $etape,
                 'content' => $this->commentaire,
