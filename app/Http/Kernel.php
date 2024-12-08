@@ -36,6 +36,10 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+<<<<<<< HEAD
+=======
+            \App\Http\Middleware\UpdateUserLastActivity::class, 
+>>>>>>> main
         ],
 
         'api' => [
@@ -48,7 +52,11 @@ class Kernel extends HttpKernel
     /**
      * The application's middleware aliases.
      *
+<<<<<<< HEAD
      * Aliases may be used to conveniently assign middleware to routes and groups.
+=======
+     * Aliases may be used instead of class names to conveniently assign middleware to routes and groups.
+>>>>>>> main
      *
      * @var array<string, class-string|string>
      */

@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\ServiceProvider;
+>>>>>>> main
 
 return [
 
@@ -56,7 +60,11 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+<<<<<<< HEAD
     'asset_url' => env('ASSET_URL', '/'),
+=======
+    'asset_url' => env('ASSET_URL'),
+>>>>>>> main
 
     /*
     |--------------------------------------------------------------------------
@@ -82,7 +90,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'locale' => 'en',
+=======
+    'locale' => 'FR',
+>>>>>>> main
 
     /*
     |--------------------------------------------------------------------------
@@ -95,7 +107,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'fallback_locale' => 'en',
+=======
+    'fallback_locale' => 'fr',
+>>>>>>> main
 
     /*
     |--------------------------------------------------------------------------
@@ -154,6 +170,7 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'providers' => [
 
         /*
@@ -186,6 +203,13 @@ return [
          * Package Service Providers...
          */
 
+=======
+    'providers' => ServiceProvider::defaultProviders()->merge([
+        /*
+         * Package Service Providers...
+         */
+        Spatie\Permission\PermissionServiceProvider::class,
+>>>>>>> main
         /*
          * Application Service Providers...
          */
@@ -194,8 +218,12 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+<<<<<<< HEAD
 
     ],
+=======
+    ])->toArray(),
+>>>>>>> main
 
     /*
     |--------------------------------------------------------------------------
@@ -209,7 +237,12 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+<<<<<<< HEAD
         // 'ExampleClass' => App\Example\ExampleClass::class,
+=======
+        // 'Example' => App\Facades\Example::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+>>>>>>> main
     ])->toArray(),
 
 ];
