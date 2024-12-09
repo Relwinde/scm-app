@@ -44,7 +44,7 @@ class BonDeCaisse extends Model
         ini_set('memory_limit', '440M');
         $mpdf = new Mpdf([
             'mode'=>'utf-8',
-            'format' => 'A6-L',
+            'format' => 'A4-P',
             'default_font_size' => 9,
 	        'default_font' => 'FreeSerif'
         ]);
