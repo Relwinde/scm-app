@@ -16,6 +16,9 @@ class CreateTransportInterne extends ModalComponent
     public $vehicule;
     public $chauffeur;
     public $montant;
+    public $nombre_colis;
+    public $poids;
+    public $volume;
 
     public function render()
     {
@@ -29,6 +32,9 @@ class CreateTransportInterne extends ModalComponent
     public function create(){
         $dossier = TransportInterne::make([
         'montant'=>floatval(str_replace(' ', '',$this->montant)),
+        'poids'=>floatval(str_replace(' ', '',$this->poids)),
+        'volume'=>floatval(str_replace(' ', '',$this->volume)),
+        'nombre_colis'=>$this->nombre_colis,
         'client_id'=>$this->client,
         'vehicule_id'=>$this->vehicule,
         'chauffeur_id'=>$this->chauffeur,
@@ -69,5 +75,13 @@ class CreateTransportInterne extends ModalComponent
 
     public function reformat_montant (){
         $this->montant = number_format(floatval( str_replace(' ', '',$this->montant)), 2, '.', ' ');
+    }
+
+    public function reformat_poids (){
+        $this->poids = number_format(floatval( str_replace(' ', '',$this->poids)), 2, '.', ' ');
+    }
+
+    public function reformat_volume (){
+        $this->volume = number_format(floatval( str_replace(' ', '',$this->volume)), 2, '.', ' ');
     }
 }

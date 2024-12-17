@@ -48,7 +48,7 @@
                             <div class="col-md-6">
                                 <div class="mb-4">
                                     <label class="form-label">Client</label>
-                                    <select  @if ($edit==false) readonly disabled="" @endif wire:model='client' name="client" class="form-control custom-select select2">
+                                    <select required  @if ($edit==false) readonly disabled="" @endif wire:model='client' name="client" class="form-control custom-select select2">
                                         <option value="" >Sélectionnez un client</option>
                                         @foreach ($clients as $client)
                                             <option value="{{$client->id}}" >{{$client->nom}}</option>
@@ -79,6 +79,22 @@
                                             <option value="{{$vehicule->id}}" >{{$vehicule->immatriculation}}</option>
                                         @endforeach
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label class="form-label">Nombre de colis</label>
+                                    <input @if ($edit==false) readonly disabled="" @endif wire:model='nombre_colis' type="number" class="form-control" name="example-text-input" placeholder="Nombre de colis">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Poids (KG)</label>
+                                    <input @if ($edit==false) readonly disabled="" @endif wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control" name="example-text-input" placeholder="Poids">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label class="form-label">Volume</label>
+                                    <input @if ($edit==false) readonly disabled="" @endif wire:focusout='reformat_volume()' wire:model='volume' type="text" class="form-control" name="example-text-input" placeholder="Volume">
                                 </div>
                             </div>
                             <div class="col-md-12 ">

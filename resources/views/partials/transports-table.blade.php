@@ -14,8 +14,8 @@
                 <tr style="font-weight:600;" wire:key='{{$dossier->id}}'>
                     <td wire:click="$dispatch('openModal', {component: 'modals.view-transport-interne', arguments: { dossier : {{ $dossier->id }} }})" style="cursor: pointer;">{{$dossier->numero}}</td>
                     <td>{{$dossier->client->nom}}</td>
-                    <td>{{$dossier->chauffeur->nom}}</td>
-                    <td>{{$dossier->vehicule->immatriculation}}</td>
+                    <td>{{$dossier->chauffeur->nom ?? ''}}</td>
+                    <td>{{$dossier->vehicule->immatriculation ?? ''}}</td>
                     <td name="bstable-actions">
                         <div class="btn-list">
                             {{-- <button id="bEdit" type="button" class="btn btn-sm btn-primary">
