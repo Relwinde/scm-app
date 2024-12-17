@@ -32,6 +32,10 @@ class TransportInterne extends Model
         return $this->belongsToMany(Destination::class, 'destination_transport_interne', 'transport_interne_id', 'depart')->withPivot('depart', 'arrivee', 'id')->orderBy('destination_transport_interne.id', 'ASC');
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    
     public function print (){
         ini_set('memory_limit', '440M');
         
