@@ -97,7 +97,13 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4>Dépenses sur le dossier à ce jour: </h4>
-                                <h1 class="mb-1 number-font" style="font-size: 17px;">{{ $bon->dossier ? number_format($bon->dossier->bon_de_caisse()->where('etape', 'PAYE')->orWhere('etape', 'CLOS')->sum('montant_definitif'), 2, '.', ' ') : number_format($bon->transport->bon_de_caisse()->where('etape', 'PAYE')->orWhere('etape', 'CLOS')->sum('montant_definitif'), 2, '.', ' ') }} CFA</h1>
+                                <h1 class="mb-1 number-font" style="font-size: 17px;">{{ $bon->dossier ? number_format($bon->dossier->bon_de_caisse()->where(function ($query) {
+                                    $query->where('etape', 'PAYE')
+                                    ->orWhere('etape', 'CLOS');
+                                })->sum('montant_definitif'), 2, '.', ' ') : number_format($bon->transport->bon_de_caisse()->where(function ($query) {
+            $query->where('etape', 'PAYE')
+            ->orWhere('etape', 'CLOS');
+        })->sum('montant_definitif'), 2, '.', ' ') }} CFA</h1>
                             </div>
                         </div>
                     </div>
