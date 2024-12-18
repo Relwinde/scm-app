@@ -121,15 +121,18 @@ class CreateDossierExport extends ModalComponent
     }
 
     public function checkPartial (){
-        $partial = Dossier::where('num_commande', $this->num_commande)->Where('type', 'EXPORT')->first();
 
-        if($partial != null){
-            $this->isPartial = true;
-            $this->client = $partial->client_id;
-            $this->fournisseur = $partial->fournisseur;
-        } else {
-            $this->isPartial = false;
-            // $this->reset(['client', 'bureau_de_douane']);
+        if ($this->num_commande != "NP" && $this->num_commande != "np"){
+            $partial = Dossier::where('num_commande', $this->num_commande)->Where('type', 'EXPORT')->first();
+
+            if($partial != null){
+                $this->isPartial = true;
+                $this->client = $partial->client_id;
+                $this->fournisseur = $partial->fournisseur;
+            } else {
+                $this->isPartial = false;
+                // $this->reset(['client', 'bureau_de_douane']);
+            }
         }
     }
 }
