@@ -47,7 +47,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-4">
-                                    <label class="form-label">Client</label>
+                                    <label class="form-label">Client<span class="required">*</span></label>
                                     <select required  @if ($edit==false) readonly disabled="" @endif wire:model='client' name="client" class="form-control custom-select select2">
                                         <option value="" >Sélectionnez un client</option>
                                         @foreach ($clients as $client)

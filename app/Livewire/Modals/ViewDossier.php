@@ -58,7 +58,12 @@ class ViewDossier extends ModalComponent
         $fournisseurs = Fournisseur::all(['id', 'nom']);
         $marchandises = Marchandise::all(['id', 'nom']);
         $bureau_de_douanes = BureauDeDouane::all(['id', 'nom']);
-        $this->total_depenses = $this->dossier->bon_de_caisse()->where('etape', 'PAYE')->orWhere('etape', 'CLOS')->sum('montant_definitif');
+        $this->total_depenses = $this->dossier->bon_de_caisse()->where(function ($query) {
+            $query->where('etape', 'PAYE')
+            ->orWhere('etape', 'CLOS');
+        })->sum('montant_definitif');
+        
+        
 
 
         return view('livewire.modals.view-dossier', ["clients"=>$clients, "fournisseurs"=>$fournisseurs, "marchandises"=>$marchandises, 'bureau_de_douanes'=>$bureau_de_douanes, "title"=>"d'importation"]);
