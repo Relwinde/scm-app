@@ -82,7 +82,7 @@
                     </div>
                     <div>
                         <div wire:poll.5s class="table-responsive">
-                            <table class="table table-striped table-bordered border text-nowrap mb-0">
+                            <table class="table table-striped table-bordered border text-wrap mb-0">
                                 <thead>
                                     <tr style="font-weight:700;">
                                         <th class="wd-15p border-bottom-0"><b>Numéro</b></th>
