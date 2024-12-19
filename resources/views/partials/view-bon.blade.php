@@ -200,7 +200,7 @@
                 $(function () {
                     return $.growl({
                         title: "Succès :",
-                        message: "Le paiement a été effectué avec succès"
+                        message: "Le paiement a été effectué avec succès."
                     });
                 });
             }).call(this);
@@ -210,7 +210,7 @@
                 $(function () {
                     return $.growl({
                         title: "Succès :",
-                        message: "Le bon a été envoyé à la prochaine étape"
+                        message: "Le bon a été envoyé à la prochaine étape."
                     });
                 });
             }).call(this);
@@ -220,7 +220,7 @@
                 $(function () {
                     return $.growl({
                         title: "Succès :",
-                        message: "Le bon a été renvoyé à l'étape précédente"
+                        message: "Le bon a été renvoyé à l'étape précédente."
                     });
                 });
             }).call(this);
@@ -230,7 +230,7 @@
                 $(function () {
                     return $.growl({
                         title: "Succès :",
-                        message: "Le bon a été clos et archivé"
+                        message: "Le bon a été clos et archivé."
                     });
                 });
             }).call(this);

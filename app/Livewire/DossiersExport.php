@@ -40,6 +40,13 @@ class DossiersExport extends Component
     }
 
     public function delete (Dossier $dossier){
-        $dossier->delete();
+
+        $bons_dossier = $dossier->bon_de_caisse()->where('deleted_at', NULL)->count();
+        if ($bons_dossier > 0){
+            $this->dispatch('dossier-delete-error');
+        } else {
+            $dossier->delete();
+            $this->dispatch('dossier-delete-success');
+        }
     }
 }

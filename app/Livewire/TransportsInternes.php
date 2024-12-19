@@ -38,4 +38,15 @@ class TransportsInternes extends Component
                 'dossiers' => $dossiers, 'header_title'=>'Dossiers de transports internes', 'create_modal'=>'modals.create-transport-interne', 'button_title'=>'Nouveau dossier'
             ]);
     }
+
+    public function delete (TransportInterne $dossier){
+
+        $bons_dossier = $dossier->bon_de_caisse()->where('deleted_at', NULL)->count();
+        if ($bons_dossier > 0){
+            $this->dispatch('dossier-delete-error');
+        } else {
+            $dossier->delete();
+            $this->dispatch('dossier-delete-success');
+        }
+    }
 }
