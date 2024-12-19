@@ -206,4 +206,13 @@ class BonDeCaisse extends Component
             'bonsDeCaisse' => $bonsDeCaisse, 'header_title'=>'Bons de caisse', 'create_modal'=>'modals.create-bon-de-caisse', 'button_title'=>'Nouveau bon'
         ]);
     }
+
+    public function delete (ModelsBonDeCaisse $bon){
+        if ($bon->etape != "EMETTEUR"){
+            $this->dispatch('bon-delete-error');
+        } else {
+            $bon->delete();
+            $this->dispatch('bon-delete-success');
+        }
+    }
 }

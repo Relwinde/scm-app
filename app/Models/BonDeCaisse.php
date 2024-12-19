@@ -9,11 +9,13 @@ use App\Models\EtapeBon;
 use App\Models\AjustementBon;
 use App\Models\TransportInterne;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BonDeCaisse extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     protected $guarded = [];
 
     public function dossier (){

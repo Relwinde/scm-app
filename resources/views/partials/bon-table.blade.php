@@ -71,7 +71,7 @@
                                     </button>
                                 @endif
                                 @if ($bon->etape == "EMETTEUR" && $bon->user->id == Auth::user()->id) 
-                                    <button id="bDel" type="button" class="btn  btn-sm btn-danger">
+                                    <button wire:confirm="Souhaitez vous vraiment supprimer ce élément?" wire:click='delete({{$bon->id}})' type="button" class="btn  btn-sm btn-danger">
                                         <span class="fe fe-trash-2"> </span>
                                     </button>
                                 @endif
@@ -87,4 +87,29 @@
         </div>
     </div>
 </div>
+
+@script
+    <script>
+        $wire.on('bon-delete-error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        message: "Une erreur est survenue, ce bon de caisse ne peut être supprimé."
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('bon-delete-success', () => {
+            (function () {
+                $(function () {
+                    return $.growl({
+                        title: "Succès :",
+                        message: "Le bon de caisse a été supprimé avec succès."
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript
 

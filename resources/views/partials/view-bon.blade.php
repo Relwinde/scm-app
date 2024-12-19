@@ -189,7 +189,7 @@
             (function () {
                 $(function () {
                     return $.growl.error({
-                        message: "Le solde de votre caisse est insuffisant pour effectuer cette opération"
+                        message: "Le solde de votre caisse est insuffisant pour effectuer cette opération."
                     });
                 });
             }).call(this);
