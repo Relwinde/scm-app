@@ -47,7 +47,7 @@ class BonDeCaisse extends Model
         $mpdf = new Mpdf([
             'mode'=>'utf-8',
             'format' => 'A4-P',
-            'default_font_size' => 9,
+            'default_font_size' => 12,
 	        'default_font' => 'FreeSerif'
         ]);
 
