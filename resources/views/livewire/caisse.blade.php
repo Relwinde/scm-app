@@ -99,7 +99,7 @@
                                     @foreach ($bonsDeCaisse as $bon)
                                         <tr style="font-weight:600;" wire:key='{{$bon->id}}'>
                                             <td wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.view-bon', arguments: { bon : {{ $bon->id }} }})" style="cursor: pointer;">{{$bon->numero}}</td>
-                                            <td>{{$bon->depense}}</td>
+                                            <td style="max-width: 765px;">{{$bon->depense}}</td>
                                             <td>{{number_format($bon->montant_definitif, 2, '.', ' ')}}</td>
                                             <td>{{$bon->dossier->numero ?? $bon->transport->numero ?? "AUTRES"}}</td>
                                             <td>{{$bon->user->name}}</td>
