@@ -53,7 +53,7 @@
             </tr>
             <tr>
                 <td style="width: auto;"><h4>MONTANT&nbsp;&nbsp;: </h4></td>
-                <td><h>{{$dossier->montant}}</h></td>
+                <td><h>{{number_format($dossier->montant, 2, '.', ' ')}} FCFA</h></td>
             </tr>
             <tr>
                 <td style="width: auto;"><h4>NOMBRE DE COLIS&nbsp;&nbsp;: </h4></td>
@@ -61,11 +61,11 @@
             </tr>
             <tr>
                 <td style="width: auto;"><h4>POIDS&nbsp;&nbsp;: </h4></td>
-                <td><h>{{$dossier->poids}}</h></td>
+                <td><h>{{number_format($dossier->poids, 2, '.', ' ')}} KG</h></td>
             </tr>
             <tr>
                 <td style="width: auto;"><h4>VOLUME&nbsp;&nbsp;: </h4></td>
-                <td><h>{{$dossier->volume}}</h></td>
+                <td><h>{{number_format($dossier->volume, 2, '.', ' ')}}</h></td>
             </tr>
         </tbody>
     </table>

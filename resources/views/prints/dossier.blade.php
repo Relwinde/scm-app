@@ -74,7 +74,7 @@
             </tr>
             <tr>
                 <td style="width: auto;"><h4>POIDS&nbsp;&nbsp;: </h4></td>
-                <td><h>{{number_format($dossier->poids, 2, '.', ' ')}}</h></td>
+                <td><h>{{number_format($dossier->poids, 2, '.', ' ')}} KG</h></td>
             </tr>
             <tr>
                 <td style="width: auto;"><h4>VALEUR CAF&nbsp;&nbsp;: </h4></td>
