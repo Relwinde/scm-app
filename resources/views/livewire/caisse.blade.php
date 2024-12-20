@@ -17,7 +17,7 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="text-white">
-                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($solde, 2, '.', ' ')}}CFA</h2>
+                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($solde, 2, '.', ' ')}} F CFA</h2>
                             <p class="text-white mb-0">Solde</p>
                         </div>
                         <div class="ms-auto"> <i class="fa fa-database text-white fs-30 me-2 mt-2"></i> </div>
@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="text-white">
-                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($sommeAttente, 2, '.', ' ')}}  CFA</h2>
+                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($sommeAttente, 2, '.', ' ')}} F CFA</h2>
                             <p class="text-white mb-0">En attente de paiement</p>
                         </div>
                         <div class="ms-auto"> <i class="fa fa-bars text-white fs-30 me-2 mt-2"></i> </div>
@@ -43,7 +43,7 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="text-white">
-                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($sommeDepots, 2, '.', ' ')}} CFA</h2>
+                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($sommeDepots, 2, '.', ' ')}} F CFA</h2>
                             <p class="text-white mb-0">Dépots du jour</p>
                         </div>
                         <div class="ms-auto"> <i class="fa fa-level-down text-white fs-30 me-2 mt-2"></i> </div>
@@ -56,7 +56,7 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="text-white">
-                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($sommeDecaissements, 2, '.', ' ')}} CFA</h2>
+                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($sommeDecaissements, 2, '.', ' ')}} F CFA</h2>
                             <p class="text-white mb-0">Décaissements du jour</p>
                         </div>
                         <div class="ms-auto"> <i class="fa fa-level-up text-white fs-30 me-2 mt-2"></i> </div>

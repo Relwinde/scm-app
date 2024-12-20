@@ -71,7 +71,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4>Montant du bon de caisse:</h4>
-                        <h1 class="mb-1 number-font" style="font-size: 17px;">{{number_format($bon->montant_definitif, 2, '.', ' ')}} CFA</h1>
+                        <h1 class="mb-1 number-font" style="font-size: 17px;">{{number_format($bon->montant_definitif, 2, '.', ' ')}} F CFA</h1>
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                                 })->sum('montant_definitif'), 2, '.', ' ') : number_format($bon->transport->bon_de_caisse()->where(function ($query) {
             $query->where('etape', 'PAYE')
             ->orWhere('etape', 'CLOS');
-        })->sum('montant_definitif'), 2, '.', ' ') }} CFA</h1>
+        })->sum('montant_definitif'), 2, '.', ' ') }} F CFA</h1>
                             </div>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
         @if ($bon->ajustements->count() > 0)
             <div class="card m-b-20">
                 <div class="card-header">
-                    <h3 class="card-title">Ajustements (Montant initial: {{number_format($bon->montant, 2, '.', ' ')}} CFA): </h3>
+                    <h3 class="card-title">Ajustements (Montant initial: {{number_format($bon->montant, 2, '.', ' ')}} F CFA): </h3>
                     <div class="card-options">
                         {{-- <a href="javascript:void(0);" class="btn btn-primary btn-sm">Ajouter un commentaire</a> --}}
                         <a href="javascript:void(0);" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
