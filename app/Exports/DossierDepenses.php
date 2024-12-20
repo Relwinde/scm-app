@@ -4,11 +4,13 @@ namespace App\Exports;
 
 use App\Models\Dossier;
 use App\Models\BonDeCaisse;
-use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 
-class DossierDepenses implements FromCollection, ShouldAutoSize, WithHeadings
+class DossierDepenses implements FromCollection, ShouldAutoSize, WithHeadings, WithColumnFormatting
 {
     private Dossier $dossier;
 
@@ -53,6 +55,13 @@ class DossierDepenses implements FromCollection, ShouldAutoSize, WithHeadings
 
     public function headings(): array
     {
-        return ["N° de bon", "Dépenses", "Montant (CFA)", "Emetteur", "Mode de paiement", "Date"];
+        return ["N° de bon", "Dépenses", "Montant (F CFA)", "Emetteur", "Mode de paiement", "Date"];
+    }
+
+    public function columnFormats(): array
+    {
+        return [
+                'C' => NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1,
+            ];
     }
 }

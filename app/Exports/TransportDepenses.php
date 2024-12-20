@@ -7,8 +7,12 @@ use App\Models\TransportInterne;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat\Formatter;
 
-class TransportDepenses implements FromCollection,  ShouldAutoSize, WithHeadings
+class TransportDepenses implements FromCollection,  ShouldAutoSize, WithHeadings, WithColumnFormatting
 {
     private TransportInterne $dossier;
 
@@ -50,6 +54,13 @@ class TransportDepenses implements FromCollection,  ShouldAutoSize, WithHeadings
 
     public function headings(): array
     {
-        return ["N° de bon", "Dépenses", "Montant (CFA)", "Emetteur", "Mode de paiement", "Date"];
+        return ["N° de bon", "Dépenses", "Montant (F CFA)", "Emetteur", "Mode de paiement", "Date"];
+    }
+
+    public function columnFormats(): array
+    {
+        return [
+                'C' => NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1,
+            ];
     }
 }
