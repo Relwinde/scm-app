@@ -52,6 +52,10 @@
                 <td><h>{{$dossier->num_facture}}</h></td>
             </tr>
             <tr>
+                <td style="width: auto;"><h4>N° BL/LTA&nbsp;&nbsp;: </h4></td>
+                <td><h>{{$dossier->num_lta_bl}}</h></td>
+            </tr>
+            <tr>
                 <td style="width: auto;"><h4>N° SYLVIE&nbsp;&nbsp;: </h4></td>
                 <td><h>{{$dossier->num_sylvie}}</h></td>
             </tr>
@@ -70,19 +74,15 @@
             </tr>
             <tr>
                 <td style="width: auto;"><h4>NOMBRE DE COLIS&nbsp;&nbsp;: </h4></td>
-                <td><h>{{$dossier->nombre_colis}}</h></td>
+                <td><h>{{$dossier->nombre_colis > 0 ? $dossier->nombre_colis : ""}}</h></td>
             </tr>
             <tr>
                 <td style="width: auto;"><h4>POIDS&nbsp;&nbsp;: </h4></td>
-                <td><h>{{number_format($dossier->poids, 2, '.', ' ')}} KG</h></td>
+                <td><h>{{$dossier->poids > 0 ? number_format($dossier->poids, 2, '.', ' ')." KG" : ""}} </h></td>
             </tr>
             <tr>
                 <td style="width: auto;"><h4>VALEUR CAF&nbsp;&nbsp;: </h4></td>
-                <td><h>{{number_format($dossier->valeur_caf, 2, '.', ' ')}}</h></td>
-            </tr>
-            <tr>
-                <td style="width: auto;"><h4>VALEUR DE LA MARCHANDISE&nbsp;&nbsp;: </h4></td>
-                <td><h>{{number_format($dossier->valeur_marchandise, 2, '.', ' ')}}</h></td>
+                <td><h>{{$dossier->valeur_caf > 0 ? number_format($dossier->valeur_caf, 2, '.', ' ') : ""}}</h></td>
             </tr>
         </tbody>
     </table>
