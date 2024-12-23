@@ -195,6 +195,16 @@
             }).call(this);
         });
 
+        $wire.on('invalid-method', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        message: "Vous n'avez pas selectionné un mode de paiement valide."
+                    });
+                });
+            }).call(this);
+        });
+
         $wire.on('operation-success', () => {
             (function () {
                 $(function () {
@@ -235,5 +245,6 @@
                 });
             }).call(this);
         });
+        
     </script>
 @endscript
