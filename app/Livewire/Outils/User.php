@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Outils;
 
-use App\Models\User as ModelsUser;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use App\Models\User as ModelsUser;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Component
 {
@@ -17,6 +18,11 @@ class User extends Component
     #[On('new-user')]
     public function render()
     {
+
+        if (! Auth::user()->can('Voir la liste des utlisateurs')){
+            redirect("/");
+        }
+
         $users = ModelsUser::latest()
             ->where('name', 'like', "%{$this->search}%")
             ->orWhere('email', 'like', "%{$this->search}%")

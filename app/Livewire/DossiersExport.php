@@ -6,6 +6,7 @@ use App\Models\Dossier;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class DossiersExport extends Component
 {
@@ -16,6 +17,9 @@ class DossiersExport extends Component
     #[On('new-dossier')]
     public function render()
     {
+        if (! Auth::user()->can('Voir la liste des dossiers exports')){
+            redirect("/");
+        }
         $dossiers = Dossier::select(['dossiers.id', 'dossiers.numero', 'dossiers.num_lta_bl', 'dossiers.num_sylvie', 'dossiers.num_commande', 'dossiers.created_at', 'dossiers.num_declaration', 'dossiers.client_id', 'dossiers.fournisseur'])
             ->join('clients', 'dossiers.client_id', '=', 'clients.id')
             ->join('numero_dossiers', 'dossiers.id', '=', 'numero_dossiers.dossier_id') 

@@ -7,6 +7,7 @@ use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use App\Models\TransportInterne;
+use Illuminate\Support\Facades\Auth;
 
 class TransportsInternes extends Component
 {
@@ -17,6 +18,11 @@ class TransportsInternes extends Component
     #[On('new-dossier')]
     public function render()
     {
+
+        if (! Auth::user()->can('Voir la liste des transports internes')){
+            redirect("/");
+        }
+
         $dossiers = TransportInterne::select(['transport_internes.id', 'transport_internes.numero', 'transport_internes.client_id', 'transport_internes.chauffeur_id', 'transport_internes.vehicule_id', 'transport_internes.created_at'])
             ->leftjoin('clients', 'transport_internes.client_id', '=', 'clients.id') 
             ->leftjoin('vehicules', 'transport_internes.vehicule_id', '=', 'vehicules.id') 

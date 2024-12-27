@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 class Profile extends Component
 {
@@ -17,6 +18,11 @@ class Profile extends Component
     #[On('new-profile')]
     public function render()
     {
+
+        if (! Auth::user()->can('Voir la liste des profiles')){
+            redirect("/");
+        }
+
         $profiles = Role::where('name', 'like', "%{$this->search}%")
                     ->orderBy('name')
                     ->paginate(10, '*', 'roles-pagination');
