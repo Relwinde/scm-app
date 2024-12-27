@@ -39,7 +39,7 @@ class CreateDossierExport extends ModalComponent
         $marchandises = Marchandise::all(['id', 'nom']);
         $bureau_de_douanes = BureauDeDouane::all(['id', 'nom', 'code']);
         
-        return view('livewire.modals.create-dossier-export', ["clients"=>$clients,  "marchandises"=>$marchandises, 'bureau_de_douanes'=>$bureau_de_douanes, "title"=>"Création d'un nouveau dossier d'importation"]);
+        return view('livewire.modals.create-dossier-export', ["clients"=>$clients,  "marchandises"=>$marchandises, 'bureau_de_douanes'=>$bureau_de_douanes, "title"=>"Création d'un nouveau dossier d'exportation"]);
     }
 
     public static function destroyOnClose(): bool
