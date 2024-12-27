@@ -86,7 +86,7 @@
                 <div class="col-md-12 ">
                     <div class="mb-0">
                         <label class="form-label">Commentaire</label>
-                        <textarea wire:model='observation' class="form-control" rows="2" placeholder="text here.."></textarea>
+                        <textarea wire:model='observation' class="form-control" rows="2" placeholder="Votre commentaire ici.."></textarea>
                     </div>
                 </div>
             </div>

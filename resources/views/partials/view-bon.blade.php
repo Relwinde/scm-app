@@ -45,6 +45,13 @@
         </div>
     </div>
     <div class="card-body">
+        <div class="row">
+            <div class="text-wrap">
+                <div class="example">
+                    <p>{{$bon->description}}</p>
+                </div>
+            </div>
+        </div>
         <div class="row m-2">
             @if ($bon->commentaires->count() > 0)
                 <div class="custom-controls-stacked">
