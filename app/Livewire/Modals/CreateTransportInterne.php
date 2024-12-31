@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Modals;
 
+use Carbon\Carbon;
 use App\Models\Client;
 use App\Models\Vehicule;
 use App\Models\Chauffeur;
@@ -41,17 +42,16 @@ class CreateTransportInterne extends ModalComponent
         'user_id'=>Auth::User()->id
         ]);
 
-        if(TransportInterne::latest()->first()==null){
-
+        if(TransportInterne::whereYear('created_at', Carbon::now()->year)->latest()->first() == null){
             $numero = "TP04-".strtoupper($dossier->client->code)."/".date('Y').'0001';
         }else {
-            $ordre = NumeroTransport::latest()->first()->id + 1;
+            $ordre = NumeroTransport::whereYear('created_at', Carbon::now()->year)->count() + 1;
             do{
                 $numero = "TP04-".strtoupper($dossier->client->code)."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
                 $ordre++; 
                 $pattern = explode('/', $numero)[1];
             }
-            while(NumeroTransport::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);
+            while(NumeroTransport::where('numero', 'LIKE', "%/{$pattern}")->whereYear('created_at', Carbon::now()->year)->count() > 0);
         }
 
         $dossier->numero = $numero;

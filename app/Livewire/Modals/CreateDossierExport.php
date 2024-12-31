@@ -2,14 +2,15 @@
 
 namespace App\Livewire\Modals;
 
+use Carbon\Carbon;
 use App\Models\Client;
 use App\Models\Dossier;
 use App\Models\Fournisseur;
 use App\Models\Marchandise;
 use App\Models\Observation;
+use App\Models\NumeroDossier;
 use App\Models\BureauDeDouane;
 use App\Models\DossierObservation;
-use App\Models\NumeroDossier;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 
@@ -68,23 +69,39 @@ class CreateDossierExport extends ModalComponent
         ]);
 
         
-        if(Dossier::latest()->first()==null){
+        if(Dossier::whereYear('created_at', Carbon::now()->year)->latest()->first() == null){
             $numero = "EX-".BureauDeDouane::find($this->bureau_de_douane)->code."-".strtoupper($dossier->client->code)."/".date('Y').'0001';
         }else{
-
-            $ordre = NumeroDossier::latest()->first()->id+1;
+            $ordre = NumeroDossier::whereYear('created_at', Carbon::now()->year)->count() + 1;
 
             do {
                 $numero = "EX-".BureauDeDouane::find($this->bureau_de_douane)->code."-".strtoupper($dossier->client->code)."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
 
                 $ordre++;
                 $pattern = explode('/', $numero)[1];
-            } while (NumeroDossier::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);
-              
+            } while (NumeroDossier::where('numero', 'LIKE', "%/{$pattern}")->whereYear('created_at', Carbon::now()->year)->count() > 0);
+                
         }
-        
 
         $dossier->numero = $numero;
+        
+        // if(Dossier::latest()->first()==null){
+        //     $numero = "EX-".BureauDeDouane::find($this->bureau_de_douane)->code."-".strtoupper($dossier->client->code)."/".date('Y').'0001';
+        // }else{
+
+        //     $ordre = NumeroDossier::latest()->first()->id+1;
+
+        //     do {
+        //         $numero = "EX-".BureauDeDouane::find($this->bureau_de_douane)->code."-".strtoupper($dossier->client->code)."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
+
+        //         $ordre++;
+        //         $pattern = explode('/', $numero)[1];
+        //     } while (NumeroDossier::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);
+              
+        // }
+        
+
+        // $dossier->numero = $numero;
 
         if($dossier->save()){
             if ($this->observation != null && $this->observation != ""){

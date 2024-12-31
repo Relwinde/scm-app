@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Modals;
 
+use Carbon\Carbon;
 use App\Models\Client;
 use App\Models\Dossier;
 use App\Models\Fournisseur;
@@ -75,22 +76,37 @@ class CreateDossierImport extends ModalComponent
         ]);
 
         
-        if(Dossier::latest()->first()==null){
-
+        if(Dossier::whereYear('created_at', Carbon::now()->year)->latest()->first() == null){ 
             $numero = "IM-".BureauDeDouane::find($this->bureau_de_douane)->code."-".strtoupper($dossier->client->code)."/".date('Y').'0001';
-        }else{
-            $ordre = NumeroDossier::latest()->first()->id+1;
+        } else {
+            $ordre = NumeroDossier::whereYear('created_at', Carbon::now()->year)->count() + 1;
 
             do {
                 $numero = "IM-".BureauDeDouane::find($this->bureau_de_douane)->code."-".strtoupper($dossier->client->code)."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
 
                 $ordre++;
                 $pattern = explode('/', $numero)[1];
-            } while (NumeroDossier::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);
+            } while (NumeroDossier::where('numero', 'LIKE', "%/{$pattern}")->whereYear('created_at', Carbon::now()->year)->count() > 0);
         }
-        
 
         $dossier->numero = $numero;
+        
+        // if(Dossier::latest()->first()==null){ 
+
+        //     $numero = "IM-".BureauDeDouane::find($this->bureau_de_douane)->code."-".strtoupper($dossier->client->code)."/".date('Y').'0001';
+        // }else{
+        //     $ordre = NumeroDossier::latest()->first()->id+1;
+
+        //     do {
+        //         $numero = "IM-".BureauDeDouane::find($this->bureau_de_douane)->code."-".strtoupper($dossier->client->code)."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
+
+        //         $ordre++;
+        //         $pattern = explode('/', $numero)[1];
+        //     } while (NumeroDossier::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);
+        // }
+        
+
+        // $dossier->numero = $numero;
 
         if($dossier->save()){
 
