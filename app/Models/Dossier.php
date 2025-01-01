@@ -72,7 +72,7 @@ class Dossier extends Model
                     $ordre++;
                     $pattern = explode('/', $numero)[1];
                 } while (NumeroDossier::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);
-                
+                 
                 $this->numero = $numero;
                 break;
 
