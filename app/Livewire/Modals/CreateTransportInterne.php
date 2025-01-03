@@ -8,6 +8,7 @@ use App\Models\Vehicule;
 use App\Models\Chauffeur;
 use App\Models\NumeroTransport;
 use App\Models\TransportInterne;
+use App\Models\Marchandise;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 
@@ -20,14 +21,17 @@ class CreateTransportInterne extends ModalComponent
     public $nombre_colis;
     public $poids;
     public $volume;
+    public $marchandise;
 
     public function render()
     {
         $clients = Client::all(['id', 'nom']);
         $chauffeurs = Chauffeur::all(['id', 'nom']);
         $vehicules = Vehicule::all(['id', 'immatriculation', 'description']);
+        $marchandises = Marchandise::all(['id', 'nom']);
 
-        return view('livewire.modals.create-transport-interne',["clients"=>$clients, "chauffeurs"=>$chauffeurs, "vehicules"=>$vehicules, "title"=>"de transport interne"]);
+
+        return view('livewire.modals.create-transport-interne',["clients"=>$clients, "marchandises"=>$marchandises, "chauffeurs"=>$chauffeurs, "vehicules"=>$vehicules, "title"=>"de transport interne"]);
     }
 
     public function create(){
@@ -61,6 +65,7 @@ class CreateTransportInterne extends ModalComponent
                 'transport_interne_id'=>$dossier->id,
                 'numero'=>$dossier->numero
             ]);
+            $dossier->marchandises()->attach($this->marchandise);
             $this->dispatch('new-dossier');
             $this->reset();
         }else{

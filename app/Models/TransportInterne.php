@@ -55,6 +55,10 @@ class TransportInterne extends Model
     public function bon_de_caisse (){
         return $this->hasMany(BonDeCaisse::class);
     }
+
+    public function marchandises(){
+        return $this->belongsToMany(Marchandise::class);
+    }
     
     public function updateNumero (){
         $ordre = NumeroTransport::whereYear('created_at', Carbon::parse($this->created_at)->year)->count() + 1;

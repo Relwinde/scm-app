@@ -56,6 +56,10 @@
                 <td><h>{{$dossier->montant > 0 ? number_format($dossier->montant, 2, '.', ' ')."FCFA" : ""}}</h></td>
             </tr>
             <tr>
+                <td style="width: auto;"><h4>NATURE DE LA MARCHANDISE&nbsp;&nbsp;: </h4></td>
+                <td><h>{{$dossier->marchandises->first()->nom ?? null}}</h></td>
+            </tr>
+            <tr>
                 <td style="width: auto;"><h4>NOMBRE DE COLIS&nbsp;&nbsp;: </h4></td>
                 <td><h>{{$dossier->nombre_colis > 0 ? $dossier->nombre_colis : ""}}</h></td>
             </tr>

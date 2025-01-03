@@ -68,13 +68,18 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-4">
-                                    <label class="form-label">Montant</label>
-                                    <input wire:focusout='reformat_montant ()'  @if ($edit==false) readonly disabled="" @endif wire:model='montant' type="text" class="form-control" name="example-text-input" placeholder="">
+                                    <label class="form-label">Nature du colis<span class="required">*</span></label>
+                                    <select required wire:model='marchandise' name="country" id="select-countries" class="form-control custom-select select2 " @if ($edit==false) readonly disabled="" @endif>
+                                        <option value="" >Sélectionnez une marchandise</option>
+                                        @foreach ($marchandises ?? [] as $marchandise)
+                                            <option value="{{$marchandise->id}}" >{{$marchandise->nom}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Véhicule</label>
                                     <select  @if ($edit==false) readonly disabled="" @endif wire:model='vehicule' name="country" id="select-countries" class="form-control custom-select select2">
-                                        <option ></option>
+                                        <option>Selectionner un véhicule</option>
                                         @foreach ($vehicules as $vehicule)
                                             <option value="{{$vehicule->id}}" >{{$vehicule->immatriculation}}</option>
                                         @endforeach
@@ -95,6 +100,10 @@
                                 <div class="mb-4">
                                     <label class="form-label">Volume</label>
                                     <input @if ($edit==false) readonly disabled="" @endif wire:focusout='reformat_volume()' wire:model='volume' type="text" class="form-control" name="example-text-input" placeholder="Volume">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Montant</label>
+                                    <input wire:focusout='reformat_montant ()'  @if ($edit==false) readonly disabled="" @endif wire:model='montant' type="text" class="form-control" name="example-text-input" placeholder="">
                                 </div>
                             </div>
                             <div class="col-md-12 ">
