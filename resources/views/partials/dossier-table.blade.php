@@ -32,7 +32,7 @@
                         <td>{{$dossier->num_lta_bl}}</td>
                         <td>{{$dossier->num_sylvie}}</td>
                         <td>{{$dossier->num_commande}}</td>
-                        <td>{{strftime("%e %B %Y", strtotime($dossier->created_at));}}</td>
+                        <td>{{ $dossier->created_at->locale(app()->getLocale())->translatedFormat('j F Y') }}</td>
                         <td>{{$dossier->num_declaration}}</td>
                         <td name="bstable-actions">
                             <div class="btn-list">
@@ -43,7 +43,7 @@
                                     <span class="fe fe-eye"> </span>
                                 </button>
                                 @can('Supprimer dossier')
-                                        <button wire:click='delete({{$dossier->id}})' wire:confirm="Souhaitez vous vraiment supprimer ce élément?" type="button" class="btn  btn-sm btn-danger">
+                                        <button wire:click='delete({{$dossier->id}})' wire:confirm="Souhaitez vous vraiment supprimer cet élément?" type="button" class="btn  btn-sm btn-danger">
                                         <span class="fe fe-trash-2"> </span>
                                         </button>
                                 @endcan
@@ -59,4 +59,29 @@
         </div>
     </div>
 </div>
+
+@script
+    <script>
+        $wire.on('dossier-delete-error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        message: "Une erreur est survenue, ce dossier a déjà fait l'objet de bons de caisse"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('dossier-delete-success', () => {
+            (function () {
+                $(function () {
+                    return $.growl({
+                        title: "Succès :",
+                        message: "Le dossier a été supprimé avec succès."
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript
 

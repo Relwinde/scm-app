@@ -5,6 +5,7 @@ namespace App\Livewire\Outils;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Client as ModelsClient;
 
 class Client extends Component
@@ -17,6 +18,10 @@ class Client extends Component
     #[On('new-client')]
     public function render()
     {
+
+        if (! Auth::user()->can('Voir la liste des clients')){  
+            redirect("/");
+        }
 
         $clients = ModelsClient::select(['id', 'nom', 'telephone', 'email', 'adresse', 'ifu', 'rccm', 'code'])
             ->where('nom', 'like', "%{$this->search}%")

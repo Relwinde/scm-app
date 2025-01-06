@@ -14,8 +14,8 @@
                 <tr style="font-weight:600;" wire:key='{{$dossier->id}}'>
                     <td wire:click="$dispatch('openModal', {component: 'modals.view-transport-interne', arguments: { dossier : {{ $dossier->id }} }})" style="cursor: pointer;">{{$dossier->numero}}</td>
                     <td>{{$dossier->client->nom}}</td>
-                    <td>{{$dossier->chauffeur->nom}}</td>
-                    <td>{{$dossier->vehicule->immatriculation}}</td>
+                    <td>{{$dossier->chauffeur->nom ?? ''}}</td>
+                    <td>{{$dossier->vehicule->immatriculation ?? ''}}</td>
                     <td name="bstable-actions">
                         <div class="btn-list">
                             {{-- <button id="bEdit" type="button" class="btn btn-sm btn-primary">
@@ -25,7 +25,7 @@
                                 <span class="fe fe-eye"> </span>
                             </button>
                             @can('Supprimer transport interne')
-                                <button id="bDel" type="button" class="btn  btn-sm btn-danger">
+                                <button wire:click='delete({{$dossier->id}})' wire:confirm="Souhaitez vous vraiment supprimer cet élément?" id="bDel" type="button" class="btn  btn-sm btn-danger">
                                     <span class="fe fe-trash-2"> </span>
                                 </button>
                             @endcan
@@ -40,3 +40,29 @@
         {{$dossiers->links()}}
     </div>
 </div>
+
+
+@script
+    <script>
+        $wire.on('dossier-delete-error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        message: "Une erreur est survenue, ce dossier a déjà fait l'objet de bons de caisse"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('dossier-delete-success', () => {
+            (function () {
+                $(function () {
+                    return $.growl({
+                        title: "Succès :",
+                        message: "Le dossier a été supprimé avec succès."
+                    });
+                });
+            }).call(this);
+        });
+    </script>
+@endscript

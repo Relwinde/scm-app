@@ -10,10 +10,12 @@ class EditBon extends ModalComponent
     public BonDeCaisse $bon;
     public $montant;
     public $depense;
+    public $description;
 
     public function mount (){
         $this->montant = $this->bon->montant;
         $this->depense = $this->bon->depense; 
+        $this->description = $this->bon->description;
     }
 
     public function render()
@@ -29,6 +31,7 @@ class EditBon extends ModalComponent
         $this->bon->montant_definitif = floatval(str_replace(' ', '',$this->montant));
         $this->bon->montant = floatval(str_replace(' ', '',$this->montant));
         $this->bon->depense = $this->depense;
+        $this->bon->description = $this->description;
         if ($this->bon->save()){
             $this->dispatch('new-bon-de-caisse');
             $this->closeModal();

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('numero');
             $table->decimal('montant', 14, 2)->nullable();
             $table->foreignId('client_id')->constrained()->onDelete('cascade');
-            $table->foreignId('vehicule_id')->constrained()->onDelete('cascade');
-            $table->foreignId('chauffeur_id')->constrained()->onDelete('cascade');
+            $table->foreignId('vehicule_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('chauffeur_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

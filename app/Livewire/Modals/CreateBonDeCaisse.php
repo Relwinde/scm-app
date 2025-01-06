@@ -18,6 +18,8 @@ class CreateBonDeCaisse extends ModalComponent
 
     public $surDossier = 1;
 
+    public $description;
+
     public function render()
     {
 
@@ -41,6 +43,7 @@ class CreateBonDeCaisse extends ModalComponent
                     'montant'=> floatval(str_replace(' ', '',$this->montant)),
                     'montant_definitif'=> floatval(str_replace(' ', '',$this->montant)),
                     'dossier_id'=>$this->dossier,
+                    'description'=>$this->description,
                     'user_id'=>Auth::user()->id
                  ]);
                 break;
@@ -51,6 +54,7 @@ class CreateBonDeCaisse extends ModalComponent
                     'montant'=> floatval(str_replace(' ', '',$this->montant)),
                     'montant_definitif'=> floatval(str_replace(' ', '',$this->montant)),
                     'transport_interne_id'=>$this->dossier,
+                    'description'=>$this->description,
                     'user_id'=>Auth::user()->id
                  ]);
                 break;
@@ -60,6 +64,7 @@ class CreateBonDeCaisse extends ModalComponent
                     'depense'=> $this->depense,
                     'montant'=> floatval(str_replace(' ', '',$this->montant)),
                     'montant_definitif'=> floatval(str_replace(' ', '',$this->montant)),
+                    'description'=>$this->description,
                     'user_id'=>Auth::user()->id
                  ]);
                 break;

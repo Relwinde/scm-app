@@ -6,6 +6,7 @@ use App\Models\Dossier;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class DossiersImport extends Component
 {
@@ -17,6 +18,11 @@ class DossiersImport extends Component
     #[On('new-dossier')]
     public function render()
     {
+
+        if (! Auth::user()->can('Voir la liste des dossiers imports')){
+            redirect("/");
+        }
+
         $dossiers = Dossier::select(['dossiers.id', 'dossiers.numero', 'dossiers.num_lta_bl', 'dossiers.num_sylvie', 'dossiers.num_commande', 'dossiers.created_at', 'dossiers.num_declaration', 'dossiers.client_id', 'dossiers.fournisseur'])
             ->join('clients', 'dossiers.client_id', '=', 'clients.id') 
             ->join('numero_dossiers', 'dossiers.id', '=', 'numero_dossiers.dossier_id') 
@@ -42,7 +48,14 @@ class DossiersImport extends Component
     }
 
     public function delete (Dossier $dossier){
-        $dossier->delete();
+
+        $bons_dossier = $dossier->bon_de_caisse()->where('deleted_at', NULL)->count();
+        if ($bons_dossier > 0){
+            $this->dispatch('dossier-delete-error');
+        } else {
+            $dossier->delete();
+            $this->dispatch('dossier-delete-success');
+        }
     }
 
 }

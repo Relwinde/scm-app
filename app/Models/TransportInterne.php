@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Mpdf\Mpdf;
+use Carbon\Carbon;
 use App\Models\Client;
 use App\Models\Vehicule;
 use App\Models\Chauffeur;
@@ -32,13 +33,17 @@ class TransportInterne extends Model
         return $this->belongsToMany(Destination::class, 'destination_transport_interne', 'transport_interne_id', 'depart')->withPivot('depart', 'arrivee', 'id')->orderBy('destination_transport_interne.id', 'ASC');
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    
     public function print (){
         ini_set('memory_limit', '440M');
         
         $mpdf = new Mpdf([
             'mode'=>'utf-8',
             'format' => 'A4-P',
-            'default_font_size' => 9,
+            'default_font_size' => 13,
 	        'default_font' => 'FreeSerif'
         ]);
 
@@ -50,15 +55,19 @@ class TransportInterne extends Model
     public function bon_de_caisse (){
         return $this->hasMany(BonDeCaisse::class);
     }
+
+    public function marchandises(){
+        return $this->belongsToMany(Marchandise::class);
+    }
     
     public function updateNumero (){
-        $ordre = NumeroTransport::latest()->first()->id + 1;
+        $ordre = NumeroTransport::whereYear('created_at', Carbon::parse($this->created_at)->year)->count() + 1;
         do{
-            $numero = "TP04-".strtoupper($this->client->code)."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
+            $numero = "TP04-".strtoupper($this->client->code)."/".Carbon::parse($this->created_at)->year.str_pad($ordre, 4, '0', STR_PAD_LEFT);
             $ordre++; 
             $pattern = explode('/', $numero)[1];
         }
-        while(NumeroTransport::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);
+        while(NumeroTransport::where('numero', 'LIKE', "%/{$pattern}")->whereYear('created_at', Carbon::parse($this->created_at)->year)->count() > 0);
         $this->numero = $numero;
     }
     

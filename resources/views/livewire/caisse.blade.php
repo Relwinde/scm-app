@@ -17,7 +17,7 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="text-white">
-                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($solde, 2, '.', ' ')}}CFA</h2>
+                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($solde, 2, '.', ' ')}} F CFA</h2>
                             <p class="text-white mb-0">Solde</p>
                         </div>
                         <div class="ms-auto"> <i class="fa fa-database text-white fs-30 me-2 mt-2"></i> </div>
@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="text-white">
-                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($sommeAttente, 2, '.', ' ')}}  CFA</h2>
+                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($sommeAttente, 2, '.', ' ')}} F CFA</h2>
                             <p class="text-white mb-0">En attente de paiement</p>
                         </div>
                         <div class="ms-auto"> <i class="fa fa-bars text-white fs-30 me-2 mt-2"></i> </div>
@@ -43,7 +43,7 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="text-white">
-                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($sommeDepots, 2, '.', ' ')}} CFA</h2>
+                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($sommeDepots, 2, '.', ' ')}} F CFA</h2>
                             <p class="text-white mb-0">Dépots du jour</p>
                         </div>
                         <div class="ms-auto"> <i class="fa fa-level-down text-white fs-30 me-2 mt-2"></i> </div>
@@ -56,7 +56,7 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="text-white">
-                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($sommeDecaissements, 2, '.', ' ')}} CFA</h2>
+                            <h2 class="mb-0 number-font" style="font-size: 25px; font-weight:bold;">{{number_format($sommeDecaissements, 2, '.', ' ')}} F CFA</h2>
                             <p class="text-white mb-0">Décaissements du jour</p>
                         </div>
                         <div class="ms-auto"> <i class="fa fa-level-up text-white fs-30 me-2 mt-2"></i> </div>
@@ -82,28 +82,28 @@
                     </div>
                     <div>
                         <div wire:poll.5s class="table-responsive">
-                            <table class="table table-striped table-bordered border text-nowrap mb-0">
+                            <table class="table table-striped table-bordered border text-wrap mb-0">
                                 <thead>
                                     <tr style="font-weight:700;">
-                                        <th class="wd-15p border-bottom-0"><b>Numéro</b></th>
+                                        <th class="wd-15p border-bottom-0 text-nowrap"><b>Numéro</b></th>
                                         <th class="wd-20p border-bottom-0"><b>Dépenses engagées</b></th>
-                                        <th class="wd-20p border-bottom-0"><b>Montant</b></th>
-                                        <th class="wd-15p border-bottom-0"><b>Dossier</b></th>
-                                        <th class="wd-20p border-bottom-0"><b>Emetteur</b></th>
-                                        <th class="wd-20p border-bottom-0"><b>Mode de paiement</b></th>
-                                        <th class="wd-20p border-bottom-0"><b>Etape</b></th>
-                                        <th class="wd-25p border-bottom-0"><b>Actions</b></th>
+                                        <th class="wd-20p border-bottom-0 text-nowrap"><b>Montant</b></th>
+                                        <th class="wd-15p border-bottom-0 text-nowrap"><b>Dossier</b></th>
+                                        <th class="wd-20p border-bottom-0 text-nowrap"><b>Emetteur</b></th>
+                                        <th class="wd-20p border-bottom-0 text-nowrap"><b>Mode de paiement</b></th>
+                                        <th class="wd-20p border-bottom-0 text-nowrap"><b>Etape</b></th>
+                                        <th class="wd-25p border-bottom-0 text-nowrap"><b>Actions</b></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($bonsDeCaisse as $bon)
                                         <tr style="font-weight:600;" wire:key='{{$bon->id}}'>
-                                            <td wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.view-bon', arguments: { bon : {{ $bon->id }} }})" style="cursor: pointer;">{{$bon->numero}}</td>
+                                            <td wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.view-bon', arguments: { bon : {{ $bon->id }} }})" style="cursor: pointer;" class="text-nowrap">{{$bon->numero}}</td>
                                             <td>{{$bon->depense}}</td>
-                                            <td>{{number_format($bon->montant_definitif, 2, '.', ' ')}}</td>
-                                            <td>{{$bon->dossier->numero ?? $bon->transport->numero ?? "AUTRES"}}</td>
-                                            <td>{{$bon->user->name}}</td>
-                                            <td>
+                                            <td class="text-nowrap">{{number_format($bon->montant_definitif, 2, '.', ' ')}}</td>
+                                            <td class="text-nowrap">{{$bon->dossier->numero ?? $bon->transport->numero ?? "AUTRES"}}</td>
+                                            <td class="text-nowrap">{{$bon->user->name}}</td>
+                                            <td class="text-nowrap">
                                                 @switch($bon->type_paiement)
                                                     @case("ESPECE")
                                                         Espèces
@@ -114,7 +114,7 @@
                                                     @default
                                                 @endswitch
                                             </td>
-                                            <td>@switch($bon->etape)
+                                            <td class="text-nowrap">@switch($bon->etape)
                                                 @case("EMETTEUR")
                                                     <span class="tag tag-azure">Emetteur</span>
                                                     @break
@@ -139,7 +139,7 @@
                                                 @default
                                                     
                                             @endswitch</td>
-                                            <td name="bstable-actions">
+                                            <td class="text-nowrap" name="bstable-actions">
                                                 <div class="btn-list">
                                                     {{-- <button id="bEdit" type="button" class="btn btn-sm btn-primary">
                                                         <span class="fe fe-edit"> </span>

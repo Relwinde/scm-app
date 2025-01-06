@@ -42,7 +42,7 @@
                                 Vu dernièrement le <br> {{ Carbon::createFromTimestamp($user->last_activity)->translatedFormat('d M Y \à H\h i\m s\s')}}
                             @endif
                         </td>
-                        <td> <span class="text-muted fs-13">{{strftime("%e %B %Y", strtotime($user->created_at));}}</span></td>
+                        <td> <span class="text-muted fs-13">{{$user->created_at->locale(app()->getLocale())->translatedFormat('j F Y')}}</span></td>
                         <td name="bstable-actions">
                             <div class="btn-list">
                                 {{-- <button id="bEdit" type="button" class="btn btn-sm btn-primary">

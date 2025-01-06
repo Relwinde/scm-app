@@ -45,6 +45,15 @@
         </div>
     </div>
     <div class="card-body">
+        @if ($bon->description != null && $bon->description != "")
+            <div class="row">
+                <div class="text-wrap">
+                    <div class="example">
+                        <p>{{$bon->description}}</p>
+                    </div>
+                </div>
+            </div>     
+        @endif
         <div class="row m-2">
             @if ($bon->commentaires->count() > 0)
                 <div class="custom-controls-stacked">
@@ -57,7 +66,7 @@
                 @if ($viewComments == true)
                     @foreach ($bon->commentaires as $comment)
                         <div class="alert alert-primary" >   
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>{{$comment->user->name}}: <br> {{$comment->content}} <br> <span>{{strftime("%e %B %Y %H:%M", strtotime($comment->created_at));}} -- {{$comment->etape}}</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>{{$comment->user->name}}: <br> {{$comment->content}} <br> <span>{{$comment->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i:s')}} -- {{$comment->etape}}</span>
                         </div>
                     @endforeach
                 @endif
@@ -71,7 +80,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4>Montant du bon de caisse:</h4>
-                        <h1 class="mb-1 number-font" style="font-size: 17px;">{{number_format($bon->montant_definitif, 2, '.', ' ')}} CFA</h1>
+                        <h1 class="mb-1 number-font" style="font-size: 17px;">{{number_format($bon->montant_definitif, 2, '.', ' ')}} F CFA</h1>
                     </div>
                 </div>
             </div>
@@ -97,7 +106,13 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4>Dépenses sur le dossier à ce jour: </h4>
-                                <h1 class="mb-1 number-font" style="font-size: 17px;">{{ $bon->dossier ? number_format($bon->dossier->bon_de_caisse()->where('etape', 'PAYE')->orWhere('etape', 'CLOS')->sum('montant_definitif'), 2, '.', ' ') : number_format($bon->transport->bon_de_caisse()->where('etape', 'PAYE')->orWhere('etape', 'CLOS')->sum('montant_definitif'), 2, '.', ' ') }} CFA</h1>
+                                <h1 class="mb-1 number-font" style="font-size: 17px;">{{ $bon->dossier ? number_format($bon->dossier->bon_de_caisse()->where(function ($query) {
+                                    $query->where('etape', 'PAYE')
+                                    ->orWhere('etape', 'CLOS');
+                                })->sum('montant_definitif'), 2, '.', ' ') : number_format($bon->transport->bon_de_caisse()->where(function ($query) {
+            $query->where('etape', 'PAYE')
+            ->orWhere('etape', 'CLOS');
+        })->sum('montant_definitif'), 2, '.', ' ') }} F CFA</h1>
                             </div>
                         </div>
                     </div>
@@ -141,7 +156,7 @@
         @if ($bon->ajustements->count() > 0)
             <div class="card m-b-20">
                 <div class="card-header">
-                    <h3 class="card-title">Ajustements (Montant initial: {{number_format($bon->montant, 2, '.', ' ')}} CFA): </h3>
+                    <h3 class="card-title">Ajustements (Montant initial: {{number_format($bon->montant, 2, '.', ' ')}} F CFA): </h3>
                     <div class="card-options">
                         {{-- <a href="javascript:void(0);" class="btn btn-primary btn-sm">Ajouter un commentaire</a> --}}
                         <a href="javascript:void(0);" class="card-options-collapse" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
@@ -154,7 +169,7 @@
                                 @foreach ($bon->ajustements as $ajustement)
                                     <div class="">
                                         <a href="javascript:void(0);" class="text-default fw-semibold"> {{number_format($ajustement->montant, 2, '.', ' ')}} CFA</a>
-                                        <p class="text-muted mb-0">{{$ajustement->type}} :  {{$ajustement->libelle}}, {{ strftime("%e %B %Y", strtotime($ajustement->created_at)); }}</p>
+                                        <p class="text-muted mb-0">{{$ajustement->type}} :  {{$ajustement->libelle}}, {{$ajustement->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i:s')}}</p>
                                     </div>
                                 @endforeach
                             
@@ -183,7 +198,17 @@
             (function () {
                 $(function () {
                     return $.growl.error({
-                        message: "Le solde de votre caisse est insuffisant pour effectuer cette opération"
+                        message: "Le solde de votre caisse est insuffisant pour effectuer cette opération."
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('invalid-method', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        message: "Vous n'avez pas selectionné un mode de paiement valide."
                     });
                 });
             }).call(this);
@@ -194,7 +219,7 @@
                 $(function () {
                     return $.growl({
                         title: "Succès :",
-                        message: "Le paiement a été effectué avec succès"
+                        message: "Le paiement a été effectué avec succès."
                     });
                 });
             }).call(this);
@@ -204,7 +229,7 @@
                 $(function () {
                     return $.growl({
                         title: "Succès :",
-                        message: "Le bon a été envoyé à la prochaine étape"
+                        message: "Le bon a été envoyé à la prochaine étape."
                     });
                 });
             }).call(this);
@@ -214,7 +239,7 @@
                 $(function () {
                     return $.growl({
                         title: "Succès :",
-                        message: "Le bon a été renvoyé à l'étape précédente"
+                        message: "Le bon a été renvoyé à l'étape précédente."
                     });
                 });
             }).call(this);
@@ -224,10 +249,11 @@
                 $(function () {
                     return $.growl({
                         title: "Succès :",
-                        message: "Le bon a été clos et archivé"
+                        message: "Le bon a été clos et archivé."
                     });
                 });
             }).call(this);
         });
+        
     </script>
 @endscript

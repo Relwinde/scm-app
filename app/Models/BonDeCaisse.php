@@ -9,11 +9,13 @@ use App\Models\EtapeBon;
 use App\Models\AjustementBon;
 use App\Models\TransportInterne;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BonDeCaisse extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     protected $guarded = [];
 
     public function dossier (){
@@ -44,8 +46,8 @@ class BonDeCaisse extends Model
         ini_set('memory_limit', '440M');
         $mpdf = new Mpdf([
             'mode'=>'utf-8',
-            'format' => 'A6-L',
-            'default_font_size' => 9,
+            'format' => 'A4-P',
+            'default_font_size' => 12,
 	        'default_font' => 'FreeSerif'
         ]);
 

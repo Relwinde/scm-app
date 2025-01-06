@@ -52,10 +52,14 @@ class ViewBon extends ModalComponent
             break;
 
             case "RAF":
-                $this->bon->etape = "CAISSE";
-                $this->bon->type_paiement = $this->method;
-                if ($this->bon->save()){
-                    $this->createEtapeBon("RAF", "CAISSE", 'next-step');
+                if ($this->method == "ESPECE" || $this->method == "CHEQUE"){
+                    $this->bon->etape = "CAISSE";
+                    $this->bon->type_paiement = $this->method;
+                    if ($this->bon->save()){
+                        $this->createEtapeBon("RAF", "CAISSE", 'next-step');
+                    }
+                } else {
+                    $this->dispatch('invalid-method');
                 }
             break;
 

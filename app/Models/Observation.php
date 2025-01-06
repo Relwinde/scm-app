@@ -15,4 +15,9 @@ class Observation extends Model
     public function dossiers(){
         return $this->belongsToMany(Dossier::class);
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    
 }

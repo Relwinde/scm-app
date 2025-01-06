@@ -20,7 +20,9 @@ class Caisse extends Component
     use WithPagination;
     public function render()
     {
-        
+        if (! Auth::user()->can('Voir l\'état de la caisse')){
+            redirect("/");
+        }
 
         $bonsDeCaisse = BonDeCaisse::select([
             'bon_de_caisses.id',
