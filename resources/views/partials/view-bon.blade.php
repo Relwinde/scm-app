@@ -66,7 +66,7 @@
                 @if ($viewComments == true)
                     @foreach ($bon->commentaires as $comment)
                         <div class="alert alert-primary" >   
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>{{$comment->user->name}}: <br> {{$comment->content}} <br> <span>{{strftime("%e %B %Y %H:%M", strtotime($comment->created_at));}} -- {{$comment->etape}}</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>{{$comment->user->name}}: <br> {{$comment->content}} <br> <span>{{$comment->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i:s')}} -- {{$comment->etape}}</span>
                         </div>
                     @endforeach
                 @endif
@@ -169,7 +169,7 @@
                                 @foreach ($bon->ajustements as $ajustement)
                                     <div class="">
                                         <a href="javascript:void(0);" class="text-default fw-semibold"> {{number_format($ajustement->montant, 2, '.', ' ')}} CFA</a>
-                                        <p class="text-muted mb-0">{{$ajustement->type}} :  {{$ajustement->libelle}}, {{ strftime("%e %B %Y", strtotime($ajustement->created_at)); }}</p>
+                                        <p class="text-muted mb-0">{{$ajustement->type}} :  {{$ajustement->libelle}}, {{$ajustement->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i:s')}}</p>
                                     </div>
                                 @endforeach
                             
