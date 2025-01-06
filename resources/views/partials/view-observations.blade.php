@@ -17,7 +17,7 @@
                             <small class="text-muted">{{strftime("%e %B %Y", strtotime($observation->created_at))}}</small>
                         </div>
                         <p class="mb-1">{!! $observation->content !!}</p>
-                        <small class="text-muted">{{Auth::user()->name}}</small>
+                        <small class="text-muted">{{$observation->user->name}}</small>
                     </div>
                     @endforeach
                     
