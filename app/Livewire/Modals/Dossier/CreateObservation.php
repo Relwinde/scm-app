@@ -4,6 +4,7 @@ namespace App\Livewire\Modals\Dossier;
 
 use App\Models\Dossier;
 use App\Models\Observation;
+use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateObservation extends ModalComponent
@@ -22,7 +23,7 @@ class CreateObservation extends ModalComponent
     public function create (){
         Observation::create([
             'content'=>$this->observation,
-            'user_id'=>1,
+            'user_id'=>Auth::user()->id,
             'dossier_id'=>$this->dossier->id
         ]);
 
