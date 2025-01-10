@@ -18,7 +18,7 @@
                         <input required wire:model='depense' type="text" class="form-control"  placeholder="Dépense engagée">
                     </div>
                 </div>
-                @if ($bon->user->id = Auth::user()->id)
+                @if ($bon->user->id == Auth::user()->id)
                     <div class="col-md-12 ">
                         <div class="mb-0">
                             <label class="form-label">Commentaire</label>
