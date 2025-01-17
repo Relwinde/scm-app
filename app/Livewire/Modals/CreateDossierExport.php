@@ -85,29 +85,12 @@ class CreateDossierExport extends ModalComponent
 
         $dossier->numero = $numero;
         
-        // if(Dossier::latest()->first()==null){
-        //     $numero = "EX-".BureauDeDouane::find($this->bureau_de_douane)->code."-".strtoupper($dossier->client->code)."/".date('Y').'0001';
-        // }else{
-
-        //     $ordre = NumeroDossier::latest()->first()->id+1;
-
-        //     do {
-        //         $numero = "EX-".BureauDeDouane::find($this->bureau_de_douane)->code."-".strtoupper($dossier->client->code)."/".date('Y').str_pad($ordre, 4, '0', STR_PAD_LEFT);
-
-        //         $ordre++;
-        //         $pattern = explode('/', $numero)[1];
-        //     } while (NumeroDossier::where('numero', 'LIKE', "%/{$pattern}")->count() > 0);
-              
-        // }
-        
-
-        // $dossier->numero = $numero;
 
         if($dossier->save()){
             if ($this->observation != null && $this->observation != ""){
                 Observation::create([
                     'content'=>$this->observation,
-                    'user_id'=>1,
+                    'user_id'=>Auth::User()->id,
                     'dossier_id'=>$dossier->id
                 ]);
             }
