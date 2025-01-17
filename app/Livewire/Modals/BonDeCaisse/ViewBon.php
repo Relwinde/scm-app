@@ -31,6 +31,10 @@ class ViewBon extends ModalComponent
     public function nextStep (){
         switch($this->bon->etape){
             case "EMETTEUR": 
+                if ($this->bon->etape != "EMETTEUR" || Auth::user()->id != $this->bon->user->id) {
+                    $this->dispatch('not-allowed');
+                    return;
+                }
                 $this->bon->etape = "RESPONSABLE";
                 if ($this->bon->save()){
                     $this->createEtapeBon("EMETTEUR", "RESPONSABLE", 'next-step');
@@ -38,6 +42,10 @@ class ViewBon extends ModalComponent
             break;
 
             case "RESPONSABLE":
+                if(! ($this->bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager'))){
+                    $this->dispatch('not-allowed');
+                    return;
+                }
                 $this->bon->etape = "MANAGER";
                 if ($this->bon->save()){
                     $this->createEtapeBon("RESPONSABLE", "MANAGER", 'next-step');
@@ -45,6 +53,10 @@ class ViewBon extends ModalComponent
             break;
 
             case "MANAGER":
+                if(! ($this->bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse au RAF'))){
+                    $this->dispatch('not-allowed');
+                    return;
+                }
                 $this->bon->etape = "RAF";
                 if ($this->bon->save()){
                     $this->createEtapeBon("MANAGER", "RAF", 'next-step');
@@ -52,6 +64,10 @@ class ViewBon extends ModalComponent
             break;
 
             case "RAF":
+                if(! ($this->bon->etape == "RAF" && Auth::user()->can('Envoyer bon de caisse à la caisse'))){
+                    $this->dispatch('not-allowed');
+                    return;
+                }
                 if ($this->method == "ESPECE" || $this->method == "CHEQUE"){
                     $this->bon->etape = "CAISSE";
                     $this->bon->type_paiement = $this->method;
@@ -64,17 +80,15 @@ class ViewBon extends ModalComponent
             break;
 
             case "CAISSE": 
+                if(! ($this->bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse'))){
+                    $this->dispatch('not-allowed');
+                    return;
+                }
                 if($this->bon->type_paiement == "ESPECE"){
                     $this->cashPayment();
                 } else if ($this->bon->type_paiement == "CHEQUE"){
 
                     $this->dispatch('openModal', ChequePayment::class, ['bon'=>$this->bon->id]);
-                    
-                    // $this->bon->etape = "PAYE";
-                    // if ($this->bon->save()){
-                    //     $this->createEtapeBon("CAISSE", "PAYE", 'next-step');
-                    // }
-                    
                 } 
             break;
 
