@@ -50,7 +50,7 @@ class Dossier extends Model
         $mpdf = new Mpdf([
             'mode'=>'utf-8',
             'format' => 'A4-P',
-            'default_font_size' => 13,
+            'default_font_size' => 15,
 	        'default_font' => 'FreeSerif'
         ]);
 

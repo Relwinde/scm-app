@@ -3,7 +3,15 @@
         <h3 class="card-title">Bon De: <b>{{$bon->user->name}}</b></h3>&nbsp; &nbsp; 
         <h3 class="card-title">Pour: <b>{{$bon->depense}}</b></h3>&nbsp; &nbsp;
         <h3 class="card-title">Position: <b>{{$bon->etape}}</b></h3>&nbsp; &nbsp;
-        <div class="card-options">
+        <div class="card-title">
+            @if (Auth::user()->can('Attacher un document à un bon de caisse'))
+                <a href="javascript:void(0);" wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.attach-file', arguments: { bon : {{ $bon->id }} }})" class="btn btn-primary btn-sm m-1"><i class="icon icon-paper-clip"></i>Attacher une pièce</a>
+            @endif
+        </div>
+    </div>
+
+    <div class="card-header">
+        <div class="card-title">
             @if ($bon->etape == "EMETTEUR" && Auth::user()->id == $bon->user->id)
                 <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm m-1">Envoyer au responsable</a>
             @elseif ($bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager'))
@@ -43,6 +51,7 @@
                 <a wire:click="close" href="javascript:void(0);" class="btn btn-danger btn-sm m-1" wire:confirm="Êtes vous sûr de vouloir clore ce bon, vous ne pourrez plus effectuer d'ajustement">Clore ce bon</a>      
             @endif
         </div>
+        
     </div>
     <div class="card-body">
         @if ($bon->description != null && $bon->description != "")
@@ -74,6 +83,24 @@
             @endif
             
             
+        </div>
+        <div class="row m-2">
+            @if (Auth::user()->can('Voir les fichiers joints d\'un bon de caisse') &&   $bon->files->count() > 0)
+                <div class="custom-controls-stacked">
+                    <label class="custom-control custom-checkbox">
+                        <input wire:model.live='viewFiles' type="checkbox" class="custom-control-input">
+                        <span class="custom-control-label"> <b>Voir les pièces jointes</b></span>
+                    </label>
+                </div>
+
+                @if ($viewFiles == true)
+                    @foreach ($bon->files as $file)
+                        <div class="alert alert-primary" >   
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>{{$file->user->name}}: <br> <a href="storage/app/attachments/{{$file->path}}" target="_blank" >{{$file->name}}</a> <br> <span>{{$file->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i:s')}}</span>
+                        </div>
+                    @endforeach
+                @endif
+            @endif
         </div>
         <div class="row">
             <div class="col-sm-6 col-lg-4 col-md-4 ">

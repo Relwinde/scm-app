@@ -22,12 +22,6 @@ class ViewProfile extends ModalComponent
     public function render()
     {
         if($this->ownedPermissions == "1"){
-            // $permissions = $this->profile->permissions()
-            //     ->select(['id', 'name'])
-            //     ->where('name', 'like', "%{$this->search}%")
-            //     ->get()
-            //     ->paginate(10, '*', 'permission-pagination')
-            //     ;
                 $permissions = $this->profile->permissions()
                 ->where('name', 'like', "%{$this->search}%")
                 ->paginate(10, ['id', 'name'], 'permission-pagination');

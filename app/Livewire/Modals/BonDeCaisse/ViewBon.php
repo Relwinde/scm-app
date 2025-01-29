@@ -20,6 +20,8 @@ class ViewBon extends ModalComponent
 
     public $viewComments = false;
 
+    public $viewFiles = false;
+
     #[On('new-ajustement')]
     #[On('new-status')]
     public function render()
