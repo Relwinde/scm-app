@@ -203,7 +203,7 @@
                 @if ($viewFiles == true)
                     @foreach ($bon->files as $file)
                         <div class="alert alert-primary" >   
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>{{$file->user->name}}: <br> <a href="storage/app/attachments/{{$file->path}}" target="_blank" >{{$file->name}}</a> <br> <span>{{$file->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i:s')}}</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>{{$file->user->name}}: <br> <a href="{{ asset('storage/app/attachments/'.$file->path) }}" target="_blank" >{{$file->name}}</a> <br> <span>{{$file->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i:s')}}</span>
                         </div>
                     @endforeach
                 @endif
