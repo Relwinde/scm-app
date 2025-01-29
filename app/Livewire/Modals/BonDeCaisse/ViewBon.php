@@ -24,6 +24,7 @@ class ViewBon extends ModalComponent
 
     #[On('new-ajustement')]
     #[On('new-status')]
+    #[On('new-attachment')]
     public function render()
     {
 

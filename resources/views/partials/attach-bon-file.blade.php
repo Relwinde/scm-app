@@ -26,12 +26,12 @@
 
 @script
     <script>
-        $wire.on('back-step', () => {
+        $wire.on('new-attachment', () => {
             (function () {
                 $(function () {
                     return $.growl({
                         title: "Succès :",
-                        message: "Le bon a été renvoyé à l'étape précédente"
+                        message: "Nouvelle pièce ajoutée avec succès."
                     });
                 });
             }).call(this);

@@ -36,6 +36,7 @@ class AttachFile extends ModalComponent
             'user_id' => auth()->id(),
             'size' => $this->file->getSize(),
         ]);
+        $this->dispatch('new-attachment');
         $this->reset('file');
         $this->closeModal();
     }
