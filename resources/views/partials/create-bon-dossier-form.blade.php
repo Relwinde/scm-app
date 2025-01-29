@@ -17,6 +17,12 @@
                         <input required wire:model='depense' type="text" class="form-control"  placeholder="Dépense engagée">
                     </div>
                 </div>
+                <div class="col-md-12 ">
+                    <div class="mb-0">
+                        <label class="form-label">Commentaire</label>
+                        <textarea wire:model='description' class="form-control" rows="2" placeholder="Votre commentaire ici.."></textarea>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="card-footer">

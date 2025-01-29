@@ -17,6 +17,8 @@ class CreateBon extends ModalComponent
 
     public $depense;
 
+    public $description;
+
     public function render()
     {
         return view('livewire.modals.transport-interne.create-bon', ['title'=>'Nouveau bon sur le dossier:']);
@@ -32,6 +34,7 @@ class CreateBon extends ModalComponent
             'montant'=> floatval(str_replace(' ', '',$this->montant)),
             'montant_definitif'=> floatval(str_replace(' ', '',$this->montant)),
             'transport_interne_id'=>$this->dossier->id,
+            'description'=>$this->description,
             'user_id'=>Auth::user()->id
          ]);
 
@@ -43,7 +46,7 @@ class CreateBon extends ModalComponent
 
         if ($bon->save()){
             $this->dispatch('new-bon-de-caisse');
-            $this->reset(['montant', 'depense']);
+            $this->reset(['montant', 'depense', 'description']);
         }else{
             $this->dispatch('error');
         }
