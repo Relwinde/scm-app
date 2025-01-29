@@ -80,27 +80,7 @@
                     @endforeach
                 @endif
 
-            @endif
-            
-            
-        </div>
-        <div class="row m-2">
-            @if (Auth::user()->can('Voir les fichiers joints d\'un bon de caisse') &&   $bon->files->count() > 0)
-                <div class="custom-controls-stacked">
-                    <label class="custom-control custom-checkbox">
-                        <input wire:model.live='viewFiles' type="checkbox" class="custom-control-input">
-                        <span class="custom-control-label"> <b>Voir les pièces jointes</b></span>
-                    </label>
-                </div>
-
-                @if ($viewFiles == true)
-                    @foreach ($bon->files as $file)
-                        <div class="alert alert-primary" >   
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>{{$file->user->name}}: <br> <a href="storage/app/attachments/{{$file->path}}" target="_blank" >{{$file->name}}</a> <br> <span>{{$file->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i:s')}}</span>
-                        </div>
-                    @endforeach
-                @endif
-            @endif
+            @endif 
         </div>
         <div class="row">
             <div class="col-sm-6 col-lg-4 col-md-4 ">
@@ -211,6 +191,24 @@
     </div>
 
     <div class="card-footer">
+        <div class="row m-2">
+            @if (Auth::user()->can('Voir les fichiers joints d\'un bon de caisse') &&   $bon->files->count() > 0)
+                <div class="custom-controls-stacked">
+                    <label class="custom-control custom-checkbox">
+                        <input wire:model.live='viewFiles' type="checkbox" class="custom-control-input">
+                        <span class="custom-control-label"> <b>Voir les pièces jointes</b></span>
+                    </label>
+                </div>
+
+                @if ($viewFiles == true)
+                    @foreach ($bon->files as $file)
+                        <div class="alert alert-primary" >   
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>{{$file->user->name}}: <br> <a href="storage/app/attachments/{{$file->path}}" target="_blank" >{{$file->name}}</a> <br> <span>{{$file->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i:s')}}</span>
+                        </div>
+                    @endforeach
+                @endif
+            @endif
+        </div>
         @if (($bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager') && Auth::user()->can('Retourner bon de caisse')) || ($bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse au RAF') && Auth::user()->can('Retourner bon de caisse')) || ($bon->etape == "RAF" && Auth::user()->can('Envoyer bon de caisse à la caisse') && Auth::user()->can('Retourner bon de caisse')) || ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse') && Auth::user()->can('Retourner bon de caisse')))
             <a wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.return-bon', arguments: { bon : {{ $bon->id }} }})"  href="javascript:void(0);" class="btn btn-warning btn-sm m-1">
                         Retourner le bon  
