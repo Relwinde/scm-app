@@ -27,7 +27,7 @@ class AttachFile extends ModalComponent
         $this->validate();
         $originalName = strtoupper(preg_replace('/\.pdf$/i', '', $this->file->getClientOriginalName()));
         $customFileName = 'BON_DE_CAISSE_'.$this->bon->numero.'_'.$originalName.'_'.time().'.'.$this->file->getClientOriginalExtension();
-        $this->file->storeAs('attachments', $customFileName);
+        $this->file->storeAs('public/attachments', $customFileName);
 
         Document::create([
             'bon_de_caisse_id' => $this->bon->id,
