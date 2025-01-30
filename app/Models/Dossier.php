@@ -56,7 +56,7 @@ class Dossier extends Model
 
         $html = view('prints.dossier', ['dossier'=>$this]);
         $mpdf->writeHTML($html);
-        $mpdf->Output($name = 'Dossier-'.$this->numero.'.pdf', 'D');
+        $mpdf->Output($name = 'Dossier-'.$this->numero.'.pdf', 'I');
     }
 
     public function bon_de_caisse (){
