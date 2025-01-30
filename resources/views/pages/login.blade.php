@@ -33,7 +33,7 @@
                 </span>
             </div>
             <div class="text-end pt-1">
-                <p class="mb-0"><a href="{{url('forgot-password')}}" class="text-primary ms-1">Mot de passe oublié ?</a></p>
+                <p class="mb-0"><a href="#" class="text-primary ms-1">Mot de passe oublié ?</a></p>
             </div>
             <div class="container-login100-form-btn">
                 <button wire:click.prevent="login" type="submit"  href="#" class="login100-form-btn btn-primary">

@@ -43,7 +43,7 @@ class TransportInterne extends Model
         $mpdf = new Mpdf([
             'mode'=>'utf-8',
             'format' => 'A4-P',
-            'default_font_size' => 15,
+            'default_font_size' => 14,
 	        'default_font' => 'FreeSerif'
         ]);
 
