@@ -49,7 +49,7 @@ class TransportInterne extends Model
 
         $html = view('prints.transport-interne', ['dossier'=>$this]);
         $mpdf->writeHTML($html);
-        $mpdf->Output();
+        $mpdf->Output($name = 'Transport-'.$this->numero.'.pdf', 'D');
     }
 
     public function bon_de_caisse (){
