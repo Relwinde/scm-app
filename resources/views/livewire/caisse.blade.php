@@ -175,9 +175,9 @@
         <script>
             $wire.on('notification', () => {
                 (function () {
-                    var audio = new Audio('/public/audio/notify.mp3');
-                    audio.play();
                     $(function () {
+                        var audio = new Audio('/public/audio/notify.mp3');
+                        audio.play();
                         return $.growl({
                             title: "Notification :",
                             message: "Vous avez un nouveau bon de caisse."

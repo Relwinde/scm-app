@@ -114,14 +114,13 @@
         $wire.on('notification', () => {
             (function () {
                 $(function () {
+                    var audio = new Audio('/public/audio/notify.mp3');
+                    audio.play();
                     return $.growl({
                         title: "Notification :",
                         message: "Vous avez un nouveau bon de caisse."
                     });
                 });
-
-                var audio = new Audio('/public/audio/notify.mp3');
-                audio.play();
             }).call(this);
 
             
