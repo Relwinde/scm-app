@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div>
-                        <div wire:poll.keep-alive.3s class="table-responsive">
+                        <div wire:poll.keep-alive.3s="notificate" class="table-responsive">
                             <table class="table table-striped table-bordered border text-wrap mb-0">
                                 <thead>
                                     <tr style="font-weight:700;">

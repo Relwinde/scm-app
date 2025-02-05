@@ -52,7 +52,7 @@ class Caisse extends Component
                         ->orWhere('users.name', 'like', "%{$this->search}%");
         });
 
-        $this->start_bon_rows = $bonsDeCaisse->total();
+        $this->start_bon_rows = $bonsDeCaisse->count();
     }
 
     public function render()
