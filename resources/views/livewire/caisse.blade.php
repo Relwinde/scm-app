@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div>
-                        <div wire:poll.5s class="table-responsive">
+                        <div wire:poll.keep-alive.3s class="table-responsive">
                             <table class="table table-striped table-bordered border text-wrap mb-0">
                                 <thead>
                                     <tr style="font-weight:700;">
@@ -169,4 +169,26 @@
         </div>
     </div>
     <!-- End Row -->
+
+
+    @script
+        <script>
+            $wire.on('notification', () => {
+                (function () {
+                    var audio = new Audio('/public/audio/notify.mp3');
+                    audio.play();
+                    $(function () {
+                        return $.growl({
+                            title: "Notification :",
+                            message: "Vous avez un nouveau bon de caisse."
+                        });
+                    });
+
+                    
+                }).call(this);
+
+                
+            });
+        </script>
+    @endscript
 @endsection

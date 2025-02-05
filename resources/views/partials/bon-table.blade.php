@@ -1,6 +1,6 @@
 <div>
-    <div wire:poll.3s class="table-responsive">
-        <table class="table table-striped table-bordered border text-wrap mb-0">
+    <div wire:poll.keep-alive.3s="notificate" class="table-responsive">
+        <table class="table table-striped table-bordered border text-wrap mb-0" id="bonsDeCaisseTable">
             <thead>
                 {{-- <tr>
                     <th>First name</th>
@@ -109,6 +109,22 @@
                     });
                 });
             }).call(this);
+        });
+
+        $wire.on('notification', () => {
+            (function () {
+                $(function () {
+                    return $.growl({
+                        title: "Notification :",
+                        message: "Vous avez un nouveau bon de caisse."
+                    });
+                });
+
+                var audio = new Audio('/public/audio/notify.mp3');
+                audio.play();
+            }).call(this);
+
+            
         });
     </script>
 @endscript
