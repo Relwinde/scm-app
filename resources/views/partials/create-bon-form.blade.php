@@ -13,7 +13,11 @@
                             </label>
                             <label class="custom-control custom-radio" style="display: inline-block; margin:5px;">
                                 <input wire:model.live='surDossier' type="radio" class="custom-control-input" name="example-radios" value="2">
-                                <span class="custom-control-label"><b>TRANSPORT INTERNE</b></span>
+                                <span class="custom-control-label"><b>TRANSPORT</b></span>
+                            </label>
+                            <label class="custom-control custom-radio" style="display: inline-block; margin:5px;">
+                                <input wire:model.live='surDossier' type="radio" class="custom-control-input" name="example-radios" value="4">
+                                <span class="custom-control-label"><b>VEHICULE</b></span>
                             </label>
                             <label class="custom-control custom-radio" style="display: inline-block; margin:5px;">
                                 <input wire:model.live='surDossier' type="radio" class="custom-control-input" name="example-radios" value="3">
@@ -25,19 +29,25 @@
             <div class="row">
                 <div class="col-md-6">
 
-                    @if ($surDossier == 1 || $surDossier == 2)
+                    @if ($surDossier == 1 || $surDossier == 2 || $surDossier == 4)
                         <div class="mb-4">
                             <label class="form-label">Numéro de dossier<span class="required">*</span></label>
                             <select required wire:model='dossier' name="user_profile" class="form-control custom-select select2">
-                                <option value="">Sélectionnez un dossier</option>
-
+                                
                                 @if ($surDossier == 1)
+                                    <option value="">Sélectionnez un dossier</option>
                                     @foreach ($dossiers as $dossier)
                                         <option value="{{$dossier->id}}" >{{$dossier->numero}}</option>
                                     @endforeach  
                                 @elseif ($surDossier == 2)
+                                    <option value="">Sélectionnez un dossier</option>
                                     @foreach ($transports as $transport)
                                         <option value="{{$transport->id}}" >{{$transport->numero}}</option>
+                                    @endforeach
+                                @elseif ($surDossier == 4)
+                                    <option value="">Sélectionnez un véhicule</option>
+                                    @foreach ($vehicules as $vehicule)
+                                        <option value="{{$vehicule->id}}" >{{$vehicule->immatriculation}} - {{$vehicule->description}}</option>
                                     @endforeach
                                 @endif
                             </select>

@@ -97,6 +97,16 @@ class PermissionsSeeder extends Seeder
         $permission = Permission::create(['name'=> 'Clore un bon']);
             $caissier->givePermissionTo($permission);
 
+        $permission = Permission::create(['name'=> 'Attacher un document à un bon de caisse']);
+            $agent->givePermissionTo($permission);
+            $responsable->givePermissionTo($permission);
+            $caissier->givePermissionTo($permission);
+            $raf->givePermissionTo($permission);
+        $permission = Permission::create(['name'=> 'Voir les fichiers joints d\'un bon de caisse']);
+            $agent->givePermissionTo($permission);
+            $responsable->givePermissionTo($permission);
+            $caissier->givePermissionTo($permission);
+            $raf->givePermissionTo($permission);
 
         // Permissions de utlisateur
         $permission = Permission::create(['name'=> 'Voir la liste des utlisateurs']);
@@ -125,6 +135,9 @@ class PermissionsSeeder extends Seeder
         $permission = Permission::create(['name'=> 'Voir l\'état de la caisse']);
             $caissier->givePermissionTo($permission);
             $raf->givePermissionTo($permission);
+
+        // Permissions des véhicules
+            Permission::create(['name'=> 'Voir les depenses sur un véhicule']);
 
 
 

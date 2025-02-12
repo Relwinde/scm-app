@@ -5,6 +5,7 @@ namespace App\Livewire\Modals;
 use App\Models\BonDeCaisse;
 use App\Models\Dossier;
 use App\Models\TransportInterne;
+use App\Models\Vehicule;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 
@@ -25,9 +26,10 @@ class CreateBonDeCaisse extends ModalComponent
 
         $dossiers = Dossier::all(['id', 'numero']);
         $transports = TransportInterne::all(['id', 'numero']);
+        $vehicules = Vehicule::all(['id', 'immatriculation', 'description']);
 
 
-        return view('livewire.modals.create-bon-de-caisse',['dossiers'=>$dossiers, 'transports'=>$transports, 'title'=>'Création d\'un nouveau bon']);
+        return view('livewire.modals.create-bon-de-caisse',['dossiers'=>$dossiers, 'transports'=>$transports, 'vehicules'=>$vehicules, 'title'=>'Création d\'un nouveau bon']);
     }
 
     public function reformat_montant (){
@@ -59,6 +61,16 @@ class CreateBonDeCaisse extends ModalComponent
                  ]);
                 break;
 
+            case 4:
+                $bon = BonDeCaisse::make([
+                    'depense'=> $this->depense,
+                    'montant'=> floatval(str_replace(' ', '',$this->montant)),
+                    'montant_definitif'=> floatval(str_replace(' ', '',$this->montant)),
+                    'vehicule_id'=>$this->dossier,
+                    'description'=>$this->description,
+                    'user_id'=>Auth::user()->id
+                 ]);
+                break;
             case 3:
                 $bon = BonDeCaisse::make([
                     'depense'=> $this->depense,
@@ -66,7 +78,7 @@ class CreateBonDeCaisse extends ModalComponent
                     'montant_definitif'=> floatval(str_replace(' ', '',$this->montant)),
                     'description'=>$this->description,
                     'user_id'=>Auth::user()->id
-                 ]);
+                    ]);
                 break;
         }
 

@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(ClientSeeder::class);
         // $this->call(VehiculeSeeder::class);
         // $this->call(ChauffeurSeeder::class);
-        Permission::create(['name'=> 'Attacher un document à un bon de caisse']);
-        Permission::create(['name'=> 'Voir les fichiers joints d\'un bon de caisse']);
+        
+        Permission::create(['name'=> 'Voir les depenses sur un véhicule']);
     }
 }

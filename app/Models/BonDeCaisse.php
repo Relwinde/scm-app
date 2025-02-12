@@ -25,6 +25,10 @@ class BonDeCaisse extends Model
         return $this->belongsTo(TransportInterne::class, "transport_interne_id");
     }
 
+    public function vehicule (){
+        return $this->belongsTo(Vehicule::class, "vehicule_id");
+    }
+
     public function user (){
         return $this->belongsTo(User::class);
     }

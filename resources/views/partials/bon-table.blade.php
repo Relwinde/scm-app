@@ -15,7 +15,7 @@
                     <th class="wd-15p border-bottom-0 text-nowrap"><b>Numéro</b></th>
                     <th class="wd-20p border-bottom-0"><b>Dépenses engagées</b></th>
                     <th class="wd-20p border-bottom-0 text-nowrap"><b>Montant</b></th>
-                    <th class="wd-15p border-bottom-0 text-nowrap"><b>Dossier</b></th>
+                    <th class="wd-15p border-bottom-0 text-nowrap"><b>Dossier/Véhicule</b></th>
                     <th class="wd-20p border-bottom-0 text-nowrap"><b>Emetteur</b></th>
                     <th class="wd-20p border-bottom-0 text-nowrap"><b>Etape</b></th>
                     <th class="wd-25p border-bottom-0 text-nowrap"><b>Actions</b></th>
@@ -27,7 +27,7 @@
                         <td wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.view-bon', arguments: { bon : {{ $bon->id }} }})" style="cursor: pointer;" style="cursor: pointer;" class="text-nowrap">{{$bon->numero}}</td>
                         <td>{{$bon->depense}}</td>
                         <td class="text-nowrap">{{number_format($bon->montant_definitif, 2, '.', ' ')}}</td>
-                        <td class="text-nowrap">{{$bon->dossier->numero ?? $bon->transport->numero ?? "AUTRES"}}</td>
+                        <td class="text-nowrap">{{$bon->dossier->numero ?? $bon->transport->numero ?? $bon->vehicule->immatriculation ?? "AUTRES"}}</td>
                         <td class="text-nowrap">{{$bon->user->name}}</td>
                         <td class="text-nowrap">@switch($bon->etape)
                             @case("EMETTEUR")

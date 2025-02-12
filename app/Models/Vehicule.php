@@ -9,4 +9,8 @@ class Vehicule extends Model
 {
     protected $guarded = [];
     use HasFactory;
+
+    public function bonDeCaisses (){
+        return $this->hasMany(BonDeCaisse::class);
+    }
 }
