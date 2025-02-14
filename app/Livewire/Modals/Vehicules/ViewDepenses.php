@@ -49,6 +49,6 @@ class ViewDepenses extends ModalComponent
 
             $depenses = $query;
 
-        return view('livewire.modals.vehicules.view-depenses', ['depenses' => $depenses]);
+        return view('livewire.modals.vehicules.view-depenses', ['bonsDeCaisse' => $depenses]);
     }
 }
