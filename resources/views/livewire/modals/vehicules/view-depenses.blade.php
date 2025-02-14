@@ -1,3 +1,3 @@
 <div>
-    {{-- Success is as dangerous as failure. --}}
+    @include('partials.Outils.view-vehicule-depenses')
 </div>

@@ -37,7 +37,7 @@
                                 </button>
                             @endif
                             @can('Voir les depenses sur un véhicule')
-                                <button type="button" class="btn  btn-sm btn-primary">
+                                <button wire:click="$dispatch('openModal', {component: 'modals.vehicules.view-depenses', arguments: { vehicule : {{ $vehicule->id }} }})" type="button" class="btn  btn-sm btn-primary">
                                     <span class="fe fe-eye"> </span>
                                 </button>     
                             @endcan
