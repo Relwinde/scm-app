@@ -21,12 +21,14 @@ class CreateBonDeCaisse extends ModalComponent
 
     public $description;
 
+    public $search;
+
     public function render()
     {
 
-        $dossiers = Dossier::all(['id', 'numero']);
-        $transports = TransportInterne::all(['id', 'numero']);
-        $vehicules = Vehicule::all(['id', 'immatriculation', 'description']);
+        $dossiers = Dossier::where('numero', 'like', '%' . $this->search . '%')->get(['id', 'numero']);
+        $transports = TransportInterne::where('numero', 'like', '%' . $this->search . '%')->get(['id', 'numero']);
+        $vehicules = Vehicule::where('immatriculation', 'like', '%' . $this->search . '%')->get(['id', 'immatriculation', 'description']);
 
 
         return view('livewire.modals.create-bon-de-caisse',['dossiers'=>$dossiers, 'transports'=>$transports, 'vehicules'=>$vehicules, 'title'=>'Création d\'un nouveau bon']);
