@@ -38,7 +38,7 @@
                                 <label class="form-label">Immatriculation du véhicule<span class="required">*</span></label>
                             @endif
                             @if ($surDossier == 1 || $surDossier == 2 || $surDossier == 4)
-                                <input wire:model.live.debounce='search' type="text" class="form-control"  placeholder="Filtre">
+                                <input wire:model.live.debounce='search' type="text" class="form-control" placeholder="Filtre">
                             @endif
                             <select required wire:model='dossier' name="user_profile" class="form-control custom-select select2">
                                 
@@ -66,6 +66,7 @@
                     <div class="mb-4">
                         <label class="form-label">Montant<span class="required">*</span></label>
                         <input wire:focusout='reformat_montant()' required wire:model='montant' type="text" class="form-control"  placeholder="Montant">
+                        
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -75,7 +76,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-12 ">
+                <div class="col-md-6 ">
                     <div class="mb-0">
                         <label class="form-label">Commentaire</label>
                         <textarea wire:model='description' class="form-control" rows="2" placeholder="Votre commentaire ici.."></textarea>

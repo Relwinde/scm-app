@@ -32,6 +32,7 @@
             <table class="table table-striped table-bordered border text-wrap mb-0" id="bonsDeCaisseTable">
                 <thead>
                     <tr style="font-weight:700;">
+                        <th class="text-nowrap" style="max-width: 30px;"></th>
                         <th class="wd-15p border-bottom-0 text-nowrap"><b>Numéro</b></th>
                         <th class="wd-15p border-bottom-0 text-nowrap"><b>Date</b></th>
                         <th class="wd-20p border-bottom-0"><b>Dépenses engagées</b></th>
@@ -43,6 +44,7 @@
                 <tbody>
                     @foreach ($bonsDeCaisse as $bon)
                         <tr style="font-weight:600;" wire:key='{{$bon->id}}'>
+                            <td class="text-nowrap" style="max-width: 30px;">{!! $bon->files->count() ? "<i class=\"fe fe-paperclip\"></i>".$bon->files->count() : "" !!}</td>
                             <td wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.view-bon', arguments: { bon : {{ $bon->id }} }})" style="cursor: pointer;" style="cursor: pointer;" class="text-nowrap">{{$bon->numero}}</td>
                             <td>{{ $bon->created_at->locale(app()->getLocale())->translatedFormat('j F Y') }}</td>
                             <td>{{$bon->depense}}</td>

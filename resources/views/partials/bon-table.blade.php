@@ -12,6 +12,7 @@
                     <th>Actions</th>
                 </tr> --}}
                 <tr style="font-weight:700;">
+                    <th class="text-nowrap" style="max-width: 30px;"></th>
                     <th class="wd-15p border-bottom-0 text-nowrap"><b>Numéro</b></th>
                     <th class="wd-20p border-bottom-0"><b>Dépenses engagées</b></th>
                     <th class="wd-20p border-bottom-0 text-nowrap"><b>Montant</b></th>
@@ -24,6 +25,7 @@
             <tbody>
                 @foreach ($bonsDeCaisse as $bon)
                     <tr style="font-weight:600;" wire:key='{{$bon->id}}'>
+                        <td class="text-nowrap" style="max-width: 30px;">{!! $bon->files->count() ? "<i class=\"fe fe-paperclip\"></i>".$bon->files->count() : "" !!}</td>
                         <td wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.view-bon', arguments: { bon : {{ $bon->id }} }})" style="cursor: pointer;" style="cursor: pointer;" class="text-nowrap">{{$bon->numero}}</td>
                         <td>{{$bon->depense}}</td>
                         <td class="text-nowrap">{{number_format($bon->montant_definitif, 2, '.', ' ')}}</td>
