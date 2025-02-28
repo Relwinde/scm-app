@@ -90,7 +90,17 @@
 
 
 </div>
-
+<div>
+    
+    <h5 style="margin-bottom: 0px; margin-top:50px;">Ajustements (Montant initial: <b>{{number_format($bon->montant, 2, '.', ' ')}} CFA</b>) :</h5>
+    <ul style="margin-top: 0px;">
+        @foreach ($bon->ajustements as $ajustement)
+            <li style="margin: 2px;">
+                <p style="font-size: 12; margin: 2px;">{{$ajustement->type}} : {{number_format($ajustement->montant, 2, '.', ' ')}} CFA - {{$ajustement->libelle}} - {{$ajustement->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i:s')}}</p>
+            </li>
+        @endforeach
+    </ul>
+</div>
 
 <center style="text-align: center;">
     <p style="font-size: 10; margin-top:20px;">
