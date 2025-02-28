@@ -15,7 +15,7 @@ use App\Models\SuiviCaisse;
 class Caisse extends Component
 {
 
-    public $search;
+    public $pick = 0;
     public $start_bon_rows;
     public $actual_bon_rows;
 
@@ -44,15 +44,6 @@ class Caisse extends Component
             $query->where('bon_de_caisses.etape', 'CAISSE')
                     ->orWhere('bon_de_caisses.etape', 'PAYE')
                     ->orWhere('bon_de_caisses.etape', 'CLOS');
-        })
-        ->where(function ($query) {
-            $query->where('bon_de_caisses.numero', 'like', "%{$this->search}%")
-                        ->orWhere('bon_de_caisses.etape', 'like', "%{$this->search}%")
-                        ->orWhere('bon_de_caisses.depense', 'like', "%{$this->search}%")
-                        ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
-                        ->orWhere('transport_internes.numero', 'like', "%{$this->search}%")
-                        ->orWhere('users.name', 'like', "%{$this->search}%")
-                        ->orWhere('vehicules.immatriculation', 'like', "%{$this->search}%");
         });
 
         $this->start_bon_rows = $bonsDeCaisse->count();
@@ -86,21 +77,9 @@ class Caisse extends Component
             $query->where('bon_de_caisses.etape', 'CAISSE')
                     ->orWhere('bon_de_caisses.etape', 'PAYE')
                     ->orWhere('bon_de_caisses.etape', 'CLOS');
-        })
-        ->where(function ($query) {
-            $query->where('bon_de_caisses.numero', 'like', "%{$this->search}%")
-                        ->orWhere('bon_de_caisses.etape', 'like', "%{$this->search}%")
-                        ->orWhere('bon_de_caisses.depense', 'like', "%{$this->search}%")
-                        ->orWhere('dossiers.numero', 'like', "%{$this->search}%")
-                        ->orWhere('transport_internes.numero', 'like', "%{$this->search}%")
-                        ->orWhere('users.name', 'like', "%{$this->search}%")
-                        ->orWhere('vehicules.immatriculation', 'like', "%{$this->search}%");
+        });
 
-        })
-        ->orderBy('bon_de_caisses.created_at', 'DESC')
-        ->paginate(10, '*', 'bons-pagination');
-        
-        $this->actual_bon_rows = $bonsDeCaisse->total();
+        $this->actual_bon_rows = $bonsDeCaisse->count();
 
         $sommeAttente= BonDeCaisse::where('bon_de_caisses.etape', 'CAISSE')->where('type_paiement', 'ESPECE')->sum('montant');
 
@@ -114,7 +93,7 @@ class Caisse extends Component
         ->sum('montant') + AjustementBon::where('ajustement_bons.type', 'EXCEDANT')->whereDate('ajustement_bons.created_at', Carbon::today())
         ->sum('montant');
 
-        return view('livewire.caisse', ['header_title'=>'Opérations de caisse', 'bonsDeCaisse' => $bonsDeCaisse, 'sommeAttente'=>$sommeAttente, 'sommeDepots'=>$sommeDepots, 'sommeDecaissements'=>$sommeDecaissements, 'solde'=>$solde]);
+        return view('livewire.caisse', ['header_title'=>'Opérations de caisse', 'sommeAttente'=>$sommeAttente, 'sommeDepots'=>$sommeDepots, 'sommeDecaissements'=>$sommeDecaissements, 'solde'=>$solde]);
     }
 
     public function notificate(){
@@ -123,4 +102,5 @@ class Caisse extends Component
             $this->start_bon_rows = $this->actual_bon_rows;
         }
     }
+
 }
