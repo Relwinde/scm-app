@@ -10,7 +10,6 @@ class MouvementCaisse extends Component
 {
     public $start_date;
     public $end_date;
-
     public $totalSorties;
     public $totalEntrees;
 
@@ -18,8 +17,6 @@ class MouvementCaisse extends Component
 
     public function render()
     {
-        $query = SuiviCaisse::query();
-
         $query = SuiviCaisse::query();
 
         if ($this->start_date) {
@@ -31,6 +28,7 @@ class MouvementCaisse extends Component
             $endDate = \Carbon\Carbon::parse($this->end_date)->format('Y-m-d');
             $query->where('suivi_caisses.created_at', '<=', $endDate);
         }
+
         
         if ($this->start_date || $this->end_date) {
             // Cloner la requête pour éviter la modification
@@ -65,6 +63,10 @@ class MouvementCaisse extends Component
     {
         $this->start_date = null;
         $this->end_date = null;
+    }
+
+    public function export(){
+        return (new \App\Exports\MouvementCaisse(\Carbon\Carbon::parse($this->start_date)->format('Y-m-d'), \Carbon\Carbon::parse($this->end_date)->format('Y-m-d')))->download('mouvement-caisse.xlsx');
     }
     
 }

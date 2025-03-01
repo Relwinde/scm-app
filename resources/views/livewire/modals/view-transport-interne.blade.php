@@ -7,7 +7,6 @@
             {{-- @include('partials.create-dossier-form') --}}
             <div class="card form-input-elements">
                 <div class="card-header d-flex justify-content-between">
-                    <h3 class="card-title"><a target="_blank"  href="{{route('print-transport', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Page de garde</a></h3>&nbsp; &nbsp;
                     <h3 class="mb-0 card-title">N°: <b>{{$dossier->numero}}</b></h3>&nbsp; &nbsp;
                         @can('Voir le total des dépenses du dossier')
                             <button wire:click="export" id="bAcep" type="button" class="btn btn-sm btn-outline-primary">
@@ -15,12 +14,8 @@
                             </button>
                             <h3 class="card-title">Dépenses: <b>{{number_format($total_depenses, 2, '.', ' ')}} CFA</b></h3>&nbsp; &nbsp;
                         @endcan
-
-                        @can('Créer bons de caisse')
-                            <button wire:click="$dispatch('openModal', {component: 'modals.transport-interne.create-bon', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Créer un bon</button>    
-                        @endcan
                         
-                    <card class="card-options">
+                    <div class="card-options">
                         <div class="dropdown">
                             <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown">
                                 <i class="fe fe-list me-2 d-inline-flex"></i>Itineraire ({{$destinations_number}})
@@ -36,9 +31,18 @@
                                 
                             </div>
                         </div>
-                    </card>
+                    </div>
                     
 
+                </div>
+                <div class="card-header">
+                    <h3 class="card-title m-2"><a target="_blank"  href="{{route('print-transport', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Page de garde</a></h3>
+                    <h3 class="card-title m-2"><a target="_blank"  href="{{route('print-transport', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Bordereau de livraison</a></h3>
+                    <div class="card-title m-2">
+                        @can('Créer bons de caisse')
+                            <button wire:click="$dispatch('openModal', {component: 'modals.transport-interne.create-bon', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Créer un bon</button>    
+                        @endcan
+                    </div>            
                 </div>
                 @if ($edit==true)
                 <form wire:submit.prevent="update" >

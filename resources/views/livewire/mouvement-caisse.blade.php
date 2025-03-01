@@ -31,6 +31,11 @@
                             <h6 class="">Sorties : </h6>
                             <h3 class="mb-2 number-font" style="font-size: 1.2rem;">{{number_format($totalSorties, 2, '.', ' ')}} FCFA</h3>
                         </div> 
+                        <div class="m-3">
+                            <button class="btn btn-outline-primary" wire:click="export">
+                                <i class="fa fa-download"></i>
+                            </button>
+                        </div>
                     @endif
     </div>
     <div>
