@@ -74,11 +74,11 @@
                 <div class="card-header">
                             <label class="custom-control custom-radio m-2">
                                 <input wire:model.live='pick' required type="radio" class="custom-control-input" name="method" value="0">
-                                <span style="color: black; font-size: 1.2em;" class="custom-control-label"><b>Bons à la caisse</b></span>
+                                <span style="color: black; font-size: 1.1em;" class="custom-control-label"><b>Bons à la caisse</b></span>
                             </label>
                             <label class="custom-control custom-radio m-2">
                                 <input wire:model.live='pick' required type="radio" class="custom-control-input" name="method" value="1">
-                                <span style="color: black; font-size: 1.2em;" class="custom-control-label"><b>Mouvements de la caisse</b></span>
+                                <span style="color: black; font-size: 1.1em;" class="custom-control-label"><b>Mouvements de la caisse</b></span>
                             </label>
                 </div>
                 <div class="card-body">
