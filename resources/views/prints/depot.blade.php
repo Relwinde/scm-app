@@ -32,7 +32,9 @@
 </center>
 <center style="text-align: center;">
         <p style="font-size: 14; line-height: 0;">
-            Dépot
+            <b>
+                RECU DE DEPOT
+            </b>
         </p>
 </center>
 <hr  style="height:2px; color:#0098db; margin :0px;">
