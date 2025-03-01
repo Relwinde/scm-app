@@ -1,12 +1,12 @@
 <?php
 
+use App\Models\Depot;
 use App\Livewire\Home;
-use App\Livewire\Login;
 
+use App\Livewire\Login;
 use App\Models\Dossier;
 use App\Livewire\Caisse;
 use App\Livewire\BonDeCaisse;
-use App\Models\BonDeCaisse as ModelsBonDeCaisse;
 use App\Livewire\Outils\User;
 use App\Livewire\UserProfile;
 use GuzzleHttp\Promise\Create;
@@ -23,6 +23,7 @@ use App\Livewire\Outils\Marchandise;
 use App\Livewire\TransportsInternes;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Outils\BureauDeDouane;
+use App\Models\BonDeCaisse as ModelsBonDeCaisse;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +70,10 @@ Route::get('/print-dossier/{dossier}', function (Dossier $dossier){
 Route::get('/print-bon/{bon}', function (ModelsBonDeCaisse $bon){
     $bon->print();
 })->name('print-bon')->middleware("auth");
+
+Route::get('/print-depot/{depot}', function (Depot $depot){
+    $depot->print();
+})->name('print-depot')->middleware("auth");
 
 Route::get('/print-transport/{dossier}', function (TransportInterne $dossier){
     $dossier->print();

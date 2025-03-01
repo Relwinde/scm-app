@@ -7,6 +7,11 @@
             @endif
         </div> --}}
     </div>
+    <div class="card-header">
+        <div class="card-title">
+            <a target="_blank"  href="{{route('print-depot', $depot->id)}}" class="btn btn-primary btn-sm m-1">Imprimer le reçu</a>
+        </div>
+    </div>
 
     <div class="card-body">
         <div class="row">
