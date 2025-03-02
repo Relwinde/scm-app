@@ -25,22 +25,26 @@ class ManagerValidation extends ModalComponent
             if ($this->commentaire != "FYI" && $this->commentaire != "fyi" && $this->commentaire != " " && $this->commentaire != null && $this->commentaire != ""){
                 
                 $this->createEtapeBon("MANAGER", "RAF", 'next-step', $this->commentaire);
+            } else {
+                $this->createEtapeBon("MANAGER", "RAF", 'next-step', null);
             }
         }
        
         $this->closeModal();
     }
 
-    private function createEtapeBon($previous, $current, $event) {
+    private function createEtapeBon($previous, $current, $event, $commentaire){
         EtapeBon::create([
             'etape_precedente' => $previous,
             'etape_actuelle' => $current,
             'montant' => $this->bon->montant_definitif,
-            'manager_validation_comment' => $this->commentaire,
+            'manager_validation_comment' => $commentaire,
             'bon_de_caisse_id' => $this->bon->id,
             'user_id' => Auth::user()->id,
         ]);
         $this->dispatch($event);
         $this->dispatch("new-status");
     }
+
 }
+
