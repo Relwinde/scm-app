@@ -31,30 +31,6 @@ class MouvementCaisse implements FromView, ShouldAutoSize, WithColumnFormatting
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function query()
-    {
-        $query = SuiviCaisse::select([
-            'bon_de_caisses.depense as libelle_bon',
-            'depots.libelle as libelle_depot',
-            'ajustement_bons.libelle as libelle_ajustement',
-            'suivi_caisses.montant',
-            'suivi_caisses.solde_before',
-            'suivi_caisses.solde_after',
-            'suivi_caisses.created_at',])
-                ->leftjoin('bon_de_caisses', 'suivi_caisses.bon_de_caisse_id', '=', 'bon_de_caisses.id')
-                ->leftjoin('ajustement_bons', 'suivi_caisses.ajustement_bon_id', '=', 'ajustement_bons.id')
-                ->leftjoin('depots', 'suivi_caisses.depot_id', '=', 'depots.id')
-                ->orderBy('suivi_caisses.created_at', 'DESC');
-
-        if ($this->start_date) {
-            $query->where('suivi_caisses.created_at', '>=', $this->start_date);
-        }
-        if ($this->end_date) {
-            $query->where('suivi_caisses.created_at', '<=', $this->end_date);
-        }
-
-        return $query;
-    }
 
     public function view(): View
     {

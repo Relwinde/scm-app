@@ -20,12 +20,12 @@ class MouvementCaisse extends Component
         $query = SuiviCaisse::query();
 
         if ($this->start_date) {
-            $startDate = \Carbon\Carbon::parse($this->start_date)->format('Y-m-d');
+            $startDate = \Carbon\Carbon::parse($this->start_date)->startOfDay()->format('Y-m-d H:i:s');
             $query->where('suivi_caisses.created_at', '>=', $startDate);
         }
         
         if ($this->end_date) {
-            $endDate = \Carbon\Carbon::parse($this->end_date)->format('Y-m-d');
+            $endDate = \Carbon\Carbon::parse($this->end_date)->endOfDay()->format('Y-m-d H:i:s');
             $query->where('suivi_caisses.created_at', '<=', $endDate);
         }
 
@@ -66,8 +66,8 @@ class MouvementCaisse extends Component
     }
 
     public function export(){
-        $startDate = \Carbon\Carbon::parse($this->start_date)->format('Y-m-d');
-        $endDate = \Carbon\Carbon::parse($this->end_date)->format('Y-m-d');
+        $startDate = \Carbon\Carbon::parse($this->start_date)->startOfDay()->format('Y-m-d H:i:s');
+        $endDate = \Carbon\Carbon::parse($this->end_date)->endOfDay()->format('Y-m-d H:i:s');
         return (new \App\Exports\MouvementCaisse($startDate, $endDate))->download('mouvement-caisse_du-'.$startDate.'-au-'.$endDate.'.xlsx');
     }
     
