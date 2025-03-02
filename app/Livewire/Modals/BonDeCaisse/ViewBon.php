@@ -60,10 +60,12 @@ class ViewBon extends ModalComponent
                     $this->dispatch('not-allowed');
                     return;
                 }
-                $this->bon->etape = "RAF";
-                if ($this->bon->save()){
-                    $this->createEtapeBon("MANAGER", "RAF", 'next-step');
-                }
+                // $this->bon->etape = "RAF";
+                // if ($this->bon->save()){
+                //     $this->createEtapeBon("MANAGER", "RAF", 'next-step');
+                // }
+
+                $this->dispatch('openModal', ManagerValidation::class, ['bon'=>$this->bon->id]);
             break;
 
             case "RAF":

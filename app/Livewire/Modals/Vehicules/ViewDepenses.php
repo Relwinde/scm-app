@@ -53,7 +53,9 @@ class ViewDepenses extends ModalComponent
                     $query->where('bon_de_caisses.created_at', '<=', $endDate);
                 }
 
-        $this->total_depenses = $query->sum('montant_definitif');
+        if($this->start_date || $this->end_date){
+            $this->total_depenses = $query->sum('montant_definitif');
+        }
 
         $depenses = $query->orderBy('bon_de_caisses.created_at', 'DESC')
         ->paginate(10);

@@ -108,6 +108,9 @@ class PermissionsSeeder extends Seeder
             $caissier->givePermissionTo($permission);
             $raf->givePermissionTo($permission);
 
+        Permission::create(['name'=> 'Voir le commentaire de validation du manager']);
+        
+
         // Permissions de utlisateur
         $permission = Permission::create(['name'=> 'Voir la liste des utlisateurs']);
         $permission = Permission::create(['name'=> 'Créer utlisateur']);

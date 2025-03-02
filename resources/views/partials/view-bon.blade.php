@@ -17,28 +17,27 @@
             @elseif ($bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager'))
                 <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm m-1">Envoyer au manager</a>       
             @elseif ($bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse au RAF'))
-                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm m-1">Envoyer au RAF</a>
+                <a wire:click='nextStep' href="javascript:void(0);" class="btn btn-primary btn-sm m-1">Envoyer au RAF</a>
             @elseif ($bon->etape == "RAF" && Auth::user()->can('Envoyer bon de caisse à la caisse'))
-
-            <div class="custom-controls-stacked">
-                <form wire:confirm="Souhaitez vous vraiment exécuter cette action?" wire:submit.prevent="nextStep">
-                        <div class="row m-1 form-elements">
-                            <div class="col">
-                                <label class="custom-control custom-radio">
-                                    <input wire:model='method' required type="radio" class="custom-control-input" name="method" value="ESPECE">
-                                    <span style="color: black;" class="custom-control-label">Espèces</span>
-                                </label>
+                <div class="custom-controls-stacked">
+                    <form wire:confirm="Souhaitez vous vraiment exécuter cette action?" wire:submit.prevent="nextStep">
+                            <div class="row m-1 form-elements">
+                                <div class="col">
+                                    <label class="custom-control custom-radio">
+                                        <input wire:model='method' required type="radio" class="custom-control-input" name="method" value="ESPECE">
+                                        <span style="color: black;" class="custom-control-label">Espèces</span>
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <label class="custom-control custom-radio">
+                                        <input wire:model='method' required type="radio" class="custom-control-input" name="method" value="CHEQUE">
+                                        <span style="color: black;" class="custom-control-label">Chèque</span>
+                                    </label>
+                                </div>
                             </div>
-                            <div class="col">
-                                <label class="custom-control custom-radio">
-                                    <input wire:model='method' required type="radio" class="custom-control-input" name="method" value="CHEQUE">
-                                    <span style="color: black;" class="custom-control-label">Chèque</span>
-                                </label>
-                            </div>
-                        </div>
-                        <button href="javascript:void(0);" class="btn btn-primary btn-sm m-1">Envoyer pour paiement</button>
-                    </form>
-            </div>
+                            <button href="javascript:void(0);" class="btn btn-primary btn-sm m-1">Envoyer pour paiement</button>
+                        </form>
+                </div>
             @elseif ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse'))
                 <a wire:click='nextStep' wire:confirm="Êtes vous sûr de vouloir payer ce bon, cette action iréversible impactera votre caisse"  href="javascript:void(0);" class="btn btn-danger btn-sm m-1"><span class="fa fa-ticket"></span> Payer</a>
             @elseif ($bon->etape == "PAYE" || $bon->etape == "CLOS" && Auth::user()->can('Payer bon de caisse'))
@@ -54,6 +53,20 @@
         
     </div>
     <div class="card-body">
+        <div class="row m-2">
+            @if ($bon->manager_validation_comment() && Auth::user()->can('Voir le commentaire de validation du manager'))
+                @if ($bon->manager_validation_comment()->manager_validation_comment)
+                    <div>
+                        <span class="custom-control-label" style="color: red;"> <b>Commentaire de validation du manager : </b></span>
+                    </div>
+                    <div class="alert alert-primary" > 
+                        {{$bon->manager_validation_comment()->user->name}}:  
+                        <br> {{$bon->manager_validation_comment()->manager_validation_comment}} <br> 
+                        <span>{{$bon->manager_validation_comment()->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i:s')}}</span>
+                    </div>
+                @endif
+            @endif
+        </div>
         @if ($bon->description != null && $bon->description != "")
             <div class="row">
                 <div class="text-wrap">

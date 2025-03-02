@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         // $this->call(ChauffeurSeeder::class);
         
         Permission::create(['name'=> 'Voir les depenses sur un véhicule']);
+        Permission::create(['name'=> 'Voir le commentaire de validation du manager']);
     }
 }

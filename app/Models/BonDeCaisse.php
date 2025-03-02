@@ -49,6 +49,14 @@ class BonDeCaisse extends Model
         return $this->hasMany(Document::class, 'bon_de_caisse_id');
     }
 
+    public function etape_bons (){
+        return $this->hasMany(EtapeBon::class)->orderBy('created_at', 'DESC');
+    }
+
+    public function manager_validation_comment (){
+        return $this->etape_bons->where('etape_actuelle', 'RAF')->whereNotNull('manager_validation_comment')->first();
+    }
+
 
     public function print (){
         ini_set('memory_limit', '440M');

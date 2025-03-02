@@ -66,7 +66,9 @@ class MouvementCaisse extends Component
     }
 
     public function export(){
-        return (new \App\Exports\MouvementCaisse(\Carbon\Carbon::parse($this->start_date)->format('Y-m-d'), \Carbon\Carbon::parse($this->end_date)->format('Y-m-d')))->download('mouvement-caisse.xlsx');
+        $startDate = \Carbon\Carbon::parse($this->start_date)->format('Y-m-d');
+        $endDate = \Carbon\Carbon::parse($this->end_date)->format('Y-m-d');
+        return (new \App\Exports\MouvementCaisse($startDate, $endDate))->download('mouvement-caisse_du-'.$startDate.'-au-'.$endDate.'.xlsx');
     }
     
 }

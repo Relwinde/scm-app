@@ -22,10 +22,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <h6 class="">Total : </h6>
-                <h3 class="mb-2 number-font" style="font-size: 1.2rem;">{{number_format($total_depenses, 2, '.', ' ')}} FCFA</h3>
-            </div>
+            @if ($start_date || $end_date)   
+                <div class="col">
+                    <h6 class="">Total : </h6>
+                    <h3 class="mb-2 number-font" style="font-size: 1.2rem;">{{number_format($total_depenses, 2, '.', ' ')}} FCFA</h3>
+                </div>
+            @endif
     </div>
     <div class="card-body">
         <div class="table-responsive">
