@@ -44,12 +44,12 @@ class ViewDepenses extends ModalComponent
     
 
                 if ($this->start_date) {
-                    $startDate = \Carbon\Carbon::parse($this->start_date)->format('Y-m-d');
+                    $startDate = \Carbon\Carbon::parse($this->start_date)->startOfDay()->format('Y-m-d H:i:s');
                     $query->where('bon_de_caisses.created_at', '>=', $startDate);  
                 }
                 
                 if ($this->end_date) {
-                    $endDate = \Carbon\Carbon::parse($this->end_date)->format('Y-m-d');
+                    $endDate = \Carbon\Carbon::parse($this->end_date)->endOfDay()->format('Y-m-d H:i:s');
                     $query->where('bon_de_caisses.created_at', '<=', $endDate);
                 }
 
