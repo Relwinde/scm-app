@@ -44,7 +44,7 @@
                 <thead>
                     <tr style="font-weight:700;">
                         <th class="wd-15p border-bottom-0 text-nowrap"><b>Type</b></th>
-                        <th class="wd-20p border-bottom-0 text-nowrap"><b>Libellé</b></th>
+                        <th class="wd-20p border-bottom-0 text-wrap"><b>Libellé</b></th>
                         <th class="wd-20p border-bottom-0 text-nowrap"><b>Montant</b></th>
                         <th class="wd-15p border-bottom-0 text-nowrap"><b>Solde après opération</b></th>
                         <th class="wd-20p border-bottom-0 text-nowrap"><b>Date</b></th>
@@ -71,7 +71,7 @@
                                 @endif
                                 
                             </td>
-                            <td class="text-nowrap">
+                            <td class="text-wrap">
                                 @if ($mouvement->bon_de_caisse_id)
                                     {{$mouvement->bon_de_caisse->depense}}
                                 @endif
