@@ -82,7 +82,36 @@
                                     {{$mouvement->ajustement_bon->libelle}}
                                 @endif
                             </td>
-                            <td class="text-nowrap" >{{number_format($mouvement->montant, 2, '.', ' ')}}</td>
+                            <td class="text-nowrap
+                                @if ($mouvement->bon_de_caisse_id)
+                                    text-danger	
+                                @endif
+                                @if ($mouvement->depot_id)
+                                    text-primary
+                                @endif
+                                @if ($mouvement->ajustement_bon)
+                                    @if ($mouvement->ajustement_bon->type == "RESTITUTION")
+                                        text-primary
+                                    @endif
+                                    @if ($mouvement->ajustement_bon->type == "EXCEDANT")
+                                        text-danger
+                                    @endif
+                                @endif ">
+                                @if ($mouvement->bon_de_caisse_id)
+                                    {{ "- ".number_format($mouvement->montant, 2, '.', ' ') }}
+                                @endif
+                                @if ($mouvement->depot_id)
+                                    {{ "+ ".number_format($mouvement->montant, 2, '.', ' ') }}
+                                @endif
+                                @if ($mouvement->ajustement_bon)
+                                    @if ($mouvement->ajustement_bon->type == "RESTITUTION")
+                                        {{ "+ ".number_format($mouvement->montant, 2, '.', ' ') }}
+                                    @endif
+                                    @if ($mouvement->ajustement_bon->type == "EXCEDANT")
+                                        {{ "- ".number_format($mouvement->montant, 2, '.', ' ') }}
+                                    @endif
+                                @endif
+                            </td>
                             <td class="text-nowrap">{{number_format($mouvement->solde_after, 2, '.', ' ')}}</td>
                             <td class="text-nowrap">{{ $mouvement->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i') }}</td>
                             <td class="text-nowrap" name="bstable-actions">

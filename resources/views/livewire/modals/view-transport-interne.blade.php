@@ -37,7 +37,7 @@
                 </div>
                 <div class="card-header">
                     <h3 class="card-title m-2"><a target="_blank"  href="{{route('print-transport', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Page de garde</a></h3>
-                    <h3 class="card-title m-2"><a target="_blank"  href="{{route('print-transport', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Bordereau de livraison</a></h3>
+                    {{-- <h3 class="card-title m-2"><a target="_blank"  href="{{route('print-transport', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Bordereau de livraison</a></h3> --}}
                     <div class="card-title m-2">
                         @can('Créer bons de caisse')
                             <button wire:click="$dispatch('openModal', {component: 'modals.transport-interne.create-bon', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Créer un bon</button>    
