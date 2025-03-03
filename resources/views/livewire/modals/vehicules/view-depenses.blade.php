@@ -1,3 +1,3 @@
 <div>
-    @include('partials.Outils.view-vehicule-depenses')
+    @include('partials.outils.view-vehicule-depenses')
 </div>
