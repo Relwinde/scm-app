@@ -22122,7 +22122,7 @@ ul.timeline > li:before {
   height: 300px;
 }
 .header .notifications-menu {
-  height: 300px;
+  height: auto;
 }
 .header .message-menu-scroll {
   height: 290px;
