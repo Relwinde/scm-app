@@ -78,3 +78,7 @@ Route::get('/print-depot/{depot}', function (Depot $depot){
 Route::get('/print-transport/{dossier}', function (TransportInterne $dossier){
     $dossier->print();
 })->name('print-transport')->middleware("auth");
+
+Route::get('/print-delivery/{dossier}', function (Dossier $dossier){
+    $dossier->print_delivery_slip();
+})->name('print-delivery')->middleware("auth");

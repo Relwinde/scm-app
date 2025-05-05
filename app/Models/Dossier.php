@@ -44,6 +44,12 @@ class Dossier extends Model
         
     }
 
+    public function delivery_slip(){
+        return $this->hasOne(DeliverySlip::class);
+    }
+
+
+
     public function print (){
         ini_set('memory_limit', '440M');
         
@@ -90,6 +96,26 @@ class Dossier extends Model
             default;
         }
 
+    }
+
+    public function print_delivery_slip (){
+        ini_set('memory_limit', '440M');
+        $mpdf = new Mpdf([
+            'mode'=>'utf-8',
+            'format' => 'A5-L',
+            'default_font_size' => 14,
+            'default_font' => 'FreeSerif',
+            'margin_left' => 5,
+            'margin_right' => 5,
+            'margin_top' => 5,
+            'margin_bottom' => 5,
+            'margin_header' => 0,
+            'margin_footer' => 0,
+        ]);
+
+        $html = view('prints.delivery-slip', ['dossier'=>$this]);
+        $mpdf->writeHTML($html);
+        $mpdf->Output($name = 'Bon-de-livraison-'.$this->numero.'.pdf', 'I');
     }
 
 }
