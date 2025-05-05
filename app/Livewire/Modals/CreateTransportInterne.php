@@ -25,10 +25,10 @@ class CreateTransportInterne extends ModalComponent
 
     public function render()
     {
-        $clients = Client::all(['id', 'nom']);
-        $chauffeurs = Chauffeur::all(['id', 'nom']);
+        $clients = Client::orderBy('nom')->get(['id', 'nom']);
+        $chauffeurs = Chauffeur::orderBy('nom')->get(['id', 'nom']);
         $vehicules = Vehicule::all(['id', 'immatriculation', 'description']);
-        $marchandises = Marchandise::all(['id', 'nom']);
+        $marchandises = Marchandise::orderBy('nom')->get(['id', 'nom']);
 
 
         return view('livewire.modals.create-transport-interne',["clients"=>$clients, "marchandises"=>$marchandises, "chauffeurs"=>$chauffeurs, "vehicules"=>$vehicules, "title"=>"de transport interne"]);
