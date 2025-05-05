@@ -18,18 +18,18 @@
         <tbody>
             <tr style="width: 100%; text-align: center; margin-top: 20px;">
                 <td style="width: 50%; text-align: left; padding:10px;">
-                    <b style="color: #251e82;">N° SCM:</b> {{ $dossier->numero }}
+                    <b style="color: #251e82;">BORDEREAU DE LIVRAISON N°: </b>{{$dossier->delivery_slip->numero}}
                 </td>
                 <td style="width: 50%; text-align: left; padding:10px;">
-                    <b style="color: #251e82;">Date: </b>{{ \Carbon\Carbon::parse($dossier->delivery_slip->date)->locale('fr')->isoFormat('LL') }}
+                    <b style="color: #251e82;">CLIENT: </b> {{$dossier->client->nom}}
                 </td>
             </tr>
             <tr style="width: 100%; text-align: center; margin-top: 20px;">
                 <td style="width: 50%; text-align: left; padding:10px;">
-                    <b style="color: #251e82;">CLIENT: </b> {{$dossier->client->nom}}
+                    <b style="color: #251e82;">N° SCM:</b> {{ $dossier->numero }}
                 </td>
                 <td style="width: 50%; text-align: left; padding:10px;">
-                    <b style="color: #251e82;">BORDEREAU DE LIVRAISON N°: </b>{{$dossier->delivery_slip->numero}}
+                    <b style="color: #251e82;">Date: </b>{{ \Carbon\Carbon::parse($dossier->delivery_slip->date)->locale('fr')->isoFormat('LL') }}
                 </td>
             </tr>
         </tbody>
