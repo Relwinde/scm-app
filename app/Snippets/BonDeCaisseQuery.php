@@ -52,9 +52,15 @@ if (Auth::user()->can('Voir toute la liste des bons de caisse')){
     ->leftjoin('dossiers', 'bon_de_caisses.dossier_id', '=', 'dossiers.id')
     ->leftjoin('transport_internes', 'bon_de_caisses.transport_interne_id', '=', 'transport_internes.id')
     ->leftjoin('vehicules', 'bon_de_caisses.vehicule_id', '=', 'vehicules.id')
+    ->leftJoin('etape_bons', function ($join) {
+        $join->on('etape_bons.bon_de_caisse_id', '=', 'bon_de_caisses.id')
+             ->where('etape_bons.etape_precedente', 'RESPONSABLE')
+             ->where('etape_bons.etape_actuelle', 'MANAGER');
+    })
     ->where(function ($query) {
         $query->where('bon_de_caisses.etape', 'RESPONSABLE')
-              ->orWhere('bon_de_caisses.user_id', Auth::user()->id);
+              ->orWhere('bon_de_caisses.user_id', Auth::user()->id)
+              ->orWhere('etape_bons.user_id', Auth::id()); // Responsable ayant validé
     })
     ->where(function ($query) {
         $query->where('bon_de_caisses.numero', 'like', "%{$this->search}%")
