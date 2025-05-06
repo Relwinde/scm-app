@@ -44,7 +44,7 @@
                 <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:110px;">N° LTA</th>
                 <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:110px;">N° PO</th>
                 <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:150px;">Désignation</th>
-                <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:85px;">Quantité</th>
+                <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:85px;">Nbre de colis</th>
                 <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:85px;">Poids (KG)</th>
                 <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82;">Observations</th>
             </tr>
