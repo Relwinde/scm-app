@@ -59,7 +59,7 @@ class PrintDeliverySlip extends ModalComponent
         $slip->first_name = $this->first_name;
         $slip->last_name = $this->last_name;
         $slip->save();
-        return redirect()->route('print-delivery', ['dossier' => $this->dossier->id])->with('openInNewTab', true);
+        return redirect()->route('print-delivery', ['dossier' => $this->dossier->id]);
         $this->closeModal();
 
     }
