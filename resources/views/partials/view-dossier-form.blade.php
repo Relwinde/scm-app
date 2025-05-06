@@ -35,9 +35,9 @@
         {{-- <h3 class="card-title m-2"><a target="_blank"  href="{{route('print-dossier', $dossier->id)}}" class="btn btn-sm btn-outline-primary">Bordereau de livraison</a></b></h3> --}}
 
         <div class="card-title m-2">
-            @can('Créer bons de caisse')
+            {{-- @can('Créer bons de caisse') --}}
                 <a wire:click="$dispatch('openModal', {component: 'modals.dossier.print-delivery-slip', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text"></i> Bordereau de livraison</a>  
-            @endcan
+            {{-- @endcan --}}
         </div>
         <div class="card-title m-2">
             @can('Créer bons de caisse')
