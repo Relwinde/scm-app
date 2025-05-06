@@ -41,7 +41,8 @@
     <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
         <thead>
             <tr style="background-color: #f2f2f2;">
-                <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:150px;">N° PO / LTA</th>
+                <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:110px;">N° LTA</th>
+                <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:110px;">N° PO</th>
                 <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:150px;">Désignation</th>
                 <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:85px;">Quantité</th>
                 <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:85px;">Poids (KG)</th>
@@ -52,6 +53,7 @@
 
                 <tr>
                     <td style="border: 1px solid #fd292b; padding: 5px;">{{$dossier->num_lta_bl}}</td>
+                    <td style="border: 1px solid #fd292b; padding: 5px;">{{$dossier->num_commande}}</td>
                     <td style="border: 1px solid #fd292b; padding: 5px;">{{$dossier->marchandises->first()->nom ?? null}}</td>
                     <td style="border: 1px solid #fd292b; padding: 5px;">{{$dossier->nombre_colis > 0 ? $dossier->nombre_colis : ""}}</td>
                     <td style="border: 1px solid #fd292b; padding: 5px;">{{$dossier->poids > 0 ? number_format($dossier->poids, 2, '.', ' ') : ""}}</td>
