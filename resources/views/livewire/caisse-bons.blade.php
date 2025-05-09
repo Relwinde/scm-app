@@ -1,6 +1,6 @@
 <div>
     <div class="d-flex align-items-left">
-        <div class="main-header-center m-3 d-none d-lg-block">
+        <div class="main-header-center m-3 d-lg-block">
                 <input   wire:model.live.debounce="search" type="text" class="form-control" placeholder="Recherche...">
         </div>
     </div>

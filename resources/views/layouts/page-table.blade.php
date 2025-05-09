@@ -9,11 +9,11 @@
                     <h3 class="card-title">{{$title}}</h3>
                 </div>
                 <div class="card-body">
-                    <div class="d-flex align-items-left">
+                    <div class="d-flex flex-column flex-lg-row align-items-left">
 
                         @yield('create-button')
                        
-                        <div class="main-header-center ms-3 d-none d-lg-block">
+                        <div class="main-header-center ms-3 d-lg-block">
                             {{-- <form  wire:submit="search" > --}}
                                 <input   wire:model.live.debounce="search" type="text" class="form-control" placeholder="Recherche...">
                                 {{-- <button class="btn px-0 pt-2"><i class="fe fe-search" aria-hidden="true"></i></button> --}}
