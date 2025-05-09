@@ -10,8 +10,10 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex flex-column flex-lg-row align-items-left">
-
-                        @yield('create-button')
+                        
+                        <div class="d-block d-sm-inline-block">
+                            @yield('create-button')
+                        </div>
                        
                         <div class="main-header-center ms-3 d-lg-block">
                             {{-- <form  wire:submit="search" > --}}
