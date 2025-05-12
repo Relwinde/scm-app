@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DossierMarchandise extends Model
+class MarchandiseTransportInterne extends Model
 {
     use HasFactory;
+    protected $table = 'marchandise_transport_interne';
 
     protected $fillable = [
-        'dossier_id',
+        'transport_interne_id',
         'marchandise_id'
     ];
-
-    protected $table = 'dossier_marchandise';
 }

@@ -10,6 +10,7 @@ use App\Models\NumeroTransport;
 use App\Models\TransportInterne;
 use App\Exports\TransportDepenses;
 use App\Models\Marchandise;
+use App\Models\MarchandiseTransportInterne;
 use LivewireUI\Modal\ModalComponent;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -85,6 +86,17 @@ class ViewTransportInterne extends ModalComponent
             NumeroTransport::create([
                 'transport_interne_id'=>$this->dossier->id,
                 'numero'=>$this->dossier->numero
+            ]);
+        }
+
+        $marchaniseTransportInterne = MarchandiseTransportInterne::where('transport_interne_id', $this->dossier->id)->first();
+        if($marchaniseTransportInterne){
+            $marchaniseTransportInterne->marchandise_id = $this->marchandise;
+            $marchaniseTransportInterne->save();
+        }else{
+            MarchandiseTransportInterne::create([
+                'transport_interne_id'=>$this->dossier->id,
+                'marchandise_id'=>$this->marchandise
             ]);
         }
 

@@ -10,6 +10,7 @@ use App\Models\Marchandise;
 use App\Models\NumeroDossier;
 use App\Models\BureauDeDouane;
 use App\Exports\DossierDepenses;
+use App\Models\DossierMarchandise;
 use LivewireUI\Modal\ModalComponent;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -32,7 +33,6 @@ class ViewDossier extends ModalComponent
     public $num_t;
     public $total_depenses;
     public $edit = false;
-
 
     public function mount(){
         $this->num_commande = $this->dossier->num_commande;
@@ -118,6 +118,16 @@ class ViewDossier extends ModalComponent
             }
         }
         
+        $dossierMarhandise = DossierMarchandise::where('dossier_id', $this->dossier->id)->first();
+        if($dossierMarhandise){
+            $dossierMarhandise->marchandise_id = $this->marchandise;
+            $dossierMarhandise->save();
+        }else{
+            DossierMarchandise::create([
+                'dossier_id'=>$this->dossier->id,
+                'marchandise_id'=>$this->marchandise
+            ]);
+        }
         
     }
 
