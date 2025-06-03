@@ -41,7 +41,7 @@
     <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
         <thead>
             <tr style="background-color: #f2f2f2;">
-                <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:110px;">N° LTA</th>
+                <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:110px;">N° LTA/BL</th>
                 <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:110px;">N° PO</th>
                 <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:150px;">Désignation</th>
                 <th style="border: 1px solid #fd292b; padding: 5px; color: #251e82; width:85px;">Nbre de colis</th>
