@@ -49,7 +49,7 @@ class MouvementCaisse implements FromView, ShouldAutoSize, WithColumnFormatting
                 ->leftjoin('bon_de_caisses', 'suivi_caisses.bon_de_caisse_id', '=', 'bon_de_caisses.id')
                 ->leftjoin('ajustement_bons', 'suivi_caisses.ajustement_bon_id', '=', 'ajustement_bons.id')
                 ->leftjoin('depots', 'suivi_caisses.depot_id', '=', 'depots.id')
-                ->orderBy('suivi_caisses.created_at', 'DESC');
+                ->orderBy('suivi_caisses.created_at', 'ASC');
 
         if ($this->start_date) {
             $query->where('suivi_caisses.created_at', '>=', $this->start_date);

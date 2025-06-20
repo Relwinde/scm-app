@@ -48,7 +48,7 @@ Route::get('/vehicules', Vehicule::class)->middleware("auth");
 Route::get('/bureaux-de-douane', BureauDeDouane::class)->middleware("auth");
 Route::get('/destinations', Destination::class)->middleware("auth");
 Route::get('/marchandises', Marchandise::class)->middleware("auth");
-Route::get('/clients', Client::class);
+Route::get('/clients', Client::class)->middleware("auth");
 Route::get('/fournisseurs', Fournisseur::class)->middleware("auth");
 
 
