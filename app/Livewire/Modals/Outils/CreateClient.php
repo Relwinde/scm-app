@@ -27,9 +27,11 @@ class CreateClient extends ModalComponent
             'code'=>$this->code,
             'telephone'=>$this->telephone,
             'email'=>$this->email,
-            'adresse'=>$this->adresse,
+            'adresse'=>$this->adresse, 
             'ifu'=>$this->ifu,
-            'rccm'=>$this->rccm
+            'rccm'=>$this->rccm,
+            'created_by'=>auth()->id(),
+            'updated_by'=>auth()->id(),
         ]);
 
         if($client->save()){

@@ -50,6 +50,7 @@ class ViewClient extends ModalComponent
         $this->client->ifu = $this->ifu;
         $this->client->rccm = $this->rccm;
         $this->client->code = $this->code;
+        $this->client->updated_by = auth()->id();
 
         if($this->client->save()){
             $this->dispatch('new-client');
