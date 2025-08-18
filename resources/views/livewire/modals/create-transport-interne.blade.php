@@ -51,21 +51,25 @@
                             <div class="col-md-6">
                                 <div class="mb-4">
                                     <label class="form-label">Nombre de colis</label>
-                                    <input wire:model='nombre_colis' type="number" class="form-control" placeholder="Nombre de colis">
+                                    <input wire:model='nombre_colis' type="number" class="form-control" placeholder="Nombre colis">
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Poids (KG)</label>
-                                    <input wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control" name="example-text-input" placeholder="Poids">
+                                    <input wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control" name="poids" placeholder="Poids">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">N° BL/LTA</label>
+                                    <input  wire:model='num_lta_bl' type="text" class="form-control" name="num_lta_bl" placeholder="N° BL/LTA">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-4">
                                     <label class="form-label">Volume</label>
-                                    <input wire:focusout='reformat_volume()' wire:model='volume' type="text" class="form-control" name="example-text-input" placeholder="Volume">
+                                    <input wire:focusout='reformat_volume()' wire:model='volume' type="text" class="form-control" name="volume" placeholder="Volume">
                                 </div>
                                 <div class="mb-4">
                                     <label class="form-label">Montant</label>
-                                    <input wire:focusout='reformat_montant()' wire:model='montant' type="text" class="form-control" name="example-text-input" placeholder="Montant">
+                                    <input wire:focusout='reformat_montant()' wire:model='montant' type="text" class="form-control" name="montant" placeholder="Montant">
                                 </div>
                             </div>
                             <div class="col-md-12 ">

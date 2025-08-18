@@ -22,6 +22,7 @@ class CreateTransportInterne extends ModalComponent
     public $poids;
     public $volume;
     public $marchandise;
+    public $num_lta_bl;
 
     public function render()
     {
@@ -43,7 +44,8 @@ class CreateTransportInterne extends ModalComponent
         'client_id'=>$this->client,
         'vehicule_id'=>$this->vehicule,
         'chauffeur_id'=>$this->chauffeur,
-        'user_id'=>Auth::User()->id
+        'user_id'=>Auth::User()->id, 
+        'num_lta_bl'=>$this->num_lta_bl
         ]);
 
         if(TransportInterne::whereYear('created_at', Carbon::now()->year)->latest()->first() == null){

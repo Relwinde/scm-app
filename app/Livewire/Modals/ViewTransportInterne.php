@@ -29,6 +29,7 @@ class ViewTransportInterne extends ModalComponent
     public $total_depenses;
     public $edit = false;
     public $marchandise;
+    public $num_lta_bl;
 
     public function mount (){
         $this->client = $this->dossier->client_id;
@@ -39,6 +40,7 @@ class ViewTransportInterne extends ModalComponent
         $this->montant = number_format(floatval( str_replace(' ', '',$this->dossier->montant)), 2, '.', ' ') ;
         $this->volume = number_format(floatval( str_replace(' ', '',$this->dossier->volume)), 2, '.', ' ') ;
         $this->poids = number_format(floatval( str_replace(' ', '',$this->dossier->poids)), 2, '.', ' ') ;
+        $this->num_lta_bl = $this->dossier->num_lta_bl;
 
     }
 
@@ -78,6 +80,7 @@ class ViewTransportInterne extends ModalComponent
         $this->dossier->montant = floatval(str_replace(' ', '',$this->montant));
         $this->dossier->volume = floatval(str_replace(' ', '',$this->volume));
         $this->dossier->poids = floatval(str_replace(' ', '',$this->poids));
+        $this->dossier->num_lta_bl = $this->num_lta_bl;
 
 
 

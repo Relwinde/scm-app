@@ -99,6 +99,10 @@
                                     <label class="form-label">Poids (KG)</label>
                                     <input @if ($edit==false) readonly disabled="" @endif wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control" name="example-text-input" placeholder="Poids">
                                 </div>
+                                <div class="mb-4">
+                                    <label class="form-label">N° BL/LTA</label>
+                                    <input @if ($edit==false) readonly disabled="" @endif wire:model='num_lta_bl' type="text" class="form-control" name="num_lta_bl" placeholder="N° BL/LTA">
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-4">
