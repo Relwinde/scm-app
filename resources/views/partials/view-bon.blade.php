@@ -237,11 +237,11 @@
                             <div class="progress-bar progress-bar-striped bg-primary w-100" role="progressbar"></div>
                         </div>
                         <div class="row mt-4">
-                            <div class="col text-center"> <span class="text-muted">CREATION</span>
+                            <div class="col text-center"> <span style="font-weight: bold;">CREATION</span>
                                 <h4 class="fw-normal mt-2 mb-0 number-font2">{{ $bon->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i:s') }}</h4>
                             </div>
                             @foreach ($bon->etape_bons->reverse() as $etape)
-                                 <div class="col text-center"> <span class="text-muted">{{ $etape->etape_actuelle }}</span>
+                                 <div class="col text-center"> <span style="font-weight: bold;">{{ $etape->etape_actuelle }}</span>
                                     <h4 class="fw-normal mt-2 mb-0 number-font1">{{ $etape->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i:s') }}</h4>
                                     <h4 class="fw-normal mt-2 mb-0 number-font1">{{ $etape->user->name }}</h4>
                                 </div>
