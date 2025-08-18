@@ -24,11 +24,11 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Fournisseur<span class="required">*</span></label>
-                        <input @if ($isPartial) readonly disabled="" @endif required wire:model='fournisseur' type="text" class="form-control" placeholder="Fournisseur">
+                        <input @if ($isPartial) readonly disabled="" @endif required wire:model='fournisseur' type="text" class="form-control" placeholder="Fournisseur" name="fournisseur">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de Facture</label>
-                        <input wire:model='num_facture' type="text" class="form-control" placeholder="N° de Facture">
+                        <input wire:model='num_facture' type="text" class="form-control" placeholder="N° de Facture" name="num_facture">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Nature du colis<span class="required">*</span></label>
@@ -41,17 +41,17 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° SYLVIE</label>
-                        <input wire:model='num_sylvie' type="text" class="form-control" placeholder="N° SYLVIE">
+                        <input wire:model='num_sylvie' type="text" class="form-control" placeholder="N° SYLVIE" name="num_sylvie">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de décision EXO</label>
-                        <input wire:model='num_exo' type="text" class="form-control" placeholder="N° de décision EXO">
+                        <input wire:model='num_exo' type="text" class="form-control" placeholder="N° de décision EXO" name="num_exo">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Nombre de colis</label>
-                        <input wire:focusout='reformat_nombre_colis()' wire:model='nombre_colis' type="text" class="form-control" placeholder="Nombre de colis">
+                        <input wire:focusout='reformat_nombre_colis()' wire:model='nombre_colis' type="text" class="form-control" placeholder="Nombre de colis" name="nombre_colis">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Bureau de douane<span class="required">*</span></label>
@@ -64,23 +64,23 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° BL/LTA</label>
-                        <input wire:model='num_lta_bl' type="text" class="form-control" placeholder="N° BL/LTA">
+                        <input wire:model='num_lta_bl' type="text" class="form-control" placeholder="N° BL/LTA" name="num_lta_bl">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Poids (KG)<span class="required">*</span></label>
-                        <input required wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control" placeholder="Poids">
+                        <input required wire:focusout='reformat_poids()' wire:model='poids' type="text" class="form-control" placeholder="Poids" name="poids">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de déclaration</label>
-                        <input wire:model='num_declaration' type="text" class="form-control" placeholder="N° de déclaration">
+                        <input wire:model='num_declaration' type="text" class="form-control" placeholder="N° de déclaration" name="num_declaration">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Valeur CAF</label>
-                        <input wire:focusout='reformat_valeur_caf()' wire:model='valeur_caf' type="text" class="form-control" placeholder="Valeur CAF">
+                        <input wire:focusout='reformat_valeur_caf()' wire:model='valeur_caf' type="text" class="form-control" placeholder="Valeur CAF" name="valeur_caf">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Numéro de T1</label>
-                        <input wire:model='num_t' type="text" class="form-control" placeholder="N° de T1">
+                        <input wire:model='num_t' type="text" class="form-control" placeholder="N° de T1" name="num_t">
                     </div>
                 </div>
                 <div class="col-md-12 ">

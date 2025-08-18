@@ -227,7 +227,31 @@
                         Retourner le bon  
                     </a>
         @endif
+        
+        <div class="row m-2">
+            {{-- <div class="card"> --}}
+                {{-- <div class="card-body text-center"> --}}
+                        {{-- <h6 class=""><span class="text-primary"><i class="fe fe-file-text mx-2 fs-20 text-primary-shadow"></i></span>Total Projects</h6> --}}
+                        <h3 class="text-dark counter mt-0 mb-3 number-font text-center">Progression</h3>
+                        <div class="progress h-1 mt-0 mb-2">
+                            <div class="progress-bar progress-bar-striped bg-primary w-100" role="progressbar"></div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col text-center"> <span class="text-muted">CREATION</span>
+                                <h4 class="fw-normal mt-2 mb-0 number-font2">{{ $bon->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i:s') }}</h4>
+                            </div>
+                            @foreach ($bon->etape_bons->reverse() as $etape)
+                                 <div class="col text-center"> <span class="text-muted">{{ $etape->etape_actuelle }}</span>
+                                    <h4 class="fw-normal mt-2 mb-0 number-font1">{{ $etape->created_at->locale(app()->getLocale())->translatedFormat('j F Y à H:i:s') }}</h4>
+                                    <h4 class="fw-normal mt-2 mb-0 number-font1">{{ $etape->user->name }}</h4>
+                                </div>
+                            @endforeach
+                        </div>
+                {{-- </div> --}}
+            {{-- </div> --}}
+        </div>
     </div>
+    
 </div>
 
 @script
