@@ -71,6 +71,10 @@
                 <td style="width: auto;"><h4>VOLUME&nbsp;&nbsp;: </h4></td>
                 <td><h>{{$dossier->volume > 0 ? number_format($dossier->volume, 2, '.', ' ') : ""}}</h></td>
             </tr>
+            <tr>
+                <td style="width: auto;"><h4>N° BL/LTA&nbsp;&nbsp;: </h4></td>
+                <td><h>{{$dossier->num_lta_bl ?? ""}}</h></td>
+            </tr>
         </tbody>
     </table>
 
