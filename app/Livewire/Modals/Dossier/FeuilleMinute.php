@@ -2,10 +2,14 @@
 
 namespace App\Livewire\Modals\Dossier;
 
-use Livewire\Component;
+use App\Models\Dossier;
+use LivewireUI\Modal\ModalComponent;
 
-class FeuilleMinute extends Component
+class FeuilleMinute extends ModalComponent
 {
+
+    public Dossier $dossier;
+
     public function render()
     {
         return view('livewire.modals.dossier.feuille-minute');

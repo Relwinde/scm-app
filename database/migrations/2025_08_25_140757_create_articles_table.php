@@ -23,7 +23,7 @@ return new class extends Migration
             $table->decimal('caf', 14, 2);
             $table->decimal('poids_brut', 14, 2);
             $table->decimal('poids_net', 14, 2);
-            $table->decimal('quantite', 14, 2);
+            $table->decimal('quantite_supp', 14, 2);
             $table->foreignId('dossier_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();

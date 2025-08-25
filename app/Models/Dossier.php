@@ -69,6 +69,11 @@ class Dossier extends Model
         return $this->hasMany(BonDeCaisse::class);
     }
 
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
     public function updateNumero (){
         switch($this->type){
             case "IMPORT": 

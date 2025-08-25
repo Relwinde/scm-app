@@ -44,6 +44,11 @@
                 <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-bon', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-money"></i> Créer un bon</a>  
             @endcan
         </div>
+        <div class="card-title m-2">
+            @can('Etablir la feuille minute')
+                <a wire:click="$dispatch('openModal', {component: 'modals.dossier.feuille-minute', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text-o"></i> Feuille minute</a>  
+            @endcan
+        </div>
     </div>
     @if ($edit==true)
     <form wire:submit.prevent="update" >
