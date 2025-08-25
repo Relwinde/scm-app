@@ -47,6 +47,10 @@
                         <label class="form-label">N° de décision EXO</label>
                         <input wire:model='num_exo' type="text" class="form-control" placeholder="N° de décision EXO" name="num_exo">
                     </div>
+                    <div class="mb-4">
+                        <label class="form-label">Valeur FOB XOF</label>
+                        <input wire:focusout='reformat_fob_xof()' wire:model='fob_xof' type="text" class="form-control" placeholder="Valeur FOB XOF" name="fob_xof" >
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">

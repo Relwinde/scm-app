@@ -36,39 +36,39 @@
                                     @error('code')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='fob_devis' type="text" class="form-control" name="fob_devis" placeholder="FOB Devise">
+                                    <input wire:model='fob_devis' type="number" class="form-control" name="fob_devis" placeholder="FOB Devise" wire:focusout="calculate">
                                     @error('fob_devis')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='fob_xof' type="text" class="form-control" name="fob_xof" placeholder="FOB XOF">
+                                    <input wire:model='fob_xof' type="number" class="form-control" name="fob_xof" placeholder="FOB XOF" wire:focusout="calculate">
                                     @error('fob_xof')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='fret' type="text" class="form-control" name="fret" placeholder="Fret">
+                                    <input wire:model='fret' type="number" class="form-control" name="fret" placeholder="Fret">
                                     @error('fret')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='autres_frais' type="text" class="form-control" name="autres_frais" placeholder="Autres frais">
+                                    <input wire:model='autres_frais' type="number" class="form-control" name="autres_frais" placeholder="Autres frais">
                                     @error('autres_frais')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='assurance' type="text" class="form-control" name="assurance" placeholder="Assurance">
+                                    <input wire:model='assurance' type="number" class="form-control" name="assurance" placeholder="Assurance">
                                     @error('assurance')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='caf' type="text" class="form-control" name="caf" placeholder="CAF">
+                                    <input wire:model='caf' type="number" class="form-control" name="caf" placeholder="CAF">
                                     @error('caf')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='poids_brut' type="text" class="form-control" name="poids_brut" placeholder="Poids brut">
+                                    <input wire:model='poids_brut' type="number" class="form-control" name="poids_brut" placeholder="Poids brut">
                                     @error('poids_brut')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='poids_net' type="text" class="form-control" name="poids_net" placeholder="Poids net">
+                                    <input wire:model='poids_net' type="number" class="form-control" name="poids_net" placeholder="Poids net">
                                     @error('poids_net')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='quantite_supp' type="text" class="form-control" name="quantite_supp" placeholder="Quantité supplémentaire">
+                                    <input wire:model='quantite_supp' type="number" class="form-control" name="quantite_supp" placeholder="Quantité supplémentaire">
                                     @error('quantite_supp')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap" style="width: 1%;">

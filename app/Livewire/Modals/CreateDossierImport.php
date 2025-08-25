@@ -30,6 +30,7 @@ class CreateDossierImport extends ModalComponent
     public $num_exo;
     public $num_lta_bl;
     public $num_t;
+    public $fob_xof;
 
     public $isPartial = false;
 
@@ -67,6 +68,7 @@ class CreateDossierImport extends ModalComponent
         'num_t'=>$this->num_t,
         'num_declaration'=>$this->num_declaration,
         'valeur_caf'=>floatval(str_replace(' ', '',$this->valeur_caf)),
+        'fob_xof'=>floatval(str_replace(' ', '',$this->fob_xof)),
         'nombre_colis'=>floatval(str_replace(' ', '',$this->nombre_colis)),
         'poids'=>floatval(str_replace(' ', '',$this->poids)),
         'fournisseur'=>$this->fournisseur,
@@ -125,6 +127,10 @@ class CreateDossierImport extends ModalComponent
 
     public function reformat_nombre_colis (){
         $this->nombre_colis = number_format(floatval( str_replace(' ', '',$this->nombre_colis)), 2, '.', ' ');
+    }
+
+    public function reformat_fob_xof (){
+        $this->fob_xof= number_format(floatval( str_replace(' ', '',$this->fob_xof)), 2, '.', ' ');
     }
 
     public function checkPartial (){

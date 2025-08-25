@@ -32,6 +32,8 @@ class ViewDossier extends ModalComponent
     public $num_lta_bl;
     public $num_t;
     public $total_depenses;
+    public $fob_xof;
+
     public $edit = false;
 
     public function mount(){
@@ -49,6 +51,7 @@ class ViewDossier extends ModalComponent
         $this->poids = number_format($this->dossier->poids, 2, '.', ' ');
         $this->num_declaration = $this->dossier->num_declaration;
         $this->valeur_caf = number_format($this->dossier->valeur_caf, 2, '.', ' ');
+        $this->fob_xof = number_format($this->dossier->fob_xof, 2, '.', ' ');
     }
 
     public function render()
@@ -94,6 +97,7 @@ class ViewDossier extends ModalComponent
         $this->dossier->poids = floatval( str_replace(' ', '',$this->poids));
         $this->dossier->num_declaration = $this->num_declaration;
         $this->dossier->valeur_caf =floatval( str_replace(' ', '',$this->valeur_caf));
+        $this->dossier->fob_xof =floatval( str_replace(' ', '',$this->fob_xof));
 
 
         if ($this->dossier->isDirty('bureau_de_douane_id') || $this->dossier->isDirty('client_id')){
@@ -146,6 +150,10 @@ class ViewDossier extends ModalComponent
 
     public function reformat_nombre_colis (){
         $this->nombre_colis = number_format(floatval( str_replace(' ', '',$this->nombre_colis)), 2, '.', ' ');
+    }
+
+    public function reformat_fob_xof (){
+        $this->fob_xof= number_format(floatval( str_replace(' ', '',$this->fob_xof)), 2, '.', ' ');
     }
 
     public function export (){
