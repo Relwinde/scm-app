@@ -13,6 +13,7 @@ use App\Exports\DossierDepenses;
 use App\Models\DossierMarchandise;
 use LivewireUI\Modal\ModalComponent;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Livewire\Modals\Dossier\FeuilleMinute;
 
 class ViewDossier extends ModalComponent
 {
@@ -33,6 +34,9 @@ class ViewDossier extends ModalComponent
     public $num_t;
     public $total_depenses;
     public $fob_xof;
+    public $fret;
+    public $assurance;
+    public $autre_frais;
 
     public $edit = false;
 
@@ -52,6 +56,9 @@ class ViewDossier extends ModalComponent
         $this->num_declaration = $this->dossier->num_declaration;
         $this->valeur_caf = number_format($this->dossier->valeur_caf, 2, '.', ' ');
         $this->fob_xof = number_format($this->dossier->fob_xof, 2, '.', ' ');
+        $this->fret = number_format($this->dossier->fret, 2, '.', ' ');
+        $this->assurance = number_format($this->dossier->assurance, 2, '.', ' ');
+        $this->autre_frais = number_format($this->dossier->autre_frais, 2, '.', ' ');
     }
 
     public function render()
@@ -98,7 +105,9 @@ class ViewDossier extends ModalComponent
         $this->dossier->num_declaration = $this->num_declaration;
         $this->dossier->valeur_caf =floatval( str_replace(' ', '',$this->valeur_caf));
         $this->dossier->fob_xof =floatval( str_replace(' ', '',$this->fob_xof));
-
+        $this->dossier->fret =floatval( str_replace(' ', '',$this->fret));
+        $this->dossier->assurance =floatval( str_replace(' ', '',$this->assurance));
+        $this->dossier->autre_frais =floatval( str_replace(' ', '',$this->autre_frais));
 
         if ($this->dossier->isDirty('bureau_de_douane_id') || $this->dossier->isDirty('client_id')){
             $this->dossier->updateNumero();
@@ -156,8 +165,30 @@ class ViewDossier extends ModalComponent
         $this->fob_xof= number_format(floatval( str_replace(' ', '',$this->fob_xof)), 2, '.', ' ');
     }
 
+    public function reformat_fret (){
+        $this->fret = number_format(floatval( str_replace(' ', '',$this->fret)), 2, '.', ' ');
+    }
+
+    public function reformat_assurance (){
+        $this->assurance = number_format(floatval( str_replace(' ', '',$this->assurance)), 2, '.', ' ');
+    }
+
+    public function reformat_autre_frais (){
+        $this->autre_frais = number_format(floatval( str_replace(' ', '',$this->autre_frais)), 2, '.', ' ');
+    }
+
     public function export (){
         return Excel::download(new DossierDepenses($this->dossier), str_replace('/', '-',$this->dossier->numero).'.xlsx');
+    }
+
+    public function feuilleMinute (){
+
+        if ($this->dossier->valeur_caf == null || $this->dossier->fob_xof == null || $this->fret == null || $this->dossier->assurance == null || $this->autre_frais == null){
+            $this->dispatch('feuille-minute-novalue');
+        }
+        else {
+            $this->dispatch('openModal', FeuilleMinute::class, ['dossier' => $this->dossier->id]);
+        }
     }
     
 }

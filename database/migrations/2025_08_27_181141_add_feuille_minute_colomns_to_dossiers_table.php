@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('dossiers', function (Blueprint $table) {
-            $table->decimal('fob_xof', 10, 2)->after('valeur_caf')->nullable();
+            $table->decimal('fret', 10, 2)->after('fob_xof')->nullable();
+            $table->decimal('assurance', 10, 2)->after('fret')->nullable();
+            $table->decimal('autre_frais', 10, 2)->after('assurance')->nullable();
         });
     }
 
@@ -22,7 +24,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('dossiers', function (Blueprint $table) {
-            $table->dropColumn('fob_xof');
+            $table->dropColumn('fret');
+            $table->dropColumn('assurance');
+            $table->dropColumn('autre_frais');
         });
     }
 };

@@ -46,7 +46,8 @@
         </div>
         <div class="card-title m-2">
             @can('Etablir la feuille minute')
-                <a wire:click="$dispatch('openModal', {component: 'modals.dossier.feuille-minute', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text-o"></i> Feuille minute</a>  
+                {{-- <a wire:click="$dispatch('openModal', {component: 'modals.dossier.feuille-minute', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text-o"></i> Feuille minute</a>   --}}
+                <a wire:click="feuilleMinute" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text-o"></i> Feuille minute</a>  
             @endcan
         </div>
     </div>
@@ -183,6 +184,19 @@
                     return $.growl.warning({
                         title: "Succès :",
                         message: "Une erreur est survenue"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('feuille-minute-novalue', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        title: "Erreur de valeur",
+                        message: "Pour établir la feuille minute, remplissez tous les champs requis :\n                        Valeur CAF, Valeur FOB XOF, Fret, Assurance, Autre frais",
+                        icon: "warning",
+                        duration: 10000,
                     });
                 });
             }).call(this);
