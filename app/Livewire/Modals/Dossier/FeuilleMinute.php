@@ -13,6 +13,17 @@ class FeuilleMinute extends ModalComponent
 
     public bool $edit = false;
     public $editId;
+    public $edit_name;
+    public $edit_code; 
+    public $edit_fob_devis;
+    public $edit_fob_xof;
+    public $edit_fret;
+    public $edit_autres_frais;
+    public $edit_assurance;
+    public $edit_caf;
+    public $edit_poids_brut;
+    public $edit_poids_net;
+    public $edit_quantite_supp;
 
     public $name;
     public $code; 
@@ -32,13 +43,24 @@ class FeuilleMinute extends ModalComponent
         return view('livewire.modals.dossier.feuille-minute', compact('articles'));
     }
 
-    public function setEdit ($id)
+    public function setEdit (Article $article)
     {
         if($this->edit == true){
             $this->edit=false;
         }
         else{
-            $this->editId = $id;
+            $this->editId = $article->id;
+            $this->edit_name = $article->name;
+            $this->edit_code = $article->code;
+            $this->edit_fob_devis = $article->fob_devis;
+            $this->edit_fob_xof = $article->fob_xof;
+            $this->edit_fret = $article->fret;
+            $this->edit_autres_frais = $article->autres_frais;
+            $this->edit_assurance = $article->assurance;
+            $this->edit_caf = $article->caf;
+            $this->edit_poids_brut = $article->poids_brut;
+            $this->edit_poids_net = $article->poids_net;
+            $this->edit_quantite_supp = $article->quantite_supp;
             $this->edit=true;
         }
     }
@@ -96,4 +118,44 @@ class FeuilleMinute extends ModalComponent
     public function removeArticle (Article $article){
         $this->dossier->articles()->where('id', $article->id)->delete();
     }
+
+    public function update (Article $article){
+        $this->validate([
+            'edit_name' => 'required|string|max:255',
+            'edit_code' => 'required|string|max:255',
+            'edit_fob_devis' => 'required|numeric',
+            'edit_fob_xof' => 'required|numeric',
+            'edit_fret' => 'required|numeric',
+            'edit_autres_frais' => 'required|numeric',
+            'edit_assurance' => 'required|numeric',
+            'edit_caf' => 'required|numeric',
+            'edit_poids_brut' => 'required|numeric',
+            'edit_poids_net' => 'required|numeric',
+            'edit_quantite_supp' => 'required|numeric',
+        ],
+        [
+            'required' => 'Ce champ est requis.',
+            'numeric' => 'Ce champ doit être un nombre.',
+            'string' => 'Ce champ doit être une chaîne de caractères.',
+            'max' => 'Ce champ ne peut pas dépasser :max caractères.',
+        ]);
+
+        $article->update([
+            'name' => $this->edit_name,
+            'code' => $this->edit_code,
+            'fob_devis' => $this->edit_fob_devis,
+            'fob_xof' => $this->edit_fob_xof,
+            'fret' => $this->edit_fret,
+            'autres_frais' => $this->edit_autres_frais,
+            'assurance' => $this->edit_assurance,
+            'caf' => $this->edit_caf,
+            'poids_brut' => $this->edit_poids_brut,
+            'poids_net' => $this->edit_poids_net,
+            'quantite_supp' => $this->edit_quantite_supp,
+        ]);
+
+        $this->reset(['edit_name', 'edit_code', 'edit_fob_devis', 'edit_fob_xof', 'edit_fret', 'edit_autres_frais', 'edit_assurance', 'edit_caf', 'edit_poids_brut', 'edit_poids_net', 'edit_quantite_supp']);
+    }
+
+
 }

@@ -83,57 +83,57 @@
                                   {{$loop->iteration}}  
                                </td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    
+                                    <input type="text" name="name" id="name" wire:model="edit_name">
                                 @else
                                   {{$article->name}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    
+                                    <input type="text" name="code" id="code" wire:model="edit_code">
                                 @else
                                   {{$article->code}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    
+                                    <input type="text" name="fob_devis" id="fob_devis" wire:model="edit_fob_devis">
                                 @else
                                   {{$article->fob_devis}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    
+                                    <input type="text" name="fob_xof" id="fob_xof" wire:model="edit_fob_xof">
                                 @else
                                   {{$article->fob_xof}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    
+                                    <input type="text" name="fret" id="fret" wire:model="edit_fret">
                                 @else
                                   {{$article->fret}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    
+                                    <input type="text" name="autres_frais" id="autres_frais" wire:model="edit_autres_frais">
                                 @else
                                   {{$article->autres_frais}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    
+                                    <input type="text" name="assurance" id="assurance" wire:model="edit_assurance">
                                 @else
                                   {{$article->assurance}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    
+                                    <input type="text" name="caf" id="caf" wire:model="edit_caf">
                                 @else
                                   {{$article->caf}}   
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    
+                                    <input type="text" name="poids_brut" id="poids_brut" wire:model="edit_poids_brut">
                                 @else
                                   {{$article->poids_brut}}
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    
+                                    <input type="text" name="poids_net" id="poids_net" wire:model="edit_poids_net">
                                 @else
                                   {{$article->poids_net}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    
+                                    <input type="text" name="quantite_supp" id="quantite_supp" wire:model="edit_quantite_supp">
                                 @else
                                   {{$article->quantite_supp}}  
                                 @endif</td>
@@ -143,15 +143,15 @@
                                             <button wire:click='update({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
                                                 <span class="fe fe-check"> </span>
                                             </button>
-                                            <button wire:click='setEdit({{$article->id}})' type="button" class="btn btn-sm btn-primary">
+                                            <button wire:click='setEdit({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
                                                 <span class="fe fe-x"> </span>
                                             </button>
                                         @else
-                                            <button wire:click='setEdit({{$article->id}})' type="button" class="btn btn-sm btn-primary">
+                                            <button wire:click='setEdit({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
                                                 <span class="fe fe-edit"> </span>
                                             </button>
-                                            <button wire:confirm="Êtes-vous sûr de vouloir supprimer cet article ?" wire:click='removeArticle({{$article->id}})' type="button" class="btn btn-sm btn-danger">
-                                                <span class="fe fe-trash"> </span>
+                                            <button wire:confirm="Êtes-vous sûr de vouloir supprimer cet article ?" wire:click='removeArticle({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-danger">
+                                                <span class="fe fe-trash"></span>
                                             </button>
                                         @endif
                                     </div>
