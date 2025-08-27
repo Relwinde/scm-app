@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Modals\Dossier;
 
+use App\Models\Article;
 use App\Models\Dossier;
 use LivewireUI\Modal\ModalComponent;
 
@@ -11,8 +12,8 @@ class FeuilleMinute extends ModalComponent
     public Dossier $dossier;
 
     public bool $edit = false;
-
     public $editId;
+
     public $name;
     public $code; 
     public $fob_devis;
@@ -37,14 +38,19 @@ class FeuilleMinute extends ModalComponent
             $this->edit=false;
         }
         else{
+            $this->editId = $id;
             $this->edit=true;
-            
         }
     }
 
     public function calculate (){
         $portion = $this->fob_xof / $this->dossier->fob_xof;
         $this->poids_net = $portion * $this->dossier->poids;
+        $this->poids_brut = $portion * $this->dossier->poids;
+        $this->caf = $portion * $this->dossier->valeur_caf;
+        $this->fret = $portion * $this->dossier->fret;
+        $this->assurance = $portion * $this->dossier->assurance;
+        $this->autres_frais = $portion * $this->dossier->autres_frais;
     }
 
     public function createArticle (){
@@ -80,8 +86,14 @@ class FeuilleMinute extends ModalComponent
             'poids_brut' => $this->poids_brut,
             'poids_net' => $this->poids_net,
             'quantite_supp' => $this->quantite_supp,
+            'user_id' => auth()->id(),
+            'dossier_id' => $this->dossier->id
         ]);
 
-        $this->reset();
+        $this->reset(['name', 'code', 'fob_devis', 'fob_xof', 'fret', 'autres_frais', 'assurance', 'caf', 'poids_brut', 'poids_net', 'quantite_supp']);
+    }
+
+    public function removeArticle (Article $article){
+        $this->dossier->articles()->where('id', $article->id)->delete();
     }
 }

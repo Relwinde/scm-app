@@ -14,11 +14,11 @@
                             <th class="wd-20p border-bottom-0 text-nowrap"><b>FOB Devise</b></th>
                             <th class="wd-20p border-bottom-0 text-nowrap"><b>FOB XOF</b></th>
                             <th class="wd-20p border-bottom-0 text-nowrap"><b>Fret</b></th>
-                            <th class="wd-20p border-bottom-0 text-nowrap"><b>Autres frais</b></th>
+                            <th class="wd-20p border-bottom-0"><b>Autres frais</b></th>
                             <th class="wd-20p border-bottom-0 text-nowrap"><b>Assurance</b></th>
                             <th class="wd-20p border-bottom-0 text-nowrap"><b>CAF</b></th>
-                            <th class="wd-20p border-bottom-0 text-nowrap"><b>Poids brut</b></th>
-                            <th class="wd-20p border-bottom-0 text-nowrap"><b>Poids net</b></th>
+                            <th class="wd-20p border-bottom-0"><b>Poids brut</b></th>
+                            <th class="wd-20p border-bottom-0"><b>Poids net</b></th>
                             <th class="wd-20p border-bottom-0"><b>Quantité supplémentaire</b></th>
                             <th class="wd-20p border-bottom-0 text-nowrap"><b>Actions</b></th>
                         </tr>
@@ -79,18 +79,64 @@
                         
                         @foreach ($articles as $article)
                             <tr style="font-weight:600;" wire:key='{{$article->id}}'>
-                                <td class="text-nowrap"> {{$loop->iteration}}</td>
-                                <td class="text-nowrap">{{$article->name}}</td>
-                                <td class="text-nowrap">{{$article->code}}</td>
-                                <td class="text-nowrap">{{$article->fob_devis}}</td>
-                                <td class="text-nowrap">{{$article->fob_xof}}</td>
-                                <td class="text-nowrap">{{$article->fret}}</td>
-                                <td class="text-nowrap">{{$article->autres_frais}}</td>
-                                <td class="text-nowrap">{{$article->assurance}}</td>
-                                <td class="text-nowrap">{{$article->caf}}</td>
-                                <td class="text-nowrap">{{$article->poids_brut}}</td>
-                                <td class="text-nowrap">{{$article->poids_net}}</td>
-                                <td class="text-nowrap">{{$article->quantite_supp}}</td>
+                                <td class="text-nowrap">
+                                  {{$loop->iteration}}  
+                               </td>
+                                <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
+                                    
+                                @else
+                                  {{$article->name}}  
+                                @endif</td>
+                                <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
+                                    
+                                @else
+                                  {{$article->code}}  
+                                @endif</td>
+                                <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
+                                    
+                                @else
+                                  {{$article->fob_devis}}  
+                                @endif</td>
+                                <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
+                                    
+                                @else
+                                  {{$article->fob_xof}}  
+                                @endif</td>
+                                <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
+                                    
+                                @else
+                                  {{$article->fret}}  
+                                @endif</td>
+                                <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
+                                    
+                                @else
+                                  {{$article->autres_frais}}  
+                                @endif</td>
+                                <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
+                                    
+                                @else
+                                  {{$article->assurance}}  
+                                @endif</td>
+                                <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
+                                    
+                                @else
+                                  {{$article->caf}}   
+                                @endif</td>
+                                <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
+                                    
+                                @else
+                                  {{$article->poids_brut}}
+                                @endif</td>
+                                <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
+                                    
+                                @else
+                                  {{$article->poids_net}}  
+                                @endif</td>
+                                <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
+                                    
+                                @else
+                                  {{$article->quantite_supp}}  
+                                @endif</td>
                                 <td name="bstable-actions">
                                     <div class="btn-list">
                                         @if ($edit==true && $editId == $article->id)
@@ -103,6 +149,9 @@
                                         @else
                                             <button wire:click='setEdit({{$article->id}})' type="button" class="btn btn-sm btn-primary">
                                                 <span class="fe fe-edit"> </span>
+                                            </button>
+                                            <button wire:confirm="Êtes-vous sûr de vouloir supprimer cet article ?" wire:click='removeArticle({{$article->id}})' type="button" class="btn btn-sm btn-danger">
+                                                <span class="fe fe-trash"> </span>
                                             </button>
                                         @endif
                                     </div>
