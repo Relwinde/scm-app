@@ -168,9 +168,8 @@
         </div>
         <div class="card-footer">
             <div class="btn-list">
-                <button href="javascript:void(0);" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Enregistrer</button>
-                <button href="javascript:void(0);" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i> Enregistrer et imprimer</button>
-                <a href="javascript:void(0);" wire:click="$dispatch('closeModal')" class="btn btn-danger">Annuler</a>
+                <a target="_blank"  href="{{route('print-feuille-minute', $dossier->id)}}" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i> Imprimer</a>
+                <a href="javascript:void(0);" wire:click="$dispatch('closeModal')" class="btn btn-danger">Fermer</a>
             </div>
         </div>
     </div>

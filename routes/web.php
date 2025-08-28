@@ -67,6 +67,13 @@ Route::get('/print-dossier/{dossier}', function (Dossier $dossier){
     $dossier->print();
 })->name('print-dossier')->middleware("auth");
 
+Route::get('/print-feuille-minute/{dossier}', function (Dossier $dossier){
+    if ($dossier->valeur_caf == null || $dossier->fob_xof == null || $dossier->fret == null || $dossier->assurance == null || $dossier->autre_frais == null){
+            $dossier->dispatch('feuille-minute-novalue');
+        }
+    $dossier->print_feuille_minute();
+})->name('print-feuille-minute')->middleware("auth");
+
 Route::get('/print-bon/{bon}', function (ModelsBonDeCaisse $bon){
     $bon->print();
 })->name('print-bon')->middleware("auth");
