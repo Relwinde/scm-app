@@ -31,6 +31,10 @@ class CreateDossierExport extends ModalComponent
     public $num_exo;
     public $num_lta_bl;
     public $num_t;
+    public $fob_xof;
+    public $fret;
+    public $autre_frais;
+    public $assurance;
 
     public $isPartial = false;
 
@@ -60,6 +64,10 @@ class CreateDossierExport extends ModalComponent
         'num_t'=>$this->num_t,
         'num_declaration'=>$this->num_declaration,
         'valeur_caf'=>floatval(str_replace(' ', '',$this->valeur_caf)),
+        'fob_xof'=>floatval(str_replace(' ', '',$this->fob_xof)),
+        'fret'=>floatval(str_replace(' ', '',$this->fret)),
+        'autre_frais'=>floatval(str_replace(' ', '',$this->autre_frais)),
+        'assurance'=>floatval(str_replace(' ', '',$this->assurance)),
         'nombre_colis'=>floatval(str_replace(' ', '',$this->nombre_colis)),
         'poids'=>floatval(str_replace(' ', '',$this->poids)),
         'fournisseur'=>$this->fournisseur,
@@ -118,6 +126,22 @@ class CreateDossierExport extends ModalComponent
 
     public function reformat_nombre_colis (){
         $this->nombre_colis = number_format(floatval( str_replace(' ', '',$this->nombre_colis)), 2, '.', ' ');
+    }
+
+    public function reformat_fob_xof (){
+        $this->fob_xof= number_format(floatval( str_replace(' ', '',$this->fob_xof)), 2, '.', ' ');
+    }
+
+    public function reformat_autre_frais (){
+        $this->autre_frais = number_format(floatval( str_replace(' ', '',$this->autre_frais)), 2, '.', ' ');
+    }
+
+    public function reformat_fret (){
+        $this->fret = number_format(floatval( str_replace(' ', '',$this->fret)), 2, '.', ' ');
+    }
+
+    public function reformat_assurance (){
+        $this->assurance = number_format(floatval( str_replace(' ', '',$this->assurance)), 2, '.', ' ');
     }
 
     public function checkPartial (){

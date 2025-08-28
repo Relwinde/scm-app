@@ -155,6 +155,9 @@ class FeuilleMinute extends ModalComponent
         ]);
 
         $this->reset(['edit_name', 'edit_code', 'edit_fob_devis', 'edit_fob_xof', 'edit_fret', 'edit_autres_frais', 'edit_assurance', 'edit_caf', 'edit_poids_brut', 'edit_poids_net', 'edit_quantite_supp']);
+
+        $this->edit = false;
+        $this->editId = null;
     }
 
 

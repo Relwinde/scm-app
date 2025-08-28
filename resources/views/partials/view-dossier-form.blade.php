@@ -99,6 +99,11 @@
                         <label class="form-label">Valeur FOB XOF</label>
                         <input wire:focusout='reformat_fob_xof()' wire:model='fob_xof' type="text" class="form-control" placeholder="Valeur FOB XOF" name="fob_xof" @if($edit==false) readonly @endif>
                     </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Assurance</label>
+                        <input wire:focusout='reformat_assurance()' wire:model='assurance' type="text" class="form-control" placeholder="Assurance" name="assurance" @if($edit==false) readonly @endif>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
@@ -127,12 +132,20 @@
                         <input wire:model='num_declaration' type="text" class="form-control " @if ($edit==false) readonly @endif name="example-text-input" >
                     </div>
                     <div class="mb-4">
+                        <label class="form-label">Numéro de T1</label>
+                        <input wire:model='num_t' type="text" class="form-control" name="num_t" @if($edit==false) readonly @endif>
+                    </div>
+                    <div class="mb-4">
                         <label class="form-label">Valeur CAF</label>
                         <input wire:focusout='reformat_valeur_caf()' wire:model='valeur_caf' type="text" class="form-control" @if($edit==false) readonly @endif name="valeur_caf" >
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Numéro de T1</label>
-                        <input wire:model='num_t' type="text" class="form-control" name="num_t" @if($edit==false) readonly @endif>
+                        <label class="form-label">Fret</label>
+                        <input wire:focusout='reformat_fret()' wire:model='fret' type="text" class="form-control" @if($edit==false) readonly @endif name="fret" >
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Autres frais</label>
+                        <input wire:focusout='reformat_autre_frais()' wire:model='autre_frais' type="text" class="form-control" @if($edit==false) readonly @endif name="autre_frais" >
                     </div>
                 </div>
                 <div class="col-md-12 ">

@@ -51,6 +51,10 @@
                         <label class="form-label">Valeur FOB XOF</label>
                         <input wire:focusout='reformat_fob_xof()' wire:model='fob_xof' type="text" class="form-control" placeholder="Valeur FOB XOF" name="fob_xof" >
                     </div>
+                     <div class="mb-4">
+                        <label class="form-label">Assurance</label>
+                        <input wire:focusout='reformat_assurance()' wire:model='assurance' type="text" class="form-control" placeholder="Assurance" name="assurance">
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
@@ -79,12 +83,20 @@
                         <input wire:model='num_declaration' type="text" class="form-control" placeholder="N° de déclaration" name="num_declaration">
                     </div>
                     <div class="mb-4">
+                        <label class="form-label">Numéro de T1</label>
+                        <input wire:model='num_t' type="text" class="form-control" placeholder="N° de T1" name="num_t">
+                    </div>
+                    <div class="mb-4">
                         <label class="form-label">Valeur CAF</label>
                         <input wire:focusout='reformat_valeur_caf()' wire:model='valeur_caf' type="text" class="form-control" placeholder="Valeur CAF" name="valeur_caf">
                     </div>
-                    <div class="mb-4">
-                        <label class="form-label">Numéro de T1</label>
-                        <input wire:model='num_t' type="text" class="form-control" placeholder="N° de T1" name="num_t">
+                     <div class="mb-4">
+                        <label class="form-label">Fret</label>
+                        <input wire:focusout='reformat_fret()' wire:model='fret' type="text" class="form-control" placeholder="Fret" name="fret">
+                    </div>
+                     <div class="mb-4">
+                        <label class="form-label">Autre Frais</label>
+                        <input wire:focusout='reformat_autres_frais()' wire:model='autres_frais' type="text" class="form-control" placeholder="Autre Frais" name="autres_frais">
                     </div>
                 </div>
                 <div class="col-md-12 ">

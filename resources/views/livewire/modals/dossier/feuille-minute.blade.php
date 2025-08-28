@@ -139,20 +139,20 @@
                                 @endif</td>
                                 <td name="bstable-actions">
                                     <div class="btn-list">
-                                        @if ($edit==true && $editId == $article->id)
+                                        @if ($edit == true && $editId == $article->id)
                                             <button wire:click='update({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
                                                 <span class="fe fe-check"> </span>
                                             </button>
-                                            <button wire:click='setEdit({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
+                                            <a wire:click='setEdit({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
                                                 <span class="fe fe-x"> </span>
-                                            </button>
+                                            </a>
                                         @else
-                                            <button wire:click='setEdit({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
+                                            <a wire:click='setEdit({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
                                                 <span class="fe fe-edit"> </span>
-                                            </button>
-                                            <button wire:confirm="Êtes-vous sûr de vouloir supprimer cet article ?" wire:click='removeArticle({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-danger">
+                                            </a>
+                                            <button wire:click='removeArticle({{$article->id}})' wire:confirm= "Êtes-vous sûr de vouloir supprimer cet article ?" href="javascript:void(0);" class="btn btn-sm btn-danger">
                                                 <span class="fe fe-trash"></span>
-                                            </button>
+                                            </a>
                                         @endif
                                     </div>
                                 </td>
