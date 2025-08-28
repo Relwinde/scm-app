@@ -72,7 +72,7 @@ class FeuilleMinute extends ModalComponent
         $this->caf = $portion * $this->dossier->valeur_caf;
         $this->fret = $portion * $this->dossier->fret;
         $this->assurance = $portion * $this->dossier->assurance;
-        $this->autres_frais = $portion * $this->dossier->autres_frais;
+        $this->autres_frais = $portion * $this->dossier->autre_frais;
     }
 
     public function createArticle (){

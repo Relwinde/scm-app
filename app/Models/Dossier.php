@@ -127,7 +127,7 @@ class Dossier extends Model
         ini_set('memory_limit', '440M');
         $mpdf = new Mpdf([
             'mode'=>'utf-8',
-            'format' => 'A4-P',
+            'format' => 'A4-L',
             'default_font_size' => 14,
             'default_font' => 'FreeSerif',
             'margin_left' => 10,

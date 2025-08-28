@@ -168,7 +168,11 @@
         </div>
         <div class="card-footer">
             <div class="btn-list">
-                <a target="_blank"  href="{{route('print-feuille-minute', $dossier->id)}}" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i> Imprimer</a>
+                @if ($articles->count() > 0)
+                    <a target="_blank"  href="{{route('print-feuille-minute', $dossier->id)}}" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i> Imprimer</a>
+                @endif
+
+
                 <a href="javascript:void(0);" wire:click="$dispatch('closeModal')" class="btn btn-danger">Fermer</a>
             </div>
         </div>
