@@ -11,8 +11,8 @@
                             <th class="text-nowrap" style="max-width: 30px;"></th>
                             <th class="wd-15p border-bottom-0 text-nowrap"><b>Nom</b></th>
                             <th class="wd-15p border-bottom-0 text-nowrap"><b>Nomenclature</b></th>
-                            <th class="wd-20p border-bottom-0 text-nowrap"><b>FOB Devise</b></th>
                             <th class="wd-20p border-bottom-0 text-nowrap"><b>FOB XOF</b></th>
+                            <th class="wd-20p border-bottom-0 text-nowrap"><b>FOB Devise</b></th>
                             <th class="wd-20p border-bottom-0 text-nowrap"><b>Fret</b></th>
                             <th class="wd-20p border-bottom-0"><b>Autres frais</b></th>
                             <th class="wd-20p border-bottom-0 text-nowrap"><b>Assurance</b></th>
@@ -36,12 +36,12 @@
                                     @error('code')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='fob_devis' type="number" class="form-control" name="fob_devis" placeholder="FOB Devise" wire:focusout="calculate">
-                                    @error('fob_devis')<div class="error-message"> {{ $message }} </div>@enderror
-                                </td>
-                                <td class="text-nowrap">
                                     <input wire:model='fob_xof' type="number" class="form-control" name="fob_xof" placeholder="FOB XOF" wire:focusout="calculate">
                                     @error('fob_xof')<div class="error-message"> {{ $message }} </div>@enderror
+                                </td>
+                                <td class="text-nowrap">
+                                    <input wire:model='fob_devis' type="number" class="form-control" name="fob_devis" placeholder="FOB Devise" wire:focusout="calculate">
+                                    @error('fob_devis')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
                                     <input wire:model='fret' type="number" class="form-control" name="fret" placeholder="Fret">
@@ -93,14 +93,14 @@
                                   {{$article->code}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input type="text" name="fob_devis" id="fob_devis" wire:model="edit_fob_devis">
-                                @else
-                                  {{$article->fob_devis}}  
-                                @endif</td>
-                                <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
                                     <input type="text" name="fob_xof" id="fob_xof" wire:model="edit_fob_xof">
                                 @else
                                   {{$article->fob_xof}}  
+                                @endif</td>
+                                <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
+                                    <input type="text" name="fob_devis" id="fob_devis" wire:model="edit_fob_devis">
+                                @else
+                                  {{$article->fob_devis}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
                                     <input type="text" name="fret" id="fret" wire:model="edit_fret">

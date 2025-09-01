@@ -43,7 +43,7 @@
             </tr>
             <tr>
                 <td style="width: auto;"><h4>Pays de provenance&nbsp;&nbsp;: </h4></td>
-                <td ><h></h></td>
+                <td ><h>{{$dossier->origine}}</h></td>
                 <td style="width: auto;"><h4>P/N/KG&nbsp;&nbsp;: </h4></td>
                 <td ><h>{{number_format($dossier->poids, 2, '.', ' ')}}</h></td>
                 <td style="width: auto;"><h4>Fret&nbsp;&nbsp;: </h4></td>

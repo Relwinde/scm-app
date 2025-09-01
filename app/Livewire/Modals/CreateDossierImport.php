@@ -21,6 +21,7 @@ class CreateDossierImport extends ModalComponent
     public $num_facture;
     public $marchandise;
     public $num_sylvie;
+    public $origine;
     public $nombre_colis;
     public $poids;
     public $num_declaration;
@@ -31,6 +32,7 @@ class CreateDossierImport extends ModalComponent
     public $num_lta_bl;
     public $num_t;
     public $fob_xof;
+    public $fob_devis;
     public $fret;
     public $autre_frais;
     public $assurance;
@@ -66,12 +68,14 @@ class CreateDossierImport extends ModalComponent
         'client_id'=>$this->client,
         'num_facture'=>$this->num_facture,
         'num_sylvie'=>$this->num_sylvie,
+        'origine'=>$this->origine,
         'num_exo'=>$this->num_exo,
         'num_lta_bl'=>$this->num_lta_bl,
         'num_t'=>$this->num_t,
         'num_declaration'=>$this->num_declaration,
         'valeur_caf'=>floatval(str_replace(' ', '',$this->valeur_caf)),
         'fob_xof'=>floatval(str_replace(' ', '',$this->fob_xof)),
+        'fob_devis'=>floatval(str_replace(' ', '',$this->fob_devis)),
         'fret'=>floatval(str_replace(' ', '',$this->fret)),
         'autre_frais'=>floatval(str_replace(' ', '',$this->autre_frais)),
         'assurance'=>floatval(str_replace(' ', '',$this->assurance)),
@@ -137,6 +141,10 @@ class CreateDossierImport extends ModalComponent
 
     public function reformat_fob_xof (){
         $this->fob_xof= number_format(floatval( str_replace(' ', '',$this->fob_xof)), 2, '.', ' ');
+    }
+
+    public function reformat_fob_devis (){
+        $this->fob_devis= number_format(floatval( str_replace(' ', '',$this->fob_devis)), 2, '.', ' ');
     }
 
     public function reformat_autre_frais (){

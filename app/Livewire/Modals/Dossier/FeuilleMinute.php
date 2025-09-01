@@ -67,6 +67,7 @@ class FeuilleMinute extends ModalComponent
 
     public function calculate (){
         $portion = $this->fob_xof / $this->dossier->fob_xof;
+        $this->fob_devis = $portion * $this->dossier->fob_devis;
         $this->poids_net = $portion * $this->dossier->poids;
         $this->poids_brut = $portion * $this->dossier->poids;
         $this->caf = $portion * $this->dossier->valeur_caf;

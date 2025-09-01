@@ -24,6 +24,7 @@ class ViewDossier extends ModalComponent
     public $num_facture;
     public $marchandise;
     public $num_sylvie;
+    public $origine;
     public $nombre_colis;
     public $poids;
     public $num_declaration;
@@ -34,6 +35,7 @@ class ViewDossier extends ModalComponent
     public $num_t;
     public $total_depenses;
     public $fob_xof;
+    public $fob_devis;
     public $fret;
     public $assurance;
     public $autre_frais;
@@ -48,6 +50,7 @@ class ViewDossier extends ModalComponent
         $this->num_facture = $this->dossier->num_facture;
         $this->marchandise = $this->dossier->marchandises->first()->id ?? null;
         $this->num_sylvie = $this->dossier->num_sylvie;
+        $this->origine = $this->dossier->origine;
         $this->num_exo = $this->dossier->num_exo;
         $this->num_lta_bl = $this->dossier->num_lta_bl;
         $this->num_t = $this->dossier->num_t;
@@ -56,6 +59,7 @@ class ViewDossier extends ModalComponent
         $this->num_declaration = $this->dossier->num_declaration;
         $this->valeur_caf = number_format($this->dossier->valeur_caf, 2, '.', ' ');
         $this->fob_xof = number_format($this->dossier->fob_xof, 2, '.', ' ');
+        $this->fob_devis = number_format($this->dossier->fob_devis, 2, '.', ' ');
         $this->fret = number_format($this->dossier->fret, 2, '.', ' ');
         $this->assurance = number_format($this->dossier->assurance, 2, '.', ' ');
         $this->autre_frais = number_format($this->dossier->autre_frais, 2, '.', ' ');
@@ -97,6 +101,7 @@ class ViewDossier extends ModalComponent
         $this->dossier->num_facture = $this->num_facture;
         // $this->marchandise = $this->dossier->marchandises->first()->id;
         $this->dossier->num_sylvie = $this->num_sylvie;
+        $this->dossier->origine = $this->origine;
         $this->dossier->num_exo = $this->num_exo;
         $this->dossier->num_lta_bl = $this->num_lta_bl;
         $this->dossier->num_t = $this->num_t;
@@ -105,6 +110,7 @@ class ViewDossier extends ModalComponent
         $this->dossier->num_declaration = $this->num_declaration;
         $this->dossier->valeur_caf =floatval( str_replace(' ', '',$this->valeur_caf));
         $this->dossier->fob_xof =floatval( str_replace(' ', '',$this->fob_xof));
+        $this->dossier->fob_devis =floatval( str_replace(' ', '',$this->fob_devis));
         $this->dossier->fret =floatval( str_replace(' ', '',$this->fret));
         $this->dossier->assurance =floatval( str_replace(' ', '',$this->assurance));
         $this->dossier->autre_frais =floatval( str_replace(' ', '',$this->autre_frais));
@@ -163,6 +169,10 @@ class ViewDossier extends ModalComponent
 
     public function reformat_fob_xof (){
         $this->fob_xof= number_format(floatval( str_replace(' ', '',$this->fob_xof)), 2, '.', ' ');
+    }
+
+    public function reformat_fob_devis (){
+        $this->fob_devis= number_format(floatval( str_replace(' ', '',$this->fob_devis)), 2, '.', ' ');
     }
 
     public function reformat_fret (){

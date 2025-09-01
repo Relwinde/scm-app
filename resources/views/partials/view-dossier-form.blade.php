@@ -104,6 +104,10 @@
                         <label class="form-label">Assurance</label>
                         <input wire:focusout='reformat_assurance()' wire:model='assurance' type="text" class="form-control" placeholder="Assurance" name="assurance" @if($edit==false) readonly @endif>
                     </div>
+                    <div class="mb-4">
+                        <label class="form-label">Autres frais</label>
+                        <input wire:focusout='reformat_autre_frais()' wire:model='autre_frais' type="text" class="form-control" @if($edit==false) readonly @endif name="autre_frais" >
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
@@ -140,12 +144,16 @@
                         <input wire:focusout='reformat_valeur_caf()' wire:model='valeur_caf' type="text" class="form-control" @if($edit==false) readonly @endif name="valeur_caf" >
                     </div>
                     <div class="mb-4">
+                        <label class="form-label">Valeur FOB Devise</label>
+                        <input wire:focusout='reformat_fob_devis()' wire:model='fob_devis' type="text" class="form-control" placeholder="Valeur FOB Devise" @if($edit==false) readonly @endif name="fob_devis" >
+                    </div>
+                    <div class="mb-4">
                         <label class="form-label">Fret</label>
                         <input wire:focusout='reformat_fret()' wire:model='fret' type="text" class="form-control" @if($edit==false) readonly @endif name="fret" >
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Autres frais</label>
-                        <input wire:focusout='reformat_autre_frais()' wire:model='autre_frais' type="text" class="form-control" @if($edit==false) readonly @endif name="autre_frais" >
+                        <label class="form-label">Origine</label>
+                        <input wire:model='origine' type="text" class="form-control" placeholder="Origine" @if($edit==false) readonly @endif name="origine">
                     </div>
                 </div>
                 <div class="col-md-12 ">
