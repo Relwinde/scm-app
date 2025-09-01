@@ -81,8 +81,8 @@
             <tr>
                 <th>Nom</th>
                 <th>Nomenc</th>
-                <th>FOB Devise</th>
                 <th>FOB XOF</th>
+                <th>FOB Devise</th>
                 <th>Fret</th>
                 <th>Assu</th>
                 <th>CAF</th>
@@ -97,8 +97,8 @@
                 <tr>
                     <td>{{ $article->name }}</td>
                     <td>{{ $article->code }}</td>
-                    <td>{{ number_format($article->fob_devis, 2, '.', ' ') }}</td>
                     <td>{{ number_format($article->fob_xof, 2, '.', ' ') }}</td>
+                    <td>{{ number_format($article->fob_devis, 2, '.', ' ') }}</td>
                     <td>{{ number_format($article->fret, 2, '.', ' ') }}</td>
                     <td>{{ number_format($article->assurance, 2, '.', ' ') }}</td>
                     <td>{{ number_format($article->caf, 2, '.', ' ') }}</td>
