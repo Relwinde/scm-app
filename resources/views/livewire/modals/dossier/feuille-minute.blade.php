@@ -181,8 +181,8 @@
                 @if ($articles->count() > 0)
                     <a target="_blank"  href="{{route('print-feuille-minute', $dossier->id)}}" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i> Imprimer</a>
                 @endif
-                <a href="javascript:void(0);" wire:click="$dispatch('closeModal')" class="btn btn-outline-danger">Fermer</a>
-                <a href="javascript:void(0);" wire:click="setFeuilleMinute" wire:confirm= "Êtes-vous sûr de vouloir confirmer la feuille minute ? Cette action est irréversible." class="btn btn-danger">Confirmer la feuille minute</a>
+                <a href="javascript:void(0);" wire:click="$dispatch('closeModal')" class="btn btn-danger">Fermer</a>
+                <a href="javascript:void(0);" wire:click="setFeuilleMinute" wire:confirm= "Êtes-vous sûr de vouloir confirmer la feuille minute ? Cette action est irréversible." class="btn btn-outline-danger">Confirmer la feuille minute</a>
             </div>
         </div>
     </div>
