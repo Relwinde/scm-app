@@ -41,7 +41,7 @@ class FeuilleMinute extends ModalComponent
 
     public function render()
     {
-        $articles = $this->dossier->articles()->paginate(10);
+        $articles = $this->dossier->articles()->orderBy('created_at', 'desc')->paginate(10);
         return view('livewire.modals.dossier.feuille-minute', compact('articles'));
     }
 
@@ -123,6 +123,10 @@ class FeuilleMinute extends ModalComponent
 
     public function removeArticle (Article $article){
         $this->dossier->articles()->where('id', $article->id)->delete();
+    }
+
+    public function setFeuilleMinute (){
+        
     }
 
     public function update (Article $article){

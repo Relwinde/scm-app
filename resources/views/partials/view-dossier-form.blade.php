@@ -4,12 +4,12 @@
 
 <div class="card form-input-elements">
     <div class="card-header d-flex justify-content-between">
-        <h3 class="mb-0 card-title">N°: <b>{{$dossier->numero}}</b>&nbsp;&nbsp;</h3>
+        <h3 class="mb-0 card-title">N°: <b>{{$dossier->numero}}</b>&nbsp;&nbsp;&nbsp;&nbsp;</h3>
         @can('Voir le total des dépenses du dossier')
             <button wire:click="export" id="bAcep" type="button" class="btn btn-sm btn-outline-primary">
             <i class="fa fa-download"></i>
             </button>
-            <h3 class="card-title">Dépenses: <b>{{number_format($total_depenses, 2, '.', ' ')}} CFA</b></h3>&nbsp; &nbsp;
+            <h3 class="card-title"><b>&nbsp;Dépenses: {{number_format($total_depenses, 2, '.', ' ')}} CFA</b></h3>&nbsp; &nbsp;
         @endcan
 
         <div class="card-options">
@@ -40,14 +40,14 @@
             {{-- @endcan --}}
         </div>
         <div class="card-title m-2">
-            @can('Créer bons de caisse')
-                <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-bon', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-money"></i> Créer un bon</a>  
-            @endcan
-        </div>
-        <div class="card-title m-2">
             @can('Etablir la feuille minute')
                 {{-- <a wire:click="$dispatch('openModal', {component: 'modals.dossier.feuille-minute', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text-o"></i> Feuille minute</a>   --}}
                 <a wire:click="feuilleMinute" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text-o"></i> Feuille minute</a>  
+            @endcan
+        </div>
+        <div class="card-title m-2">
+            @can('Créer bons de caisse')
+                <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-bon', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-warning"><i class="fa fa-money"></i> Créer un bon</a>  
             @endcan
         </div>
     </div>
