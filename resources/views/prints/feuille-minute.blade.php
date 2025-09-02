@@ -96,7 +96,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($dossier->articles as $article)
+            @foreach ($dossier->articles()->orderBy('created_at', 'desc')->get() as $article)
                 <tr>
                     <td>{{ $article->name }}</td>
                     <td>{{ $article->code }}</td>
