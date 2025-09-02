@@ -152,8 +152,8 @@
                         <input wire:focusout='reformat_fret()' wire:model='fret' type="text" class="form-control" @if($edit==false) readonly @endif name="fret" >
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Origine</label>
-                        <input wire:model='origine' type="text" class="form-control" placeholder="Origine" @if($edit==false) readonly @endif name="origine">
+                        <label class="form-label">Provenance</label>
+                        <input wire:model='origine' type="text" class="form-control" placeholder="Provenance" @if($edit==false) readonly @endif name="origine">
                     </div>
                 </div>
                 <div class="col-md-12 ">
@@ -215,7 +215,7 @@
                 $(function () {
                     return $.growl.error({
                         title: "Erreur de valeur",
-                        message: "Pour établir la feuille minute, remplissez tous les champs requis :\n                        Valeur CAF, Valeur FOB XOF, Fret, Assurance, Autre frais",
+                        message: "Pour établir la feuille minute, remplissez tous les champs requis :\n                        Valeur CAF, Valeur FOB XOF, Valeur FOB Devise, Fret, Assurance, Autre frais",
                         icon: "warning",
                         duration: 10000,
                     });

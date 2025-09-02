@@ -10,17 +10,18 @@
                         <tr style="font-weight:700;">
                             <th class="text-nowrap" style="max-width: 30px;"></th>
                             <th class="wd-15p border-bottom-0 text-nowrap"><b>Nom</b></th>
-                            <th class="wd-15p border-bottom-0 text-nowrap"><b>Nomenclature</b></th>
+                            <th class="wd-15p border-bottom-0 text-nowrap"><b>Nomenc</b></th>
                             <th class="wd-20p border-bottom-0 text-nowrap"><b>FOB XOF</b></th>
                             <th class="wd-20p border-bottom-0 text-nowrap"><b>FOB Devise</b></th>
                             <th class="wd-20p border-bottom-0 text-nowrap"><b>Fret</b></th>
-                            <th class="wd-20p border-bottom-0"><b>Autres frais</b></th>
-                            <th class="wd-20p border-bottom-0 text-nowrap"><b>Assurance</b></th>
+                            <th class="wd-20p border-bottom-0"><b>A frais</b></th>
+                            <th class="wd-20p border-bottom-0 text-nowrap"><b>Assu</b></th>
                             <th class="wd-20p border-bottom-0 text-nowrap"><b>CAF</b></th>
-                            <th class="wd-20p border-bottom-0"><b>Poids brut</b></th>
-                            <th class="wd-20p border-bottom-0"><b>Poids net</b></th>
-                            <th class="wd-20p border-bottom-0"><b>Quantité supplémentaire</b></th>
-                            <th class="wd-20p border-bottom-0 text-nowrap"><b>Actions</b></th>
+                            <th class="wd-20p border-bottom-0"><b>P brut</b></th>
+                            <th class="wd-20p border-bottom-0"><b>P net</b></th>
+                            <th class="wd-20p border-bottom-0"><b>Q supp</b></th>
+                            <th class="wd-20p border-bottom-0"><b>Orig</b></th>
+                            <th class="wd-20p border-bottom-0 text-nowrap"><b></b></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,6 +71,10 @@
                                 <td class="text-nowrap">
                                     <input wire:model='quantite_supp' type="number" class="form-control" name="quantite_supp" placeholder="Quantité supplémentaire">
                                     @error('quantite_supp')<div class="error-message"> {{ $message }} </div>@enderror
+                                </td>
+                                <td class="text-nowrap">
+                                    <input wire:model='origin' type="text" class="form-control" name="origin" placeholder="Origine">
+                                    @error('origin')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap" style="width: 1%;">
                                     <button wire:click="createArticle" class="btn btn-primary">+</button>
@@ -133,9 +138,14 @@
                                   {{$article->poids_net}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input type="text" name="quantite_supp" id="quantite_supp" wire:model="edit_quantite_supp">
+                                    <input type="number" name="quantite_supp" id="quantite_supp" wire:model="edit_quantite_supp">
                                 @else
                                   {{$article->quantite_supp}}  
+                                @endif</td>
+                                <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
+                                    <input type="text" name="origin" id="origin" wire:model="edit_origin">
+                                @else
+                                  {{$article->origin}}  
                                 @endif</td>
                                 <td name="bstable-actions">
                                     <div class="btn-list">

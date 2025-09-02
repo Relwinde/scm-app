@@ -24,6 +24,7 @@ class FeuilleMinute extends ModalComponent
     public $edit_poids_brut;
     public $edit_poids_net;
     public $edit_quantite_supp;
+    public $edit_origin;
 
     public $name;
     public $code; 
@@ -36,6 +37,7 @@ class FeuilleMinute extends ModalComponent
     public $poids_brut;
     public $poids_net;
     public $quantite_supp;
+    public $origin;
 
     public function render()
     {
@@ -61,6 +63,7 @@ class FeuilleMinute extends ModalComponent
             $this->edit_poids_brut = $article->poids_brut;
             $this->edit_poids_net = $article->poids_net;
             $this->edit_quantite_supp = $article->quantite_supp;
+            $this->edit_origin = $article->origin;
             $this->edit=true;
         }
     }
@@ -89,6 +92,7 @@ class FeuilleMinute extends ModalComponent
             'poids_brut' => 'required|numeric',
             'poids_net' => 'required|numeric',
             'quantite_supp' => 'required|numeric',
+            'origin' => 'required|string|max:255',
         ],
         [
             'required' => 'Ce champ est requis.',
@@ -109,11 +113,12 @@ class FeuilleMinute extends ModalComponent
             'poids_brut' => $this->poids_brut,
             'poids_net' => $this->poids_net,
             'quantite_supp' => $this->quantite_supp,
+            'origin' => $this->origin,
             'user_id' => auth()->id(),
             'dossier_id' => $this->dossier->id
         ]);
 
-        $this->reset(['name', 'code', 'fob_devis', 'fob_xof', 'fret', 'autres_frais', 'assurance', 'caf', 'poids_brut', 'poids_net', 'quantite_supp']);
+        $this->reset(['name', 'code', 'fob_devis', 'fob_xof', 'fret', 'autres_frais', 'assurance', 'caf', 'poids_brut', 'poids_net', 'quantite_supp', 'origin']);
     }
 
     public function removeArticle (Article $article){
@@ -133,6 +138,7 @@ class FeuilleMinute extends ModalComponent
             'edit_poids_brut' => 'required|numeric',
             'edit_poids_net' => 'required|numeric',
             'edit_quantite_supp' => 'required|numeric',
+            'edit_origin' => 'required|string|max:255',
         ],
         [
             'required' => 'Ce champ est requis.',
@@ -153,9 +159,10 @@ class FeuilleMinute extends ModalComponent
             'poids_brut' => $this->edit_poids_brut,
             'poids_net' => $this->edit_poids_net,
             'quantite_supp' => $this->edit_quantite_supp,
+            'origin' => $this->edit_origin,
         ]);
 
-        $this->reset(['edit_name', 'edit_code', 'edit_fob_devis', 'edit_fob_xof', 'edit_fret', 'edit_autres_frais', 'edit_assurance', 'edit_caf', 'edit_poids_brut', 'edit_poids_net', 'edit_quantite_supp']);
+        $this->reset(['edit_name', 'edit_code', 'edit_fob_devis', 'edit_fob_xof', 'edit_fret', 'edit_autres_frais', 'edit_assurance', 'edit_caf', 'edit_poids_brut', 'edit_poids_net', 'edit_quantite_supp', 'edit_origin']);
 
         $this->edit = false;
         $this->editId = null;

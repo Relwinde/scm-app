@@ -103,8 +103,8 @@
                         <input wire:focusout='reformat_fret()' wire:model='fret' type="text" class="form-control" placeholder="Fret" name="fret">
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Origine</label>
-                        <input wire:model='origine' type="text" class="form-control" placeholder="Origine" name="origine">
+                        <label class="form-label">Provenance</label>
+                        <input wire:model='origine' type="text" class="form-control" placeholder="Provenance" name="origine">
                     </div>
                 </div>
                 <div class="col-md-12 ">

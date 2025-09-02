@@ -193,7 +193,7 @@ class ViewDossier extends ModalComponent
 
     public function feuilleMinute (){
 
-        if ($this->dossier->valeur_caf == null || $this->dossier->fob_xof == null || $this->fret == null || $this->dossier->assurance == null || $this->autre_frais == null){
+        if ($this->dossier->valeur_caf == null || $this->dossier->fob_xof == null || $this->fret == null || $this->dossier->assurance == null || $this->autre_frais == null || $this->dossier->valeur_caf == 0 || $this->dossier->fob_xof == 0 || $this->fret == 0 || $this->dossier->assurance == 0 || $this->autre_frais == 0){
             $this->dispatch('feuille-minute-novalue');
         }
         else {

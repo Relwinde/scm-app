@@ -21,6 +21,7 @@ class Article extends Model
         'poids_brut',
         'poids_net',
         'quantite_supp',
+        'origin',
         'dossier_id',
         'user_id',
     ];
