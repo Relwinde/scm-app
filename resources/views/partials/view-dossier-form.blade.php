@@ -222,6 +222,16 @@
                 });
             }).call(this);
         });
+
+        $wire.on('not-allowed', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        message: "Action non autorisée."
+                    });
+                });
+            }).call(this);
+        });
     </script>
 @endscript
 

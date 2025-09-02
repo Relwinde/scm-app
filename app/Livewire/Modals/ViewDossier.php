@@ -11,6 +11,7 @@ use App\Models\NumeroDossier;
 use App\Models\BureauDeDouane;
 use App\Exports\DossierDepenses;
 use App\Models\DossierMarchandise;
+use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Livewire\Modals\Dossier\FeuilleMinute;
@@ -192,7 +193,11 @@ class ViewDossier extends ModalComponent
     }
 
     public function feuilleMinute (){
-
+        if(! Auth::user()->can('Envoyer bon de caisse au manager')){
+            $this->dispatch('not-allowed');
+            return;
+        }
+        
         if ($this->dossier->valeur_caf == null || $this->dossier->fob_xof == null || $this->fret == null || $this->dossier->assurance == null || $this->autre_frais == null || $this->dossier->valeur_caf == 0 || $this->dossier->fob_xof == 0 || $this->fret == 0 || $this->dossier->assurance == 0 || $this->autre_frais == 0){
             $this->dispatch('feuille-minute-novalue');
         }
