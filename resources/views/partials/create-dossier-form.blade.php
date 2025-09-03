@@ -47,18 +47,6 @@
                         <label class="form-label">N° de décision EXO</label>
                         <input wire:model='num_exo' type="text" class="form-control" placeholder="N° de décision EXO" name="num_exo">
                     </div>
-                    <div class="mb-4">
-                        <label class="form-label">Valeur FOB XOF</label>
-                        <input wire:focusout='reformat_fob_xof()' wire:model='fob_xof' type="text" class="form-control" placeholder="Valeur FOB XOF" name="fob_xof" >
-                    </div>
-                     <div class="mb-4">
-                        <label class="form-label">Assurance</label>
-                        <input wire:focusout='reformat_assurance()' wire:model='assurance' type="text" class="form-control" placeholder="Assurance" name="assurance">
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Autre Frais</label>
-                        <input wire:focusout='reformat_autre_frais()' wire:model='autre_frais' type="text" class="form-control" placeholder="Autre Frais" name="autre_frais">
-                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
@@ -91,6 +79,15 @@
                         <input wire:model='num_t' type="text" class="form-control" placeholder="N° de T1" name="num_t">
                     </div>
                     <div class="mb-4">
+                        <label class="form-label">Provenance</label>
+                        <input wire:model='origine' type="text" class="form-control" placeholder="Provenance" name="origine">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-4">
                         <label class="form-label">Valeur CAF</label>
                         <input wire:focusout='reformat_valeur_caf()' wire:model='valeur_caf' type="text" class="form-control" placeholder="Valeur CAF" name="valeur_caf">
                     </div>
@@ -98,21 +95,33 @@
                         <label class="form-label">Valeur FOB Devise</label>
                         <input wire:focusout='reformat_fob_devis()' wire:model='fob_devis' type="text" class="form-control" placeholder="Valeur FOB Devise" name="fob_devis" >
                     </div>
-                     <div class="mb-4">
+                    <div class="mb-4">
                         <label class="form-label">Fret</label>
                         <input wire:focusout='reformat_fret()' wire:model='fret' type="text" class="form-control" placeholder="Fret" name="fret">
                     </div>
+                </div>
+                <div class="col-md-6">
                     <div class="mb-4">
-                        <label class="form-label">Provenance</label>
-                        <input wire:model='origine' type="text" class="form-control" placeholder="Provenance" name="origine">
+                        <label class="form-label">Valeur FOB XOF</label>
+                        <input wire:focusout='reformat_fob_xof()' wire:model='fob_xof' type="text" class="form-control" placeholder="Valeur FOB XOF" name="fob_xof" >
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Assurance</label>
+                        <input wire:focusout='reformat_assurance()' wire:model='assurance' type="text" class="form-control" placeholder="Assurance" name="assurance">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Autre Frais</label>
+                        <input wire:focusout='reformat_autre_frais()' wire:model='autre_frais' type="text" class="form-control" placeholder="Autre Frais" name="autre_frais">
                     </div>
                 </div>
-                <div class="col-md-12 ">
+            </div>
+            <div class="row">
+               <div class="col-md-12 ">
                     <div class="mb-0">
                         <label class="form-label">Commentaire</label>
                         <textarea wire:model='observation' class="form-control" rows="2" placeholder="Votre commentaire ici.."></textarea>
                     </div>
-                </div>
+                </div> 
             </div>
         </div>
         <div class="card-footer">

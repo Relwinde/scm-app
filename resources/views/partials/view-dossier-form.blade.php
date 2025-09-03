@@ -95,19 +95,6 @@
                         <label class="form-label">N° de décision EXO</label>
                         <input wire:model='num_exo' type="text" class="form-control"  @if($edit==false) readonly @endif>
                     </div>
-                    <div class="mb-4">
-                        <label class="form-label">Valeur FOB XOF</label>
-                        <input wire:focusout='reformat_fob_xof()' wire:model='fob_xof' type="text" class="form-control" placeholder="Valeur FOB XOF" name="fob_xof" @if($edit==false) readonly @endif>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label">Assurance</label>
-                        <input wire:focusout='reformat_assurance()' wire:model='assurance' type="text" class="form-control" placeholder="Assurance" name="assurance" @if($edit==false) readonly @endif>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Autres frais</label>
-                        <input wire:focusout='reformat_autre_frais()' wire:model='autre_frais' type="text" class="form-control" @if($edit==false) readonly @endif name="autre_frais" >
-                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">
@@ -140,27 +127,125 @@
                         <input wire:model='num_t' type="text" class="form-control" name="num_t" @if($edit==false) readonly @endif>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Valeur CAF</label>
-                        <input wire:focusout='reformat_valeur_caf()' wire:model='valeur_caf' type="text" class="form-control" @if($edit==false) readonly @endif name="valeur_caf" >
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Valeur FOB Devise</label>
-                        <input wire:focusout='reformat_fob_devis()' wire:model='fob_devis' type="text" class="form-control" placeholder="Valeur FOB Devise" @if($edit==false) readonly @endif name="fob_devis" >
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Fret</label>
-                        <input wire:focusout='reformat_fret()' wire:model='fret' type="text" class="form-control" @if($edit==false) readonly @endif name="fret" >
-                    </div>
-                    <div class="mb-4">
                         <label class="form-label">Provenance</label>
                         <input wire:model='origine' type="text" class="form-control" placeholder="Provenance" @if($edit==false) readonly @endif name="origine">
                     </div>
                 </div>
-                <div class="col-md-12 ">
-                    {{-- <div class="mb-0">
-                        <label class="form-label">Message</label>
-                        <textarea class="form-control" name="example-textarea-input" rows="4" placeholder="text here.."></textarea>
-                    </div> --}}
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-4">
+                        <label class="form-label">
+                            @if($value_error)
+                                <span class="alert-inner--icon">
+                                <i class="fe fe-info" style="font-size: 1.5em; animation: flash 1s infinite alternate;"></i>
+                                </span> &nbsp;&nbsp;
+                                <style> 
+                                    @keyframes flash {
+                                        0% { opacity: 1; }
+                                        50% { opacity: 0.2; }
+                                        100% { opacity: 1; }
+                                    }
+                                </style>
+                            @endif
+                            Valeur CAF 
+                        </label>
+                        <input wire:focusout='reformat_valeur_caf()' wire:model='valeur_caf' type="text" class="form-control" @if($edit==false) readonly @endif name="valeur_caf" >
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">
+                             @if($value_error)
+                                <span class="alert-inner--icon">
+                                <i class="fe fe-info" style="font-size: 1.5em; animation: flash 1s infinite alternate;"></i>
+                                </span> &nbsp;&nbsp;
+                                <style> 
+                                    @keyframes flash {
+                                        0% { opacity: 1; }
+                                        50% { opacity: 0.2; }
+                                        100% { opacity: 1; }
+                                    }
+                                </style>
+                            @endif
+                            Valeur FOB Devise
+                        </label>
+                        <input wire:focusout='reformat_fob_devis()' wire:model='fob_devis' type="text" class="form-control" placeholder="Valeur FOB Devise" @if($edit==false) readonly @endif name="fob_devis" >
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">
+                             @if($value_error)
+                                <span class="alert-inner--icon">
+                                <i class="fe fe-info" style="font-size: 1.5em; animation: flash 1s infinite alternate;"></i>
+                                </span> &nbsp;&nbsp;
+                                <style> 
+                                    @keyframes flash {
+                                        0% { opacity: 1; }
+                                        50% { opacity: 0.2; }
+                                        100% { opacity: 1; }
+                                    }
+                                </style>
+                            @endif
+                            Fret
+                        </label>
+                        <input wire:focusout='reformat_fret()' wire:model='fret' type="text" class="form-control" @if($edit==false) readonly @endif name="fret" >
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-4">
+                        <label class="form-label">
+                             @if($value_error)
+                                <span class="alert-inner--icon">
+                                <i class="fe fe-info" style="font-size: 1.5em; animation: flash 1s infinite alternate;"></i>
+                                </span> &nbsp;&nbsp;
+                                <style> 
+                                    @keyframes flash {
+                                        0% { opacity: 1; }
+                                        50% { opacity: 0.2; }
+                                        100% { opacity: 1; }
+                                    }
+                                </style>
+                            @endif
+                            Valeur FOB XOF
+                        </label>
+                        <input wire:focusout='reformat_fob_xof()' wire:model='fob_xof' type="text" class="form-control" placeholder="Valeur FOB XOF" name="fob_xof" @if($edit==false) readonly @endif>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">
+                             @if($value_error)
+                                <span class="alert-inner--icon">
+                                <i class="fe fe-info" style="font-size: 1.5em; animation: flash 1s infinite alternate;"></i>
+                                </span> &nbsp;&nbsp;
+                                <style> 
+                                    @keyframes flash {
+                                        0% { opacity: 1; }
+                                        50% { opacity: 0.2; }
+                                        100% { opacity: 1; }
+                                    }
+                                </style>
+                            @endif
+                            Assurance
+                        </label>
+                        <input wire:focusout='reformat_assurance()' wire:model='assurance' type="text" class="form-control" placeholder="Assurance" name="assurance" @if($edit==false) readonly @endif>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">
+                             @if($value_error)
+                                <span class="alert-inner--icon">
+                                <i class="fe fe-info" style="font-size: 1.5em; animation: flash 1s infinite alternate;"></i>
+                                </span> &nbsp;&nbsp;
+                                <style> 
+                                    @keyframes flash {
+                                        0% { opacity: 1; }
+                                        50% { opacity: 0.2; }
+                                        100% { opacity: 1; }
+                                    }
+                                </style>
+                            @endif
+                            Autres frais
+                        </label>
+                        <input wire:focusout='reformat_autre_frais()' wire:model='autre_frais' type="text" class="form-control" @if($edit==false) readonly @endif name="autre_frais" >
+                    </div>
                 </div>
             </div>
         </div>

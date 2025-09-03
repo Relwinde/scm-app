@@ -42,6 +42,7 @@ class ViewDossier extends ModalComponent
     public $autre_frais;
 
     public $edit = false;
+    public $value_error = false;
 
     public function mount(){
         $this->num_commande = $this->dossier->num_commande;
@@ -193,16 +194,19 @@ class ViewDossier extends ModalComponent
     }
 
     public function feuilleMinute (){
-        if(! Auth::user()->can('Envoyer bon de caisse au manager')){
+        if(! Auth::user()->can('Etablir la feuille minute')){
             $this->dispatch('not-allowed');
             return;
         }
         
         if ($this->dossier->valeur_caf == null || $this->dossier->fob_xof == null || $this->fret == null || $this->dossier->assurance == null || $this->autre_frais == null || $this->dossier->valeur_caf == 0 || $this->dossier->fob_xof == 0 || $this->fret == 0 || $this->dossier->assurance == 0 || $this->autre_frais == 0){
             $this->dispatch('feuille-minute-novalue');
+            $this->value_error = true;
         }
         else {
+            $this->value_error = false;
             $this->dispatch('openModal', FeuilleMinute::class, ['dossier' => $this->dossier->id]);
+
         }
     }
     
