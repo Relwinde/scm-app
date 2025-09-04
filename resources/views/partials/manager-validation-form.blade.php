@@ -8,7 +8,7 @@
                 <div class="col-md-12 ">
                     <div class="mb-0">
                         <label class="form-label">Commentaires<span class="required">*</span></label>
-                        <textarea  required wire:model='commentaire' class="form-control" name="example-textarea-input" rows="3" placeholder="Votre commentaire..."></textarea>
+                        <textarea  required wire:model='commentaire' class="form-control" name="example-textarea-input" rows="3" placeholder="Votre commentaire... Pour laisser vide écrire 'FYI' ou 'fyi'"></textarea>
                     </div>
                 </div>
             </div>
