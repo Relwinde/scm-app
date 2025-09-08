@@ -300,7 +300,7 @@
                 $(function () {
                     return $.growl.error({
                         title: "Erreur de valeur",
-                        message: "Pour établir la feuille minute, remplissez tous les champs requis :\n                        Valeur CAF, Valeur FOB XOF, Valeur FOB Devise, Fret, Assurance, Autre frais",
+                        message: "Pour établir la feuille minute, remplissez tous les champs requis :\n                        Valeur CAF, Valeur FOB XOF, Fret, Assurance.",
                         icon: "warning",
                         duration: 10000,
                     });

@@ -70,13 +70,34 @@ class FeuilleMinute extends ModalComponent
 
     public function calculate (){
         $portion = $this->fob_xof / $this->dossier->fob_xof;
-        $this->fob_devis = $portion * $this->dossier->fob_devis;
-        $this->poids_net = $portion * $this->dossier->poids;
-        $this->poids_brut = $portion * $this->dossier->poids;
-        $this->caf = $portion * $this->dossier->valeur_caf;
-        $this->fret = $portion * $this->dossier->fret;
-        $this->assurance = $portion * $this->dossier->assurance;
-        $this->autres_frais = $portion * $this->dossier->autre_frais;
+
+        $value = $portion * $this->dossier->fob_devis;
+        $decimal = $value - floor($value);
+        $this->fob_devis = $decimal >= 0.5 ? ceil($value) : floor($value);
+
+        $value = $portion * $this->dossier->poids;
+        $decimal = $value - floor($value);
+        $this->poids_net = $decimal >= 0.5 ? ceil($value) : floor($value);
+
+        $value = $portion * $this->dossier->poids;
+        $decimal = $value - floor($value);
+        $this->poids_brut = $decimal >= 0.5 ? ceil($value) : floor($value);
+
+        $valeur = $portion * $this->dossier->valeur_caf;
+        $decimal = $valeur - floor($valeur);
+        $this->caf = $decimal >= 0.5 ? ceil($valeur) : floor($valeur);
+
+        $value = $portion * $this->dossier->fret;
+        $decimal = $value - floor($value);
+        $this->fret = $decimal >= 0.5 ? ceil($value) : floor($value);
+
+        $value = $portion * $this->dossier->assurance;
+        $decimal = $value - floor($value);
+        $this->assurance = $decimal >= 0.5 ? ceil($value) : floor($value);
+
+        $value = $portion * $this->dossier->autres_frais;
+        $decimal = $value - floor($value);
+        $this->autres_frais = $decimal >= 0.5 ? ceil($value) : floor($value);
     }
 
     public function createArticle (){
