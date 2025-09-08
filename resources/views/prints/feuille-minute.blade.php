@@ -47,7 +47,7 @@
                 <td style="width: auto;"><h4>P/N/KG&nbsp;&nbsp;: </h4></td>
                 <td ><h>{{number_format($dossier->articles->sum('poids_net'), 2, '.', ' ')}}</h></td>
                 <td style="width: auto;"><h4>FOB DEVISE&nbsp;&nbsp;: </h4></td>
-                <td ><h>{{number_format($dossier->fret, 2, '.', ' ')}}</h></td>
+                <td ><h>{{number_format($dossier->fob_devis, 2, '.', ' ')}}</h></td>
             </tr>
             <tr>
                 <td style="width: auto;"><h4>Destinataire&nbsp;&nbsp;: </h4></td>
