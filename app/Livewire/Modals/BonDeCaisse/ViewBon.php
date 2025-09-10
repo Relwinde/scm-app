@@ -190,6 +190,10 @@ class ViewBon extends ModalComponent
                     $query->orWhere('depense', 'LIKE', '%'.$item.'%');
                 }
             });
+
+            if ($similar_bons->count() > 0){
+                $this->similarBons = true;
+            } 
         }
 
         if ($this->bon->transport_interne_id != null){
@@ -199,12 +203,13 @@ class ViewBon extends ModalComponent
                     $query->orWhere('depense', 'LIKE', '%'.$item.'%');
                 }
             });
+            if ($similar_bons->count() > 0){
+                $this->similarBons = true;
+            } 
         }
         
         
-        if ($similar_bons->count() > 0){
-            $this->similarBons = true;
-        } 
+        
     }
 
     public static function destroyOnClose(): bool
