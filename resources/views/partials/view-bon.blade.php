@@ -49,7 +49,7 @@
             @if ($bon->etape == "PAYE" && Auth::user()->can('Clore un bon'))
                 <a wire:click="close" href="javascript:void(0);" class="btn btn-danger btn-sm m-1" wire:confirm="Êtes vous sûr de vouloir clore ce bon, vous ne pourrez plus effectuer d'ajustement">Clore ce bon</a>      
             @endif
-            @if ($similarBons == true)
+            @if ($similarBons == true && Auth::user()->can('Voir les alertes de doublons de bons de caisse'))
                 <span class="alert-inner--icon">
                 <i class="fe fe-info" style="font-size: 1.5em; animation: flash 1s infinite alternate;"></i>
                 </span>

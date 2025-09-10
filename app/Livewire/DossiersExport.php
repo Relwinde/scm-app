@@ -6,13 +6,23 @@ use App\Models\Dossier;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use App\Livewire\Modals\ViewDossier;
 use Illuminate\Support\Facades\Auth;
 
 class DossiersExport extends Component
 {
     public $search;
 
+    public $dossierId = null;
+
     use WithPagination;
+
+    public function mount (){
+         $this->dossierId = request()->query('dossier');
+         if ( Dossier::where('id', $this->dossierId)->count() > 0 ) {
+                $this->dispatch('view-dossier');
+            }
+    }
 
     #[On('new-dossier')]
     public function render()
@@ -37,7 +47,6 @@ class DossiersExport extends Component
             ->groupBy('numero')
             ->paginate(10, '*', 'dossier-pagination');
 
-
         return view('livewire.dossiers-export', [
             'dossiers' => $dossiers, 'header_title'=>'Dossiers d\'exportation', 'create_modal'=>'modals.create-dossier-export', 'button_title'=>'Nouveau dossier'
         ]);
@@ -52,5 +61,10 @@ class DossiersExport extends Component
             $dossier->delete();
             $this->dispatch('dossier-delete-success');
         }
+    }
+
+    #[On('view-dossier')]
+    public function viewDossier (){
+        $this->dispatch('openModal', ViewDossier::class, ['dossier'=>$this->dossierId]);
     }
 }

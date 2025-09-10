@@ -57,7 +57,13 @@ class Dossier extends Model
             'mode'=>'utf-8',
             'format' => 'A4-P',
             'default_font_size' => 14,
-	        'default_font' => 'FreeSerif'
+	        'default_font' => 'FreeSerif',
+            'margin_left' => 5,
+            'margin_right' => 5,
+            'margin_top' => 0,
+            'margin_bottom' => 0,
+            'margin_header' => 0,
+            'margin_footer' => 0,
         ]);
 
         $html = view('prints.dossier', ['dossier'=>$this]);

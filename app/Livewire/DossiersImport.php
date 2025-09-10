@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Modals\ViewDossier;
 use App\Models\Dossier;
 use Livewire\Component;
 use Livewire\Attributes\On;
@@ -13,12 +14,20 @@ class DossiersImport extends Component
 
     public $search;
 
+    public $dossierId = null;
+
     use WithPagination;
+
+    public function mount (){
+         $this->dossierId = request()->query('dossier');
+          if ( Dossier::where('id', $this->dossierId)->count() > 0 ) {
+                $this->dispatch('view-dossier');
+            }
+    }
 
     #[On('new-dossier')]
     public function render()
     {
-
         if (! Auth::user()->can('Voir la liste des dossiers imports')){
             redirect("/");
         }
@@ -45,6 +54,7 @@ class DossiersImport extends Component
         return view('livewire.dossiers-import', [
             'dossiers' => $dossiers, 'header_title'=>'Dossiers d\'importation', 'create_modal'=>'modals.create-dossier-import', 'button_title'=>'Nouveau dossier'
         ]);
+
     }
 
     public function delete (Dossier $dossier){
@@ -56,6 +66,11 @@ class DossiersImport extends Component
             $dossier->delete();
             $this->dispatch('dossier-delete-success');
         }
+    }
+
+    #[On('view-dossier')]
+    public function viewDossier (){
+        $this->dispatch('openModal', ViewDossier::class, ['dossier'=>$this->dossierId]);
     }
 
 }

@@ -40,8 +40,8 @@ use App\Models\BonDeCaisse as ModelsBonDeCaisse;
 Route::get('/login', Login::class)->name('login');
 Route::get('/', Home::class)->middleware("auth");
 
-Route::get('/dossiers-import', DossiersImport::class)->middleware("auth");
-Route::get('/dossiers-export', DossiersExport::class)->middleware("auth");
+Route::get('/dossiers-import', DossiersImport::class)->middleware("auth")->name('dossiers-import');
+Route::get('/dossiers-export', DossiersExport::class)->middleware("auth")->name('dossiers-export');
 Route::get('/dossiers-internes', TransportsInternes::class)->middleware("auth");
 Route::get('/chauffeurs', Chauffeur::class)->middleware("auth");
 Route::get('/vehicules', Vehicule::class)->middleware("auth");
@@ -92,3 +92,13 @@ Route::get('/print-transport/{dossier}', function (TransportInterne $dossier){
 Route::get('/print-delivery/{dossier}', function (Dossier $dossier){
     $dossier->print_delivery_slip();
 })->name('print-delivery')->middleware("auth");
+
+Route::get('/view-dossier/{dossier}', function (Dossier $dossier){
+    if ($dossier->type == "IMPORT"){
+        return redirect()->route('dossiers-import', ['dossier'=>$dossier->id]);
+    }
+    if ($dossier->type == "EXPORT"){
+        return redirect()->route('dossiers-export', ['dossier'=>$dossier->id]);
+
+    }
+})->name('view-dossier')->middleware("auth");

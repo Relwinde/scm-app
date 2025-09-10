@@ -29,7 +29,7 @@ class ViewBon extends ModalComponent
     #[On('new-attachment')]
     public function render()
     {
-        if ($this->bon->etape != "PAYE" || $this->bon->etape != "CLOS"){
+        if (($this->bon->etape != "PAYE" || $this->bon->etape != "CLOS") && Auth::user()->can('Voir les alertes de doublons de bons de caisse')) {
             $this->searchSimilar();
         }
         return view('livewire.modals.bon-de-caisse.view-bon', ['bon'=>$this->bon]);

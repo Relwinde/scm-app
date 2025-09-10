@@ -1,18 +1,24 @@
 @php
     setlocale(LC_TIME, 'fr_FR.UTF-8');
+    use chillerlan\QRCode\{QRCode, QROptions};
+    $options = new QROptions;   
+    $options->margin = 0;
+    $options->foo = 'circle';
+    $options->bgColor = 'blue';
+    $data = 'https://scm.relwinde.com/view-dossier/'.$dossier->id;
 @endphp
 
 <style>
-    th, td {
+    #info th, #info td {
         padding: 10px;
         margin: 10px;
     }
-    #info table, th, td {
+    #info table, #info th, #info td {
         border: 1px solid white;
         border-collapse: collapse;
         border-radius: 90px;
     }
-    th, td {
+    #info th, #info td {
         background-color: #f4effd;
     }
 </style>
@@ -32,8 +38,8 @@
     <h5 style="line-height: 0.5px;">info@scmlogistics-bf.com&nbsp; www.scmlogistics-bf.com</h5>
 </center>
 
-<hr style="height:6px; color:#0098db;">
-<div id="info" style="height: 100%;">
+<hr style="height:6px; color:#0098db; margin-top: 0px;">
+<div id="info" style="height: auto;">
     <table style="width: 80%;  margin-left: auto; margin-right: auto;">
         <thead>
 
@@ -87,4 +93,10 @@
         </tbody>
     </table>
 </div>
-
+<table style="width: 90%; margin: 20px auto 0 auto;">
+    <tr>
+        @php
+            echo '<td style="width: 50%; text-align: center; vertical-align: middle;"><img width="120px" src="'.(new QRCode ($options))->render($data).'" alt="QR Code" /></td>';
+        @endphp
+    </tr>
+</table>
