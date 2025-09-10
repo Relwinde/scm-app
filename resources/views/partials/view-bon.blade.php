@@ -49,6 +49,20 @@
             @if ($bon->etape == "PAYE" && Auth::user()->can('Clore un bon'))
                 <a wire:click="close" href="javascript:void(0);" class="btn btn-danger btn-sm m-1" wire:confirm="Êtes vous sûr de vouloir clore ce bon, vous ne pourrez plus effectuer d'ajustement">Clore ce bon</a>      
             @endif
+            @if ($similarBons == true)
+                <span class="alert-inner--icon">
+                <i class="fe fe-info" style="font-size: 1.5em; animation: flash 1s infinite alternate;"></i>
+                </span>
+                <style> 
+                    @keyframes flash {
+                        0% { opacity: 1; }
+                        50% { opacity: 0.2; }
+                        100% { opacity: 1; }
+                    }
+                </style>
+                <span class="badge bg-danger me-1 mb-1">Des bons similaires ont été trouvés, veuillez vérifier avant de procéder au traitement.</span>
+            @endif
+
         </div>
         
     </div>
@@ -326,6 +340,5 @@
                 });
             }).call(this);
         });
-        
     </script>
 @endscript

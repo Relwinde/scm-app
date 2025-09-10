@@ -22,12 +22,16 @@ class ViewBon extends ModalComponent
 
     public $viewFiles = false;
 
+    public $similarBons = false;
+
     #[On('new-ajustement')]
     #[On('new-status')]
     #[On('new-attachment')]
     public function render()
     {
-
+        if ($this->bon->etape != "PAYE" || $this->bon->etape != "CLOS"){
+            $this->searchSimilar();
+        }
         return view('livewire.modals.bon-de-caisse.view-bon', ['bon'=>$this->bon]);
     }
 
@@ -157,6 +161,50 @@ class ViewBon extends ModalComponent
         }
         
         $this->dispatch('closed');
+    }
+
+    public function searchSimilar (){
+        // Escape if bon is already paid or closed
+        if ($this->bon->etape == "PAYE" || $this->bon->etape == "CLOS"){
+            return;
+        }
+        
+        // Split depense into words
+        $search_items = explode(" ", $this->bon->depense);
+
+        // Also add all 4-letter substrings from depense
+        $depense = $this->bon->depense;
+        $length = strlen($depense);
+        for ($i = 0; $i <= $length - 4; $i++) {
+            $search_items[] = substr($depense, $i, 4);
+        }
+        // Remove duplicates
+        $search_items = array_unique($search_items);
+
+        // Search for similar bons
+
+        if ($this->bon->dossier_id != null){
+            $similar_bons = BonDeCaisse::where('id', '!=', $this->bon->id)->where('dossier_id', $this->bon->dossier_id)
+            ->where(function($query) use ($search_items) {
+                foreach($search_items as $item){
+                    $query->orWhere('depense', 'LIKE', '%'.$item.'%');
+                }
+            });
+        }
+
+        if ($this->bon->transport_interne_id != null){
+            $similar_bons = BonDeCaisse::where('id', '!=', $this->bon->id)->where('transport_interne_id', $this->bon->transport_interne_id)
+            ->where(function($query) use ($search_items) {
+                foreach($search_items as $item){
+                    $query->orWhere('depense', 'LIKE', '%'.$item.'%');
+                }
+            });
+        }
+        
+        
+        if ($similar_bons->count() > 0){
+            $this->similarBons = true;
+        } 
     }
 
     public static function destroyOnClose(): bool
