@@ -3,6 +3,10 @@
         <div class="card-header">
             <h3 class="mb-0 card-title"><b>Feuille minute du dossier {{$dossier->numero}}</b></h3>
         </div>
+        <div class="card-header">
+            <h3 class="mb-0 card-title"><b>CAF DOSSIER:</b> {{number_format($dossier->valeur_caf, 2, '.', ' ')}}&nbsp;&nbsp;&nbsp; <b>CAF TOTAL ARTICLES:</b> {{number_format($dossier->articles->sum('caf'), 2, '.', ' ')}}&nbsp;&nbsp;&nbsp; <b>DIFFERENCE:</b> {{number_format($dossier->valeur_caf - $dossier->articles->sum('caf'), 2, '.', ' ')}}</h3>
+        </div>
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered border text-wrap mb-0" id="bonsDeCaisseTable">

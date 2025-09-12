@@ -191,5 +191,8 @@ class FeuilleMinute extends ModalComponent
         $this->editId = null;
     }
 
-
+    public static function destroyOnClose(): bool
+    {
+        return true;
+    }
 }
