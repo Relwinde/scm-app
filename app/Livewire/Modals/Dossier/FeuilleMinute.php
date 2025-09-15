@@ -98,6 +98,10 @@ class FeuilleMinute extends ModalComponent
         $this->caf =  $this->fob_xof + $this->fret + $this->assurance + $this->autres_frais;
     }
 
+    public function calculateEdit (){
+        $this->edit_caf =  $this->edit_fob_xof + $this->edit_fret + $this->edit_assurance + $this->edit_autres_frais;
+    }
+
     public function createArticle (){
         $this->validate([
             'name' => 'required|string|max:255',

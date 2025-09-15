@@ -41,43 +41,43 @@
                                     @error('code')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='fob_xof' type="number" class="form-control" name="fob_xof" placeholder="FOB XOF" wire:focusout="calculate">
+                                    <input wire:model.live='fob_xof' type="number" class="form-control" name="fob_xof" placeholder="FOB XOF" wire:keydown="calculate">
                                     @error('fob_xof')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='fob_devis' type="number" class="form-control" name="fob_devis" placeholder="FOB Devise" wire:focusout="calculate">
+                                    <input wire:model.live='fob_devis' type="number" class="form-control" name="fob_devis" placeholder="FOB Devise">
                                     @error('fob_devis')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='fret' type="number" class="form-control" name="fret" placeholder="Fret">
+                                    <input wire:model.live='fret' type="number" class="form-control" name="fret" placeholder="Fret">
                                     @error('fret')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='autres_frais' type="number" class="form-control" name="autres_frais" placeholder="Autres frais">
+                                    <input wire:model.live='autres_frais' type="number" class="form-control" name="autres_frais" placeholder="Autres frais">
                                     @error('autres_frais')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='assurance' type="number" class="form-control" name="assurance" placeholder="Assurance">
+                                    <input wire:model.live='assurance' type="number" class="form-control" name="assurance" placeholder="Assurance">
                                     @error('assurance')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='caf' type="number" class="form-control" name="caf" placeholder="CAF">
+                                    <input wire:model.live='caf' type="number" class="form-control" name="caf" placeholder="CAF">
                                     @error('caf')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='poids_brut' type="number" class="form-control" name="poids_brut" placeholder="Poids brut">
+                                    <input wire:model.live='poids_brut' type="number" class="form-control" name="poids_brut" placeholder="Poids brut">
                                     @error('poids_brut')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='poids_net' type="number" class="form-control" name="poids_net" placeholder="Poids net">
+                                    <input wire:model.live='poids_net' type="number" class="form-control" name="poids_net" placeholder="Poids net">
                                     @error('poids_net')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='quantite_supp' type="number" class="form-control" name="quantite_supp" placeholder="Quantité supplémentaire">
+                                    <input wire:model.live='quantite_supp' type="number" class="form-control" name="quantite_supp" placeholder="Quantité supplémentaire">
                                     @error('quantite_supp')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model='origin' type="text" class="form-control" name="origin" placeholder="Origine">
+                                    <input wire:model.live='origin' type="text" class="form-control" name="origin" placeholder="Origine">
                                     @error('origin')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap" style="width: 1%;">
@@ -102,32 +102,32 @@
                                   {{$article->code}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input type="text" name="fob_xof" id="fob_xof" wire:model="edit_fob_xof">
+                                    <input wire:change="calculateEdit" type="text" name="fob_xof" id="fob_xof" wire:model.live="edit_fob_xof">
                                 @else
                                   {{$article->fob_xof}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input type="text" name="fob_devis" id="fob_devis" wire:model="edit_fob_devis">
+                                    <input wire:keydown="calculateEdit" type="text" name="fob_devis" id="fob_devis" wire:model.live="edit_fob_devis">
                                 @else
                                   {{$article->fob_devis}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input type="text" name="fret" id="fret" wire:model="edit_fret">
+                                    <input wire:keydown="calculateEdit" type="text" name="fret" id="fret" wire:model.live="edit_fret">
                                 @else
                                   {{$article->fret}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input type="text" name="autres_frais" id="autres_frais" wire:model="edit_autres_frais">
+                                    <input wire:keydown="calculateEdit" type="text" name="autres_frais" id="autres_frais" wire:model.live="edit_autres_frais">
                                 @else
                                   {{$article->autres_frais}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input type="text" name="assurance" id="assurance" wire:model="edit_assurance">
+                                    <input wire:keydown="calculateEdit" type="text" name="assurance" id="assurance" wire:model.live="edit_assurance">
                                 @else
                                   {{$article->assurance}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input type="text" name="caf" id="caf" wire:model="edit_caf">
+                                    <input type="text" name="caf" id="caf" wire:model.live="edit_caf">
                                 @else
                                   {{$article->caf}}   
                                 @endif</td>
