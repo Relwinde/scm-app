@@ -87,8 +87,8 @@
                 <th>FOB Devise</th>
                 <th>Fret</th>
                 <th>Assu</th>
-                <th>CAF</th>
                 <th>A frais</th>
+                <th>CAF</th>
                 <th>P brut</th>
                 <th>P net</th>
                 <th>Q supp</th>
@@ -104,8 +104,8 @@
                     <td>{{ number_format($article->fob_devis, 2, '.', ' ') }}</td>
                     <td>{{ number_format($article->fret, 2, '.', ' ') }}</td>
                     <td>{{ number_format($article->assurance, 2, '.', ' ') }}</td>
-                    <td>{{ number_format($article->caf, 2, '.', ' ') }}</td>
                     <td>{{ number_format($article->autres_frais, 2, '.', ' ') }}</td>
+                    <td>{{ number_format($article->caf, 2, '.', ' ') }}</td>
                     <td>{{ number_format($article->poids_brut, 2, '.', ' ') }}</td>
                     <td>{{ number_format($article->poids_net, 2, '.', ' ') }}</td>
                     <td>{{ number_format($article->quantite_supp, 2, '.', ' ') }}</td>
