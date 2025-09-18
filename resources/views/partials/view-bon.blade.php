@@ -85,7 +85,7 @@
             <div class="row">
                 <div class="text-wrap">
                     <div class="example">
-                        <p>{!! $bon->description !!}</p>
+                        <p>{!!  nl2br(e($bon->description)) !!}</p>
                     </div>
                 </div>
             </div>     
