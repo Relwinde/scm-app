@@ -9,6 +9,7 @@ use App\Models\Client;
 use App\Models\BonDeCaisse;
 use App\Models\Marchandise;
 use App\Models\DossierStatus;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\DossierStatusTransaction;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -48,7 +49,7 @@ class Dossier extends Model
 
     public function status()
     {
-        return $this->belongsTo(DossierStatus::class);
+        return $this->belongsTo(DossierStatus::class, 'dossier_status_id');
     }
 
     public function possibleTransitions()
@@ -70,6 +71,11 @@ class Dossier extends Model
 
         if ($this->status == null){
             $this->update(['dossier_status_id' => DossierStatus::where('code', 'ssi')->first()->id]);
+        }
+
+        // Check if the trasition is non already done
+        if ($this->status->code == $statusCode) {
+            return;
         }
 
         $transition = $this->possibleTransitions()
@@ -194,6 +200,8 @@ class Dossier extends Model
 
         $html = view('prints.feuille-minute', ['dossier'=>$this]);
         $mpdf->writeHTML($html);
+
+        $this->transitionTo('fm_prov', Auth::user()->id);
         $mpdf->Output($name = 'Feuille-minute-'.$this->numero.'.pdf', 'I');
     }
 

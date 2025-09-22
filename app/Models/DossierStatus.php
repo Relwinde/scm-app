@@ -11,4 +11,9 @@ class DossierStatus extends Model
 
     protected $table = 'dossier_status';
     protected $guarded = [];
+
+    public function dossiers()
+    {
+        return $this->hasMany(Dossier::class, 'dossier_status_id');
+    }
 }

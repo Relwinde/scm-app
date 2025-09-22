@@ -30,7 +30,7 @@ class DossiersExport extends Component
         if (! Auth::user()->can('Voir la liste des dossiers exports')){
             redirect("/");
         }
-        $dossiers = Dossier::select(['dossiers.id', 'dossiers.numero', 'dossiers.num_lta_bl', 'dossiers.num_sylvie', 'dossiers.num_commande', 'dossiers.created_at', 'dossiers.num_declaration', 'dossiers.client_id', 'dossiers.fournisseur'])
+        $dossiers = Dossier::select(['dossiers.id', 'dossiers.numero', 'dossiers.num_lta_bl', 'dossiers.num_sylvie', 'dossiers.num_commande', 'dossiers.created_at', 'dossiers.num_declaration', 'dossiers.client_id', 'dossiers.fournisseur', 'dossiers.dossier_status_id'])
             ->join('clients', 'dossiers.client_id', '=', 'clients.id')
             ->join('numero_dossiers', 'dossiers.id', '=', 'numero_dossiers.dossier_id') 
             ->where('dossiers.type', 'EXPORT') 
