@@ -25,6 +25,9 @@ class DatabaseSeeder extends Seeder
         // Permission::create(['name'=> 'Voir le commentaire de validation du manager']);
         
         // Permission::create(['name'=> 'Etablir la feuille minute']);
-        Permission::create(['name'=> 'Voir les alertes de doublons de bons de caisse']);
+        // Permission::create(['name'=> 'Voir les alertes de doublons de bons de caisse']);
+
+        $this->call(DossierStatusSeeder::class);
+        $this->call(DossierStatusTransactionSeeder::class);
     }
 }

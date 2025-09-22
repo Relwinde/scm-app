@@ -53,30 +53,41 @@ class Dossier extends Model
 
     public function possibleTransitions()
     {
-        return DossierStatusTransaction::where('from_status_id', $this->status_id)
+        return DossierStatusTransaction::where('from_status_id', $this->dossier_status_id)
                          ->with('toStatus')
                          ->get();
     }
 
-    public function canTransitionTo($statusId): bool
+    public function canTransitionTo(string $statusCode): bool
     {
-        return $this->possibleTransitions()->pluck('to_status_id')->contains($statusId);
+        return $this->possibleTransitions()
+            ->pluck('toStatus.code')
+            ->contains($statusCode);
     }
 
-    public function transitionTo($statusId, $userId = null)
+    public function transitionTo(string $statusCode, $userId)
     {
-        if (! $this->canTransitionTo($statusId)) {
-            throw new \Exception("Transition non permise.");
+
+        if ($this->status == null){
+            $this->update(['dossier_status_id' => DossierStatus::where('code', 'ssi')->first()->id]);
         }
 
-        $from = $this->status_id;
-        $this->update(['status_id' => $statusId]);
+        $transition = $this->possibleTransitions()
+                           ->firstWhere('toStatus.code', $statusCode);
+
+        if (! $transition) {
+            throw new \Exception("Transition non permise de {$this->status->code} vers {$statusCode}");
+        }
+
+        $from = $this->dossier_status_id;
+        $to   = $transition->to_status_id;
+
+        $this->update(['dossier_status_id' => $to]);
 
         DossierStatusHistory::create([
-            'dossier_id' => $this->id,
+            'dossier_id'     => $this->id,
             'from_status_id' => $from,
-            'to_status_id'   => $statusId,
-            'changed_at'     => now(),
+            'to_status_id'   => $to,
             'user_id'        => $userId,
         ]);
     }

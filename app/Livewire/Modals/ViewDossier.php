@@ -208,6 +208,10 @@ class ViewDossier extends ModalComponent
         }
         else {
             $this->value_error = false;
+            if (($this->dossier->status?->code == 'ssi') || $this->dossier->dossier_status_id == null) {
+                $this->dossier->transitionTo('cod', Auth::user()->id);
+                $this->dossier->save();
+            }
             $this->dispatch('openModal', FeuilleMinute::class, ['dossier' => $this->dossier->id]);
 
         }

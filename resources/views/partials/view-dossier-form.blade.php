@@ -42,7 +42,9 @@
         <div class="card-title m-2">
             @can('Etablir la feuille minute')
                 {{-- <a wire:click="$dispatch('openModal', {component: 'modals.dossier.feuille-minute', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text-o"></i> Feuille minute</a>   --}}
-                <a wire:click="feuilleMinute" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text-o"></i> Feuille minute</a>  
+                <a @if ($dossier->status?->code == 'ssi' || $dossier->dossier_status_id == null)
+                    wire:confirm='Êtes-vous sûr de vouloir établir la feuille minute ? Cette action suppose que le dossier est codifié.'
+                @endif  wire:click="feuilleMinute" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text-o"></i> Feuille minute</a>  
             @endcan
         </div>
         <div class="card-title m-2">

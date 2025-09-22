@@ -8,6 +8,7 @@ use App\Models\Dossier;
 use App\Models\Fournisseur;
 use App\Models\Marchandise;
 use App\Models\Observation;
+use App\Models\DossierStatus;
 use App\Models\NumeroDossier;
 use App\Models\BureauDeDouane;
 use Illuminate\Support\Facades\Auth;
@@ -86,7 +87,8 @@ class CreateDossierImport extends ModalComponent
         'fournisseur'=>$this->fournisseur,
         'bureau_de_douane_id'=>$this->bureau_de_douane,
         'type'=>"IMPORT",
-        'user_id'=>Auth::User()->id
+        'user_id'=>Auth::User()->id,   
+        'dossier_status_id'=>DossierStatus::where('code', 'ssi')->first()->id // statut 'Saisie' par défaut
         ]);
 
         

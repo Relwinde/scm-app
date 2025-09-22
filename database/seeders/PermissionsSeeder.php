@@ -109,6 +109,7 @@ class PermissionsSeeder extends Seeder
             $raf->givePermissionTo($permission);
 
         Permission::create(['name'=> 'Voir le commentaire de validation du manager']);
+        Permission::create(['name'=> 'Voir les alertes de doublons de bons de caisse']);
         
 
         // Permissions de utlisateur
@@ -141,6 +142,10 @@ class PermissionsSeeder extends Seeder
 
         // Permissions des véhicules
             Permission::create(['name'=> 'Voir les depenses sur un véhicule']);
+
+
+        // Permission de feuille minute
+            Permission::create(['name'=> 'Etablir la feuille minute']);
 
 
 
