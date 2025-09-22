@@ -36,6 +36,7 @@ class CreateDossierImport extends ModalComponent
     public $fret;
     public $autre_frais;
     public $assurance;
+    public $sommier;
 
     public $isPartial = false;
 
@@ -73,6 +74,7 @@ class CreateDossierImport extends ModalComponent
         'num_lta_bl'=>$this->num_lta_bl,
         'num_t'=>$this->num_t,
         'num_declaration'=>$this->num_declaration,
+        'sommier'=>$this->sommier,
         'valeur_caf'=>floatval(str_replace(' ', '',$this->valeur_caf)),
         'fob_xof'=>floatval(str_replace(' ', '',$this->fob_xof)),
         'fob_devis'=>floatval(str_replace(' ', '',$this->fob_devis)),

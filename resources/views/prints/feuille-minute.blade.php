@@ -61,7 +61,7 @@
                 <td style="width: auto;"><h4>N° IFU&nbsp;&nbsp;: </h4></td>
                 <td ><h>{{$dossier->client->ifu}}</h></td>
                 <td style="width: auto;"><h4>Sommier&nbsp;&nbsp;: </h4></td>
-                <td ><h>{{$dossier->num_t}}</h></td>
+                <td ><h>{{$dossier->sommier}}</h></td>
                 <td style="width: auto;"><h4>Assurance&nbsp;&nbsp;: </h4></td>
                 <td ><h>{{number_format($dossier->assurance, 2, '.', ' ')}}</h></td>
             </tr>

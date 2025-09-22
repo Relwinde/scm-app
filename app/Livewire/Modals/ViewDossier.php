@@ -40,6 +40,7 @@ class ViewDossier extends ModalComponent
     public $fret;
     public $assurance;
     public $autre_frais;
+    public $sommier;
 
     public $edit = false;
     public $value_error = false;
@@ -65,6 +66,7 @@ class ViewDossier extends ModalComponent
         $this->fret = number_format($this->dossier->fret, 2, '.', ' ');
         $this->assurance = number_format($this->dossier->assurance, 2, '.', ' ');
         $this->autre_frais = number_format($this->dossier->autre_frais, 2, '.', ' ');
+        $this->sommier = $this->dossier->sommier;
     }
 
     public function render()
@@ -110,6 +112,7 @@ class ViewDossier extends ModalComponent
         $this->dossier->nombre_colis = floatval(str_replace(' ', '', $this->nombre_colis));
         $this->dossier->poids = floatval( str_replace(' ', '',$this->poids));
         $this->dossier->num_declaration = $this->num_declaration;
+        $this->dossier->sommier = $this->sommier;
         $this->dossier->valeur_caf =floatval( str_replace(' ', '',$this->valeur_caf));
         $this->dossier->fob_xof =floatval( str_replace(' ', '',$this->fob_xof));
         $this->dossier->fob_devis =floatval( str_replace(' ', '',$this->fob_devis));

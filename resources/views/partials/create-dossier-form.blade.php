@@ -99,6 +99,10 @@
                         <label class="form-label">Fret</label>
                         <input wire:focusout='reformat_fret()' wire:model='fret' type="text" class="form-control" placeholder="Fret" name="fret">
                     </div>
+                    <div class="mb-4">
+                        <label class="form-label">N° Sommier</label>
+                        <input wire:model='sommier' type="text" class="form-control" placeholder="N° Sommier" name="sommier">
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-4">

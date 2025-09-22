@@ -187,7 +187,11 @@
                             @endif
                             Fret
                         </label>
-                        <input wire:focusout='reformat_fret()' wire:model='fret' type="text" class="form-control" @if($edit==false) readonly @endif name="fret" >
+                        <input wire:focusout='reformat_fret()' wire:model='fret' type="text" class="form-control" placeholder="Fret" @if($edit==false) readonly @endif name="fret" >
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label"> N° Sommier </label>
+                        <input wire:model='sommier' type="text" class="form-control" placeholder="N° Sommier" @if($edit==false) readonly @endif name="sommier">
                     </div>
                 </div>
                 <div class="col-md-6">
