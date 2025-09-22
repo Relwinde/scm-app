@@ -8,7 +8,9 @@ use App\Models\User;
 use App\Models\Client;
 use App\Models\BonDeCaisse;
 use App\Models\Marchandise;
+use App\Models\DossierStatus;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\DossierStatusTransaction;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -42,6 +44,41 @@ class Dossier extends Model
     public function observations(){
         return $this->hasMany(Observation::class);
         
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(DossierStatus::class);
+    }
+
+    public function possibleTransitions()
+    {
+        return DossierStatusTransaction::where('from_status_id', $this->status_id)
+                         ->with('toStatus')
+                         ->get();
+    }
+
+    public function canTransitionTo($statusId): bool
+    {
+        return $this->possibleTransitions()->pluck('to_status_id')->contains($statusId);
+    }
+
+    public function transitionTo($statusId, $userId = null)
+    {
+        if (! $this->canTransitionTo($statusId)) {
+            throw new \Exception("Transition non permise.");
+        }
+
+        $from = $this->status_id;
+        $this->update(['status_id' => $statusId]);
+
+        DossierStatusHistory::create([
+            'dossier_id' => $this->id,
+            'from_status_id' => $from,
+            'to_status_id'   => $statusId,
+            'changed_at'     => now(),
+            'user_id'        => $userId,
+        ]);
     }
 
     public function delivery_slip(){
