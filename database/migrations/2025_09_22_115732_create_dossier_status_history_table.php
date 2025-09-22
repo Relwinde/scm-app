@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('dossier_id')->constrained('dossiers')->onDelete('cascade');
             $table->foreignId('from_status_id')->constrained('dossier_status')->onDelete('cascade');
             $table->foreignId('to_status_id')->constrained('dossier_status')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('set null')->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
