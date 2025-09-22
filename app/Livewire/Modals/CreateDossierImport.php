@@ -162,7 +162,7 @@ class CreateDossierImport extends ModalComponent
     }
 
     public function checkPartial (){
-        if ($this->num_commande != "NP" && $this->num_commande != "np"){
+        if ($this->num_commande != "na" && $this->num_commande != "NA" && $this->num_commande != "tba" && $this->num_commande != "TBA"){
             $partial = Dossier::where('num_commande', $this->num_commande)->where('type', 'IMPORT')->first();
 
             if($partial != null){
