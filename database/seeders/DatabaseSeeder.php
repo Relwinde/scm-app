@@ -29,5 +29,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(DossierStatusSeeder::class);
         $this->call(DossierStatusTransactionSeeder::class);
+        Permission::create(['name'=> 'Confirmer une feuille minute']);
+        Permission::create(['name'=> 'Modifier une feuille minute confirmée']);
+
     }
 }

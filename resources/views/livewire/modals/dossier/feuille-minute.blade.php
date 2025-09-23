@@ -152,23 +152,27 @@
                                   {{$article->origin}}  
                                 @endif</td>
                                 <td name="bstable-actions">
-                                    <div class="btn-list">
-                                        @if ($edit == true && $editId == $article->id)
-                                            <button wire:click='update({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
-                                                <span class="fe fe-check"> </span>
-                                            </button>
-                                            <a wire:click='setEdit({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
-                                                <span class="fe fe-x"> </span>
-                                            </a>
-                                        @else
-                                            <a wire:click='setEdit({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
-                                                <span class="fe fe-edit"> </span>
-                                            </a>
-                                            <button wire:click='removeArticle({{$article->id}})' wire:confirm= "Êtes-vous sûr de vouloir supprimer cet article ?" href="javascript:void(0);" class="btn btn-sm btn-danger">
-                                                <span class="fe fe-trash"></span>
-                                            </a>
-                                        @endif
-                                    </div>
+
+                                    @if ($dossier->num_repertoire == null || Auth::user()->can('Modifier une feuille minute confirmée'))
+                                        <div class="btn-list">
+                                            @if ($edit == true && $editId == $article->id)
+                                                <button wire:click='update({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
+                                                    <span class="fe fe-check"> </span>
+                                                </button>
+                                                <a wire:click='setEdit({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
+                                                    <span class="fe fe-x"> </span>
+                                                </a>
+                                            @else
+                                                <a wire:click='setEdit({{$article->id}})' href="javascript:void(0);" class="btn btn-sm btn-primary">
+                                                    <span class="fe fe-edit"> </span>
+                                                </a>
+                                                <button wire:click='removeArticle({{$article->id}})' wire:confirm= "Êtes-vous sûr de vouloir supprimer cet article ?" href="javascript:void(0);" class="btn btn-sm btn-danger">
+                                                    <span class="fe fe-trash"></span>
+                                                </a>
+                                            @endif
+                                        </div>
+                                    @endif
+                                    
                                 </td>
                                 
                             </tr>
@@ -182,11 +186,13 @@
         </div>
         <div class="card-footer">
             <div class="btn-list">
+                <a href="javascript:void(0);" wire:click="$dispatch('closeModal')" class="btn btn-danger">Fermer</a>
                 @if ($articles->count() > 0)
                     <a target="_blank"  href="{{route('print-feuille-minute', $dossier->id)}}" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i> Imprimer</a>
-                @endif
-                <a href="javascript:void(0);" wire:click="$dispatch('closeModal')" class="btn btn-danger">Fermer</a>
-                <a href="javascript:void(0);" wire:click="setFeuilleMinute" wire:confirm= "Êtes-vous sûr de vouloir confirmer la feuille minute ? Cette action est irréversible." class="btn btn-outline-danger">Confirmer la feuille minute</a>
+                    @can('Confirmer une feuille minute')
+                        <a href="javascript:void(0);" wire:click="setFeuilleMinute" wire:confirm= "Êtes-vous sûr de vouloir confirmer la feuille minute ? Cette action est irréversible." class="btn btn-outline-danger">Confirmer la feuille minute</a>
+                    @endcan
+                @endif 
             </div>
         </div>
     </div>
