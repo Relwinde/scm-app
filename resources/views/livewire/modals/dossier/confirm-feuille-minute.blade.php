@@ -28,7 +28,26 @@
 @script
 
     <script>
-
+        $wire.on('status-transition-error', () => {
+            (function () {
+                $(function () {
+                    return $.growl({
+                        title: "Erreur :",
+                        message: "Une erreur s'est produite lors de la transition."
+                    });
+                });
+            }).call(this);
+        });
+        $wire.on('feuille-minute-confirmed', () => {
+            (function () {
+                $(function () {
+                    return $.growl({
+                        title: "Succès :",
+                        message: "Feuille minute confirmée avec succès."
+                    });
+                });
+            }).call(this);
+        });
     </script>
 
 @endscript

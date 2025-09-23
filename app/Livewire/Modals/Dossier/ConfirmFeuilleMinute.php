@@ -49,8 +49,14 @@ class ConfirmFeuilleMinute extends ModalComponent
         $originalName = strtoupper(preg_replace('/\.pdf$/i', '', $this->file->getClientOriginalName()));
         $fileName = 'FACTURE_COMMERCIALE_' . $this->dossier->num_repertoire . $this->file->getClientOriginalExtension();
         
-        $this->file->storeAs('public/dossiers/' . $this->dossier->numero, $fileName);
-
+        $this->file->storeAs('attachments/dossiers/' . $this->dossier->numero, $fileName);
+        
+        try {
+            $this->dossier->transitionTo('fm_def', Auth::user()->id);
+        } catch (\Throwable $th) {
+            $this->dispatch('status-transitioan-error');
+            return;
+        }
         Document::create([
             'dossier_id' => $this->dossier->id,
             'path' => 'dossiers/' . $this->dossier->numero . '/' . $fileName,
@@ -61,7 +67,6 @@ class ConfirmFeuilleMinute extends ModalComponent
 
         $this->dossier->save();
         $this->dossier->refresh();
-        $this->dossier->transitionTo('fm_def', Auth::user()->id);
         $this->dispatch('new-dossier');
         $this->dispatch('feuille-minute-confirmed');
         $this->dispatch('closeModal');
