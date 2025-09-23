@@ -149,6 +149,10 @@ class FeuilleMinute extends ModalComponent
     }
 
     public function setFeuilleMinute (){
+
+        //Todo: Check dossier caf value and articles caf sum
+
+        $this->dispatch('showModal', ConfirmFeuilleMinute::class, ['dossier' => $this->dossier]);
         
     }
 
