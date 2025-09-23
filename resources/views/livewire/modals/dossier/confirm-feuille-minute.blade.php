@@ -31,7 +31,7 @@
         $wire.on('status-transition-error', () => {
             (function () {
                 $(function () {
-                    return $.growl({
+                    return $.growl.error({
                         title: "Erreur :",
                         message: "Une erreur s'est produite lors de la transition."
                     });

@@ -54,7 +54,7 @@ class ConfirmFeuilleMinute extends ModalComponent
         try {
             $this->dossier->transitionTo('fm_def', Auth::user()->id);
         } catch (\Throwable $th) {
-            $this->dispatch('status-transitioan-error');
+            $this->dispatch('status-transition-error');
             return;
         }
         Document::create([
