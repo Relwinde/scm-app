@@ -3,12 +3,15 @@
 namespace App\Livewire\Modals\Dossier;
 
 use App\Models\Dossier;
-use Livewire\Component;
 use App\Models\Document;
 use App\Models\Repertoire;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
+use LivewireUI\Modal\ModalComponent;
 
-class ConfirmFeuilleMinute extends Component
+class ConfirmFeuilleMinute extends ModalComponent
 {
+    use WithFileUploads;
 
     public Dossier $dossier;
     public $file;
@@ -20,6 +23,11 @@ class ConfirmFeuilleMinute extends Component
 
     public function confirm()
     {
+        if (! Auth::user()->can('Confirmer une feuille minute')) {
+            $this->dispatch('not-allowed');
+            return;
+        }
+
         $this->validate([
             'file' => 'required|mimes:pdf|max:5120', // 5MB Max
         ]);

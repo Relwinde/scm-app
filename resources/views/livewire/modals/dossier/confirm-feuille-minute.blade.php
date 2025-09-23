@@ -1,12 +1,12 @@
 <div>
-    <form wire:submit.prevent="save">
+    <form wire:submit.prevent="confirm">
         <div class="card form-input-elements">
             <div class="card-header justify-content-between">
                 <h3 class="mb-0 card-title"><b>Confirmation de la feuille minute du dossier {{ $dossier->numero }}</b></h3>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-12 ">
+                    <div class="col-md-6 ">
                         <div class="mb-3">
                             <label for="formFile" class="form-label">Selectionnez la facture commerciale</label>
                             <input class="form-control" type="file" accept=".pdf" wire:model="file">
@@ -24,3 +24,11 @@
         </div>
     </form>
 </div>
+
+@script
+
+    <script>
+
+    </script>
+
+@endscript

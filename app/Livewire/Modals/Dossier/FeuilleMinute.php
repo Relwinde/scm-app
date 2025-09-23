@@ -3,6 +3,7 @@
 namespace App\Livewire\Modals\Dossier;
 
 use App\Models\Article;
+use Livewire\Attributes\On;
 use App\Models\Dossier;
 use LivewireUI\Modal\ModalComponent;
 
@@ -39,6 +40,7 @@ class FeuilleMinute extends ModalComponent
     public $quantite_supp;
     public $origin;
 
+    #[on('feuille-minute-confirmed')]
     public function render()
     {
         $articles = $this->dossier->articles()->orderBy('created_at', 'desc')->paginate(10);
@@ -152,7 +154,7 @@ class FeuilleMinute extends ModalComponent
 
         //Todo: Check dossier caf value and articles caf sum
 
-        $this->dispatch('showModal', ConfirmFeuilleMinute::class, ['dossier' => $this->dossier]);
+        $this->dispatch('openModal', ConfirmFeuilleMinute::class, ['dossier' => $this->dossier]);
         
     }
 

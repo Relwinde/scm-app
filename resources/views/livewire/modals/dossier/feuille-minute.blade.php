@@ -189,9 +189,12 @@
                 <a href="javascript:void(0);" wire:click="$dispatch('closeModal')" class="btn btn-danger">Fermer</a>
                 @if ($articles->count() > 0)
                     <a target="_blank"  href="{{route('print-feuille-minute', $dossier->id)}}" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i> Imprimer</a>
-                    @can('Confirmer une feuille minute')
-                        <a href="javascript:void(0);" wire:click="setFeuilleMinute" wire:confirm= "Êtes-vous sûr de vouloir confirmer la feuille minute ? Cette action est irréversible." class="btn btn-outline-danger">Confirmer la feuille minute</a>
-                    @endcan
+                    @if ($dossier->num_repertoire == null)
+                        @can('Confirmer une feuille minute')
+                            <a href="javascript:void(0);" wire:click="setFeuilleMinute" wire:confirm= "Êtes-vous sûr de vouloir confirmer la feuille minute ? Cette action est irréversible." class="btn btn-outline-danger">Confirmer la feuille minute</a>
+                        @endcan
+                    @endif
+                    
                 @endif 
             </div>
         </div>
