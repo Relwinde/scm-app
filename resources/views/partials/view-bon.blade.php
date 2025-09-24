@@ -13,11 +13,11 @@
     <div class="card-header">
         <div class="card-title">
             @if ($bon->etape == "EMETTEUR" && Auth::user()->id == $bon->user->id)
-                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm m-1">Envoyer au responsable</a>
+                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm m-1"> <i class="icon icon-user-following"></i> Envoyer au responsable</a>
             @elseif ($bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager'))
-                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm m-1">Envoyer au manager</a>       
+                <a wire:click='nextStep' wire:confirm="Souhaitez vous vraiment exécuter cette action?"  href="javascript:void(0);" class="btn btn-primary btn-sm m-1"><i class="fa fa-suitcase"></i> Envoyer au manager</a>       
             @elseif ($bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse au RAF'))
-                <a wire:click='nextStep' href="javascript:void(0);" class="btn btn-primary btn-sm m-1">Envoyer au RAF</a>
+                <a wire:click='nextStep' href="javascript:void(0);" class="btn btn-primary btn-sm m-1"><i class="fa fa-user-circle"></i> Envoyer au RAF</a>
             @elseif ($bon->etape == "RAF" && Auth::user()->can('Envoyer bon de caisse à la caisse'))
                 <div class="custom-controls-stacked">
                     <form wire:confirm="Souhaitez vous vraiment exécuter cette action?" wire:submit.prevent="nextStep">
@@ -35,19 +35,19 @@
                                     </label>
                                 </div>
                             </div>
-                            <button href="javascript:void(0);" class="btn btn-primary btn-sm m-1">Envoyer pour paiement</button>
+                            <button href="javascript:void(0);" class="btn btn-primary btn-sm m-1"><i class="fa fa-paper-plane"></i> Envoyer pour paiement</button>
                         </form>
                 </div>
             @elseif ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse'))
                 <a wire:click='nextStep' wire:confirm="Êtes vous sûr de vouloir payer ce bon, cette action iréversible impactera votre caisse"  href="javascript:void(0);" class="btn btn-danger btn-sm m-1"><span class="fa fa-ticket"></span> Payer</a>
             @elseif ($bon->etape == "PAYE" || $bon->etape == "CLOS" && Auth::user()->can('Payer bon de caisse'))
-                <a target="_blank"  href="{{route('print-bon', $bon->id)}}" class="btn btn-primary btn-sm m-1">Imprimer le reçu</a>      
+                <a target="_blank"  href="{{route('print-bon', $bon->id)}}" class="btn btn-primary btn-sm m-1"><i class="fa fa-file mb-0"></i> Imprimer le reçu</a>      
             @endif
             @if ($bon->etape == "PAYE" && $bon->type_paiement == "ESPECE" && Auth::user()->can('Effectuer un ajustement de bon'))
                 <a wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.create-ajustement', arguments: { bon : {{ $bon->id }} }})" href="javascript:void(0);" class="btn btn-danger btn-sm m-1"><span class="fa fa-ticket"></span> Ajuster le bon</a>      
             @endif
             @if ($bon->etape == "PAYE" && Auth::user()->can('Clore un bon'))
-                <a wire:click="close" href="javascript:void(0);" class="btn btn-danger btn-sm m-1" wire:confirm="Êtes vous sûr de vouloir clore ce bon, vous ne pourrez plus effectuer d'ajustement">Clore ce bon</a>      
+                <a wire:click="close" href="javascript:void(0);" class="btn btn-danger btn-sm m-1" wire:confirm="Êtes vous sûr de vouloir clore ce bon, vous ne pourrez plus effectuer d'ajustement"><i class="fa fa-lock"></i> Clore ce bon</a>      
             @endif
             @if ($similarBons == true && Auth::user()->can('Voir les alertes de doublons de bons de caisse'))
                 <span class="alert-inner--icon">
@@ -238,7 +238,7 @@
         </div>
         @if (($bon->etape == "RESPONSABLE" && Auth::user()->can('Envoyer bon de caisse au manager') && Auth::user()->can('Retourner bon de caisse')) || ($bon->etape == "MANAGER" && Auth::user()->can('Envoyer bon de caisse au RAF') && Auth::user()->can('Retourner bon de caisse')) || ($bon->etape == "RAF" && Auth::user()->can('Envoyer bon de caisse à la caisse') && Auth::user()->can('Retourner bon de caisse')) || ($bon->etape == "CAISSE" && Auth::user()->can('Payer bon de caisse') && Auth::user()->can('Retourner bon de caisse')))
             <a wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.return-bon', arguments: { bon : {{ $bon->id }} }})"  href="javascript:void(0);" class="btn btn-warning btn-sm m-1">
-                        Retourner le bon  
+                        <i class="fa fa-mail-reply mb-0"></i> Retourner le bon  
                     </a>
         @endif
         

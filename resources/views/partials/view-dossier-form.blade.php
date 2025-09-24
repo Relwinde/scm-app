@@ -279,7 +279,7 @@
 
 @script
     <script>
-        $wire.on('new-dossier', () => {
+        $wire.on('update-dossier', () => {
             (function () {
                 $(function () {
                     return $.growl({

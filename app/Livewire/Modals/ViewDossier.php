@@ -127,7 +127,7 @@ class ViewDossier extends ModalComponent
                     'dossier_id'=>$this->dossier->id,
                     'numero'=>$this->dossier->numero
                 ]);
-                $this->dispatch('new-dossier');
+                $this->dispatch('update-dossier');
                 $this->edit=false;
             }else{
                 $this->dispatch('error');
@@ -135,7 +135,7 @@ class ViewDossier extends ModalComponent
         } else {
             if($this->dossier->save()){
             
-            $this->dispatch('new-dossier');
+            $this->dispatch('update-dossier');
             $this->edit=false;
             }else{
                 $this->dispatch('error');
@@ -207,14 +207,26 @@ class ViewDossier extends ModalComponent
             $this->value_error = true;
         }
         else {
-            $this->value_error = false;
-            if (($this->dossier->status?->code == 'ssi') || $this->dossier->dossier_status_id == null) {
-                $this->dossier->transitionTo('cod', Auth::user()->id);
-                $this->dossier->save();
-            }
-            $this->dispatch('openModal', FeuilleMinute::class, ['dossier' => $this->dossier->id]);
+                $this->value_error = false;
+                if (($this->dossier->status?->code == 'ssi') || $this->dossier->dossier_status_id == null) {
+                    try {
+                        $this->dossier->transitionTo('cod', Auth::user()->id);
+                        $this->dispatch('update-dossier');
+                        $this->dossier->save();
+                        $this->dispatch('openModal', FeuilleMinute::class, ['dossier' => $this->dossier->id]);
 
+                    } catch (\Exception $e) {
+                        $this->dispatch('error');
+                        return;
+                    }
+                } 
+                else{
+                    $this->dispatch('openModal', FeuilleMinute::class, ['dossier' => $this->dossier->id]);
+                }
+            }
+
+           
         }
-    }
+    
     
 }

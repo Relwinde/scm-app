@@ -43,7 +43,7 @@ class FeuilleMinute extends ModalComponent
     #[on('feuille-minute-confirmed')]
     public function render()
     {
-        $articles = $this->dossier->articles()->orderBy('created_at', 'desc')->paginate(10);
+        $articles = $this->dossier->articles()->orderBy('created_at', 'asc')->paginate(10);
         return view('livewire.modals.dossier.feuille-minute', compact('articles'));
     }
 

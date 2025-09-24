@@ -25,6 +25,7 @@ class DossiersExport extends Component
     }
 
     #[On('new-dossier')]
+    #[On('update-dossier')]
     public function render()
     {
         if (! Auth::user()->can('Voir la liste des dossiers exports')){

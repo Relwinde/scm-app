@@ -17,7 +17,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de Commande<span class="required">*</span></label>
-                        <input wire:focusout='checkPartial' required wire:model='num_commande' type="text" class="form-control" placeholder="N° de Commande">
+                        <input wire:focusout='checkPartial' required wire:model='num_commande' type="text" class="form-control" placeholder="Ecrire 'na' 'NA' 'nba' ou 'NBA' si non applicable" name="num_commande">
                         @if ($isPartial)
                             <div class="error-message">Bon de commande trouvé: ce dossier sera un partiel</div>
                         @endif

@@ -102,42 +102,42 @@
                                   {{$article->code}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input wire:change="calculateEdit" type="text" name="fob_xof" id="fob_xof" wire:model.live="edit_fob_xof">
+                                    <input wire:change="calculateEdit" type="number" name="fob_xof" id="fob_xof" wire:model.live="edit_fob_xof">
                                 @else
                                   {{$article->fob_xof}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input wire:keydown="calculateEdit" type="text" name="fob_devis" id="fob_devis" wire:model.live="edit_fob_devis">
+                                    <input wire:keydown="calculateEdit" type="number" name="fob_devis" id="fob_devis" wire:model.live="edit_fob_devis">
                                 @else
                                   {{$article->fob_devis}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input wire:keydown="calculateEdit" type="text" name="fret" id="fret" wire:model.live="edit_fret">
+                                    <input wire:keydown="calculateEdit" type="number" name="fret" id="fret" wire:model.live="edit_fret">
                                 @else
                                   {{$article->fret}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input wire:keydown="calculateEdit" type="text" name="autres_frais" id="autres_frais" wire:model.live="edit_autres_frais">
+                                    <input wire:keydown="calculateEdit" type="number" name="autres_frais" id="autres_frais" wire:model.live="edit_autres_frais">
                                 @else
                                   {{$article->autres_frais}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input wire:keydown="calculateEdit" type="text" name="assurance" id="assurance" wire:model.live="edit_assurance">
+                                    <input wire:keydown="calculateEdit" typnumber" name="assurance" id="assurance" wire:model.live="edit_assurance">
                                 @else
                                   {{$article->assurance}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input type="text" name="caf" id="caf" wire:model.live="edit_caf">
+                                    <input type="number" name="caf" id="caf" wire:model.live="edit_caf">
                                 @else
                                   {{$article->caf}}   
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input type="text" name="poids_brut" id="poids_brut" wire:model="edit_poids_brut">
+                                    <input type="number" name="poids_brut" id="poids_brut" wire:model="edit_poids_brut">
                                 @else
                                   {{$article->poids_brut}}
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input type="text" name="poids_net" id="poids_net" wire:model="edit_poids_net">
+                                    <input type="number" name="poids_net" id="poids_net" wire:model="edit_poids_net">
                                 @else
                                   {{$article->poids_net}}  
                                 @endif</td>
