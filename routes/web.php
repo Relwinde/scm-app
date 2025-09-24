@@ -70,7 +70,7 @@ Route::get('/print-dossier/{dossier}', function (Dossier $dossier){
 Route::get('/print-feuille-minute/{dossier}', function (Dossier $dossier){
     if ($dossier->valeur_caf == null || $dossier->fob_xof == null || $dossier->fret == null || $dossier->assurance == null || $dossier->autre_frais == null){
             return redirect('dossiers-import');
-            App\Models\Dossier::getEventDispatcher()->dispatch('feuille-minute-novalue');
+            // App\Models\Dossier::getEventDispatcher()->dispatch('feuille-minute-novalue');
         }
     else {
         $dossier->print_feuille_minute();

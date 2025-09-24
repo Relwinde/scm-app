@@ -200,3 +200,15 @@
         </div>
     </div>
 </div>
+
+
+@script
+    <script>
+         $wire.on('print-feuille-minute', () => {
+            (function () {
+               window.open("{{route('print-feuille-minute', $dossier->id)}}", "_blank");
+            }).call(this);
+        });
+    </script>
+
+@endscript

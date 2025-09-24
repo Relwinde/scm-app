@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Modals\Dossier;
 
+use Exception;
 use App\Models\Article;
-use Livewire\Attributes\On;
 use App\Models\Dossier;
+use Livewire\Attributes\On;
+use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 
 class FeuilleMinute extends ModalComponent
@@ -199,6 +201,20 @@ class FeuilleMinute extends ModalComponent
 
         $this->edit = false;
         $this->editId = null;
+    }
+
+    public function print (){
+
+        if ($this->dossier->status->code =="cod"){
+            try {
+                $this->transitionTo('fm_prov', Auth::user()->id);  
+            } catch (Exception $e) {
+                
+            }
+
+            $this->dispatch('print-feuille-minute');
+        }
+
     }
 
     public static function destroyOnClose(): bool

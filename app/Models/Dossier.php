@@ -200,8 +200,6 @@ class Dossier extends Model
 
         $html = view('prints.feuille-minute', ['dossier'=>$this]);
         $mpdf->writeHTML($html);
-
-        $this->transitionTo('fm_prov', Auth::user()->id);
         $mpdf->Output($name = 'Feuille-minute-'.$this->numero.'.pdf', 'I');
     }
 
