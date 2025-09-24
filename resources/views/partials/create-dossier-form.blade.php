@@ -28,7 +28,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de Facture</label>
-                        <input wire:model='num_facture' type="text" class="form-control" placeholder="N° de Facture" name="num_facture">
+                        <input wire:model='num_facture' type="text" class="form-control" placeholder="N° de Facture (Séparer les numéros par des espaces)" name="num_facture">
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Nature du colis<span class="required">*</span></label>

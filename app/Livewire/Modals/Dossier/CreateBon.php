@@ -42,7 +42,7 @@ class CreateBon extends ModalComponent
             'montant.min'=>'Le montant doit être supérieur ou égal à 1',
             'depense.required'=>'Le type de dépense est obligatoire',
             'depense.string'=>'Le type de dépense doit être une chaîne de caractères',
-            'depense.max'=>'Le type de dépense ne doit pas dépasser 40 caractères',
+            'depense.max'=>'L\'intitulé de la dépense ne doit pas dépasser 40 caractères',
             'description.string'=>'La description doit être une chaîne de caractères',
         ]);
 
