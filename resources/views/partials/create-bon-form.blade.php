@@ -66,6 +66,7 @@
                     <div class="mb-4">
                         <label class="form-label">Montant<span class="required">*</span></label>
                         <input wire:focusout='reformat_montant()' required wire:model='montant' type="text" class="form-control"  placeholder="Montant">
+                        @error('montant') <div class="error-message"> {{ $message }} </div> @enderror
                         
                     </div>
                 </div>
@@ -73,6 +74,7 @@
                     <div class="mb-4">
                         <label class="form-label">Intitulé de la dépense<span class="required">*</span></label>
                         <input required wire:model='depense' type="text" class="form-control"  placeholder="Dépense engagée">
+                        @error('depense') <div class="error-message"> {{ $message }} </div> @enderror
                     </div>
                 </div>
 
@@ -80,6 +82,7 @@
                     <div class="mb-0">
                         <label class="form-label">Commentaire</label>
                         <textarea wire:model='description' class="form-control" rows="2" placeholder="Votre commentaire ici.."></textarea>
+                        @error('description') <div class="error-message"> {{ $message }} </div> @enderror
                     </div>
                 </div>
             </div>
