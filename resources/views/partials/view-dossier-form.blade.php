@@ -295,7 +295,7 @@
                 $(function () {
                     return $.growl.warning({
                         title: "Succès :",
-                        message: "Une erreur est survenue"
+                        message: "Une erreur est survenue, veuillez réessayez !"
                     });
                 });
             }).call(this);

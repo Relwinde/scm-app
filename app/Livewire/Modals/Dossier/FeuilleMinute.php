@@ -71,37 +71,37 @@ class FeuilleMinute extends ModalComponent
     }
 
     public function calculate (){
-        $portion = $this->fob_xof / $this->dossier->fob_xof;
+        $portion = floatval($this->fob_xof) / floatval($this->dossier->fob_xof);
 
-        $value = $portion * $this->dossier->fob_devis;
+        $value = $portion * floatval($this->dossier->fob_devis);
         $decimal = $value - floor($value);
         $this->fob_devis = $decimal >= 0.5 ? ceil($value) : floor($value);
 
-        $value = $portion * $this->dossier->poids;
+        $value = $portion * floatval($this->dossier->poids);
         $decimal = $value - floor($value);
         $this->poids_net = $decimal >= 0.5 ? ceil($value) : floor($value);
 
-        $value = $portion * $this->dossier->poids;
+        $value = $portion * floatval($this->dossier->poids);
         $decimal = $value - floor($value);
         $this->poids_brut = $decimal >= 0.5 ? ceil($value) : floor($value);
 
-        $value = $portion * $this->dossier->fret;
+        $value = $portion * floatval($this->dossier->fret);
         $decimal = $value - floor($value);
         $this->fret = $decimal >= 0.5 ? ceil($value) : floor($value);
 
-        $value = $portion * $this->dossier->assurance;
+        $value = $portion * floatval($this->dossier->assurance);
         $decimal = $value - floor($value);
         $this->assurance = $decimal >= 0.5 ? ceil($value) : floor($value);
 
-        $value = $portion * $this->dossier->autre_frais;
+        $value = $portion * floatval($this->dossier->autre_frais);
         $decimal = $value - floor($value);
         $this->autres_frais = $decimal >= 0.5 ? ceil($value) : floor($value);
-        
-        $this->caf =  $this->fob_xof + $this->fret + $this->assurance + $this->autres_frais;
+
+        $this->caf =  floatval($this->fob_xof) + floatval($this->fret) + floatval($this->assurance) + floatval($this->autres_frais);
     }
 
     public function calculateEdit (){
-        $this->edit_caf =  $this->edit_fob_xof + $this->edit_fret + $this->edit_assurance + $this->edit_autres_frais;
+        $this->edit_caf =  floatval($this->edit_fob_xof) + floatval($this->edit_fret) + floatval($this->edit_assurance) + floatval($this->edit_autres_frais);
     }
 
     public function createArticle (){
