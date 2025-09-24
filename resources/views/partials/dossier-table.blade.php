@@ -20,14 +20,14 @@
                     <th class="wd-20p border-bottom-0"><b>N° de commande</b></th>
                     <th class="wd-15p border-bottom-0"><b>Date de création</b></th>
                     <th class="wd-10p border-bottom-0"><b>N° de déclaration</b></th>
-                    <th class="wd-10p border-bottom-0"><b>Status</b></th>
+                    {{-- <th class="wd-10p border-bottom-0"><b>Status</b></th> --}}
                     <th class="wd-25p border-bottom-0"><b>Actions</b></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($dossiers as $dossier)
                     <tr style="font-weight:600;" wire:key='{{$dossier->id}}'>
-                        <td wire:click="$dispatch('openModal', {component: 'modals.view-dossier', arguments: { dossier : {{ $dossier->id }} }})" style="cursor:pointer;"> {{$dossier->numero}}</td>
+                        <td wire:click="$dispatch('openModal', {component: 'modals.view-dossier', arguments: { dossier : {{ $dossier->id }} }})" style="cursor:pointer;"> <h1>{{$dossier->numero}} </h1> <h6 class="text-primary" style="font-size: 13px;">{{ mb_strtoupper($dossier->status?->name, 'UTF-8') }}</h6></td>
                         <td>{{$dossier->client->nom}}</td>
                         <td>{{$dossier->fournisseur}}</td>
                         <td>{{$dossier->num_lta_bl}}</td>
@@ -35,7 +35,12 @@
                         <td>{{$dossier->num_commande}}</td>
                         <td>{{$dossier->created_at->locale(app()->getLocale())->translatedFormat('j F Y') }}</td>
                         <td>{{$dossier->num_declaration}}</td>
-                        <td>{{ mb_strtoupper($dossier->status?->name, 'UTF-8') }}</td>
+                        {{-- <td>
+                            <div class="mt-sm-1 d-block">
+                                <span
+                                    class="badge bg-success rounded-pill p-2 px-3">{{ mb_strtoupper($dossier->status?->name, 'UTF-8') }}</span>
+                            </div>
+                        </td> --}}
                         <td name="bstable-actions">
                             <div class="btn-list">
                                 {{-- <button id="bEdit" type="button" class="btn btn-sm btn-primary">

@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-4">
                 @can('Effectuer un dépôt')
-                    <button wire:click="$dispatch('openModal', {component: 'modals.create-depot'})" class="btn btn-primary m-4"><i class="fa fa-dollar text-white"></i> Effectuer un dépôt</button>
+                    <button wire:click="$dispatch('openModal', {component: 'modals.create-depot'})" class="btn btn-primary m-4"><i class="fa fa-dollar text-white"></i><i class="fa fa-level-down text-white"></i> Effectuer un dépôt</button>
                 @endcan
             </div>
         </div>
