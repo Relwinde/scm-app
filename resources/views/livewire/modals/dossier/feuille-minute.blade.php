@@ -102,7 +102,7 @@
                                   {{$article->code}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input wire:change="calculateEdit" type="number" name="fob_xof" id="fob_xof" wire:model.live="edit_fob_xof">
+                                    <input wire:keydown="calculateEdit" type="number" name="fob_xof" id="fob_xof" wire:model.live="edit_fob_xof">
                                 @else
                                   {{$article->fob_xof}}  
                                 @endif</td>
@@ -188,7 +188,7 @@
             <div class="btn-list">
                 <a href="javascript:void(0);" wire:click="$dispatch('closeModal')" class="btn btn-danger">Fermer</a>
                 @if ($articles->count() > 0)
-                    <a target="_blank"  href="{{route('print-feuille-minute', $dossier->id)}}" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i> Imprimer</a>
+                    <button wire:click="print()" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i> Imprimer</button>
                     @if ($dossier->num_repertoire == null)
                         @can('Confirmer une feuille minute')
                             <a href="javascript:void(0);" wire:click="setFeuilleMinute" wire:confirm= "Êtes-vous sûr de vouloir confirmer la feuille minute ? Cette action est irréversible." class="btn btn-outline-danger">Confirmer la feuille minute</a>
@@ -207,6 +207,17 @@
          $wire.on('print-feuille-minute', () => {
             (function () {
                window.open("{{route('print-feuille-minute', $dossier->id)}}", "_blank");
+            }).call(this);
+        });
+
+        $wire.on('status-transition-error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        title: "Erreur :",
+                        message: "Une erreur s'est produite lors de la transition."
+                    });
+                });
             }).call(this);
         });
     </script>

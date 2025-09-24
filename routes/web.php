@@ -21,6 +21,7 @@ use App\Livewire\Outils\Destination;
 use App\Livewire\Outils\Fournisseur;
 use App\Livewire\Outils\Marchandise;
 use App\Livewire\TransportsInternes;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Outils\BureauDeDouane;
 use App\Models\BonDeCaisse as ModelsBonDeCaisse;
@@ -68,6 +69,11 @@ Route::get('/print-dossier/{dossier}', function (Dossier $dossier){
 })->name('print-dossier')->middleware("auth");
 
 Route::get('/print-feuille-minute/{dossier}', function (Dossier $dossier){
+
+    if (! Auth::user()->can('Etablir la feuille minute')) {
+        return redirect("/");
+    }
+
     if ($dossier->valeur_caf == null || $dossier->fob_xof == null || $dossier->fret == null || $dossier->assurance == null || $dossier->autre_frais == null){
             return redirect('dossiers-import');
             // App\Models\Dossier::getEventDispatcher()->dispatch('feuille-minute-novalue');

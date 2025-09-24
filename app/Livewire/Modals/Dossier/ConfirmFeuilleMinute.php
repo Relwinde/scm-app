@@ -67,7 +67,7 @@ class ConfirmFeuilleMinute extends ModalComponent
 
         $this->dossier->save();
         $this->dossier->refresh();
-        $this->dispatch('new-dossier');
+        $this->dispatch('update-dossier');
         $this->dispatch('feuille-minute-confirmed');
         $this->dispatch('closeModal');
 

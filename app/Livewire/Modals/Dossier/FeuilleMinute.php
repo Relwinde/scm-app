@@ -207,13 +207,18 @@ class FeuilleMinute extends ModalComponent
 
         if ($this->dossier->status->code =="cod"){
             try {
-                $this->transitionTo('fm_prov', Auth::user()->id);  
+                $this->dossier->transitionTo('fm_prov', Auth::user()->id);  
+                $this->dispatch('update-dossier');
+                $this->dispatch('print-feuille-minute');
             } catch (Exception $e) {
-                
+                $this->dispatch('status-transition-error');
+                return;
             }
-
+        }
+        else {
             $this->dispatch('print-feuille-minute');
         }
+
 
     }
 
