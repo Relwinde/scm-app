@@ -33,7 +33,7 @@ class DossiersImport extends Component
             redirect("/");
         }
 
-        $dossiers = Dossier::select(['dossiers.id', 'dossiers.numero', 'dossiers.num_lta_bl', 'dossiers.num_sylvie', 'dossiers.num_commande', 'dossiers.created_at', 'dossiers.num_declaration', 'dossiers.client_id', 'dossiers.fournisseur', 'dossiers.dossier_status_id'])
+        $dossiers = Dossier::select(['dossiers.id', 'dossiers.numero', 'dossiers.num_lta_bl', 'dossiers.num_sylvie', 'dossiers.num_commande', 'dossiers.created_at', 'dossiers.num_declaration', 'dossiers.client_id', 'dossiers.fournisseur', 'dossiers.dossier_status_id', 'dossiers.regime'])
             ->join('clients', 'dossiers.client_id', '=', 'clients.id') 
             ->join('numero_dossiers', 'dossiers.id', '=', 'numero_dossiers.dossier_id') 
             ->where('dossiers.type', 'IMPORT') 

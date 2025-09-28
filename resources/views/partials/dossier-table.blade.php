@@ -27,7 +27,21 @@
             <tbody>
                 @foreach ($dossiers as $dossier)
                     <tr style="font-weight:600;" wire:key='{{$dossier->id}}'>
-                        <td wire:click="$dispatch('openModal', {component: 'modals.view-dossier', arguments: { dossier : {{ $dossier->id }} }})" style="cursor:pointer;"> <h1>{{$dossier->numero}} </h1> <h6 class="text-primary" style="font-size: 13px;">{{ mb_strtoupper($dossier->status?->name, 'UTF-8') }}</h6></td>
+                        <td wire:click="$dispatch('openModal', {component: 'modals.view-dossier', arguments: { dossier : {{ $dossier->id }} }})" style="cursor:pointer;"> <h1>{{$dossier->numero}} 
+                            @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def']) && !$dossier->hasPassedThroughAny (['eng_dep']))
+                                <span data-bs-toggle="tooltip" data-bs-placement="top" title="Ce dossier est en attente d'enregistrement et de dépôt en douane" class="alert-inner--icon">
+                                <i class="fe fe-info" style="font-size: 1.5em; animation: flash 1s infinite alternate;"></i>
+                                </span>
+                                <style> 
+                                    @keyframes flash {
+                                        0% { opacity: 1; }
+                                        50% { opacity: 0.2; }
+                                        100% { opacity: 1; }
+                                    }
+                                </style>
+                            @endif
+                        
+                        </h1> <h6 class="text-primary" style="font-size: 13px;">{{ mb_strtoupper($dossier->status?->name, 'UTF-8') }}</h6></td>
                         <td>{{$dossier->client->nom}}</td>
                         <td>{{$dossier->fournisseur}}</td>
                         <td>{{$dossier->num_lta_bl}}</td>

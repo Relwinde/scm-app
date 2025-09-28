@@ -44,6 +44,7 @@ class ViewDossier extends ModalComponent
 
     public $edit = false;
     public $value_error = false;
+    public $declaration_error = false;
 
     public function mount(){
         $this->num_commande = $this->dossier->num_commande;
@@ -235,6 +236,7 @@ class ViewDossier extends ModalComponent
             }
 
             if ($this->dossier->num_declaration == null || $this->dossier->num_declaration == ''){
+                $this->declaration_error = true;
                 $this->dispatch('declaration-error');
                 return;
             }
@@ -247,6 +249,14 @@ class ViewDossier extends ModalComponent
                 $this->dispatch('status-transition-error');
                 return;
             }
+        }
+
+        public function uploadBae (){
+            if(! Auth::user()->can('Charger le BAE')){
+                $this->dispatch('not-allowed');
+                return;
+            }
+            $this->dispatch('openModal', 'modals.dossier.upload-bae', ['dossier' => $this->dossier->id]);
         }
     
     

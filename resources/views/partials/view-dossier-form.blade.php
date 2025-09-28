@@ -47,13 +47,33 @@
                 @endif  wire:click="feuilleMinute" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text-o"></i> Feuille minute</a>  
             @endcan
         </div>
-        @if ($dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def']) && !$dossier->hasPassedThroughAny (['eng_dep']))
+        @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def']) && !$dossier->hasPassedThroughAny (['eng_dep']))
             <div class="card-title m-2">
                 @can('Enregistrer & déposer dossiers en douane')
-                    <a wire:click='confirmDeposit' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Confirmer le dépôt en douane</a>
+                    <a wire:click='confirmDeposit' href="javascript:void(0);" class="btn btn-sm btn-outline-primary"> @if ($declaration_error)
+                        <span class="alert-inner--icon">
+                        <i class="fe fe-info" style="font-size: 1.5em; animation: flash 1s infinite alternate;"></i>
+                        </span>
+                        <style> 
+                            @keyframes flash {
+                                0% { opacity: 1; }
+                                50% { opacity: 0.2; }
+                                100% { opacity: 1; }
+                            }
+                        </style>
+                    @endif Confirmer le dépôt en douane</a>
                 @endcan
             </div>
         @endif
+
+        @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'eng_dep']) && !$dossier->hasPassedThroughAny (['bae']))
+            <div class="card-title m-2">
+                @can('Enregistrer & déposer dossiers en douane')
+                    <a wire:click='uploadBae' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BAE</a>
+                @endcan
+            </div>
+        @endif
+
         <div class="card-title m-2">
             @can('Créer bons de caisse')
                 <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-bon', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-warning"><i class="fa fa-money"></i> Créer un bon</a>  
@@ -326,6 +346,39 @@
                 $(function () {
                     return $.growl.error({
                         message: "Action non autorisée."
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('deposit-confirmed', () => {
+            (function () {
+                $(function () {
+                    return $.growl({
+                        title: "Succès :",
+                        message: "Le dépôt en douane a été confirmé."
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('declaration-error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        title: "Erreur :",
+                        message: "Le numéro de déclaration est obligatoire pour valider cette étape."
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('status-transition-error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        title: "Erreur de statut",
+                        message: "Le dossier ne peut pas passer au statut suivant. Veuillez vérifier le statut actuel du dossier et les conditions requises pour la transition."
                     });
                 });
             }).call(this);

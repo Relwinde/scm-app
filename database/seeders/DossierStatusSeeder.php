@@ -33,5 +33,9 @@ class DossierStatusSeeder extends Seeder
             'name' => 'Enregistré & Déposé',
             'code' => 'eng_dep'
         ]);
+        DossierStatus::create([
+            'name' => 'En cours de livraison',
+            'code' => 'bae'
+        ]);
     }
 }

@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\DossierStatus;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
+use App\Models\DossierStatusTransaction;
 
 class DatabaseSeeder extends Seeder
 {
@@ -32,6 +34,6 @@ class DatabaseSeeder extends Seeder
         Permission::create(['name'=> 'Confirmer une feuille minute']);
         Permission::create(['name'=> 'Modifier une feuille minute confirmée']);
         Permission::create(['name'=>'Enregistrer & déposer dossiers en douane']);
-
+        Permission::create(['name'=>'Charger le BAE']);
     }
 }
