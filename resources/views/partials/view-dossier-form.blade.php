@@ -47,6 +47,13 @@
                 @endif  wire:click="feuilleMinute" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text-o"></i> Feuille minute</a>  
             @endcan
         </div>
+        @if ($dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def']) && !$dossier->hasPassedThroughAny (['eng_dep']))
+            <div class="card-title m-2">
+                @can('Enregistrer & déposer dossiers en douane')
+                    <a wire:click='confirmDeposit' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Confirmer le dépôt en douane</a>
+                @endcan
+            </div>
+        @endif
         <div class="card-title m-2">
             @can('Créer bons de caisse')
                 <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-bon', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-warning"><i class="fa fa-money"></i> Créer un bon</a>  

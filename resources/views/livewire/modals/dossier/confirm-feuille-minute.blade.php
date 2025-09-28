@@ -8,8 +8,17 @@
                 <div class="row">
                     <div class="col-md-6 ">
                         <div class="mb-3">
+                            <label for="formFile" class="form-label">Selectionnez le régime douanier</label>
+                            <select class="form-control" wire:model="regime" required>
+                                <option value="" selected>-- Selectionnez le régime --</option>
+                                <option value="TTC">TTC</option>
+                                <option value="EXO">EXO</option>
+                            </select>
+                            @error('regime')<div class="error-message"> {{ $message }} </div>@enderror
+                        </div>
+                        <div class="mb-3">
                             <label for="formFile" class="form-label">Selectionnez la facture commerciale</label>
-                            <input class="form-control" type="file" accept=".pdf" wire:model="file">
+                            <input class="form-control" type="file" accept=".pdf" wire:model="file" required>
                             @error('file')<div class="error-message"> {{ $message }} </div>@enderror
                         </div>
                     </div>

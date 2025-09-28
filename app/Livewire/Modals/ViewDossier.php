@@ -227,6 +227,27 @@ class ViewDossier extends ModalComponent
 
            
         }
+
+        public function confirmDeposit (){
+            if(! Auth::user()->can('Enregistrer & déposer dossiers en douane')){
+                $this->dispatch('not-allowed');
+                return;
+            }
+
+            if ($this->dossier->num_declaration == null || $this->dossier->num_declaration == ''){
+                $this->dispatch('declaration-error');
+                return;
+            }
+            try {
+                $this->dossier->transitionTo('eng_dep', Auth::user()->id);
+                $this->dispatch('update-dossier');
+                $this->dispatch('deposit-confirmed');
+    
+            } catch (\Exception $e) {
+                $this->dispatch('status-transition-error');
+                return;
+            }
+        }
     
     
 }

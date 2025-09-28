@@ -37,5 +37,9 @@ class DossierStatusTransactionSeeder extends Seeder
             'from_status_id' => 3, // FM Provisoire
             'to_status_id' => 4    // FM Définitive
         ]);
+         DossierStatusTransaction::create([
+            'from_status_id' => 3, // FM Provisoire
+            'to_status_id' => 5    // FM Définitive
+        ]);
     }
 }

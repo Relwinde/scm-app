@@ -220,6 +220,28 @@
                 });
             }).call(this);
         });
+
+        $wire.on('not-allowed', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        title: "Action non autorisée :",
+                        message: "Vous n'avez pas la permission d'effectuer cette action."
+                    });
+                });
+            }).call(this);
+        });
+        $wire.on('caf-error', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        title: "Erreur de CAF :",
+                        message: "La valeur CAF du dossier ne correspond pas à la somme des CAF des articles.",
+                        duration: 10000,
+                    });
+                });
+            }).call(this);
+        });
     </script>
 
 @endscript

@@ -71,7 +71,7 @@
             @if ($bon->manager_validation_comment() && Auth::user()->can('Voir le commentaire de validation du manager'))
                 @if ($bon->manager_validation_comment()->manager_validation_comment)
                     <div>
-                        <span class="custom-control-label" style="color: red;"> <b>Commentaire de validation du manager : </b></span>
+                        <span class="custom-control-label" style="color: red;"> <b>Commentaire de validation du manager: </b></span>
                     </div>
                     <div class="alert alert-primary" > 
                         {{$bon->manager_validation_comment()->user->name}}:  
@@ -121,7 +121,7 @@
             <div class="col-sm-6 col-lg-4 col-md-4 ">
                 <div class="card">
                     <div class="card-body">
-                        <h4>{{$bon->dossier ? "Dossier" : ($bon->transport ? "Dossier" : ($bon->vehicule ? "Véhicule" : "Dossier"))}}</h4>
+                        <h4>{{$bon->dossier ? "Dossier:" : ($bon->transport ? "Dossier:" : ($bon->vehicule ? "Véhicule" : "Dossier"))}}</h4>
                         <h1 class="mb-1 number-font" style="font-size: 17px;">{{$bon->dossier->numero ?? $bon->transport->numero ??  $bon->vehicule->immatriculation ?? "AUTRES"}}</h1>
                     </div>
                 </div>

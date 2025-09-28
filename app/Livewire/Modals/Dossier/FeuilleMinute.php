@@ -154,7 +154,15 @@ class FeuilleMinute extends ModalComponent
 
     public function setFeuilleMinute (){
 
-        //Todo: Check dossier caf value and articles caf sum
+        if( !Auth::user()->can('Confirmer une feuille minute')){
+            $this->dispatch('not-allowed');
+            return;
+        }
+
+        if($this->dossier->valeur_caf != $this->dossier->articles->sum('caf')){
+            $this->dispatch('caf-error');
+            return;
+        }
 
         $this->dispatch('openModal', ConfirmFeuilleMinute::class, ['dossier' => $this->dossier]);
         

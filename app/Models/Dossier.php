@@ -98,6 +98,34 @@ class Dossier extends Model
         ]);
     }
 
+    public function statusHistories(){
+        return $this->hasMany(DossierStatusHistory::class);
+    }
+
+    public function hasPassedThrough (array $statusCodes): bool {
+        $codes = $this->statusHistories()
+            ->join('dossier_status', 'dossier_status.id', '=', 'dossier_status_history.to_status_id')
+            ->pluck('dossier_status.code')
+            ->toArray();
+
+        return collect($statusCodes)->every(fn($code) => in_array($code, $codes));
+    }
+
+    public function hasPassedThroughAny (array $statusCodes): bool {
+        $codes = $this->statusHistories()
+            ->join('dossier_status', 'dossier_status.id', '=', 'dossier_status_history.to_status_id')
+            ->pluck('dossier_status.code')
+            ->toArray();
+
+        return collect($statusCodes)->contains(fn($code) => in_array($code, $codes));
+    }
+
+    public function documents(){
+        return $this->hasMany(Document::class);
+    }
+
+
+
     public function delivery_slip(){
         return $this->hasOne(DeliverySlip::class);
     }

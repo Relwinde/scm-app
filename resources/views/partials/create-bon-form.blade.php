@@ -73,7 +73,7 @@
                 <div class="col-md-6">
                     <div class="mb-4">
                         <label class="form-label">Intitulé de la dépense<span class="required">*</span></label>
-                        <input required wire:model='depense' type="text" class="form-control"  placeholder="Dépense engagée">
+                        <input required wire:model='depense' type="text" class="form-control"  placeholder="Dépense engagée (40 caractères au maximum)">
                         @error('depense') <div class="error-message"> {{ $message }} </div> @enderror
                     </div>
                 </div>

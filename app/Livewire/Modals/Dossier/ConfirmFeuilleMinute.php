@@ -15,6 +15,7 @@ class ConfirmFeuilleMinute extends ModalComponent
 
     public Dossier $dossier;
     public $file;
+    public $regime;
 
     public function render()
     {
@@ -30,6 +31,13 @@ class ConfirmFeuilleMinute extends ModalComponent
 
         $this->validate([
             'file' => 'required|mimes:pdf|max:5120', // 5MB Max
+            'regime' => 'required|in:TTC,EXO',
+        ],[
+            'file.required' => 'Le fichier est obligatoire',
+            'file.mimes' => 'Le fichier doit être un fichier PDF',
+            'file.max' => 'Le fichier ne doit pas dépasser 5MB',
+            'regime.required' => 'Le régime douanier est obligatoire',
+            'regime.in' => 'Le régime douanier doit être TTC ou EXO',
         ]);
 
         $repertoire = \App\Models\Repertoire::firstOrCreate(
@@ -42,14 +50,12 @@ class ConfirmFeuilleMinute extends ModalComponent
             ]
         );
         $repertoire->last_number += 1;
-        $repertoire->save();
 
         $this->dossier->num_repertoire = $this->dossier->bureau_de_douane->code.'-'.$repertoire->year . '/' . str_pad($repertoire->last_number, 5, '0', STR_PAD_LEFT);
 
         $originalName = strtoupper(preg_replace('/\.pdf$/i', '', $this->file->getClientOriginalName()));
         $fileName = 'FACTURE_COMMERCIALE_' . $this->dossier->num_repertoire . $this->file->getClientOriginalExtension();
         
-        $this->file->storeAs('attachments/dossiers/' . $this->dossier->numero, $fileName);
         
         try {
             $this->dossier->transitionTo('fm_def', Auth::user()->id);
@@ -64,7 +70,10 @@ class ConfirmFeuilleMinute extends ModalComponent
             'user_id' => auth()->id(),
             'size' => $this->file->getSize(),
         ]);
+        $this->file->storeAs('attachments/dossiers/' . $this->dossier->numero, $fileName);
 
+        $repertoire->save();
+        $this->dossier->regime = $this->regime;
         $this->dossier->save();
         $this->dossier->refresh();
         $this->dispatch('update-dossier');

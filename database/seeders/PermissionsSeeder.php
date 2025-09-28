@@ -147,8 +147,9 @@ class PermissionsSeeder extends Seeder
         // Permission de feuille minute
             Permission::create(['name'=> 'Etablir la feuille minute']);
 
-
-
+        // Permission étape dépôt en douane
+            Permission::create(['name'=> 'Enregistrer & déposer dossiers en douane']);
+            
 
 
     }

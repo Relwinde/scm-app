@@ -29,5 +29,9 @@ class DossierStatusSeeder extends Seeder
             'name' => 'FM Définitive',
             'code' => 'fm_def'
         ]);
+        DossierStatus::create([
+            'name' => 'Enregistré & Déposé',
+            'code' => 'eng_dep'
+        ]);
     }
 }
