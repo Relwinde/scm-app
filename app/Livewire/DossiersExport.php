@@ -7,11 +7,13 @@ use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use App\Livewire\Modals\ViewDossier;
+use App\Models\DossierStatus;
 use Illuminate\Support\Facades\Auth;
 
 class DossiersExport extends Component
 {
     public $search;
+    public $selectedStatus = [];
 
     public $dossierId = null;
 
@@ -31,6 +33,9 @@ class DossiersExport extends Component
         if (! Auth::user()->can('Voir la liste des dossiers exports')){
             redirect("/");
         }
+
+        $dossiersStatus = DossierStatus::all();
+
         $dossiers = Dossier::select(['dossiers.id', 'dossiers.numero', 'dossiers.num_lta_bl', 'dossiers.num_sylvie', 'dossiers.num_commande', 'dossiers.created_at', 'dossiers.num_declaration', 'dossiers.client_id', 'dossiers.fournisseur', 'dossiers.dossier_status_id', 'dossiers.regime'])
             ->join('clients', 'dossiers.client_id', '=', 'clients.id')
             ->join('numero_dossiers', 'dossiers.id', '=', 'numero_dossiers.dossier_id') 
@@ -44,12 +49,15 @@ class DossiersExport extends Component
                     ->orWhere('clients.nom', 'like', "%{$this->search}%")
                     ->orWhere('numero_dossiers.numero', 'like', "%{$this->search}%");
             })
+            ->when(collect($this->selectedStatus)->filter()->count() > 0, function ($query) {
+                $query->whereIn('dossiers.dossier_status_id', collect($this->selectedStatus)->filter()->all());
+            })
             ->orderBy('dossiers.created_at', 'DESC')
             ->groupBy('numero')
             ->paginate(10, '*', 'dossier-pagination');
 
         return view('livewire.dossiers-export', [
-            'dossiers' => $dossiers, 'header_title'=>'Dossiers d\'exportation', 'create_modal'=>'modals.create-dossier-export', 'button_title'=>'Nouveau dossier'
+            'dossiers' => $dossiers, 'dossiersStatus' => $dossiersStatus, 'header_title'=>'Dossiers d\'exportation', 'create_modal'=>'modals.create-dossier-export', 'button_title'=>'Nouveau dossier'
         ]);
     }
 

@@ -1,4 +1,14 @@
 <div>
+    <div class="mb-4 ">
+        <div class="selectgroup selectgroup-pills">
+            @foreach ($dossiersStatus as $status)
+                <label class="selectgroup-item">
+                    <input wire:model.live.debounce="selectedStatus" type="checkbox" name="value" value="{{ $status->id }}" class="selectgroup-input">
+                    <span class="selectgroup-button">{{ $status->name }}</span>
+                </label>
+            @endforeach
+        </div>
+    </div>
     <div class="table-responsive">
         <table class="table table-striped table-bordered border text-wrap mb-0">
             <thead>
