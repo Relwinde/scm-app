@@ -54,7 +54,7 @@
         @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def']) && !$dossier->hasPassedThroughAny (['eng_dep']))
             <div class="card-title m-2">
                 @can('Enregistrer & déposer dossiers en douane')
-                    <a wire:click='confirmDeposit' href="javascript:void(0);" class="btn btn-sm btn-outline-primary"> @if ($declaration_error)
+                    <a wire:click='confirmDeposit' wire:confirm='Ce dossier a-t-il bien été enregistré et déposé en douane ?' href="javascript:void(0);" class="btn btn-sm btn-outline-primary"> @if ($declaration_error)
                         <span class="alert-inner--icon">
                         <i class="fe fe-info" style="font-size: 1.5em; animation: flash 1s infinite alternate;"></i>
                         </span>
@@ -70,13 +70,14 @@
             </div>
         @endif
 
-        @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'eng_dep']) && !$dossier->hasPassedThroughAny (['bae']))
+        @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'eng_dep']) && ! $dossier->hasPassedThroughAny (['bae']))
             <div class="card-title m-2">
-                @can('Enregistrer & déposer dossiers en douane')
+                @can('Charger le BAE')
                     <a wire:click='uploadBae' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BAE</a>
                 @endcan
             </div>
         @endif
+
         @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'eng_dep', 'bae']) && !$dossier->hasPassedThroughAny (['lvr']))
             <div class="card-title m-2">
                 @can('Charger les bordereaux de livraison signés')

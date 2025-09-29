@@ -46,18 +46,19 @@ class UploadBae extends ModalComponent
         $this->dossier->bae_number = $this->bae_number;
 
         try { 
-            $this->dossier->transitionTo('bae', auth()->user());
-        } catch (\Exception $e) {
+            $this->dossier->transitionTo('bae', auth()->user()->id);
+        } catch (\Throwable $th) {
             $this->dispatch('status-transition-error');
             return;
         }
 
         Document::create([
-            'name' => $fileName,
-            'type' => 'BAE',
-            'path' => 'attachments/dossiers/' . $this->dossier->numero . '/' . $fileName,
             'dossier_id' => $this->dossier->id,
+            'path' => 'attachments/dossiers/' . $this->dossier->numero . '/' . $fileName,
+            'type' => 'BAE',
+            'name' => $fileName,
             'user_id' => auth()->id(),
+            'size' => $this->file->getSize(),
         ]);
 
         $this->file->storeAs('attachments/dossiers/' . $this->dossier->numero, $fileName);
@@ -67,7 +68,6 @@ class UploadBae extends ModalComponent
         $this->dispatch('update-dossier');
         $this->dispatch('bae-confirmed');
         $this->dispatch('closeModal');
-
         
     }
 }

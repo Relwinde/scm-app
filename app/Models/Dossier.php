@@ -88,14 +88,14 @@ class Dossier extends Model
         $from = $this->dossier_status_id;
         $to   = $transition->to_status_id;
 
-        $this->update(['dossier_status_id' => $to]);
-
+        
         DossierStatusHistory::create([
             'dossier_id'     => $this->id,
             'from_status_id' => $from,
             'to_status_id'   => $to,
             'user_id'        => $userId,
         ]);
+        $this->update(['dossier_status_id' => $to]);
     }
 
     public function statusHistories(){

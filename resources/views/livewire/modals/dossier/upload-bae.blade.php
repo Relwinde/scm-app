@@ -35,7 +35,7 @@
 @script
 
     <script>
-        $wire.on('bae-uploaded', () => {
+        $wire.on('bae-confirmed', () => {
             (function () {
                 $(function () {
                     return $.growl({
