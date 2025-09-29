@@ -16,8 +16,11 @@
                             </select>
                             @error('regime')<div class="error-message"> {{ $message }} </div>@enderror
                         </div>
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label">Selectionnez la facture commerciale</label>
+                    </div>
+
+                    <div class="col-md-6">
+                         <div class="mb-3">
+                            <label for="formFile" class="form-label">Selectionnez la facture commerciale (format PDF)</label>
                             <input class="form-control" type="file" accept=".pdf" wire:model="file" required>
                             @error('file')<div class="error-message"> {{ $message }} </div>@enderror
                         </div>

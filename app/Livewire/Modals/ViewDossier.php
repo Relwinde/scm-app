@@ -7,6 +7,7 @@ use App\Models\Dossier;
 use Livewire\Component;
 use App\Models\Fournisseur;
 use App\Models\Marchandise;
+use Livewire\Attributes\On;
 use App\Models\NumeroDossier;
 use App\Models\BureauDeDouane;
 use App\Exports\DossierDepenses;
@@ -70,6 +71,7 @@ class ViewDossier extends ModalComponent
         $this->sommier = $this->dossier->sommier;
     }
 
+    #[On('update-dossier')]
     public function render()
     {
 
@@ -82,9 +84,7 @@ class ViewDossier extends ModalComponent
             ->orWhere('etape', 'CLOS');
         })->sum('montant_definitif');
         
-        
-
-
+    
         return view('livewire.modals.view-dossier', ["clients"=>$clients, "fournisseurs"=>$fournisseurs, "marchandises"=>$marchandises, 'bureau_de_douanes'=>$bureau_de_douanes, "title"=>"d'importation"]);
     }
 
@@ -257,7 +257,6 @@ class ViewDossier extends ModalComponent
                 return;
             }
             $this->dispatch('openModal', 'modals.dossier.upload-bae', ['dossier' => $this->dossier->id]);
-        }
-    
+        }  
     
 }

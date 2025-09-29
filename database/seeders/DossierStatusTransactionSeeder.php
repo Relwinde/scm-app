@@ -49,5 +49,9 @@ class DossierStatusTransactionSeeder extends Seeder
             'from_status_id' => 5, // Enregistré & Déposé
             'to_status_id' => 6    // BAE
         ]);
+            DossierStatusTransaction::create([
+                'from_status_id' => 6, // BAE
+                'to_status_id' => 7    // Clôturé
+            ]);
     }
 }

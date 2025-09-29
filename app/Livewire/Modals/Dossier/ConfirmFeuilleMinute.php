@@ -66,6 +66,7 @@ class ConfirmFeuilleMinute extends ModalComponent
         Document::create([
             'dossier_id' => $this->dossier->id,
             'path' => 'dossiers/' . $this->dossier->numero . '/' . $fileName,
+            'type' => 'Facture Commerciale',
             'name' => $originalName,
             'user_id' => auth()->id(),
             'size' => $this->file->getSize(),

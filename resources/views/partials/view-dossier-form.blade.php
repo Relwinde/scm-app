@@ -4,12 +4,16 @@
 
 <div class="card form-input-elements">
     <div class="card-header d-flex justify-content-between">
-        <h3 class="mb-0 card-title">N°: <b>{{$dossier->numero}}</b>&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+        <h1 class="mb-0 card-title">N°: <b>{{$dossier->numero}}</b>&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+        @if ($dossier->regime)
+            <h2 class="text-danger" ><i class="fa fa-map-signs"></i> {{ mb_strtoupper($dossier->regime, 'UTF-8') }}&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+        @endif
+        <h2 class="text-primary" ><i class="fa fa-map-pin"></i> {{ mb_strtoupper($dossier->status?->name, 'UTF-8') }}&nbsp;&nbsp;&nbsp;&nbsp;</h2>
         @can('Voir le total des dépenses du dossier')
             <button wire:click="export" id="bAcep" type="button" class="btn btn-sm btn-outline-primary">
             <i class="fa fa-download"></i>
             </button>
-            <h3 class="card-title"><b>&nbsp;Dépenses: {{number_format($total_depenses, 2, '.', ' ')}} CFA</b></h3>&nbsp; &nbsp;
+            <h1 class="card-title"><b>&nbsp;Dépenses: {{number_format($total_depenses, 2, '.', ' ')}} CFA</b></h1>&nbsp; &nbsp;
         @endcan
 
         <div class="card-options">
@@ -70,6 +74,13 @@
             <div class="card-title m-2">
                 @can('Enregistrer & déposer dossiers en douane')
                     <a wire:click='uploadBae' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BAE</a>
+                @endcan
+            </div>
+        @endif
+        @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'eng_dep', 'bae']) && !$dossier->hasPassedThroughAny (['lvr']))
+            <div class="card-title m-2">
+                @can('Charger les bordereaux de livraison signés')
+                    <a wire:click='uploadBae' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BL signé</a>
                 @endcan
             </div>
         @endif
@@ -357,6 +368,17 @@
                     return $.growl({
                         title: "Succès :",
                         message: "Le dépôt en douane a été confirmé."
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('bae-confirmed', () => {
+            (function () {
+                $(function () {
+                    return $.growl({
+                        title: "Succès :",
+                        message: "Le BAE a été enregistré avec succès."
                     });
                 });
             }).call(this);

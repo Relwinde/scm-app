@@ -37,5 +37,9 @@ class DossierStatusSeeder extends Seeder
             'name' => 'En cours de livraison',
             'code' => 'bae'
         ]);
+        DossierStatus::create([
+            'name' => 'Livré',
+            'code' => 'lvr'
+        ]);
     }
 }

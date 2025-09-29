@@ -25,6 +25,9 @@
 
 <center style="text-align: center;">
     <h1 style="font-size: 20; font-weight: bold;">FEUILLE MINUTE - {{$dossier->numero}}</h1>
+    <h2 style="font-size: 20; font-weight: bold;">
+        {{ $dossier->num_repertoire ? 'N° Répertoire: ' . $dossier->num_repertoire : '' }}
+    </h2>
 </center>
 
 <hr style="height:3px; color:#0098db;">
