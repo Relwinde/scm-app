@@ -29,12 +29,15 @@ class DatabaseSeeder extends Seeder
         // Permission::create(['name'=> 'Etablir la feuille minute']);
         // Permission::create(['name'=> 'Voir les alertes de doublons de bons de caisse']);
 
-        // $this->call(DossierStatusSeeder::class);
-        // $this->call(DossierStatusTransactionSeeder::class);
-        // Permission::create(['name'=> 'Confirmer une feuille minute']);
-        // Permission::create(['name'=> 'Modifier une feuille minute confirmée']);
-        // Permission::create(['name'=>'Enregistrer & déposer dossiers en douane']);
-        // Permission::create(['name'=>'Charger le BAE']);
+        $this->call(DossierStatusSeeder::class);
+        $this->call(DossierStatusTransactionSeeder::class);
+        Permission::create(['name'=> 'Confirmer une feuille minute']);
+        Permission::create(['name'=> 'Modifier une feuille minute confirmée']);
+        Permission::create(['name'=>'Enregistrer & déposer dossiers en douane']);
+        Permission::create(['name'=>'Charger le BAE']);
         Permission::create(['name'=>'Charger les bordereaux de livraison signés']);
+        Permission::create(['name'=> 'Renseigner la base d\'imputation']);
+        Permission::create(['name'=> 'Déposer le DI']);
+
     }
 }

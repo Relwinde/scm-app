@@ -152,6 +152,9 @@ class PermissionsSeeder extends Seeder
             Permission::create(['name'=> 'Charger le BAE']);
             Permission::create(['name'=> 'Charger les bordereaux de livraison signés']);
 
+            Permission::create(['name'=> 'Renseigner la base d\'imputation']);
+            Permission::create(['name'=> 'Déposer le DI']);
+
 
     }
 }

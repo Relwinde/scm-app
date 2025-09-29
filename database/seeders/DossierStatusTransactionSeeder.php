@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\DossierStatus;
+use Illuminate\Database\Seeder;
 use App\Models\DossierStatusTransaction;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 
 class DossierStatusTransactionSeeder extends Seeder
 {
@@ -26,36 +27,46 @@ class DossierStatusTransactionSeeder extends Seeder
         // }
 
         DossierStatusTransaction::create([
-            'from_status_id' => 1, // Saisie
-            'to_status_id' => 2    // Codifié
+            'from_status_id' => DossierStatus::where('code', 'ssi')->first()->id, // Saisie
+            'to_status_id' => DossierStatus::where('code', 'cod')->first()->id    // Codifié
         ]);
         DossierStatusTransaction::create([
-            'from_status_id' => 2, // Codifié
-            'to_status_id' => 3    // FM Provisoire
+            'from_status_id' => DossierStatus::where('code', 'cod')->first()->id, // Codifié
+            'to_status_id' => DossierStatus::where('code', 'fm_prov')->first()->id    // FM Provisoire
         ]);
         DossierStatusTransaction::create([
-            'from_status_id' => 3, // FM Provisoire
-            'to_status_id' => 4    // FM Définitive
+            'from_status_id' => DossierStatus::where('code', 'fm_prov')->first()->id, // FM Provisoire
+            'to_status_id' => DossierStatus::where('code', 'fm_def')->first()->id    // FM Définitive
         ]);
          DossierStatusTransaction::create([
-            'from_status_id' => 3, // FM Définitive
-            'to_status_id' => 5    // Enregistré & Déposé
+            'from_status_id' => DossierStatus::where('code', 'fm_def')->first()->id, // FM Définitive
+            'to_status_id' => DossierStatus::where('code', 'eng_dep')->first()->id    // Enregistré & Déposé
         ]);
         DossierStatusTransaction::create([
-            'from_status_id' => 4, // FM Définitive
-            'to_status_id' => 5    // Enregistré & Déposé
+            'from_status_id' => DossierStatus::where('code', 'fm_def')->first()->id, // FM Définitive
+            'to_status_id' => DossierStatus::where('code', 'eng_dep')->first()->id    // Enregistré & Déposé
         ]);
          DossierStatusTransaction::create([
-            'from_status_id' => 5, // Enregistré & Déposé
-            'to_status_id' => 6    // BAE
+            'from_status_id' => DossierStatus::where('code', 'eng_dep')->first()->id, // Enregistré & Déposé
+            'to_status_id' => DossierStatus::where('code', 'bae')->first()->id    // BAE
         ]);
         DossierStatusTransaction::create([
-            'from_status_id' => 6, // BAE
-            'to_status_id' => 7    // En cours de livraison
+            'from_status_id' => DossierStatus::where('code', 'bae')->first()->id, // BAE
+            'to_status_id' => DossierStatus::where('code', 'lvr')->first()->id    // En cours de livraison
+        ]);
+
+
+        DossierStatusTransaction::create([
+            'from_status_id' => DossierStatus::where('code', 'fm_def')->first()->id, // FM Définitive
+            'to_status_id' => DossierStatus::where('code', 'ba_imp')->first()->id    // Base d'imputation & Demande d'Exonération
         ]);
         DossierStatusTransaction::create([
-            'from_status_id' => 7, // En cours de livraison
-            'to_status_id' => 8    // Livré
+            'from_status_id' => DossierStatus::where('code', 'ba_imp')->first()->id, // Base d'imputation & Demande d'Exonération
+            'to_status_id' => DossierStatus::where('code', 'di_dep')->first()->id    // Dépôt de la demande d'exonération
+        ]);
+        DossierStatusTransaction::create([
+            'from_status_id' => DossierStatus::where('code', 'di_dep')->first()->id,
+            'to_status_id' => DossierStatus::where('code', 'eng_dep')->first()->id
         ]);
     }
 }

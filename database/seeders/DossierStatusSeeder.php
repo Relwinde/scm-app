@@ -41,5 +41,13 @@ class DossierStatusSeeder extends Seeder
             'name' => 'Livré',
             'code' => 'lvr'
         ]);
+        DossierStatus::create([
+            'name' => 'Base d\'imputation',
+            'code' => 'ba_imp'
+        ]);
+        DossierStatus::create([
+            'name' => 'DI déposé',
+            'code' => 'di_dep'
+        ]);
     }
 }

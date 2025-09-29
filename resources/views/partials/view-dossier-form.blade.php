@@ -51,41 +51,69 @@
                 @endif  wire:click="feuilleMinute" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text-o"></i> Feuille minute</a>  
             @endcan
         </div>
-        @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def']) && !$dossier->hasPassedThroughAny (['eng_dep']))
-            <div class="card-title m-2">
-                @can('Enregistrer & déposer dossiers en douane')
-                    <a wire:click='confirmDeposit' wire:confirm='Ce dossier a-t-il bien été enregistré et déposé en douane ?' href="javascript:void(0);" class="btn btn-sm btn-outline-primary"> @if ($declaration_error)
-                        <span class="alert-inner--icon">
-                        <i class="fe fe-info" style="font-size: 1.5em; animation: flash 1s infinite alternate;"></i>
-                        </span>
-                        <style> 
-                            @keyframes flash {
-                                0% { opacity: 1; }
-                                50% { opacity: 0.2; }
-                                100% { opacity: 1; }
-                            }
-                        </style>
-                    @endif Confirmer le dépôt en douane</a>
-                @endcan
-            </div>
-        @endif
 
-        @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'eng_dep']) && ! $dossier->hasPassedThroughAny (['bae']))
-            <div class="card-title m-2">
-                @can('Charger le BAE')
-                    <a wire:click='uploadBae' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BAE</a>
-                @endcan
-            </div>
-        @endif
+        {{-- Gestion des status TTC --}}
+            @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def']) && !$dossier->hasPassedThroughAny (['eng_dep']))
+                <div class="card-title m-2">
+                    @can('Enregistrer & déposer dossiers en douane')
+                        <a wire:click='confirmDeposit' wire:confirm='Ce dossier a-t-il bien été enregistré et déposé en douane ?' href="javascript:void(0);" class="btn btn-sm btn-outline-primary"> @if ($declaration_error)
+                            <span class="alert-inner--icon">
+                            <i class="fe fe-info" style="font-size: 1.5em; animation: flash 1s infinite alternate;"></i>
+                            </span>
+                            <style> 
+                                @keyframes flash {
+                                    0% { opacity: 1; }
+                                    50% { opacity: 0.2; }
+                                    100% { opacity: 1; }
+                                }
+                            </style>
+                        @endif Confirmer le dépôt en douane</a>
+                    @endcan
+                </div>
+            @endif
 
-        @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'eng_dep', 'bae']) && !$dossier->hasPassedThroughAny (['lvr']))
-            <div class="card-title m-2">
-                @can('Charger les bordereaux de livraison signés')
-                    <a wire:click='uploadBordereauLivraison' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BL signé</a>
-                @endcan
-            </div>
-        @endif
+            @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'eng_dep']) && ! $dossier->hasPassedThroughAny (['bae']))
+                <div class="card-title m-2">
+                    @can('Charger le BAE')
+                        <a wire:click='uploadBae' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BAE</a>
+                    @endcan
+                </div>
+            @endif
 
+            @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'eng_dep', 'bae']) && !$dossier->hasPassedThroughAny (['lvr']))
+                <div class="card-title m-2">
+                    @can('Charger les bordereaux de livraison signés')
+                        <a wire:click='uploadBordereauLivraison' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BL signé</a>
+                    @endcan
+                </div>
+            @endif
+
+            {{-- Fin gestion des status TTC --}}
+
+        {{-- Gestion des status EXO --}}
+            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def']) && !$dossier->hasPassedThroughAny (['ba_imp']))
+                <div class="card-title-m-2">
+                    @can('Renseigner la base d\'imputation')
+                        <a wire:click='openBaseImputationModal' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Renseigner la base d'imputation</a> 
+                    @endcan
+                </div>
+            @endif
+
+            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'ba_imp']) && !$dossier->hasPassedThroughAny (['di_dep']))
+                <div class="card-title-m-2">
+                    @can('Renseigner la base d\'imputation')
+                        <a wire:click='openDemandeExoModal' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger la demande d'exonération</a> 
+                    @endcan
+                </div>
+            @endif
+            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'ba_imp', 'di_dep']) && !$dossier->hasPassedThroughAny (['eng_dep']))
+                <div class="card-title-m-2">
+                    @can('Charger les bordereaux de livraison signés')
+                        <a wire:click='uploadBordereauLivraison' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Confirmer le dépôt en douane</a>
+                    @endcan
+            @endif
+
+            {{-- Fin gestion des status EXO --}}
         <div class="card-title m-2">
             @can('Créer bons de caisse')
                 <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-bon', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-warning"><i class="fa fa-money"></i> Créer un bon</a>  

@@ -305,5 +305,33 @@ class ViewDossier extends ModalComponent
 
             $this->dispatch('openModal', 'modals.dossier.upload-bordereau-livraison', ['dossier' => $this->dossier->id]);
         }
+
+        public function openBaseImputationModal (){
+            if(! Auth::user()->can('Renseigner la base d\'imputation')){
+                $this->dispatch('not-allowed');
+                return;
+            }
+
+            if ($this->dossier->status?->code != 'fm_def' || $this->dossier->regime != 'EXO'){
+                $this->dispatch('not-allowed');
+                return;
+            }
+
+            $this->dispatch('openModal', 'modals.dossier.base-imputation', ['dossier' => $this->dossier->id]);
+        }
+        
+        public function openDemandeExoModal (){
+            if(! Auth::user()->can('Déposer le DI')){
+                $this->dispatch('not-allowed');
+                return;
+            }
+
+            if ($this->dossier->status?->code != 'ba_imp' || $this->dossier->regime != 'EXO'){
+                $this->dispatch('not-allowed');
+                return;
+            }
+
+            $this->dispatch('openModal', 'modals.dossier.upload-demande-exo', ['dossier' => $this->dossier->id]);
+        }
     
 }

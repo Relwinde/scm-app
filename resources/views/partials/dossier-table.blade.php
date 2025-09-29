@@ -18,8 +18,8 @@
                     <th class="wd-20p border-bottom-0"><b>N° LTA/BL</b></th>
                     <th class="wd-20p border-bottom-0"><b>N° SYLVIE</b></th>
                     <th class="wd-20p border-bottom-0"><b>N° de commande</b></th>
-                    <th class="wd-15p border-bottom-0"><b>Date de création</b></th>
                     <th class="wd-10p border-bottom-0"><b>N° de déclaration</b></th>
+                    <th class="wd-15p border-bottom-0"><b>Date de création</b></th>
                     {{-- <th class="wd-10p border-bottom-0"><b>Status</b></th> --}}
                     <th class="wd-25p border-bottom-0"><b>Actions</b></th>
                 </tr>
@@ -60,8 +60,8 @@
                         <td>{{$dossier->num_lta_bl}}</td>
                         <td>{{$dossier->num_sylvie}}</td>
                         <td>{{$dossier->num_commande}}</td>
+                        <td>{{$dossier->num_declaration}} <h6 class="text-danger" style="font-size: 13px;">{{ mb_strtoupper($dossier->regime, 'UTF-8') }}</h6></td>
                         <td>{{$dossier->created_at->locale(app()->getLocale())->translatedFormat('j F Y') }}</td>
-                        <td>{{$dossier->num_declaration}}</td>
                         {{-- <td>
                             <div class="mt-sm-1 d-block">
                                 <span
