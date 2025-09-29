@@ -235,6 +235,11 @@ class ViewDossier extends ModalComponent
                 return;
             }
 
+            if ($this->dossier->status?->code != 'fm_def'){
+                $this->dispatch('not-allowed');
+                return;
+            }
+
             if ($this->dossier->num_declaration == null || $this->dossier->num_declaration == ''){
                 $this->declaration_error = true;
                 $this->dispatch('declaration-error');
@@ -256,7 +261,49 @@ class ViewDossier extends ModalComponent
                 $this->dispatch('not-allowed');
                 return;
             }
+
+            if ($this->dossier->status?->code != 'eng_dep'){
+                $this->dispatch('not-allowed');
+                return;
+            }
+
+            if ($this->dossier->hasPassedThrough(['bae'])){
+                $this->dispatch('bae-already-uploaded');
+                return;
+            }
+
+            if ($this->dossier->num_declaration == null || $this->dossier->num_declaration == ''){
+                $this->declaration_error = true;
+                $this->dispatch('declaration-error');
+                return;
+            }
+
             $this->dispatch('openModal', 'modals.dossier.upload-bae', ['dossier' => $this->dossier->id]);
         }  
+
+        public function uploadBordereauLivraison (){
+            if(! Auth::user()->can('Charger les bordereaux de livraison signés')){
+                $this->dispatch('not-allowed');
+                return;
+            }
+
+            if ($this->dossier->status?->code != 'bae'){
+                $this->dispatch('not-allowed');
+                return;
+            }
+
+            if ($this->dossier->hasPassedThrough(['bordereau_livraison'])){
+                $this->dispatch('bordereau-livraison-already-uploaded');
+                return;
+            }
+
+            if ($this->dossier->num_declaration == null || $this->dossier->num_declaration == ''){
+                $this->declaration_error = true;
+                $this->dispatch('declaration-error');
+                return;
+            }
+
+            $this->dispatch('openModal', 'modals.dossier.upload-bordereau-livraison', ['dossier' => $this->dossier->id]);
+        }
     
 }

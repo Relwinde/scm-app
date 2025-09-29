@@ -150,6 +150,7 @@ class PermissionsSeeder extends Seeder
         // Permission étape dépôt en douane
             Permission::create(['name'=> 'Enregistrer & déposer dossiers en douane']);
             Permission::create(['name'=> 'Charger le BAE']);
+            Permission::create(['name'=> 'Charger les bordereaux de livraison signés']);
 
 
     }

@@ -81,7 +81,7 @@
         @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'eng_dep', 'bae']) && !$dossier->hasPassedThroughAny (['lvr']))
             <div class="card-title m-2">
                 @can('Charger les bordereaux de livraison signés')
-                    <a wire:click='uploadBae' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BL signé</a>
+                    <a wire:click='uploadBordereauLivraison' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BL signé</a>
                 @endcan
             </div>
         @endif
@@ -402,6 +402,17 @@
                     return $.growl.error({
                         title: "Erreur de statut",
                         message: "Le dossier ne peut pas passer au statut suivant. Veuillez vérifier le statut actuel du dossier et les conditions requises pour la transition."
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('bae-already-uploaded', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        title: "Erreur :",
+                        message: "Le BAE a déjà été importé pour ce dossier."
                     });
                 });
             }).call(this);

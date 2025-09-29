@@ -29,6 +29,11 @@ class ConfirmFeuilleMinute extends ModalComponent
             return;
         }
 
+        if ($this->dossier->status?->code != 'fm_prov'){
+            $this->dispatch('not-allowed');
+            return;
+        }
+
         $this->validate([
             'file' => 'required|mimes:pdf|max:5120', // 5MB Max
             'regime' => 'required|in:TTC,EXO',
@@ -66,7 +71,7 @@ class ConfirmFeuilleMinute extends ModalComponent
         Document::create([
             'dossier_id' => $this->dossier->id,
             'path' => 'dossiers/' . $this->dossier->numero . '/' . $fileName,
-            'type' => 'Facture Commerciale',
+            'type' => 'FACTURE COMMERCIALE',
             'name' => $originalName,
             'user_id' => auth()->id(),
             'size' => $this->file->getSize(),
