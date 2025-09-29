@@ -109,10 +109,37 @@
             @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'ba_imp', 'di_dep']) && !$dossier->hasPassedThroughAny (['eng_dep']))
                 <div class="card-title-m-2">
                     @can('Charger les bordereaux de livraison signés')
-                        <a wire:click='uploadBordereauLivraison' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Confirmer le dépôt en douane</a>
+                        <a wire:click='confirmDepositExo' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">@if ($declaration_error)
+                            <span class="alert-inner--icon">
+                            <i class="fe fe-info" style="font-size: 1.5em; animation: flash 1s infinite alternate;"></i>
+                            </span>
+                            <style> 
+                                @keyframes flash {
+                                    0% { opacity: 1; }
+                                    50% { opacity: 0.2; }
+                                    100% { opacity: 1; }
+                                }
+                            </style>
+                        @endif Confirmer le dépôt en douane</a>
                     @endcan
+                </div>
             @endif
 
+            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'ba_imp', 'di_dep', 'eng_dep']) && ! $dossier->hasPassedThroughAny (['bae']))
+                <div class="card-title m-2">
+                    @can('Charger le BAE')
+                        <a wire:click='uploadBae' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BAE</a>
+                    @endcan
+                </div>
+            @endif
+
+            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'ba_imp', 'di_dep', 'eng_dep', 'bae']) && !$dossier->hasPassedThroughAny (['lvr']))
+                <div class="card-title m-2">
+                    @can('Charger les bordereaux de livraison signés')
+                        <a wire:click='uploadBordereauLivraison' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BL signé</a>
+                    @endcan
+                </div>
+            @endif
             {{-- Fin gestion des status EXO --}}
         <div class="card-title m-2">
             @can('Créer bons de caisse')

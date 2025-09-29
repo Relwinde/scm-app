@@ -333,5 +333,26 @@ class ViewDossier extends ModalComponent
 
             $this->dispatch('openModal', 'modals.dossier.upload-demande-exo', ['dossier' => $this->dossier->id]);
         }
+
+    
+        public function confirmDepositExo (){
+            if(! Auth::user()->can('Enregistrer & déposer dossiers en douane')){
+                $this->dispatch('not-allowed');
+                return;
+            }
+
+            if ($this->dossier->status?->code != 'di_dep' || $this->dossier->regime != 'EXO'){
+                $this->dispatch('not-allowed');
+                return;
+            }
+
+            if ($this->dossier->num_declaration == null || $this->dossier->num_declaration == ''){
+                $this->declaration_error = true;
+                $this->dispatch('declaration-error');
+                return;
+            }
+            
+            $this->dispatch('openModal', 'modals.dossier.confirm-depot-exo', ['dossier' => $this->dossier->id]);
+        }
     
 }
