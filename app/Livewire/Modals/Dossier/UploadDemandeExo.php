@@ -45,7 +45,7 @@ class UploadDemandeExo extends ModalComponent
         ]);
 
         $originalName = strtoupper(preg_replace('/\.pdf$/i', '', $this->file->getClientOriginalName()));
-        $fileName = 'DEMANDE_EXO_' . $this->dossier->numero . '.' . $this->file->getClientOriginalExtension();
+        $fileName = 'DEMANDE_EXO_' . str_replace('/', '-', $this->dossier->numero) . '.' . $this->file->getClientOriginalExtension();
 
         try { 
             $this->dossier->transitionTo('di_dep', auth()->user()->id);
@@ -59,13 +59,13 @@ class UploadDemandeExo extends ModalComponent
 
         \App\Models\Document::create([
             'dossier_id' => $this->dossier->id,
-            'path' => 'attachments/dossiers/' . $this->dossier->numero . '/' . $fileName,
+            'path' => 'attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero) . '/' . $fileName,
             'type' => 'DEMANDE D\'EXONERATION',
             'name' => $fileName,
             'user_id' => auth()->id(),
             'size' => $this->file->getSize(),
         ]);    
-        $this->file->storeAs('attachments/dossiers/' . $this->dossier->numero, $fileName, 'public');
+        $this->file->storeAs('attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero) , $fileName);
         $this->dispatch('update-dossier');
         $this->dispatch('demande-exo-saved');
         $this->dossier->refresh();

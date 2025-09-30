@@ -46,6 +46,9 @@ class ConfirmDepotExo extends ModalComponent
             'file.max' => 'Le fichier ne doit pas dépasser 2MB.',
         ]);
 
+        $originalName = strtoupper(preg_replace('/\.pdf$/i', '', $this->file->getClientOriginalName()));
+        $fileName = 'DECISION_EXO_' . str_replace('/', '-', $this->dossier->numero) . '.' . $this->file->getClientOriginalExtension();
+
         try { 
             $this->dossier->transitionTo('eng_dep', auth()->user()->id);
             $this->dossier->update([
@@ -55,7 +58,15 @@ class ConfirmDepotExo extends ModalComponent
             $this->dispatch('status-transition-error');
             return;
         }
-
+        \App\Models\Document::create([
+            'dossier_id' => $this->dossier->id,
+            'path' => 'attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero) . '/' . $fileName,
+            'type' => 'DECISION D\'EXONERATION',
+            'name' => $fileName,
+            'user_id' => auth()->id(),
+            'size' => $this->file->getSize(),
+        ]);    
+        $this->file->storeAs('attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero) , $fileName);
         $this->dispatch('depot-exo-confirmed');
         $this->dispatch('update-dossier');
         $this->dossier->refresh();

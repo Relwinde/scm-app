@@ -41,7 +41,7 @@ class UploadBae extends ModalComponent
         ]);
 
         $originalName = strtoupper(preg_replace('/\.pdf$/i', '', $this->file->getClientOriginalName()));
-        $fileName = 'BAE_' . $this->dossier->numero . '.' . $this->file->getClientOriginalExtension();
+        $fileName = 'BAE_' . str_replace('/', '-', $this->dossier->numero) . '.' . $this->file->getClientOriginalExtension();
 
         $this->dossier->bae_number = $this->bae_number;
 
@@ -54,14 +54,14 @@ class UploadBae extends ModalComponent
 
         Document::create([
             'dossier_id' => $this->dossier->id,
-            'path' => 'attachments/dossiers/' . $this->dossier->numero . '/' . $fileName,
+            'path' => 'attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero) . '/' . $fileName,
             'type' => 'BAE',
             'name' => $fileName,
             'user_id' => auth()->id(),
             'size' => $this->file->getSize(),
         ]);
 
-        $this->file->storeAs('attachments/dossiers/' . $this->dossier->numero, $fileName);
+        $this->file->storeAs('attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero), $fileName);
 
         $this->dossier->save();
         $this->dossier->refresh();

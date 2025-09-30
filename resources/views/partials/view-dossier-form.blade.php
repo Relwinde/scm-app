@@ -247,7 +247,7 @@
                             @endif
                             Valeur CAF 
                         </label>
-                        <input wire:focusout='reformat_valeur_caf()' wire:model='valeur_caf' type="text" class="form-control" @if($edit==false) readonly @endif name="valeur_caf" >
+                        <input wire:focusout='reformat_valeur_caf()' wire:model='valeur_caf' type="text" class="form-control" @if($edit==false || $dossier->hasPassedThroughAny(['fm_def'])) readonly @endif name="valeur_caf" >
                     </div>
                     <div class="mb-4">
                         <label class="form-label">
@@ -265,7 +265,7 @@
                             @endif
                             Valeur FOB Devise
                         </label>
-                        <input wire:focusout='reformat_fob_devis()' wire:model='fob_devis' type="text" class="form-control" placeholder="Valeur FOB Devise" @if($edit==false) readonly @endif name="fob_devis" >
+                        <input wire:focusout='reformat_fob_devis()' wire:model='fob_devis' type="text" class="form-control" placeholder="Valeur FOB Devise" @if($edit==false || $dossier->hasPassedThroughAny(['fm_def'])) readonly @endif name="fob_devis" >
                     </div>
                     <div class="mb-4">
                         <label class="form-label">
@@ -283,11 +283,11 @@
                             @endif
                             Fret
                         </label>
-                        <input wire:focusout='reformat_fret()' wire:model='fret' type="text" class="form-control" placeholder="Fret" @if($edit==false) readonly @endif name="fret" >
+                        <input wire:focusout='reformat_fret()' wire:model='fret' type="text" class="form-control" placeholder="Fret" @if($edit==false || $dossier->hasPassedThroughAny(['fm_def'])) readonly @endif name="fret" >
                     </div>
                     <div class="mb-4">
                         <label class="form-label"> N° Sommier </label>
-                        <input wire:model='sommier' type="text" class="form-control" placeholder="N° Sommier" @if($edit==false) readonly @endif name="sommier">
+                        <input wire:model='sommier' type="text" class="form-control" placeholder="N° Sommier" @if($edit==false || $dossier->hasPassedThroughAny(['fm_def'])) readonly @endif name="sommier">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -307,7 +307,7 @@
                             @endif
                             Valeur FOB XOF
                         </label>
-                        <input wire:focusout='reformat_fob_xof()' wire:model='fob_xof' type="text" class="form-control" placeholder="Valeur FOB XOF" name="fob_xof" @if($edit==false) readonly @endif>
+                        <input wire:focusout='reformat_fob_xof()' wire:model='fob_xof' type="text" class="form-control" placeholder="Valeur FOB XOF" name="fob_xof" @if($edit==false || $dossier->hasPassedThroughAny(['fm_def'])) readonly @endif>
                     </div>
 
                     <div class="mb-4">
@@ -326,7 +326,7 @@
                             @endif
                             Assurance
                         </label>
-                        <input wire:focusout='reformat_assurance()' wire:model='assurance' type="text" class="form-control" placeholder="Assurance" name="assurance" @if($edit==false) readonly @endif>
+                        <input wire:focusout='reformat_assurance()' wire:model='assurance' type="text" class="form-control" placeholder="Assurance" name="assurance" @if($edit==false || $dossier->hasPassedThroughAny(['fm_def'])) readonly @endif>
                     </div>
                     <div class="mb-4">
                         <label class="form-label">
@@ -344,7 +344,7 @@
                             @endif
                             Autres frais
                         </label>
-                        <input wire:focusout='reformat_autre_frais()' wire:model='autre_frais' type="text" class="form-control" @if($edit==false) readonly @endif name="autre_frais" >
+                        <input wire:focusout='reformat_autre_frais()' wire:model='autre_frais' type="text" class="form-control" @if($edit==false || $dossier->hasPassedThroughAny(['fm_def'])) readonly @endif name="autre_frais" >
                     </div>
                 </div>
             </div>

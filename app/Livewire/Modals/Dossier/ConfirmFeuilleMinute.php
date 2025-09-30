@@ -59,7 +59,7 @@ class ConfirmFeuilleMinute extends ModalComponent
         $this->dossier->num_repertoire = $this->dossier->bureau_de_douane->code.'-'.$repertoire->year . '/' . str_pad($repertoire->last_number, 5, '0', STR_PAD_LEFT);
 
         $originalName = strtoupper(preg_replace('/\.pdf$/i', '', $this->file->getClientOriginalName()));
-        $fileName = 'FACTURE_COMMERCIALE_' . $this->dossier->num_repertoire . $this->file->getClientOriginalExtension();
+        $fileName = 'FACTURE_COMMERCIALE_' .str_replace('/', '-', $this->dossier->num_repertoire) .'.'. $this->file->getClientOriginalExtension();
         
         
         try {
@@ -70,13 +70,14 @@ class ConfirmFeuilleMinute extends ModalComponent
         }
         Document::create([
             'dossier_id' => $this->dossier->id,
-            'path' => 'dossiers/' . $this->dossier->numero . '/' . $fileName,
+            'path' => 'attachments/dossiers/' . str_replace('/', '-', $this->dossier->num_repertoire) . '/' . $fileName,
             'type' => 'FACTURE COMMERCIALE',
-            'name' => $originalName,
+            'name' => $fileName,
             'user_id' => auth()->id(),
             'size' => $this->file->getSize(),
         ]);
-        $this->file->storeAs('attachments/dossiers/' . $this->dossier->numero, $fileName);
+
+        $this->file->storeAs('attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero), $fileName);
 
         $repertoire->save();
         $this->dossier->regime = $this->regime;
