@@ -20,4 +20,5 @@ class ViewDocuments extends ModalComponent
     {
         return true;
     }
+    
 }
