@@ -57,15 +57,15 @@ class UploadDemandeExo extends ModalComponent
             return;
         }
 
+        $path = $this->file->storeAs('attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero) , $fileName);
         \App\Models\Document::create([
             'dossier_id' => $this->dossier->id,
-            'path' => 'attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero) . '/' . $fileName,
+            'path' => $path,
             'type' => 'DEMANDE D\'EXONERATION',
             'name' => $fileName,
             'user_id' => auth()->id(),
             'size' => $this->file->getSize(),
         ]);    
-        $this->file->storeAs('attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero) , $fileName);
         $this->dispatch('update-dossier');
         $this->dispatch('demande-exo-saved');
         $this->dossier->refresh();

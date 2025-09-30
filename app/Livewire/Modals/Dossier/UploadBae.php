@@ -52,16 +52,16 @@ class UploadBae extends ModalComponent
             return;
         }
 
+        $path = $this->file->storeAs('attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero), $fileName);
         Document::create([
             'dossier_id' => $this->dossier->id,
-            'path' => 'attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero) . '/' . $fileName,
+            'path' => $path,
             'type' => 'BAE',
             'name' => $fileName,
             'user_id' => auth()->id(),
             'size' => $this->file->getSize(),
         ]);
 
-        $this->file->storeAs('attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero), $fileName);
 
         $this->dossier->save();
         $this->dossier->refresh();

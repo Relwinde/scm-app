@@ -58,15 +58,16 @@ class ConfirmDepotExo extends ModalComponent
             $this->dispatch('status-transition-error');
             return;
         }
+        $path = $this->file->storeAs('attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero) , $fileName);
+
         \App\Models\Document::create([
             'dossier_id' => $this->dossier->id,
-            'path' => 'attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero) . '/' . $fileName,
-            'type' => 'DECISION D\'EXONERATION',
+            'path' => $path,
+            'type' => 'ACCEPTATION D\'EXONERATION',
             'name' => $fileName,
             'user_id' => auth()->id(),
             'size' => $this->file->getSize(),
         ]);    
-        $this->file->storeAs('attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero) , $fileName);
         $this->dispatch('depot-exo-confirmed');
         $this->dispatch('update-dossier');
         $this->dossier->refresh();

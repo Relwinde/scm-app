@@ -13,8 +13,12 @@
             <button wire:click="export" id="bAcep" type="button" class="btn btn-sm btn-outline-primary">
             <i class="fa fa-download"></i>
             </button>
-            <h1 class="card-title"><b>&nbsp;Dépenses: {{number_format($total_depenses, 2, '.', ' ')}} CFA</b></h1>&nbsp; &nbsp;
+            <h1 class="card-title"><b>&nbsp;Dépenses: {{number_format($total_depenses, 2, '.', ' ')}} CFA</b></h1>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         @endcan
+
+        <h1 class="card-title">
+            <button class="btn btn-outline-primary" href="javascript:void(0);" wire:click="$dispatch('openModal', {component: 'modals.dossier.view-documents', arguments: { dossier : {{ $dossier->id }} }})"> <i class="fa fa-list"></i> Documents</button>
+        </h1>
 
         <div class="card-options">
             <div class="dropdown">

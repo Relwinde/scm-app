@@ -6,6 +6,7 @@ use App\Livewire\Home;
 use App\Livewire\Login;
 use App\Models\Dossier;
 use App\Livewire\Caisse;
+use App\Models\Document;
 use App\Livewire\BonDeCaisse;
 use App\Livewire\Outils\User;
 use App\Livewire\UserProfile;
@@ -108,3 +109,8 @@ Route::get('/view-dossier/{dossier}', function (Dossier $dossier){
 
     }
 })->name('view-dossier')->middleware("auth");
+
+Route::get('/dossiers/files/{file}', function (Document $file) {
+    return response()->download(storage_path('app/' . $file->path));
+})->name('dossiers.files.download')
+    ->middleware('auth');
