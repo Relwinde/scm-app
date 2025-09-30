@@ -4,21 +4,22 @@
 
 <div class="card form-input-elements">
     <div class="card-header d-flex justify-content-between">
-        <h1 class="mb-0 card-title">N°: <b>{{$dossier->numero}}</b>&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+        <h1 class="mb-0 card-title"><b>{{$dossier->numero}}</b>&nbsp;&nbsp;&nbsp;&nbsp;</h1>
         @if ($dossier->regime)
             <h2 class="text-danger" ><i class="fa fa-map-signs"></i> {{ mb_strtoupper($dossier->regime, 'UTF-8') }}&nbsp;&nbsp;&nbsp;&nbsp;</h2>
         @endif
         <h2 class="text-primary" ><i class="fa fa-map-pin"></i> {{ mb_strtoupper($dossier->status?->name, 'UTF-8') }}&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+
+        <h1 class="card-title">
+            <button class="btn btn-default-light" href="javascript:void(0);" wire:click="$dispatch('openModal', {component: 'modals.dossier.view-documents', arguments: { dossier : {{ $dossier->id }} }})"> <i class="fa fa-folder-open"></i> Documents</button>
+        </h1>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
         @can('Voir le total des dépenses du dossier')
             <button wire:click="export" id="bAcep" type="button" class="btn btn-sm btn-outline-primary">
             <i class="fa fa-download"></i>
             </button>
             <h1 class="card-title"><b>&nbsp;Dépenses: {{number_format($total_depenses, 2, '.', ' ')}} CFA</b></h1>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         @endcan
-
-        <h1 class="card-title">
-            <button class="btn btn-outline-primary" href="javascript:void(0);" wire:click="$dispatch('openModal', {component: 'modals.dossier.view-documents', arguments: { dossier : {{ $dossier->id }} }})"> <i class="fa fa-list"></i> Documents</button>
-        </h1>
 
         <div class="card-options">
             <div class="dropdown">
@@ -220,7 +221,7 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label">N° de déclaration</label>
-                        <input wire:model='num_declaration' type="text" class="form-control " @if ($edit==false) readonly @endif name="example-text-input" >
+                        <input wire:model='num_declaration' type="text" class="form-control " @if ($edit==false || $dossier->hasPassedThroughAny(['eng_dep'])) readonly @endif name="example-text-input" >
                     </div>
                     <div class="mb-4">
                         <label class="form-label">Numéro de T1</label>

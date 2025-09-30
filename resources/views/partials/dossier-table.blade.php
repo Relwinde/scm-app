@@ -7,6 +7,15 @@
                     <span class="selectgroup-button">{{ $status->name }}</span>
                 </label>
             @endforeach
+                <div class="btn-list checkboxbtns">
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <input type="checkbox" class="btn-check" id="btncheck1" value="TTC" wire:model.live.debounce="selectedRegimes">
+                        <label class="btn btn-outline-primary" for="btncheck1">TTC</label>
+
+                        <input type="checkbox" class="btn-check" id="btncheck3" value="EXO" wire:model.live.debounce="selectedRegimes">
+                        <label class="btn btn-outline-primary" for="btncheck3">EXO</label>
+                    </div>
+                </div>
         </div>
     </div>
     <div class="table-responsive">

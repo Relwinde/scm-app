@@ -14,6 +14,7 @@ class DossiersExport extends Component
 {
     public $search;
     public $selectedStatus = [];
+    public $selectedRegimes = [];
 
     public $dossierId = null;
 
@@ -51,6 +52,9 @@ class DossiersExport extends Component
             })
             ->when(collect($this->selectedStatus)->filter()->count() > 0, function ($query) {
                 $query->whereIn('dossiers.dossier_status_id', collect($this->selectedStatus)->filter()->all());
+            })
+            ->when(collect($this->selectedRegimes)->filter()->count() > 0, function ($query) {
+                $query->whereIn('dossiers.regime', collect($this->selectedRegimes)->filter()->all());
             })
             ->orderBy('dossiers.created_at', 'DESC')
             ->groupBy('numero')
