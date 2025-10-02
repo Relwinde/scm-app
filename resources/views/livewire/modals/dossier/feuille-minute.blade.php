@@ -41,7 +41,7 @@
                                     @error('code')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
-                                    <input wire:model.live='fob_xof' type="number" class="form-control" name="fob_xof" placeholder="FOB XOF" wire:keydown="calculate">
+                                    <input wire:model.live='fob_xof' type="number" class="form-control" name="fob_xof" placeholder="FOB XOF" wire:keydown="calculate" wire:focusout="calculate" wire:focusin="calculate" wire:change="calculate">
                                     @error('fob_xof')<div class="error-message"> {{ $message }} </div>@enderror
                                 </td>
                                 <td class="text-nowrap">
@@ -102,7 +102,7 @@
                                   {{$article->code}}  
                                 @endif</td>
                                 <td class="text-nowrap">@if ($edit==true && $editId == $article->id)
-                                    <input wire:keydown="calculateEdit" type="number" name="fob_xof" id="fob_xof" wire:model.live="edit_fob_xof">
+                                    <input wire:keydown="calculateEdit" wire:change='calculateEdit' wire:focusout='calculateEdit' wire:focusin='calculateEdit' type="number" name="fob_xof" id="fob_xof" wire:model.live="edit_fob_xof">
                                 @else
                                   {{$article->fob_xof}}  
                                 @endif</td>

@@ -8,7 +8,7 @@
         @if ($dossier->regime)
             <h2 class="text-danger" ><i class="fa fa-map-signs"></i> {{ mb_strtoupper($dossier->regime, 'UTF-8') }}&nbsp;&nbsp;&nbsp;&nbsp;</h2>
         @endif
-        <h2 class="text-primary" ><i class="fa fa-map-pin"></i> {{ mb_strtoupper($dossier->status?->name, 'UTF-8') }}&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+        <h2 class="text-primary" ><i class="fa fa-map-pin"></i> Statut: {{ mb_strtoupper($dossier->status?->name, 'UTF-8') }}&nbsp;&nbsp;&nbsp;&nbsp;</h2>
 
         <h1 class="card-title">
             <button class="btn btn-default-light" href="javascript:void(0);" wire:click="$dispatch('openModal', {component: 'modals.dossier.view-documents', arguments: { dossier : {{ $dossier->id }} }})"> <i class="fa fa-folder-open"></i> Documents</button>
@@ -111,10 +111,19 @@
                     @endcan
                 </div>
             @endif
-            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'ba_imp', 'di_dep']) && !$dossier->hasPassedThroughAny (['eng_dep']))
+            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'ba_imp', 'di_dep']) && !$dossier->hasPassedThroughAny (['rep_exo']))
+                <div class="card-title-m2">
+                    @can('Confirmer la reponse de la DE')
+                        <a wire:click='openDecisionExoModal' class="btn btn-sm btn-outline-primary">
+                            Confirmer la reception de la décision d'exonération
+                        </a>   
+                    @endcan
+                </div>
+            @endif
+            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'ba_imp', 'di_dep', 'rep_exo']) && !$dossier->hasPassedThroughAny (['eng_dep']))
                 <div class="card-title-m-2">
                     @can('Charger les bordereaux de livraison signés')
-                        <a wire:click='confirmDepositExo' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">@if ($declaration_error)
+                        <a wire:confirm='Ce dossier a-t-il bien été enregistré et déposé en douane ?' wire:click='confirmDepositExo' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">@if ($declaration_error)
                             <span class="alert-inner--icon">
                             <i class="fe fe-info" style="font-size: 1.5em; animation: flash 1s infinite alternate;"></i>
                             </span>

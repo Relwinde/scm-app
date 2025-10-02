@@ -6,11 +6,13 @@ use Exception;
 use App\Models\Article;
 use App\Models\Dossier;
 use Livewire\Attributes\On;
+use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 
 class FeuilleMinute extends ModalComponent
 {
+    use WithPagination;
 
     public Dossier $dossier;
 

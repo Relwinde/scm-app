@@ -111,6 +111,12 @@ Route::get('/view-dossier/{dossier}', function (Dossier $dossier){
 })->name('view-dossier')->middleware("auth");
 
 Route::get('/dossiers/files/{file}', function (Document $file) {
-    return response()->download(storage_path('app/' . $file->path));
+    try
+    {
+        return response()->download(storage_path('app/' . $file->path));
+    } catch (Exception $e) {
+        // Return an 404 response if there is an error
+        abort(404);
+    }
 })->name('dossiers.files.download')
     ->middleware('auth');

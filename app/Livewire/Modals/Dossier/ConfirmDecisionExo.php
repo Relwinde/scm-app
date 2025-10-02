@@ -7,7 +7,7 @@ use App\Models\Dossier;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 
-class ConfirmDepotExo extends ModalComponent
+class ConfirmDecisionExo extends ModalComponent
 {
 
     use WithFileUploads;
@@ -19,11 +19,11 @@ class ConfirmDepotExo extends ModalComponent
 
     public function render()
     {
-        return view('livewire.modals.dossier.confirm-depot-exo');
+        return view('livewire.modals.dossier.confirm-decision-exo');
     }
 
     public function save (){
-        if (! auth()->user()->can('Enregistrer & déposer dossiers en douane')) {
+        if (! auth()->user()->can('Confirmer la reponse de la DE')) {
             $this->dispatch('not-allowed');
             return;
         }
@@ -50,7 +50,7 @@ class ConfirmDepotExo extends ModalComponent
         $fileName = 'DECISION_EXO_' . str_replace('/', '-', $this->dossier->numero) . '.' . $this->file->getClientOriginalExtension();
 
         try { 
-            $this->dossier->transitionTo('eng_dep', auth()->user()->id);
+            $this->dossier->transitionTo('rep_exo', auth()->user()->id);
             $this->dossier->update([
                 'numero_decision_exo' => strtoupper($this->numero_decision_exo),
             ]);

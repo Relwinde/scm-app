@@ -154,6 +154,8 @@ class PermissionsSeeder extends Seeder
 
             Permission::create(['name'=> 'Renseigner la base d\'imputation']);
             Permission::create(['name'=> 'Déposer le DI']);
+            Permission::create(['name'=> 'Confirmer la reponse de la DE']);
+
 
 
     }

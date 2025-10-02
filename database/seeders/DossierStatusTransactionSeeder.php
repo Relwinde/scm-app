@@ -65,7 +65,12 @@ class DossierStatusTransactionSeeder extends Seeder
             'to_status_id' => DossierStatus::where('code', 'di_dep')->first()->id    // Dépôt de la demande d'exonération
         ]);
         DossierStatusTransaction::create([
-            'from_status_id' => DossierStatus::where('code', 'di_dep')->first()->id,
+            'from_status_id' => DossierStatus::where('code', 'di_dep')->first()->id, // Dépôt de la demande d'exonération
+            'to_status_id' => DossierStatus::where('code', 'rep_exo')->first()->id // Reception de la reponse de d'exoneration
+        ]);
+
+        DossierStatusTransaction::create([
+            'from_status_id' => DossierStatus::where('code', 'rep_exo')->first()->id,
             'to_status_id' => DossierStatus::where('code', 'eng_dep')->first()->id
         ]);
     }

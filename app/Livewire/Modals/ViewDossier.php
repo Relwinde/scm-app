@@ -334,14 +334,8 @@ class ViewDossier extends ModalComponent
             $this->dispatch('openModal', 'modals.dossier.upload-demande-exo', ['dossier' => $this->dossier->id]);
         }
 
-    
         public function confirmDepositExo (){
             if(! Auth::user()->can('Enregistrer & déposer dossiers en douane')){
-                $this->dispatch('not-allowed');
-                return;
-            }
-
-            if ($this->dossier->status?->code != 'di_dep' || $this->dossier->regime != 'EXO'){
                 $this->dispatch('not-allowed');
                 return;
             }
@@ -351,8 +345,32 @@ class ViewDossier extends ModalComponent
                 $this->dispatch('declaration-error');
                 return;
             }
+            try {
+                $this->dossier->transitionTo('eng_dep', Auth::user()->id);
+                $this->dispatch('update-dossier');
+                $this->dispatch('deposit-confirmed');
+    
+            } catch (\Exception $e) {
+                $this->dispatch('status-transition-error');
+                return;
+            }
             
-            $this->dispatch('openModal', 'modals.dossier.confirm-depot-exo', ['dossier' => $this->dossier->id]);
+        }
+
+    
+        public function openDecisionExoModal (){
+            if(! Auth::user()->can('Confirmer la reponse de la DE')){
+                $this->dispatch('not-allowed');
+                return;
+            }
+
+
+            if ($this->dossier->status?->code != 'di_dep' || $this->dossier->regime != 'EXO'){
+                $this->dispatch('not-allowed');
+                return;
+            }
+            
+            $this->dispatch('openModal', 'modals.dossier.confirm-decision-exo', ['dossier' => $this->dossier->id]);
         }
     
 }

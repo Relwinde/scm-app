@@ -14,7 +14,7 @@ class DossierStatusSeeder extends Seeder
     public function run(): void
     {
         DossierStatus::create([
-            'name' => 'Saisie',
+            'name' => 'Saisi',
             'code' => 'ssi'
         ]);
         DossierStatus::create([
@@ -34,6 +34,18 @@ class DossierStatusSeeder extends Seeder
             'code' => 'eng_dep'
         ]);
         DossierStatus::create([
+            'name' => 'Base d\'imputation',
+            'code' => 'ba_imp'
+        ]);
+        DossierStatus::create([
+            'name' => 'DE déposée',
+            'code' => 'di_dep'
+        ]);
+        DossierStatus::create([
+            'name' => 'RE Reçue',
+            'code' => 'rep_exo'
+        ]);
+        DossierStatus::create([
             'name' => 'En cours de livraison',
             'code' => 'bae'
         ]);
@@ -44,10 +56,6 @@ class DossierStatusSeeder extends Seeder
         DossierStatus::create([
             'name' => 'Base d\'imputation',
             'code' => 'ba_imp'
-        ]);
-        DossierStatus::create([
-            'name' => 'DI déposé',
-            'code' => 'di_dep'
         ]);
     }
 }
