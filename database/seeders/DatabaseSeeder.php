@@ -40,18 +40,18 @@ class DatabaseSeeder extends Seeder
         Permission::create(['name'=> 'Déposer le DI']);
         Permission::create(['name'=> 'Confirmer la reponse de la DE']);
 
-        DossierStatus::create([
-            'name' => 'RE Reçue',
-            'code' => 'rep_exo'
-        ]);
-        DossierStatusTransaction::create([
-            'from_status_id' => DossierStatus::where('code', 'di_dep')->first()->id,
-            'to_status_id' => DossierStatus::where('code', 'rep_exo')->first()->id
-        ]);
-        DossierStatusTransaction::create([
-            'from_status_id' => DossierStatus::where('code', 'rep_exo')->first()->id,
-            'to_status_id' => DossierStatus::where('code', 'eng_dep')->first()->id
-        ]);
+        // DossierStatus::create([
+        //     'name' => 'RE Reçue',
+        //     'code' => 'rep_exo'
+        // ]);
+        // DossierStatusTransaction::create([
+        //     'from_status_id' => DossierStatus::where('code', 'di_dep')->first()->id,
+        //     'to_status_id' => DossierStatus::where('code', 'rep_exo')->first()->id
+        // ]);
+        // DossierStatusTransaction::create([
+        //     'from_status_id' => DossierStatus::where('code', 'rep_exo')->first()->id,
+        //     'to_status_id' => DossierStatus::where('code', 'eng_dep')->first()->id
+        // ]);
 
     }
 }
