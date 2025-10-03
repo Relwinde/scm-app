@@ -30,10 +30,10 @@ class DatabaseSeeder extends Seeder
         // Permission::create(['name'=> 'Voir les alertes de doublons de bons de caisse']);
 
         // $this->call(DossierStatusSeeder::class);
-        DossierStatus::create([
-            'name' => 'RE Reçue',
-            'code' => 'rep_exo'
-        ]);
+        // DossierStatus::create([
+        //     'name' => 'RE Reçue',
+        //     'code' => 'rep_exo'
+        // ]);
         $this->call(DossierStatusTransactionSeeder::class);
         Permission::create(['name'=> 'Confirmer une feuille minute']);
         Permission::create(['name'=> 'Modifier une feuille minute confirmée']);
