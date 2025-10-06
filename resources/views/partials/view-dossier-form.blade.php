@@ -58,7 +58,7 @@
         </div>
 
         {{-- Gestion des status TTC --}}
-            @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def']) && !$dossier->hasPassedThroughAny (['eng_dep']))
+            @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['fm_def']) && !$dossier->hasPassedThroughAny (['eng_dep']))
                 <div class="card-title m-2">
                     @can('Enregistrer & déposer dossiers en douane')
                         <a wire:click='confirmDeposit' wire:confirm='Ce dossier a-t-il bien été enregistré et déposé en douane ?' href="javascript:void(0);" class="btn btn-sm btn-outline-primary"> @if ($declaration_error)
@@ -77,7 +77,7 @@
                 </div>
             @endif
 
-            @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'eng_dep']) && ! $dossier->hasPassedThroughAny (['bae']))
+            @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['fm_def', 'eng_dep']) && ! $dossier->hasPassedThroughAny (['bae']))
                 <div class="card-title m-2">
                     @can('Charger le BAE')
                         <a wire:click='uploadBae' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BAE</a>
@@ -85,7 +85,7 @@
                 </div>
             @endif
 
-            @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'eng_dep', 'bae']) && !$dossier->hasPassedThroughAny (['lvr']))
+            @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['fm_def', 'eng_dep', 'bae']) && !$dossier->hasPassedThroughAny (['lvr']))
                 <div class="card-title m-2">
                     @can('Charger les bordereaux de livraison signés')
                         <a wire:click='uploadBordereauLivraison' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BL signé</a>
@@ -96,7 +96,7 @@
             {{-- Fin gestion des status TTC --}}
 
         {{-- Gestion des status EXO --}}
-            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def']) && !$dossier->hasPassedThroughAny (['ba_imp']))
+            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['fm_def']) && !$dossier->hasPassedThroughAny (['ba_imp']))
                 <div class="card-title-m-2">
                     @can('Renseigner la base d\'imputation')
                         <a wire:click='openBaseImputationModal' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Renseigner la base d'imputation</a> 
@@ -104,14 +104,14 @@
                 </div>
             @endif
 
-            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'ba_imp']) && !$dossier->hasPassedThroughAny (['di_dep']))
+            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['fm_def', 'ba_imp']) && !$dossier->hasPassedThroughAny (['di_dep']))
                 <div class="card-title-m-2">
                     @can('Renseigner la base d\'imputation')
                         <a wire:click='openDemandeExoModal' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger la demande d'exonération</a> 
                     @endcan
                 </div>
             @endif
-            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'ba_imp', 'di_dep']) && !$dossier->hasPassedThroughAny (['rep_exo']))
+            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['fm_def', 'ba_imp', 'di_dep']) && !$dossier->hasPassedThroughAny (['rep_exo']))
                 <div class="card-title-m2">
                     @can('Confirmer la reponse de la DE')
                         <a wire:click='openDecisionExoModal' class="btn btn-sm btn-outline-primary">
@@ -120,7 +120,7 @@
                     @endcan
                 </div>
             @endif
-            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'ba_imp', 'di_dep', 'rep_exo']) && !$dossier->hasPassedThroughAny (['eng_dep']))
+            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['fm_def', 'ba_imp', 'di_dep', 'rep_exo']) && !$dossier->hasPassedThroughAny (['eng_dep']))
                 <div class="card-title-m-2">
                     @can('Charger les bordereaux de livraison signés')
                         <a wire:confirm='Ce dossier a-t-il bien été enregistré et déposé en douane ?' wire:click='confirmDepositExo' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">@if ($declaration_error)
@@ -139,7 +139,7 @@
                 </div>
             @endif
 
-            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'ba_imp', 'di_dep', 'eng_dep']) && ! $dossier->hasPassedThroughAny (['bae']))
+            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['fm_def', 'ba_imp', 'di_dep', 'eng_dep']) && ! $dossier->hasPassedThroughAny (['bae']))
                 <div class="card-title m-2">
                     @can('Charger le BAE')
                         <a wire:click='uploadBae' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BAE</a>
@@ -147,7 +147,7 @@
                 </div>
             @endif
 
-            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['cod', 'fm_prov', 'fm_def', 'ba_imp', 'di_dep', 'eng_dep', 'bae']) && !$dossier->hasPassedThroughAny (['lvr']))
+            @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['fm_def', 'ba_imp', 'di_dep', 'eng_dep', 'bae']) && !$dossier->hasPassedThroughAny (['lvr']))
                 <div class="card-title m-2">
                     @can('Charger les bordereaux de livraison signés')
                         <a wire:click='uploadBordereauLivraison' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BL signé</a>

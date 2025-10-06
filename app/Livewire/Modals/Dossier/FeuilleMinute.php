@@ -226,6 +226,7 @@ class FeuilleMinute extends ModalComponent
             }
         }
         else {
+            $this->dossier->transitionTo('fm_prov', Auth::user()->id);  
             $this->dispatch('print-feuille-minute');
         }
 
