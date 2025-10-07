@@ -123,6 +123,7 @@
                     <div class="card-body">
                         <h4>{{$bon->dossier ? "Dossier:" : ($bon->transport ? "Dossier:" : ($bon->vehicule ? "Véhicule" : "Dossier"))}}</h4>
                         <h1 class="mb-1 number-font" style="font-size: 17px;">{{$bon->dossier->numero ?? $bon->transport->numero ??  $bon->vehicule->immatriculation ?? "AUTRES"}}</h1>
+                        </h1> <h6 class="text-primary" style="font-size: 13px;">{{ mb_strtoupper($bon?->dossier?->status?->name, 'UTF-8') }}</h6></td>
                     </div>
                 </div>
             </div>
