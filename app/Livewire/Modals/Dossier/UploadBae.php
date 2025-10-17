@@ -29,12 +29,12 @@ class UploadBae extends ModalComponent
         }
 
         $this->validate([
-            'file' => 'required|mimes:pdf|max:2048', // 2MB Max
+            'file' => 'required|mimes:pdf|max:5120', // 5MB Max
             'bae_number' => 'required|string|max:255',
         ],
         [
             'file.mimes' => 'Le fichier doit être un document PDF.',
-            'file.max' => 'Le fichier ne doit pas dépasser 2MB.',
+            'file.max' => 'Le fichier ne doit pas dépasser 5MB.',
             'bae_number.required' => 'Le numéro BAE est requis.',
             'bae_number.string' => 'Le numéro BAE doit être une chaîne de caractères.',
             'bae_number.max' => 'Le numéro BAE ne doit pas dépasser 255 caractères.'
