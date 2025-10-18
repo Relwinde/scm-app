@@ -149,7 +149,13 @@ class Dossier extends Model
             'margin_footer' => 0,
         ]);
 
-        $html = view('prints.dossier', ['dossier'=>$this]);
+        $partiel = null; 
+
+        if (Dossier::where('num_commande', $this->num_commande)->count() > 1){
+            $partiel = true;
+        }
+
+        $html = view('prints.dossier', ['dossier'=>$this, 'partiel'=>$partiel]);
         $mpdf->writeHTML($html);
         $mpdf->Output($name = 'Dossier-'.$this->numero.'.pdf', 'I');
     }
