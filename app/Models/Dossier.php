@@ -6,6 +6,7 @@ use Mpdf\Mpdf;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Client;
+use Mpdf\WatermarkText;
 use App\Models\BonDeCaisse;
 use App\Models\Marchandise;
 use App\Models\DossierStatus;
@@ -226,7 +227,13 @@ class Dossier extends Model
             'margin_footer' => 0,
         ]);
 
+        if (! $this->hasPassedThrough(['fm_def'])){
+            $mpdf->showWatermarkText = true;
+            $mpdf->SetWatermarkText(new WatermarkText('PROVISOIR')); // Will cope with UTF-8 encoded text
+            $mpdf->watermarkTextAlpha = 0.09;
+        }
         $html = view('prints.feuille-minute', ['dossier'=>$this]);
+       
         $mpdf->writeHTML($html);
         $mpdf->Output($name = 'Feuille-minute-'.$this->numero.'.pdf', 'I');
     }

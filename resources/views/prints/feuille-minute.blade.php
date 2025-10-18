@@ -3,7 +3,6 @@
 @endphp
 
 <style>
-    
     #info table, #info th, #info td {
         border: 1px solid white;
         border-collapse: collapse;
