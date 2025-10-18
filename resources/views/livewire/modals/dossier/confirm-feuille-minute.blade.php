@@ -50,6 +50,16 @@
                 });
             }).call(this);
         });
+        $wire.on('not-allowed', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        title: "Erreur :",
+                        message: "Une erreur s'est produite lors de la transition."
+                    });
+                });
+            }).call(this);
+        });
         $wire.on('feuille-minute-confirmed', () => {
             (function () {
                 $(function () {
