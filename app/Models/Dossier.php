@@ -235,7 +235,7 @@ class Dossier extends Model
 
         if (! $this->hasPassedThrough(['fm_def'])){
             $mpdf->showWatermarkText = true;
-            $mpdf->SetWatermarkText(new WatermarkText('PROVISOIR')); // Will cope with UTF-8 encoded text
+            $mpdf->SetWatermarkText(new WatermarkText('P R O V I S O I R E')); // Will cope with UTF-8 encoded text
             $mpdf->watermarkTextAlpha = 0.09;
         }
         $html = view('prints.feuille-minute', ['dossier'=>$this]);
