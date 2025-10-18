@@ -11,61 +11,72 @@
 
     <!-- ROW OPEN -->
     <div class="row row-cards">
-        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-            <div class="card">
-                <div class="card-header pb-0 border-bottom-0">
-                    <h3 class="card-title" style="font-size: 24px; font-weight: 300;">Feuille minute</br>  à confirmer</h3>
-                    <div class="card-options">
-                        <a class="btn btn-sm btn-danger" href="javascript:void(0);"><i class="fa fa-file-o mb-0"></i></a>
+
+        @can('Confirmer une feuille minute')
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                <div class="card">
+                    <div class="card-header pb-0 border-bottom-0">
+                        <h3 class="card-title" style="font-size: 24px; font-weight: 300;">Feuille minute</br>  à confirmer</h3>
+                        <div class="card-options">
+                            <a class="btn btn-sm btn-danger" href="javascript:void(0);"><i class="fa fa-file-o mb-0"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <h3 class="d-inline-block mb-2" style="font-size: 25px; font-weight: 700;">{{ $fm_prov }}</h3>
                     </div>
                 </div>
-                <div class="card-body pt-0">
-                    <h3 class="d-inline-block mb-2" style="font-size: 25px; font-weight: 700;">{{ $fm_prov }}</h3>
+            </div><!-- COL END -->  
+        @endcan
+
+        @can('Enregistrer & déposer dossiers en douane')
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                <div class="card">
+                    <div class="card-header pb-0 border-bottom-0">
+                        <h3 class="card-title" style="font-size: 24px; font-weight: 300;">A enregistrer/déposer en douane</h3>
+                        <div class="card-options">
+                            <a class="btn btn-sm btn-primary" href="javascript:void(0);"><i class="fa fa-inbox mb-0"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <h3 class="d-inline-block mb-2" style="font-size: 25px; font-weight: 700;">{{$dep}}</h3>
+                    </div>
                 </div>
-            </div>
-        </div><!-- COL END -->
+            </div><!-- COL END -->  
+        @endcan
         
-        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-            <div class="card">
-                <div class="card-header pb-0 border-bottom-0">
-                    <h3 class="card-title" style="font-size: 24px; font-weight: 300;">A enregistrer/déposer en douane</h3>
-                    <div class="card-options">
-                        <a class="btn btn-sm btn-primary" href="javascript:void(0);"><i class="fa fa-inbox mb-0"></i></a>
-                    </div>
-                </div>
-                <div class="card-body pt-0">
-                    <h3 class="d-inline-block mb-2" style="font-size: 25px; font-weight: 700;">{{$dep}}</h3>
-                </div>
-            </div>
-        </div><!-- COL END -->
 
-        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-            <div class="card">
-                <div class="card-header pb-0 border-bottom-0">
-                    <h3 class="card-title" style="font-size: 24px; font-weight: 300;">En attente de reponse d'éxonération</h3>
-                    <div class="card-options">
-                        <a class="btn btn-sm btn-success" href="javascript:void(0);"><i class="fa fa-file mb-0"></i></a>
+        @can('Confirmer la reponse de la DE')
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                <div class="card">
+                    <div class="card-header pb-0 border-bottom-0">
+                        <h3 class="card-title" style="font-size: 24px; font-weight: 300;">En attente de reponse d'éxonération</h3>
+                        <div class="card-options">
+                            <a class="btn btn-sm btn-success" href="javascript:void(0);"><i class="fa fa-file mb-0"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <h3 class="d-inline-block mb-2" style="font-size: 25px; font-weight: 700;">{{ $dem_exo }}</h3>
                     </div>
                 </div>
-                <div class="card-body pt-0">
-                    <h3 class="d-inline-block mb-2" style="font-size: 25px; font-weight: 700;">{{ $dem_exo }}</h3>
-                </div>
-            </div>
-        </div><!-- COL END -->
+            </div><!-- COL END -->  
+        @endcan
 
-        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-            <div class="card">
-                <div class="card-header pb-0 border-bottom-0">
-                    <h3 class="card-title" style="font-size: 24px; font-weight: 300;">En attente de</br> livraison</h3>
-                    <div class="card-options">
-                        <a class="btn btn-sm btn-warning" href="javascript:void(0);"><i class="fa fa-truck mb-0"></i></a>
+
+        @can('Charger les bordereaux de livraison signés')
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                <div class="card">
+                    <div class="card-header pb-0 border-bottom-0">
+                        <h3 class="card-title" style="font-size: 24px; font-weight: 300;">En attente de</br> livraison</h3>
+                        <div class="card-options">
+                            <a class="btn btn-sm btn-warning" href="javascript:void(0);"><i class="fa fa-truck mb-0"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <h3 class="d-inline-block mb-2" style="font-size: 25px; font-weight: 700;">{{ $bae }}</h3>
                     </div>
                 </div>
-                <div class="card-body pt-0">
-                    <h3 class="d-inline-block mb-2" style="font-size: 25px; font-weight: 700;">{{ $bae }}</h3>
-                </div>
-            </div>
-        </div><!-- COL END -->
+            </div><!-- COL END -->  
+        @endcan
 
     </div>
     <!-- ROW CLOSED -->
