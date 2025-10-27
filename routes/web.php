@@ -100,6 +100,10 @@ Route::get('/print-delivery/{dossier}', function (Dossier $dossier){
     $dossier->print_delivery_slip();
 })->name('print-delivery')->middleware("auth");
 
+Route::get('/transpor-delivery/{dossier}', function (TransportInterne $dossier){
+    $dossier->print_delivery_slip();
+})->name('print-delivery')->middleware("auth");
+
 Route::get('/view-dossier/{dossier}', function (Dossier $dossier){
     if ($dossier->type == "IMPORT"){
         return redirect()->route('dossiers-import', ['dossier'=>$dossier->id]);

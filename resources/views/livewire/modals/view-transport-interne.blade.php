@@ -42,7 +42,10 @@
                         @can('Créer bons de caisse')
                             <button wire:click="$dispatch('openModal', {component: 'modals.transport-interne.create-bon', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Créer un bon</button>    
                         @endcan
-                    </div>            
+                    </div>   
+                    <div class="card-title m-2">
+                            <a wire:click="$dispatch('openModal', {component: 'modals.transport-interne.print-delivery-slip', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text"></i> Bordereau de livraison</a>  
+                    </div>         
                 </div>
                 @if ($edit==true)
                 <form wire:submit.prevent="update" >

@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Client;
 use App\Models\Vehicule;
 use App\Models\Chauffeur;
+use App\Models\DeliverySlip;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -69,6 +70,31 @@ class TransportInterne extends Model
         }
         while(NumeroTransport::where('numero', 'LIKE', "%/{$pattern}")->whereYear('created_at', Carbon::parse($this->created_at)->year)->count() > 0);
         $this->numero = $numero;
+    }
+
+
+    public function delivery_slip (){
+        return $this->hasOne(DeliverySlip::class);
+    }
+
+    public function print_delivery_slip (){
+        ini_set('memory_limit', '440M');
+        $mpdf = new Mpdf([
+            'mode'=>'utf-8',
+            'format' => 'A4-L',
+            'default_font_size' => 14,
+            'default_font' => 'FreeSerif',
+            'margin_left' => 10,
+            'margin_right' => 10,
+            'margin_top' => 10,
+            'margin_bottom' => 10,
+            'margin_header' => 0,
+            'margin_footer' => 0,
+        ]);
+
+        $html = view('prints.delivery-slip', ['dossier'=>$this]);
+        $mpdf->writeHTML($html);
+        $mpdf->Output($name = 'Bon-de-livraison-'.$this->numero.'.pdf', 'I');
     }
     
 }
