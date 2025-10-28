@@ -71,6 +71,10 @@
                                     <label class="form-label">Montant</label>
                                     <input wire:focusout='reformat_montant()' wire:model='montant' type="text" class="form-control" name="montant" placeholder="Montant">
                                 </div>
+                                <div class="mb-4">
+                                    <label class="form-label">N° de commande</label>
+                                    <input  wire:model='num_commande' type="text" class="form-control" name="num_commande" placeholder="N° de commande">
+                                </div>
                             </div>
                             <div class="col-md-12 ">
                                 {{-- <div class="mb-0">

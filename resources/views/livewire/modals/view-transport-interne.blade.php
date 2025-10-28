@@ -116,6 +116,10 @@
                                     <label class="form-label">Montant</label>
                                     <input wire:focusout='reformat_montant ()'  @if ($edit==false) readonly disabled="" @endif wire:model='montant' type="text" class="form-control" name="example-text-input" placeholder="">
                                 </div>
+                                <div class="mb-4">
+                                    <label class="form-label">N° de commande</label>
+                                    <input @if ($edit==false) readonly disabled="" @endif wire:model='num_commande' type="text" class="form-control" name="num_commande" placeholder="N° de commande">
+                                </div>
                             </div>
                             <div class="col-md-12 ">
                                 {{-- <div class="mb-0">

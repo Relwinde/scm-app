@@ -23,6 +23,7 @@ class CreateTransportInterne extends ModalComponent
     public $volume;
     public $marchandise;
     public $num_lta_bl;
+    public $num_commande;
 
     public function render()
     {
@@ -41,6 +42,7 @@ class CreateTransportInterne extends ModalComponent
         'poids'=>floatval(str_replace(' ', '',$this->poids)),
         'volume'=>floatval(str_replace(' ', '',$this->volume)),
         'nombre_colis'=>$this->nombre_colis,
+        'num_commande'=>$this->num_commande,
         'client_id'=>$this->client,
         'vehicule_id'=>$this->vehicule,
         'chauffeur_id'=>$this->chauffeur,
