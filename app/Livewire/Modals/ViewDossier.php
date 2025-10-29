@@ -203,7 +203,7 @@ class ViewDossier extends ModalComponent
             return;
         }
         
-        if ($this->dossier->valeur_caf == null || $this->dossier->fob_xof == null || $this->fret == null || $this->dossier->assurance == null || $this->dossier->valeur_caf == 0 || $this->dossier->fob_xof == 0 || $this->fret == 0 || $this->dossier->assurance == 0){
+        if ($this->dossier->valeur_caf == null || $this->dossier->fob_xof == null || $this->fret == null || $this->dossier->assurance == null || $this->dossier->valeur_caf == 0 || $this->dossier->fob_xof == 0 || $this->dossier->assurance == 0){
             $this->dispatch('feuille-minute-novalue');
             $this->value_error = true;
         }
