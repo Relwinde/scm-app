@@ -8,12 +8,20 @@
             <div class="card form-input-elements">
                 <div class="card-header d-flex justify-content-between">
                     <h3 class="mb-0 card-title">N°: <b>{{$dossier->numero}}</b></h3>&nbsp; &nbsp;
-                        @can('Voir le total des dépenses du dossier')
-                            <button wire:click="export" id="bAcep" type="button" class="btn btn-sm btn-outline-primary">
-                            <i class="fa fa-download"></i>
-                            </button>
-                            <h3 class="card-title">Dépenses: <b>{{number_format($total_depenses, 2, '.', ' ')}} CFA</b></h3>&nbsp; &nbsp;
-                        @endcan
+                    <h2 class="text-primary" ><i class="fa fa-map-pin"></i> Statut: {{ mb_strtoupper($dossier->status?->name, 'UTF-8') }}&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+
+                    <h1 class="card-title">
+                        <button class="btn btn-default-light" href="javascript:void(0);" wire:click="$dispatch('openModal', {component: 'modals.transport-interne.view-documents', arguments: { dossier : {{ $dossier->id }} }})"> <i class="fa fa-folder-open"></i> Documents</button>
+                    </h1>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                    @can('Voir le total des dépenses du dossier')
+                        <button wire:click="export" id="bAcep" type="button" class="btn btn-sm btn-outline-primary">
+                        <i class="fa fa-download"></i>
+                        </button>
+                        <h3 class="card-title">Dépenses: <b>{{number_format($total_depenses, 2, '.', ' ')}} CFA</b></h3>&nbsp; &nbsp;
+                    @endcan
+
                         
                     <div class="card-options">
                         <div class="dropdown">
@@ -45,7 +53,14 @@
                     </div>   
                     <div class="card-title m-2">
                             <a wire:click="$dispatch('openModal', {component: 'modals.transport-interne.print-delivery-slip', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text"></i> Bordereau de livraison</a>  
-                    </div>         
+                    </div>  
+                    @if ($dossier->hasPassedThrough (['ecl']) && !$dossier->hasPassedThroughAny (['lvr']))
+                        <div class="card-title m-2">
+                            @can('Charger les bordereaux de livraison signés')
+                                <a wire:click='uploadBordereauLivraison' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BL signé</a>
+                            @endcan
+                        </div>     
+                    @endif       
                 </div>
                 @if ($edit==true)
                 <form wire:submit.prevent="update" >

@@ -16,6 +16,7 @@ class TransportsInternes extends Component
     use WithPagination;
 
     #[On('new-dossier')]
+    #[On('update-dossier')]
     public function render()
     {
 
@@ -23,7 +24,7 @@ class TransportsInternes extends Component
             redirect("/");
         }
 
-        $dossiers = TransportInterne::select(['transport_internes.id', 'transport_internes.numero', 'transport_internes.client_id', 'transport_internes.chauffeur_id', 'transport_internes.vehicule_id', 'transport_internes.created_at'])
+        $dossiers = TransportInterne::select(['transport_internes.id', 'transport_internes.numero', 'transport_internes.client_id', 'transport_internes.chauffeur_id', 'transport_internes.vehicule_id', 'transport_internes.created_at', 'transport_status_id'])
             ->leftjoin('clients', 'transport_internes.client_id', '=', 'clients.id') 
             ->leftjoin('vehicules', 'transport_internes.vehicule_id', '=', 'vehicules.id') 
             ->leftjoin('chauffeurs', 'transport_internes.chauffeur_id', '=', 'chauffeurs.id') 

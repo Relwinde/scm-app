@@ -1,36 +1,27 @@
 <?php
 
-namespace App\Livewire\Modals\Dossier;
+namespace App\Livewire\Modals\TransportInterne;
 
-use App\Models\Dossier;
 use App\Models\Document;
 use Livewire\WithFileUploads;
+use App\Models\TransportInterne;
 use LivewireUI\Modal\ModalComponent;
 
 class UploadBordereauLivraison extends ModalComponent
 {
 
+    public TransportInterne $dossier;
+    public $file;
+
     use WithFileUploads;
 
-    public Dossier $dossier;
-    public $file;
 
     public function render()
     {
-        return view('livewire.modals.dossier.upload-bordereau-livraison');
+        return view('livewire.modals.transport-interne.upload-bordereau-livraison');
     }
 
     public function save (){
-        if (! auth()->user()->can('Charger les bordereaux de livraison signés')) {
-            $this->dispatch('not-allowed');
-            return;
-        }
-
-        if ($this->dossier->status?->code != 'bae'){
-            $this->dispatch('not-allowed');
-            return;
-        }
-
         $this->validate([
             'file' => 'required|mimes:pdf|max:5120', // 5MB Max
         ],
@@ -38,6 +29,7 @@ class UploadBordereauLivraison extends ModalComponent
             'file.mimes' => 'Le fichier doit être un document PDF.',
             'file.max' => 'Le fichier ne doit pas dépasser 5MB.',
         ]);
+
 
         $originalName = strtoupper(preg_replace('/\.pdf$/i', '', $this->file->getClientOriginalName()));
         $fileName = 'BORDEREAU_LIVRAISON_' . str_replace('/', '-', $this->dossier->numero) . '.' . $this->file->getClientOriginalExtension();
@@ -52,7 +44,7 @@ class UploadBordereauLivraison extends ModalComponent
         $path = $this->file->storeAs('attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero), $fileName);
 
         Document::create([
-            'dossier_id' => $this->dossier->id,
+            'transport_interne_id' => $this->dossier->id,
             'path' => $path,
             'type' => 'BORDEREAU DE LIVRAISON',
             'name' => $fileName,
@@ -62,7 +54,8 @@ class UploadBordereauLivraison extends ModalComponent
 
 
         $this->dispatch('update-dossier');
-        $this->dispatch('bae-confirmed');
+        $this->dispatch('bl-confirmed');
         $this->closeModal();
-    }   
+
+    }
 }

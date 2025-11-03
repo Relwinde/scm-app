@@ -5,7 +5,9 @@ namespace App\Livewire\Modals\TransportInterne;
 use Livewire\Component;
 use App\Models\DeliverySlip;
 use App\Models\TransportInterne;
+use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
+use Throwable;
 
 class PrintDeliverySlip extends ModalComponent
 {
@@ -59,6 +61,11 @@ class PrintDeliverySlip extends ModalComponent
         $slip->first_name = $this->first_name;
         $slip->last_name = $this->last_name;
         $slip->save();
+        try {
+            $this->dossier->transitionTo('ecl', Auth::user()->id);
+        } catch (Throwable $ex){
+            throw $ex;
+        }
         return redirect()->route('print-transport-delivery', ['dossier' => $this->dossier->id]);
         $this->closeModal();
 

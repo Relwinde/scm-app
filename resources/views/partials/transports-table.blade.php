@@ -12,7 +12,10 @@
         <tbody>
             @foreach ($dossiers as $dossier)
                 <tr style="font-weight:600;" wire:key='{{$dossier->id}}'>
-                    <td wire:click="$dispatch('openModal', {component: 'modals.view-transport-interne', arguments: { dossier : {{ $dossier->id }} }})" style="cursor: pointer;">{{$dossier->numero}}</td>
+                    <td wire:click="$dispatch('openModal', {component: 'modals.view-transport-interne', arguments: { dossier : {{ $dossier->id }} }})" style="cursor: pointer;">
+                        <h1>{{$dossier->numero}}</h1> 
+                        <h6 class="text-primary" style="font-size: 13px;">{{ mb_strtoupper($dossier->status?->name, 'UTF-8') }}</h6>
+                    </td>
                     <td>{{$dossier->client->nom}}</td>
                     <td>{{$dossier->chauffeur->nom ?? ''}}</td>
                     <td>{{$dossier->vehicule->immatriculation ?? ''}}</td>

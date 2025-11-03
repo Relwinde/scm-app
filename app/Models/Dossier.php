@@ -72,7 +72,10 @@ class Dossier extends Model
 
         if ($this->status == null){
             $this->update(['dossier_status_id' => DossierStatus::where('code', 'ssi')->first()->id]);
+            
+            $this->refresh();
         }
+
 
         // Check if the trasition is non already done
         if ($this->status->code == $statusCode) {

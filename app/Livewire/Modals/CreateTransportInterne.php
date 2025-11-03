@@ -6,9 +6,10 @@ use Carbon\Carbon;
 use App\Models\Client;
 use App\Models\Vehicule;
 use App\Models\Chauffeur;
-use App\Models\NumeroTransport;
-use App\Models\TransportInterne;
 use App\Models\Marchandise;
+use App\Models\NumeroTransport;
+use App\Models\TransportStatus;
+use App\Models\TransportInterne;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 
@@ -47,7 +48,8 @@ class CreateTransportInterne extends ModalComponent
         'vehicule_id'=>$this->vehicule,
         'chauffeur_id'=>$this->chauffeur,
         'user_id'=>Auth::User()->id, 
-        'num_lta_bl'=>$this->num_lta_bl
+        'num_lta_bl'=>$this->num_lta_bl,
+        'transport_status_id'=>TransportStatus::where('code', 'ssi')->first()->id // statut 'Saisie' par défaut
         ]);
 
         if(TransportInterne::whereYear('created_at', Carbon::now()->year)->latest()->first() == null){

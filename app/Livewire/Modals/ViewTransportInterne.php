@@ -6,13 +6,15 @@ use App\Models\Client;
 use Livewire\Component;
 use App\Models\Vehicule;
 use App\Models\Chauffeur;
+use App\Models\Marchandise;
+use Livewire\Attributes\On;
 use App\Models\NumeroTransport;
 use App\Models\TransportInterne;
 use App\Exports\TransportDepenses;
-use App\Models\Marchandise;
-use App\Models\MarchandiseTransportInterne;
+use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\MarchandiseTransportInterne;
 
 
 class ViewTransportInterne extends ModalComponent
@@ -46,6 +48,7 @@ class ViewTransportInterne extends ModalComponent
 
     }
 
+    #[On('update-dossier')]
     public function render()
     {
         $clients = Client::all(['id', 'nom']);
@@ -129,5 +132,19 @@ class ViewTransportInterne extends ModalComponent
 
     public function export (){
         return Excel::download(new TransportDepenses($this->dossier), str_replace('/', '-',$this->dossier->numero).'.xlsx');
+    }
+
+    public function uploadBordereauLivraison (){
+        if(! Auth::user()->can('Charger les bordereaux de livraison signés')){
+                $this->dispatch('not-allowed');
+                return;
+            }
+
+        if ($this->dossier->status?->code != 'ecl'){
+                $this->dispatch('not-allowed');
+                return;
+            }
+
+        $this->dispatch('openModal', 'modals.transport-interne.upload-bordereau-livraison', ['dossier' => $this->dossier->id]);
     }
 }
