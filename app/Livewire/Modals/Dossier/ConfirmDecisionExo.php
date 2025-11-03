@@ -35,7 +35,7 @@ class ConfirmDecisionExo extends ModalComponent
 
         $this->validate([
             'numero_decision_exo' => 'required|string|max:255',
-            'file' => 'required|mimes:pdf|max:2048', // 2MB Max
+            'file' => 'required|mimes:pdf|max:5120', // 5MB Max
         ],
         [
             'numero_decision_exo.required' => 'Le numéro de la décision d\'éxonération est requis.',
