@@ -154,7 +154,7 @@ class Dossier extends Model
 
         $partiel = null; 
 
-        if (Dossier::where('num_commande', $this->num_commande)->count() > 1){
+        if ($this->num_commande != "NA" && $this->num_commande != "na" && $this->num_commande != "NBA" && $this->num_commande != "nba" && Dossier::where('num_commande', $this->num_commande)->count() > 1){
             $partiel = true;
         }
 
