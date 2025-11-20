@@ -9,14 +9,14 @@
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Selectionner la pièce</label>
                         <input class="form-control" type="file" accept=".pdf" wire:model="file">
-                        @error('file')<div class="error-message"> {{ $message }} </div>@enderror
+                        @error('file')<div class="error-message"> {{ $message !="validation.uploaded" ? $message : '' }} </div>@enderror
                     </div>
                 </div>
             </div>
         </div>
         <div class="card-footer">
             <div class="btn-list">
-                <button class="btn btn-primary">Enregistrer</button>
+                <button class="btn btn-primary" wire:loading.class="disabled" wire:target="file" >Enregistrer</button>
                 <a href="javascript:void(0);" wire:click="$dispatch('closeModal')" class="btn btn-danger">Annuler</a>
             </div>
         </div>
