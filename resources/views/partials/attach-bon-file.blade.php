@@ -16,7 +16,7 @@
         </div>
         <div class="card-footer">
             <div class="btn-list">
-                <button class="btn btn-primary" wire:loading.class="disabled" wire:target="file" >Enregistrer</button>
+                <button class="btn btn-primary" wire:loading.class="disabled" wire:target="file" >Enregistrer <span wire:loading >Chargement...</span> </button>
                 <a href="javascript:void(0);" wire:click="$dispatch('closeModal')" class="btn btn-danger">Annuler</a>
             </div>
         </div>
