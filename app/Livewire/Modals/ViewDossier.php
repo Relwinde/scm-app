@@ -378,6 +378,16 @@ class ViewDossier extends ModalComponent
                 $this->dispatch('not-allowed');
                 return;
             }
+
+            try {
+                $this->dossier->transitionTo('tr_fact', Auth::user()->id);
+                $this->dispatch('update-dossier');
+                $this->dispatch('facturation-transmitted');
+    
+            } catch (\Exception $e) {
+                $this->dispatch('status-transition-error');
+                return;
+            }
         }
 
         public function setFacture (){
@@ -385,18 +395,30 @@ class ViewDossier extends ModalComponent
                 $this->dispatch('not-allowed');
                 return;
             }
+
+            $this->dispatch('openModal', 'modals.dossier.confirm-facture', ['dossier' => $this->dossier->id]);
         }
 
         public function setPayment (){
-            if(! Auth::user()->can('Valider le paiement d\'un dossier') || $this->dossier->status?->code != 'tr_fact'){
+            if(! Auth::user()->can('Valider le paiement d\'un dossier') || $this->dossier->status?->code != 'fact'){
                 $this->dispatch('not-allowed');
                 return;
             }
+
+            $this->dispatch('openModal', 'modals.dossier.confirm-payment', ['dossier' => $this->dossier->id]);
         }
 
         public function setArchive (){
-            if(! Auth::user()->can('Archiver un dossier') || $this->dossier->status?->code != 'fact'){
+            if(! Auth::user()->can('Archiver un dossier') || $this->dossier->status?->code != 'pay'){
                 $this->dispatch('not-allowed');
+                return;
+            }
+
+            try { 
+                $this->dossier->transitionTo('arch', auth()->user()->id);
+                $this->dispatch('update-dossier');
+            } catch (\Throwable $th) {
+                $this->dispatch('status-transition-error');
                 return;
             }
         }
