@@ -165,7 +165,7 @@ class PermissionsSeeder extends Seeder
 
         
         // Permissions Facturation et archivage
-            Permission::create(['name'=> 'Tranmettre un dossier pour facturation']);
+            Permission::create(['name'=> 'Transmettre un dossier pour facturation']);
             Permission::create(['name'=> 'Facturer un dossier']);
             Permission::create(['name'=> 'Valider le paiement d\'un dossier']);
             Permission::create(['name'=> 'Archiver un dossier']);

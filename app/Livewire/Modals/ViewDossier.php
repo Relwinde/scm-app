@@ -372,5 +372,33 @@ class ViewDossier extends ModalComponent
             
             $this->dispatch('openModal', 'modals.dossier.confirm-decision-exo', ['dossier' => $this->dossier->id]);
         }
+
+        public function setFacturation (){
+            if(! Auth::user()->can('Transmettre un dossier pour facturation') || $this->dossier->status?->code != 'lvr'){
+                $this->dispatch('not-allowed');
+                return;
+            }
+        }
+
+        public function setFacture (){
+            if(! Auth::user()->can('Facturer un dossier') || $this->dossier->status?->code != 'tr_fact'){
+                $this->dispatch('not-allowed');
+                return;
+            }
+        }
+
+        public function setPayment (){
+            if(! Auth::user()->can('Valider le paiement d\'un dossier') || $this->dossier->status?->code != 'tr_fact'){
+                $this->dispatch('not-allowed');
+                return;
+            }
+        }
+
+        public function setArchive (){
+            if(! Auth::user()->can('Archiver un dossier') || $this->dossier->status?->code != 'fact'){
+                $this->dispatch('not-allowed');
+                return;
+            }
+        }
     
 }

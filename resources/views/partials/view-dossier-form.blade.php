@@ -92,8 +92,7 @@
                     @endcan
                 </div>
             @endif
-
-            {{-- Fin gestion des status TTC --}}
+        {{-- Fin gestion des status TTC --}}
 
         {{-- Gestion des status EXO --}}
             @if ($dossier->regime == "EXO" && $dossier->hasPassedThrough (['fm_def']) && !$dossier->hasPassedThroughAny (['ba_imp']))
@@ -154,7 +153,42 @@
                     @endcan
                 </div>
             @endif
-            {{-- Fin gestion des status EXO --}}
+        {{-- Fin gestion des status EXO --}}
+
+        {{-- Gestion des statuts après livraison --}}
+            @if ($dossier->hasPassedThrough (['fm_def', 'eng_dep', 'bae', 'lvr']) && !$dossier->hasPassedThroughAny (['tr_fact']))
+            <div class="card-title m-2">
+                @can('Transmettre un dossier pour facturation')
+                    <a wire:click='setFacturation' href="javascript:void(0);" wire:confirm='Êtes-vous sûr de vouloir transmettre ce dossier pour facturation ?' class="btn btn-sm btn-outline-danger">Tranmettre pour facturation</a>
+                @endcan
+            </div>
+            @endif
+
+            @if ($dossier->hasPassedThrough (['fm_def', 'eng_dep', 'bae', 'lvr', 'tr_fact']) && !$dossier->hasPassedThroughAny (['fact']))
+                <div class="card-title m-2">
+                    @can('Facturer un dossier')
+                        <a wire:click='setFacture' wire:confirm='Confirmez vous que ce dossier a bien été facturé ?' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Facturé</a>
+                    @endcan
+                </div>
+            @endif
+
+            @if ($dossier->hasPassedThrough (['fm_def', 'eng_dep', 'bae', 'lvr', 'tr_fact', 'fact']) && !$dossier->hasPassedThroughAny (['pay']))
+                <div class="card-title m-2">
+                    @can('Valider le paiement d\'un dossier')
+                        <a wire:click='setPayment' wire:confirm='Confirmez vous le paiement de ce dossier ?' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Confirmer paiement</a>
+                    @endcan
+                </div>
+            @endif
+
+            @if ($dossier->hasPassedThrough (['fm_def', 'eng_dep', 'bae', 'lvr', 'tr_fact', 'fact', 'pay']) && !$dossier->hasPassedThroughAny (['arch']))
+                <div class="card-title m-2">
+                    @can('Archiver un dossier')
+                        <a wire:click='setArchive' wire:confirm='Souhaitez vous vraiment archiver ce dossier ?' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Archiver</a>
+                    @endcan
+                </div>
+            @endif
+        {{-- Fin gestion des statuts après livraison --}}
+
         <div class="card-title m-2">
             @can('Créer bons de caisse')
                 <a wire:click="$dispatch('openModal', {component: 'modals.dossier.create-bon', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-warning"><i class="fa fa-money"></i> Créer un bon</a>  
