@@ -26,6 +26,13 @@
                         </div>
                     </div>
                 </div>
+
+                <div wire:loading wire:target="file">
+                    <div class="dimmer active overlay-spinner" style="position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.6);">
+                    <div class="lds-ring" aria-hidden="true"><div></div><div></div><div></div><div></div></div>
+                </div>
+                
+            </div>
             </div>
             <div class="card-footer">
                 <div class="btn-list">
