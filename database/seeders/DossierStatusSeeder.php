@@ -57,5 +57,25 @@ class DossierStatusSeeder extends Seeder
         //     'name' => 'RE Reçue',
         //     'code' => 'rep_exo'
         // ]);
+        DossierStatus::create([
+            'name' => 'Transmis pour facturation',
+            'code' => 'tr_fact'
+        ]);
+
+        DossierStatus::create([
+            'name' => 'Facturé',
+            'code' => 'fact'
+        ]);
+
+        DossierStatus::create([
+            'name' => 'Payé',
+            'code' => 'pay'
+        ]);
+
+        DossierStatus::create([
+            'name' => 'Archivé',
+            'code' => 'arch'
+        ]);
+
     }
 }

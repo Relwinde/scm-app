@@ -25,5 +25,25 @@ class TransportStatusSeeder extends Seeder
             'name' => 'Livré',
             'code' => 'lvr'
         ]);
+
+        TransportStatus::create([
+            'name' => 'Transmis pour facturation',
+            'code' => 'tr_fact'
+        ]);
+
+        TransportStatus::create([
+            'name' => 'Facturé',
+            'code' => 'fact'
+        ]);
+
+        TransportStatus::create([
+            'name' => 'Payé',
+            'code' => 'pay'
+        ]);
+
+        TransportStatus::create([
+            'name' => 'Archivé',
+            'code' => 'arch'
+        ]);
     }
 }

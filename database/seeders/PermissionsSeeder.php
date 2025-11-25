@@ -146,6 +146,9 @@ class PermissionsSeeder extends Seeder
 
         // Permission de feuille minute
             Permission::create(['name'=> 'Etablir la feuille minute']);
+            Permission::create(['name'=> 'Confirmer une feuille minute']);
+            Permission::create(['name'=> 'Modifier une feuille minute confirmée']);
+
 
         // Permission étape dépôt en douane
             Permission::create(['name'=> 'Enregistrer & déposer dossiers en douane']);
@@ -156,6 +159,16 @@ class PermissionsSeeder extends Seeder
             Permission::create(['name'=> 'Déposer le DI']);
             Permission::create(['name'=> 'Confirmer la reponse de la DE']);
 
+        // Permission Sections
+            Permission::create(['name'=> 'Section Transit']);
+            Permission::create(['name'=> 'Section Logistique']);
+
+        
+        // Permissions Facturation et archivage
+            Permission::create(['name'=> 'Tranmettre un dossier pour facturation']);
+            Permission::create(['name'=> 'Facturer un dossier']);
+            Permission::create(['name'=> 'Valider le paiement d\'un dossier']);
+            Permission::create(['name'=> 'Archiver un dossier']);
 
 
     }

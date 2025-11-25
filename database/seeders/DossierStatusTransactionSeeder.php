@@ -14,17 +14,7 @@ class DossierStatusTransactionSeeder extends Seeder
      */
     public function run(): void
     {
-        // Define the status transitions
-        // $transitions = [
-        //     ['from_status_id' => 1, 'to_status_id' => 2], // Saisie -> Codifié
-        //     ['from_status_id' => 2, 'to_status_id' => 3], // Codifié -> FM Provisoire
-        //     ['from_status_id' => 3, 'to_status_id' => 4], // FM Provisoire -> FM Définitive
-        //     // Add more transitions as needed
-        // ];
-
-        // foreach ($transitions as $transition) {
-        //     \App\Models\DossierStatusTransaction::create($transition);
-        // }
+        
 
         DossierStatusTransaction::create([
             'from_status_id' => DossierStatus::where('code', 'ssi')->first()->id, // Saisie
@@ -52,7 +42,7 @@ class DossierStatusTransactionSeeder extends Seeder
         ]);
         DossierStatusTransaction::create([
             'from_status_id' => DossierStatus::where('code', 'bae')->first()->id, // BAE
-            'to_status_id' => DossierStatus::where('code', 'lvr')->first()->id    // En cours de livraison
+            'to_status_id' => DossierStatus::where('code', 'lvr')->first()->id    // Livré
         ]);
 
 
@@ -73,5 +63,26 @@ class DossierStatusTransactionSeeder extends Seeder
             'from_status_id' => DossierStatus::where('code', 'rep_exo')->first()->id,
             'to_status_id' => DossierStatus::where('code', 'eng_dep')->first()->id
         ]);
+
+        DossierStatusTransaction::create([
+            'from_status_id' => DossierStatus::where('code', 'lvr')->first()->id, // Livré
+            'to_status_id' => DossierStatus::where('code', 'tr_fact')->first()->id    // Transmis pour facturation
+        ]);
+
+        DossierStatusTransaction::create([
+            'from_status_id' => DossierStatus::where('code', 'tr_fact')->first()->id, // Transmis pour facturation 
+            'to_status_id' => DossierStatus::where('code', 'fact')->first()->id    // Facturé
+        ]);
+
+        DossierStatusTransaction::create([
+            'from_status_id' => DossierStatus::where('code', 'fact')->first()->id, // Facturé
+            'to_status_id' => DossierStatus::where('code', 'pay')->first()->id    // Payé
+        ]);
+
+        DossierStatusTransaction::create([
+            'from_status_id' => DossierStatus::where('code', 'pay')->first()->id, // Payé
+            'to_status_id' => DossierStatus::where('code', 'arch')->first()->id    // Archivé
+        ]);
+
     }
 }
