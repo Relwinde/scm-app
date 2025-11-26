@@ -23,6 +23,26 @@ class CreateBonDeCaisse extends ModalComponent
 
     public $search;
 
+    public $alert_fm = false;
+    public $alert_bae = false;
+    public $alert_dex = false;
+
+    public function mount()
+    {
+        if (auth()->user()->can('Section Transit')) {
+            $dossiers_instance_fm = Dossier::getDossiersInStatusOlderThan('fm_prov', 10, auth()->id());
+            $this->alert_fm = $dossiers_instance_fm->isNotEmpty();
+        }
+
+        if (auth()->user()->can('Section Logistique')) {
+            $dossiers_instance_bae = Dossier::getDossiersInStatusOlderThan('bae', 7, auth()->id());
+            $this->alert_bae = $dossiers_instance_bae->isNotEmpty();
+
+            $dossiers_instance_dex = Dossier::getDossiersInStatusOlderThan('di_dep', 7, auth()->id());
+            $this->alert_dex = $dossiers_instance_dex->isNotEmpty();
+        }
+    }
+
     public function render()
     {
 

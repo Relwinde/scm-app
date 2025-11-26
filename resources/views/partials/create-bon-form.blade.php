@@ -2,6 +2,7 @@
     <div class="card form-input-elements">
         <div class="card-header">
             <h3 class="mb-0 card-title"><b>{{$title}}</b></h3>
+            {{ $dossiers_instance }} sdsdf
         </div>
         <div class="card-body">
             <div class="row">

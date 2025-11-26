@@ -20,6 +20,7 @@ class Dossier extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $guarded = [];
 
 
@@ -105,6 +106,51 @@ class Dossier extends Model
     public function statusHistories(){
         return $this->hasMany(DossierStatusHistory::class);
     }
+
+    public function daysInCurrentStatus()
+    {
+        $history = $this->statusHistories()
+                        ->where('to_status_id', $this->dossier_status_id)
+                        ->latest('created_at')
+                        ->first();
+
+        return $history
+            ? $history->created_at->diffInDays(now())
+            : null;
+    }
+
+
+    public function daysInStatus(string $statusCode)
+    {
+        $history = $this->statusHistories()
+                        ->where('to_status_id', DossierStatus::where('code', $statusCode)->first()->id)
+                        ->latest('created_at')
+                        ->first();
+
+        return $history
+            ? $history->created_at->diffInDays(now())
+            : null;
+    }
+
+    
+    public static function getDossiersInStatusOlderThan(string $statusCode, int $days, int $userId)
+    {
+        $thresholdDate = now()->subDays($days);
+
+        return self::query()
+            ->where('dossier_status_id', DossierStatus::where('code', $statusCode)->first()->id)    
+            ->whereHas('statusHistories', function ($q) use ($statusCode, $thresholdDate, $userId) {
+                $q->where('to_status_id', DossierStatus::where('code', $statusCode)->first()->id)
+                ->where('created_at', '<=', $thresholdDate);
+
+                if ($userId !== null) {
+                    $q->where('user_id', $userId);
+                }
+            })
+            ->get();
+    }
+
+
 
     public function hasPassedThrough (array $statusCodes): bool {
         $codes = $this->statusHistories()
@@ -246,5 +292,4 @@ class Dossier extends Model
         $mpdf->writeHTML($html);
         $mpdf->Output($name = 'Feuille-minute-'.$this->numero.'.pdf', 'I');
     }
-
 }
