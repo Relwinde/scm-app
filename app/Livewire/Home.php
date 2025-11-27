@@ -22,4 +22,8 @@ class Home extends Component
 
         return view('livewire.home', ['fm_prov'=>$fm_prov, 'dep'=>$dep, 'dem_exo'=>$dem_exo, 'bae'=>$bae]);
     }
+
+    public function viewDossiers (string $code){
+        $this->dispatch('openModal', 'modals.dossier.view-dossiers', ['statut' => DossierStatus::where('code', $code)->first()]);
+    }
 }

@@ -73,7 +73,8 @@
                                 </style>
                             @endif
                         
-                        </h1> <h6 class="text-primary" style="font-size: 13px;">{{ mb_strtoupper($dossier->status?->name, 'UTF-8') }}</h6></td>
+                            </h1> <h6 class="text-primary" style="font-size: 13px;">{{ mb_strtoupper($dossier->status?->name, 'UTF-8') }}</h6>
+                        </td>
                         <td>{{$dossier->client->nom}}</td>
                         <td>{{$dossier->fournisseur}}</td>
                         <td>{{$dossier->num_lta_bl}}</td>

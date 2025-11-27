@@ -47,6 +47,8 @@ class ViewDossier extends ModalComponent
     public $value_error = false;
     public $declaration_error = false;
 
+    public $last_update;
+
     public function mount(){
         $this->num_commande = $this->dossier->num_commande;
         $this->client = $this->dossier->client_id;
@@ -69,6 +71,8 @@ class ViewDossier extends ModalComponent
         $this->assurance = number_format($this->dossier->assurance, 2, '.', ' ');
         $this->autre_frais = number_format($this->dossier->autre_frais, 2, '.', ' ');
         $this->sommier = $this->dossier->sommier;
+
+        $this->last_update = $this->dossier->daysInCurrentStatus();
     }
 
     #[On('update-dossier')]

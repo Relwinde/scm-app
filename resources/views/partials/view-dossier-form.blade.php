@@ -39,6 +39,18 @@
             </div>
         </div>
     </div>
+
+    @if ($last_update > 7)
+        <div class="card-body">
+            <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                <span class="alert-inner--icon"><i class="fe fe-slash"></i></span>
+                <span class="alert-inner--text"><strong>Attention !</strong> Le statut de ce dossier a été mis à jour il y'a <strong>{{$last_update}} jours</strong> ! </span>
+                {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button> --}}
+            </div>
+        </div> 
+    @endif
     <div class="card-header">
         <h3 class="card-title m-2"><a target="_blank"  href="{{route('print-dossier', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fa fa-file"></i> Page de garde</a></b></h3>
         {{-- <h3 class="card-title m-2"><a target="_blank"  href="{{route('print-dossier', $dossier->id)}}" class="btn btn-sm btn-outline-primary">Bordereau de livraison</a></b></h3> --}}
