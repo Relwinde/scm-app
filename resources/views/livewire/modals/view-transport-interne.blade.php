@@ -44,7 +44,7 @@
 
                 </div>
 
-                @if ($last_update > 7)
+                @if ($last_update > 7 && $dossier->status?->code=='arch')
                     <div class="card-body">
                         <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
                             <span class="alert-inner--icon"><i class="fe fe-slash"></i></span>
