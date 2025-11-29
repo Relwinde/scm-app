@@ -70,6 +70,47 @@ class ViewDossiers extends ModalComponent
             ->groupBy('numero')
             ->paginate(10, '*', 'trasports-pagination');
             
+        } else if ($this->statut->code == 'lvr'){
+            $this->name = 'en attente de transmission pour facturation';
+
+            $transports = TransportInterne::select(['transport_internes.id', 'transport_internes.numero', 'transport_internes.client_id', 'transport_internes.created_at', 'transport_status_id'])
+            ->leftjoin('clients', 'transport_internes.client_id', '=', 'clients.id') 
+            ->leftjoin('vehicules', 'transport_internes.vehicule_id', '=', 'vehicules.id') 
+            ->leftjoin('chauffeurs', 'transport_internes.chauffeur_id', '=', 'chauffeurs.id') 
+            ->leftjoin('numero_transports', 'transport_internes.id', '=', 'numero_transports.transport_interne_id') 
+            ->where('transport_status_id', TransportStatus::where('code', 'lvr')->first()->id)
+            ->where(function ($query){
+                $query->where('transport_internes.numero', 'like', "%{$this->search}%")
+                ->orWhere('clients.nom', 'like', "%{$this->search}%")
+                ->orWhere('chauffeurs.nom', 'like', "%{$this->search}%")
+                ->orWhere('vehicules.immatriculation', 'like', "%{$this->search}%")
+                ->orWhere('numero_transports.numero', 'like', "%{$this->search}%");})
+            
+            ->orderBy('created_at', 'DESC')
+            ->groupBy('numero')
+            ->paginate(10, '*', 'trasports-pagination');
+
+        } else if ($this->statut->code == 'tr_fact'){
+            $this->name = 'En attente de facturation';
+            $transports = TransportInterne::select(['transport_internes.id', 'transport_internes.numero', 'transport_internes.client_id', 'transport_internes.created_at', 'transport_status_id'])
+            ->leftjoin('clients', 'transport_internes.client_id', '=', 'clients.id') 
+            ->leftjoin('vehicules', 'transport_internes.vehicule_id', '=', 'vehicules.id') 
+            ->leftjoin('chauffeurs', 'transport_internes.chauffeur_id', '=', 'chauffeurs.id') 
+            ->leftjoin('numero_transports', 'transport_internes.id', '=', 'numero_transports.transport_interne_id') 
+            ->where('transport_status_id', TransportStatus::where('code', 'tr_fact')->first()->id)
+            ->where(function ($query){
+                $query->where('transport_internes.numero', 'like', "%{$this->search}%")
+                ->orWhere('clients.nom', 'like', "%{$this->search}%")
+                ->orWhere('chauffeurs.nom', 'like', "%{$this->search}%")
+                ->orWhere('vehicules.immatriculation', 'like', "%{$this->search}%")
+                ->orWhere('numero_transports.numero', 'like', "%{$this->search}%");})   
+
+            ->orderBy('created_at', 'DESC')
+            ->groupBy('numero')
+            ->paginate(10, '*', 'trasports-pagination');
+            
+        } else {
+            $this->name = '';
         }
 
         

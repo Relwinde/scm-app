@@ -11,6 +11,53 @@
 
     <!-- ROW OPEN -->
     <div class="row row-cards">
+        @can('Transmettre un dossier pour facturation')
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                <div class="card">
+                    <div class="card-header pb-0 border-bottom-0">
+                        <a wire:click="viewDossiers('lvr')" href="javascript:void(0);"><h3 class="card-title text-secondary" style="font-size: 24px; font-weight: 400;">En attente de transmission </br>pour facturation :</h3></a>
+                        <div class="card-options">
+                            <a wire:click="viewDossiers('env_fact')" class="btn btn-sm btn-warning" href="javascript:void(0);"><i class="fa fa-thumbs-up"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <h3 class="d-inline-block mb-2" style="font-size: 25px; font-weight: 700;">{{ $env_fact }}</h3>
+                    </div>
+                </div>
+            </div><!-- COL END -->  
+        @endcan
+
+        @can('Facturer un dossier')
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                <div class="card">
+                    <div class="card-header pb-0 border-bottom-0">
+                        <a wire:click="viewDossiers('tr_fact')" href="javascript:void(0);"><h3 class="card-title text-secondary" style="font-size: 24px; font-weight: 400;">En attente de</br>facturation :</h3></a>
+                        <div class="card-options">
+                            <a wire:click="viewDossiers('env_fact')" class="btn btn-sm btn-warning" href="javascript:void(0);"><i class="fa fa-list"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <h3 class="d-inline-block mb-2" style="font-size: 25px; font-weight: 700;">{{ $att_fact }}</h3>
+                    </div>
+                </div>
+            </div><!-- COL END -->  
+        @endcan
+
+        @can('Valider le paiement d\'un dossier')
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                <div class="card">
+                    <div class="card-header pb-0 border-bottom-0">
+                        <a wire:click="viewDossiers('fact')" href="javascript:void(0);"><h3 class="card-title text-secondary" style="font-size: 24px; font-weight: 400;">En attente de</br>paiement :</h3></a>
+                        <div class="card-options">
+                            <a wire:click="viewDossiers('env_fact')" class="btn btn-sm btn-warning" href="javascript:void(0);"><i class="fa fa-dollar mb-0"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0">
+                        <h3 class="d-inline-block mb-2" style="font-size: 25px; font-weight: 700;">{{ $att_pay }}</h3>
+                    </div>
+                </div>
+            </div><!-- COL END -->  
+        @endcan
 
         @can('Confirmer une feuille minute')
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
@@ -77,6 +124,8 @@
                 </div>
             </div><!-- COL END -->  
         @endcan
+
+        
 
     </div>
     <!-- ROW CLOSED -->

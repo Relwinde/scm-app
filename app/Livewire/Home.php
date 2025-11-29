@@ -20,7 +20,13 @@ class Home extends Component
 
         $bae = Dossier::where('dossier_status_id', DossierStatus::where('code', 'bae')->first()->id)->count() + TransportInterne::where('transport_status_id',  TransportStatus::where('code', 'ecl')->first()->id)->count();
 
-        return view('livewire.home', ['fm_prov'=>$fm_prov, 'dep'=>$dep, 'dem_exo'=>$dem_exo, 'bae'=>$bae]);
+        $env_fact = Dossier::where('dossier_status_id', DossierStatus::where('code', 'lvr')->first()->id)->count() + TransportInterne::where('transport_status_id',  TransportStatus::where('code', 'lvr')->first()->id)->count();
+
+        $att_fact = Dossier::where('dossier_status_id', DossierStatus::where('code', 'tr_fact')->first()->id)->count() + TransportInterne::where('transport_status_id',  TransportStatus::where('code', 'tr_fact')->first()->id)->count();
+
+        $att_pay = Dossier::where('dossier_status_id', DossierStatus::where('code', 'fact')->first()->id)->count() + TransportInterne::where('transport_status_id',  TransportStatus::where('code', 'fact')->first()->id)->count();
+
+        return view('livewire.home', ['fm_prov'=>$fm_prov, 'dep'=>$dep, 'dem_exo'=>$dem_exo, 'bae'=>$bae, 'env_fact'=>$env_fact, 'att_fact'=>$att_fact, 'att_pay'=>$att_pay]);
     }
 
     public function viewDossiers (string $code){
