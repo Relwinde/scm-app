@@ -59,7 +59,11 @@
                     <h3 class="card-title m-2"><a target="_blank"  href="{{route('print-transport', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Page de garde</a></h3>
                     {{-- <h3 class="card-title m-2"><a target="_blank"  href="{{route('print-transport', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Bordereau de livraison</a></h3> --}}
                     <div class="card-title m-2">
-                            <a wire:click="$dispatch('openModal', {component: 'modals.transport-interne.print-delivery-slip', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text"></i> Bordereau de livraison</a>  
+
+                        @if (!$dossier->hasPassedThroughAny (['lvr']))
+                            <a wire:click="$dispatch('openModal', {component: 'modals.transport-interne.print-delivery-slip', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text"></i> Bordereau de livraison</a>   
+                        @endif
+
                     </div>  
                     @if ($dossier->hasPassedThrough (['ecl']) && !$dossier->hasPassedThroughAny (['lvr']))
                         <div class="card-title m-2">
