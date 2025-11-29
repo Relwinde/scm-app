@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Livewire\Modals\Dossier;
+namespace App\Livewire\Modals\TransportInterne;
 
-use App\Models\Dossier;
 use App\Models\Document;
-use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
+use App\Models\TransportInterne;
+use Illuminate\Support\Facades\DB;
 use LivewireUI\Modal\ModalComponent;
 
 class ConfirmFacture extends ModalComponent
 {
     use WithFileUploads;
 
-    public Dossier $dossier;
+    public TransportInterne $dossier;
     public $numero_facture; 
     public $file; 
 
-
     public function render()
     {
-        return view('livewire.modals.dossier.confirm-facture');
+        return view('livewire.modals.transport-interne.confirm-facture');
     }
+
 
     public function save (){
         if (! auth()->user()->can('Facturer un dossier')) {
@@ -40,11 +40,9 @@ class ConfirmFacture extends ModalComponent
             'numero_facture.max' => 'Le numéro de la facture ne doit pas dépasser 255 caractères.'
         ]);
 
-
         $originalName = strtoupper(preg_replace('/\.pdf$/i', '', $this->file->getClientOriginalName()));
         $fileName = 'FACTURE-SCM_' . str_replace('/', '-', $this->dossier->numero) . '.' . $this->file->getClientOriginalExtension();
 
-        
         try {
             DB::beginTransaction();
             $this->dossier->numero_facture_scm = $this->numero_facture;
@@ -59,7 +57,7 @@ class ConfirmFacture extends ModalComponent
             $path = $this->file->storeAs('attachments/dossiers/' . str_replace('/', '-', $this->dossier->numero), $fileName);
 
             Document::create([
-                'dossier_id' => $this->dossier->id,
+                'transport_interne_id' => $this->dossier->id,
                 'path' => $path,
                 'type' => 'FACTURE SCM',
                 'name' => $fileName,
@@ -80,7 +78,5 @@ class ConfirmFacture extends ModalComponent
                 DB::rollBack();
                 throw $e;
         }
-
-
     }
 }

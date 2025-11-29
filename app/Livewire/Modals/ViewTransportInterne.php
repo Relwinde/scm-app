@@ -11,6 +11,7 @@ use Livewire\Attributes\On;
 use App\Models\NumeroTransport;
 use App\Models\TransportInterne;
 use App\Exports\TransportDepenses;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 use Maatwebsite\Excel\Facades\Excel;
@@ -34,6 +35,8 @@ class ViewTransportInterne extends ModalComponent
     public $num_lta_bl;
     public $num_commande;
 
+    public $last_update;
+
     public function mount (){
         $this->client = $this->dossier->client_id;
         $this->vehicule = $this->dossier->vehicule_id;
@@ -45,6 +48,9 @@ class ViewTransportInterne extends ModalComponent
         $this->poids = number_format(floatval( str_replace(' ', '',$this->dossier->poids)), 2, '.', ' ') ;
         $this->num_lta_bl = $this->dossier->num_lta_bl;
         $this->num_commande = $this->dossier->num_commande;
+
+        $this->last_update = $this->dossier->daysInCurrentStatus();
+
 
     }
 
@@ -147,4 +153,63 @@ class ViewTransportInterne extends ModalComponent
 
         $this->dispatch('openModal', 'modals.transport-interne.upload-bordereau-livraison', ['dossier' => $this->dossier->id]);
     }
+
+    public function setFacturation (){
+        if(! Auth::user()->can('Transmettre un dossier pour facturation') || $this->dossier->status?->code != 'lvr'){
+            $this->dispatch('not-allowed');
+            return;
+        }
+        
+
+        try {
+            DB::beginTransaction();
+            $this->dossier->transitionTo('tr_fact', Auth::user()->id);
+            $this->dispatch('update-dossier');
+            $this->dispatch('facturation-transmitted');
+            DB::commit();
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $this->dispatch('status-transition-error');
+            return;
+        }
+    }
+
+    public function setFacture (){
+        if(! Auth::user()->can('Facturer un dossier') || $this->dossier->status?->code != 'tr_fact'){
+            $this->dispatch('not-allowed');
+            return;
+        }
+
+        $this->dispatch('openModal', 'modals.transport-interne.confirm-facture', ['dossier' => $this->dossier->id]);
+    }
+
+    public function setPayment (){
+        if(! Auth::user()->can('Valider le paiement d\'un dossier') || $this->dossier->status?->code != 'fact'){
+            $this->dispatch('not-allowed');
+            return;
+        }
+
+        $this->dispatch('openModal', 'modals.transport-interne.confirm-payment', ['dossier' => $this->dossier->id]);
+    }
+
+    public function setArchive (){
+        if(! Auth::user()->can('Archiver un dossier') || $this->dossier->status?->code != 'pay'){
+            $this->dispatch('not-allowed');
+            return;
+        }
+
+        try {
+            DB::beginTransaction(); 
+            $this->dossier->transitionTo('arch', auth()->user()->id);
+            $this->dispatch('update-dossier');
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            $this->dispatch('status-transition-error');
+            return;
+        }
+    }
+
+
 }

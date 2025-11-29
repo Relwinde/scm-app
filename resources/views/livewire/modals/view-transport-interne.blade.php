@@ -43,14 +43,21 @@
                     
 
                 </div>
+
+                @if ($last_update > 7)
+                    <div class="card-body">
+                        <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                            <span class="alert-inner--icon"><i class="fe fe-slash"></i></span>
+                            <span class="alert-inner--text"><strong>Attention !</strong> Le statut de ce dossier a été mis à jour il y'a <strong>{{$last_update}} jours</strong> ! </span>
+                            {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button> --}}
+                        </div>
+                    </div> 
+                @endif
                 <div class="card-header">
                     <h3 class="card-title m-2"><a target="_blank"  href="{{route('print-transport', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Page de garde</a></h3>
                     {{-- <h3 class="card-title m-2"><a target="_blank"  href="{{route('print-transport', $dossier->id)}}" class="btn btn-sm btn-outline-primary"><i class="fe fe-file me-2 d-inline-flex"></i>Bordereau de livraison</a></h3> --}}
-                    <div class="card-title m-2">
-                        @can('Créer bons de caisse')
-                            <button wire:click="$dispatch('openModal', {component: 'modals.transport-interne.create-bon', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Créer un bon</button>    
-                        @endcan
-                    </div>   
                     <div class="card-title m-2">
                             <a wire:click="$dispatch('openModal', {component: 'modals.transport-interne.print-delivery-slip', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-outline-primary"><i class="fa fa-file-text"></i> Bordereau de livraison</a>  
                     </div>  
@@ -60,8 +67,52 @@
                                 <a wire:click='uploadBordereauLivraison' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BL signé</a>
                             @endcan
                         </div>     
-                    @endif       
+                    @endif 
+                    
+                    {{-- Gestion des statuts après livraison --}}
+                        @if ($dossier->hasPassedThrough (['ecl','lvr']) && !$dossier->hasPassedThroughAny (['tr_fact']))
+                            <div class="card-title m-2">
+                                @can('Charger les bordereaux de livraison signés')
+                                    <a wire:click='setFacturation' href="javascript:void(0);" wire:confirm='Êtes-vous sûr de vouloir transmettre ce dossier pour facturation ?' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Transmettre pour facturation</a>
+                                @endcan
+                            </div>     
+                        @endif 
+
+                        @if ($dossier->hasPassedThrough (['ecl','lvr','tr_fact']) && !$dossier->hasPassedThroughAny (['fact']))
+                            <div class="card-title m-2">
+                                @can('Charger les bordereaux de livraison signés')
+                                    <a wire:click='setFacture' wire:confirm='Confirmez vous que ce dossier a bien été facturé ?' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Facturé</a>
+                                @endcan
+                            </div>     
+                        @endif
+
+                        @if ($dossier->hasPassedThrough (['ecl','lvr','tr_fact','fact']) && !$dossier->hasPassedThroughAny (['pay']))
+                            <div class="card-title m-2">
+                                @can('Charger les bordereaux de livraison signés')
+                                    <a wire:click='setPayment' wire:confirm='Confirmez vous le paiement de ce dossier ?' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Confirmer paiement</a>
+                                @endcan
+                            </div>     
+                        @endif
+
+                        @if ($dossier->hasPassedThrough (['ecl','lvr','tr_fact','fact','pay']) && !$dossier->hasPassedThroughAny (['arch']))
+                            <div class="card-title m-2">
+                                @can('Charger les bordereaux de livraison signés')
+                                    <a wire:click='setArchive' wire:confirm='Souhaitez vous vraiment archiver ce dossier ?' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Archiver</a>
+                                @endcan
+                            </div>     
+                        @endif
+
+                    {{-- Fin gestion des statuts après livraison --}}
+
+                    <div class="card-title m-2">
+                        @can('Créer bons de caisse')
+                            <button wire:click="$dispatch('openModal', {component: 'modals.transport-interne.create-bon', arguments: { dossier : {{ $dossier->id }} }})" href="javascript:void(0);" class="btn btn-sm btn-warning">Créer un bon</button>    
+                        @endcan
+                    </div>   
                 </div>
+
+
+
                 @if ($edit==true)
                 <form wire:submit.prevent="update" >
                 @endif
@@ -182,6 +233,16 @@
                 $(function () {
                     return $.growl.warning({
                         message: "Une erreur est survenue"
+                    });
+                });
+            }).call(this);
+        });
+
+        $wire.on('not-allowed', () => {
+            (function () {
+                $(function () {
+                    return $.growl.error({
+                        message: "Action non autorisée."
                     });
                 });
             }).call(this);

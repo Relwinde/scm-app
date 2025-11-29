@@ -12,6 +12,7 @@ use App\Models\NumeroDossier;
 use App\Models\BureauDeDouane;
 use App\Exports\DossierDepenses;
 use App\Models\DossierMarchandise;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 use Maatwebsite\Excel\Facades\Excel;
@@ -384,11 +385,14 @@ class ViewDossier extends ModalComponent
             }
 
             try {
+                DB::beginTransaction();
                 $this->dossier->transitionTo('tr_fact', Auth::user()->id);
                 $this->dispatch('update-dossier');
                 $this->dispatch('facturation-transmitted');
+                DB::commit();
     
             } catch (\Exception $e) {
+                DB::rollBack();
                 $this->dispatch('status-transition-error');
                 return;
             }
@@ -418,10 +422,13 @@ class ViewDossier extends ModalComponent
                 return;
             }
 
-            try { 
+            try {
+                DB::beginTransaction(); 
                 $this->dossier->transitionTo('arch', auth()->user()->id);
                 $this->dispatch('update-dossier');
+                DB::commit();
             } catch (\Throwable $th) {
+                DB::rollBack();
                 $this->dispatch('status-transition-error');
                 return;
             }

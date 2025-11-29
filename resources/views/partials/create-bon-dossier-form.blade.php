@@ -3,6 +3,40 @@
         <div class="card-header">
             <h3 class="mb-0 card-title"><b>{{$title}} {{$dossier->numero}}</b></h3>
         </div>
+
+        @if ($alert_fm)
+            <div class="card-body">
+                <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                    <span class="alert-inner--icon"><i class="fe fe-slash"></i></span>
+                    <span class="alert-inner--text"><strong>Attention ! </strong>Vous avez des feuilles minutes à régulariser, vous pourriez ne plus être autorisé à effectuer des opérations sur la plateforme</strong> ! Veillez les régulariser au plus vite.</span>
+                    <button wire:click="$dispatch('openModal', {component: 'modals.dossier.view-alert-dossiers', arguments: { statut : 'fm' }})" type="button" class="btn-close">
+                        <span aria-hidden="true"><span class="fe fe-eye"> </span></span>
+                    </button>
+                </div>
+            </div> 
+        @endif
+        @if ($alert_dex)
+            <div class="card-body">
+                <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                    <span class="alert-inner--icon"><i class="fe fe-slash"></i></span>
+                    <span class="alert-inner--text"><strong>Attention ! </strong>Vous avez des dossiers en attente d'exonération à régulariser, vous pourriez ne plus être autorisé à effectuer des opérations sur la plateforme</strong> ! Veillez les régulariser au plus vite.</span>
+                    <button wire:click="$dispatch('openModal', {component: 'modals.dossier.view-alert-dossiers', arguments: { statut : 'dex' }})" type="button" class="btn-close">
+                        <span aria-hidden="true"><span class="fe fe-eye"> </span></span>
+                    </button>
+                </div>
+            </div>
+        @endif
+        @if ($alert_bae)
+            <div class="card-body">
+                <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                    <span class="alert-inner--icon"><i class="fe fe-slash"></i></span>
+                    <span class="alert-inner--text"><strong>Attention ! </strong>Vous avez des dossiers en attente de bon à émettre à régulariser, vous pourriez ne plus être autorisé à effectuer des opérations sur la plateforme</strong> ! Veillez les régulariser au plus vite.</span>
+                    <button wire:click="$dispatch('openModal', {component: 'modals.dossier.view-alert-dossiers', arguments: { statut : 'bae' }})" type="button" class="btn-close">
+                        <span aria-hidden="true"><span class="fe fe-eye"> </span></span>
+                    </button>
+                </div>
+            </div>
+        @endif
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">

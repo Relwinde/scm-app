@@ -2,11 +2,12 @@
 
 namespace App\Livewire\Modals\TransportInterne;
 
-use App\Livewire\Modals\BonDeCaisse\ViewBon;
+use App\Models\Dossier;
 use App\Models\BonDeCaisse;
 use App\Models\TransportInterne;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
+use App\Livewire\Modals\BonDeCaisse\ViewBon;
 
 class CreateBon extends ModalComponent
 {
@@ -18,6 +19,31 @@ class CreateBon extends ModalComponent
     public $depense;
 
     public $description;
+
+    public $alert_fm = false;
+    public $alert_bae = false;
+    public $alert_dex = false;
+
+    public function mount()
+    {
+        if (auth()->user()->can('Section Transit')) {
+            $dossiers_instance_fm = Dossier::getDossiersInStatusOlderThan('fm_prov', 10, auth()->id())->count();
+
+            $dossiers_instance_fm += Dossier::getDossiersInStatusOlderThan('fm_def', 10, auth()->id())->count();  
+
+            $this->alert_fm = $dossiers_instance_fm > 5;
+            $dossiers_instance_dex = Dossier::getDossiersInStatusOlderThan('di_dep', 3, auth()->id())->count();
+            $this->alert_dex = $dossiers_instance_dex > 0;
+        }
+
+        if (auth()->user()->can('Section Logistique')) {
+            $dossiers_instance_bae = Dossier::getDossiersInStatusOlderThan('bae', 3, auth()->id())->count();
+
+            $dossiers_instance_bae += TransportInterne::getDossiersInStatusOlderThan('ecl', 3, auth()->id())->count();
+            $this->alert_bae = $dossiers_instance_bae > 3;
+
+        }
+    }
 
     public function render()
     {
