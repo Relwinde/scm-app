@@ -214,8 +214,13 @@ class TransportInterne extends Model
             'margin_top' => 10,
             'margin_bottom' => 10,
             'margin_header' => 0,
-            'margin_footer' => 0,
         ]);
+
+        $mpdf->SetHTMLFooter('
+            <div style="text-align: center; font-size: 10px; opacity: 0.5;">
+                <span>Document imprimé le '.date('d/m/Y H:i').'</span>
+            </div>
+        ');
 
         $html = view('prints.delivery-slip', ['dossier'=>$this]);
         $mpdf->writeHTML($html);

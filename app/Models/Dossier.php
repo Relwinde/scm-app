@@ -281,8 +281,12 @@ class Dossier extends Model
             'margin_top' => 10,
             'margin_bottom' => 10,
             'margin_header' => 0,
-            'margin_footer' => 0,
         ]);
+        $mpdf->SetHTMLFooter('
+            <div style="text-align: center; font-size: 10px; opacity: 0.5;">
+                <span>Document imprimé le '.date('d/m/Y H:i').'</span>
+            </div>
+        ');
 
         $html = view('prints.delivery-slip', ['dossier'=>$this]);
         $mpdf->writeHTML($html);
@@ -301,7 +305,6 @@ class Dossier extends Model
             'margin_top' => 10,
             'margin_bottom' => 10,
             'margin_header' => 0,
-            'margin_footer' => 0,
         ]);
 
         if (! $this->hasPassedThrough(['fm_def'])){
@@ -309,8 +312,13 @@ class Dossier extends Model
             $mpdf->SetWatermarkText(new WatermarkText('P R O V I S O I R E')); // Will cope with UTF-8 encoded text
             $mpdf->watermarkTextAlpha = 0.09;
         }
+        $mpdf->SetHTMLFooter('
+            <div style="text-align: center; font-size: 10px; opacity: 0.5;">
+                <span>Document imprimé le '.date('d/m/Y H:i').' - par '.auth()->user()->name.'</span>
+            </div>
+        ');
         $html = view('prints.feuille-minute', ['dossier'=>$this]);
-       
+        
         $mpdf->writeHTML($html);
         $mpdf->Output($name = 'Feuille-minute-'.$this->numero.'.pdf', 'I');
     }
