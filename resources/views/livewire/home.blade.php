@@ -16,7 +16,7 @@
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
                 <div class="card">
                     <div class="card-header pb-0 border-bottom-0">
-                        <h3 class="card-title text-secondary" style="font-size: 24px; font-weight: 400;">Feuille minute</br>  à confirmer :</h3>
+                        <a wire:click="viewDossiers('fm_prov')" href="javascript:void(0);"><h3 class="card-title text-secondary" style="font-size: 24px; font-weight: 400;">Feuille minute</br>  à confirmer :</h3></a>
                         <div class="card-options">
                             <a wire:click="viewDossiers('fm_prov')" class="btn btn-sm btn-danger" href="javascript:void(0);"><i class="fa fa-file-o mb-0"></i></a>
                         </div>
@@ -32,7 +32,7 @@
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
                 <div class="card">
                     <div class="card-header pb-0 border-bottom-0">
-                        <h3 class="card-title text-secondary" style="font-size: 24px; font-weight: 400; ">A enregistrer/déposer</br> en douane :</h3>
+                        <a wire:click="viewDossiers('fm_def')" href="javascript:void(0);"><h3 class="card-title text-secondary" style="font-size: 24px; font-weight: 400; ">A enregistrer/déposer</br> en douane :</h3></a>
                         <div class="card-options">
                             <a wire:click="viewDossiers('fm_def')" class="btn btn-sm btn-primary" href="javascript:void(0);"><i class="fa fa-inbox mb-0"></i></a>
                         </div>
@@ -49,7 +49,7 @@
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
                 <div class="card">
                     <div class="card-header pb-0 border-bottom-0">
-                        <h3 class="card-title text-secondary" style="font-size: 24px; font-weight: 400;">En attente de reponse</br> d'éxonération :</h3>
+                        <a wire:click="viewDossiers('di_dep')" href="javascript:void(0);"><h3 class="card-title text-secondary" style="font-size: 24px; font-weight: 400;">En attente de reponse</br> d'éxonération :</h3></a>
                         <div class="card-options">
                             <a wire:click="viewDossiers('di_dep')" class="btn btn-sm btn-success" href="javascript:void(0);"><i class="fa fa-file mb-0"></i></a>
                         </div>
@@ -66,7 +66,7 @@
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
                 <div class="card">
                     <div class="card-header pb-0 border-bottom-0">
-                        <h3 class="card-title text-secondary" style="font-size: 24px; font-weight: 400;">En attente de</br> livraison :</h3>
+                        <a wire:click="viewDossiers('bae')" href="javascript:void(0);"><h3 class="card-title text-secondary" style="font-size: 24px; font-weight: 400;">En attente de</br> livraison :</h3></a>
                         <div class="card-options">
                             <a wire:click="viewDossiers('bae')" class="btn btn-sm btn-warning" href="javascript:void(0);"><i class="fa fa-truck mb-0"></i></a>
                         </div>

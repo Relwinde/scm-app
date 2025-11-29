@@ -30,15 +30,21 @@ class CreateBonDeCaisse extends ModalComponent
     public function mount()
     {
         if (auth()->user()->can('Section Transit')) {
-            $dossiers_instance_fm = Dossier::getDossiersInStatusOlderThan('fm_prov', 10, auth()->id());
-            $this->alert_fm = $dossiers_instance_fm->isNotEmpty();
-            $dossiers_instance_dex = Dossier::getDossiersInStatusOlderThan('di_dep', 7, auth()->id());
-            $this->alert_dex = $dossiers_instance_dex->isNotEmpty();
+            $dossiers_instance_fm = Dossier::getDossiersInStatusOlderThan('fm_prov', 10, auth()->id())->count();
+
+            $dossiers_instance_fm += Dossier::getDossiersInStatusOlderThan('fm_def', 10, auth()->id())->count();  
+
+            $this->alert_fm = $dossiers_instance_fm > 5;
+            $dossiers_instance_dex = Dossier::getDossiersInStatusOlderThan('di_dep', 3, auth()->id())->count();
+            $this->alert_dex = $dossiers_instance_dex > 0;
         }
 
         if (auth()->user()->can('Section Logistique')) {
-            $dossiers_instance_bae = Dossier::getDossiersInStatusOlderThan('bae', 3, auth()->id());
-            $this->alert_bae = $dossiers_instance_bae->isNotEmpty();
+            $dossiers_instance_bae = Dossier::getDossiersInStatusOlderThan('bae', 3, auth()->id())->count();
+
+            $dossiers_instance_bae += TransportInterne::getDossiersInStatusOlderThan('ecl', 3, auth()->id())->count();
+            $this->alert_bae = $dossiers_instance_bae > 3;
+
         }
     }
 

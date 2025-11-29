@@ -150,6 +150,27 @@ class Dossier extends Model
             ->get();
     }
 
+    public static function getDossiersInStatusesOlderThan(array $statusCodes, int $days, ?int $userId = null)
+    {
+        $thresholdDate = now()->subDays($days);
+
+        // Récupérer les IDs des statuts concernés
+        $statusIds = DossierStatus::whereIn('code', $statusCodes)->pluck('id');
+
+        return self::query()
+            ->whereIn('dossier_status_id', $statusIds)
+            ->whereHas('statusHistories', function ($q) use ($statusIds, $thresholdDate, $userId) {
+                $q->whereIn('to_status_id', $statusIds)
+                ->where('created_at', '<=', $thresholdDate);
+
+                if ($userId !== null) {
+                    $q->where('user_id', $userId);
+                }
+            })
+            ->with('status') // Pour accéder à $dossier->status->name
+            ->orderBy('created_at', 'DESC');
+    }
+
 
 
     public function hasPassedThrough (array $statusCodes): bool {

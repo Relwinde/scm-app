@@ -93,6 +93,11 @@
         <div class="row m-2">
             @if ($bon->commentaires->count() > 0)
                 <div class="custom-controls-stacked">
+                    @if ($bon->etape == "EMETTEUR" && $bon->user->id == Auth::user()->id) 
+                        <a href="javascript:void(0);" wire:click="$dispatch('openModal', {component: 'modals.bon-de-caisse.add-comment', arguments: { bon : {{ $bon->id }} }})" class="btn  btn-sm btn-danger">
+                            <i class="icon icon-bubbles"></i> Ajouter un commentaire
+                        </a>
+                    @endif
                     <label class="custom-control custom-checkbox">
                         <input wire:model.live='viewComments' type="checkbox" class="custom-control-input">
                         <span class="custom-control-label" style="color: red;"> <b>Commentaires de retour</b></span>

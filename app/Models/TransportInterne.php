@@ -160,6 +160,46 @@ class TransportInterne extends Model
         return $this->hasOne(DeliverySlip::class);
     }
 
+    public function daysInStatus(string $statusCode)
+    {
+        $history = $this->statusHistories()
+                        ->where('to_status_id', TransportStatus::where('code', $statusCode)->first()->id)
+                        ->latest('created_at')
+                        ->first();
+
+        return $history
+            ? $history->created_at->diffInDays(now())
+            : null;
+    }
+
+    public function daysInCurrentStatus()
+    {
+        $history = $this->statusHistories()
+                        ->where('to_status_id', $this->transport_status_id)
+                        ->latest('created_at')
+                        ->first();
+
+        return $history
+            ? $history->created_at->diffInDays(now())
+            : null;
+    }
+
+    public static function getDossiersInStatusOlderThan(string $statusCode, int $days, int $userId)
+    {
+        $thresholdDate = now()->subDays($days);
+
+        return self::query()
+            ->where('transport_status_id', TransportStatus::where('code', $statusCode)->first()->id)    
+            ->whereHas('statusHistories', function ($q) use ($statusCode, $thresholdDate, $userId) {
+                $q->where('to_status_id', TransportStatus::where('code', $statusCode)->first()->id)
+                ->where('created_at', '<=', $thresholdDate);
+
+                if ($userId !== null) {
+                    $q->where('user_id', $userId);
+                }
+            });
+    }
+
     public function print_delivery_slip (){
         ini_set('memory_limit', '440M');
         $mpdf = new Mpdf([
