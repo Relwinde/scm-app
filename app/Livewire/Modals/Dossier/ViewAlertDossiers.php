@@ -32,17 +32,20 @@ class ViewAlertDossiers extends ModalComponent
                 10,
                 auth()->id()
             )
-            ->paginate(10, ['*'], 'dossier-pagination');; 
+            ->paginate(10, ['*'], 'dossier-pagination');
         
         } elseif ($this->statut === 'bae') {
             $this->name = 'en attente de livraison';
-            $dossiers = Dossier::getDossiersInStatusOlderThan('bae', 3, auth()->id());
+            $dossiers = Dossier::getDossiersInStatusOlderThan('bae', 3, auth()->id())
+            ->paginate(10, ['*'], 'dossier-pagination');
 
-            $transports = TransportInterne::getDossiersInStatusOlderThan('ecl', 3, auth()->id());
+            $transports = TransportInterne::getDossiersInStatusOlderThan('ecl', 3, auth()->id())
+            ->paginate(10, ['*'], 'dossier-pagination');
 
         } elseif ($this->statut === 'dex') {
             $this->name = "en attente de la reponse à la demande d'exonération";
-            $dossiers = Dossier::getDossiersInStatusOlderThan('di_dep', 3, auth()->id());
+            $dossiers = Dossier::getDossiersInStatusOlderThan('di_dep', 3, auth()->id())
+            ->paginate(10, ['*'], 'dossier-pagination');
         }
 
         return view('livewire.modals.dossier.view-alert-dossiers', ['dossiers'=>$dossiers, 'transports'=>$transports]);

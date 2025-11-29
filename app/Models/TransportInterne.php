@@ -197,7 +197,9 @@ class TransportInterne extends Model
                 if ($userId !== null) {
                     $q->where('user_id', $userId);
                 }
-            });
+            })
+            ->with('status') // Pour accéder à $dossier->status->name
+            ->orderBy('created_at', 'DESC');
     }
 
     public function print_delivery_slip (){

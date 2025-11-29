@@ -147,7 +147,8 @@ class Dossier extends Model
                     $q->where('user_id', $userId);
                 }
             })
-            ->get();
+            ->with('status') // Pour accéder à $dossier->status->name
+            ->orderBy('created_at', 'DESC');
     }
 
     public static function getDossiersInStatusesOlderThan(array $statusCodes, int $days, ?int $userId = null)
