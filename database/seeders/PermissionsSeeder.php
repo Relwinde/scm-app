@@ -169,6 +169,7 @@ class PermissionsSeeder extends Seeder
             Permission::create(['name'=> 'Facturer un dossier']);
             Permission::create(['name'=> 'Valider le paiement d\'un dossier']);
             Permission::create(['name'=> 'Archiver un dossier']);
+            Permission::create(['name'=> 'Voir la facture SCM d\'un dossier']);
 
 
     }

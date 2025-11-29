@@ -12,6 +12,11 @@
                     <div class="">
                         <div class="row">
                             @foreach ($documents as $document)
+
+                                @if ($document->type == 'FACTURE SCM' && !auth()->user()->can('Voir la facture SCM d\'un dossier'))
+                                @continue
+                                    
+                                @endif
                                 <div class="border-0 p-0 mb-4 pt-4">
                                     <div class="media mt-0 border br-7">
                                         <div class="ps-0 me-3"><i class="fa fa-file-pdf-o shared-files"></i></div>
