@@ -13,6 +13,7 @@
                                 <option value="" selected>-- Selectionnez le régime --</option>
                                 <option value="TTC">TTC</option>
                                 <option value="EXO">EXO</option>
+                                <option value="EXPORT">EXPORT</option>
                             </select>
                             @error('regime')<div class="error-message"> {{ $message }} </div>@enderror
                         </div>

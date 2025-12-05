@@ -13,6 +13,19 @@
                             @error('date_paiement')<div class="error-message"> {{ $message }} </div>@enderror
                         </div>
                     </div>
+
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Mode de paiement</label>
+                            <select class="form-control" wire:model="mode_paiement" required>
+                                <option value="" selected disabled>-- Sélectionner le mode de paiement --</option>
+                                <option value="ESPECE">Espèce</option>
+                                <option value="CHEQUE">Chèque</option>
+                                <option value="VIREMENT">Virement</option>
+                            </select>
+                            @error('mode_paiement')<div class="error-message"> {{ $message }} </div>@enderror
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card-footer">

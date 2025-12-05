@@ -11,7 +11,7 @@
 
     <!-- ROW OPEN -->
     <div class="row row-cards">
-        @can('Transmettre un dossier pour facturation')
+        {{-- @can('Transmettre un dossier pour facturation') --}}
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
                 <div class="card">
                     <div class="card-header pb-0 border-bottom-0">
@@ -25,9 +25,9 @@
                     </div>
                 </div>
             </div><!-- COL END -->  
-        @endcan
+        {{-- @endcan --}}
 
-        @can('Facturer un dossier')
+        {{-- @can('Facturer un dossier') --}}
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
                 <div class="card">
                     <div class="card-header pb-0 border-bottom-0">
@@ -41,9 +41,9 @@
                     </div>
                 </div>
             </div><!-- COL END -->  
-        @endcan
+        {{-- @endcan --}}
 
-        @can('Valider le paiement d\'un dossier')
+        {{-- @can('Valider le paiement d\'un dossier') --}}
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
                 <div class="card">
                     <div class="card-header pb-0 border-bottom-0">
@@ -57,9 +57,9 @@
                     </div>
                 </div>
             </div><!-- COL END -->  
-        @endcan
+        {{-- @endcan --}}
 
-        @can('Confirmer une feuille minute')
+        {{-- @can('Confirmer une feuille minute') --}}
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
                 <div class="card">
                     <div class="card-header pb-0 border-bottom-0">
@@ -73,9 +73,9 @@
                     </div>
                 </div>
             </div><!-- COL END -->  
-        @endcan
+        {{-- @endcan --}}
 
-        @can('Enregistrer & déposer dossiers en douane')
+        {{-- @can('Enregistrer & déposer dossiers en douane') --}}
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
                 <div class="card">
                     <div class="card-header pb-0 border-bottom-0">
@@ -89,10 +89,10 @@
                     </div>
                 </div>
             </div><!-- COL END -->  
-        @endcan
+        {{-- @endcan --}}
         
 
-        @can('Confirmer la reponse de la DE')
+        {{-- @can('Confirmer la reponse de la DE') --}}
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
                 <div class="card">
                     <div class="card-header pb-0 border-bottom-0">
@@ -106,10 +106,10 @@
                     </div>
                 </div>
             </div><!-- COL END -->  
-        @endcan
+        {{-- @endcan --}}
 
 
-        @can('Charger les bordereaux de livraison signés')
+        {{-- @can('Charger les bordereaux de livraison signés') --}}
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
                 <div class="card">
                     <div class="card-header pb-0 border-bottom-0">
@@ -123,7 +123,7 @@
                     </div>
                 </div>
             </div><!-- COL END -->  
-        @endcan
+        {{-- @endcan --}}
 
         
 

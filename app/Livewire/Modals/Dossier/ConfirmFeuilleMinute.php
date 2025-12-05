@@ -36,7 +36,7 @@ class ConfirmFeuilleMinute extends ModalComponent
 
         $this->validate([
             'file' => 'required|mimes:pdf|max:5120', // 5MB Max
-            'regime' => 'required|in:TTC,EXO',
+            'regime' => 'required|in:TTC,EXO,EXPORT',
         ],[
             'file.required' => 'Le fichier est obligatoire',
             'file.mimes' => 'Le fichier doit être un fichier PDF',

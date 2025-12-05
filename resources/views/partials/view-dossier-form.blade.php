@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    @if ($last_update > 7 && $dossier->status?->code=='arch')
+    @if ($last_update > 7 && $dossier->status?->code!='arch')
         <div class="card-body">
             <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
                 <span class="alert-inner--icon"><i class="fe fe-slash"></i></span>
@@ -72,7 +72,7 @@
         </div>
 
         {{-- Gestion des status TTC --}}
-            @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['fm_def']) && !$dossier->hasPassedThroughAny (['eng_dep']))
+            @if (($dossier->regime == "TTC" || $dossier->regime == "EXPORT")&& $dossier->hasPassedThrough (['fm_def']) && !$dossier->hasPassedThroughAny (['eng_dep']))
                 <div class="card-title m-2">
                     @can('Enregistrer & déposer dossiers en douane')
                         <a wire:click='confirmDeposit' wire:confirm='Ce dossier a-t-il bien été enregistré et déposé en douane ?' href="javascript:void(0);" class="btn btn-sm btn-outline-primary"> @if ($declaration_error)
@@ -91,7 +91,7 @@
                 </div>
             @endif
 
-            @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['fm_def', 'eng_dep']) && ! $dossier->hasPassedThroughAny (['bae']))
+            @if (($dossier->regime == "TTC" || $dossier->regime == "EXPORT") && $dossier->hasPassedThrough (['fm_def', 'eng_dep']) && ! $dossier->hasPassedThroughAny (['bae']))
                 <div class="card-title m-2">
                     @can('Charger le BAE')
                         <a wire:click='uploadBae' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BAE</a>
@@ -99,7 +99,7 @@
                 </div>
             @endif
 
-            @if ($dossier->regime == "TTC" && $dossier->hasPassedThrough (['fm_def', 'eng_dep', 'bae']) && !$dossier->hasPassedThroughAny (['lvr']))
+            @if (($dossier->regime == "TTC" || $dossier->regime == "EXPORT") && $dossier->hasPassedThrough (['fm_def', 'eng_dep', 'bae']) && !$dossier->hasPassedThroughAny (['lvr']))
                 <div class="card-title m-2">
                     @can('Charger les bordereaux de livraison signés')
                         <a wire:click='uploadBordereauLivraison' href="javascript:void(0);" class="btn btn-sm btn-outline-primary">Charger le BL signé</a>
